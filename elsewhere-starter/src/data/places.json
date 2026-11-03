@@ -1,0 +1,466 @@
+[
+  {
+    "id": "demo-01",
+    "slug": "palm-and-paper-studio",
+    "name": "Palm & Paper Studio",
+    "isSample": true,
+    "category": "Café",
+    "neighbourhood": "JVC",
+    "summary": "A window-side setting imagined for a quiet solo session.",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Illustrative café interior with tables and daylight",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1501339847302-ac426a4a7cbb)",
+    "modes": [
+      "Focus",
+      "Casual"
+    ],
+    "priceNote": "Illustrative spend: AED 25–55 per visit",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "no",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  },
+  {
+    "id": "demo-02",
+    "slug": "canal-reading-room",
+    "name": "Canal Reading Room",
+    "isSample": true,
+    "category": "Hotel lounge",
+    "neighbourhood": "Business Bay",
+    "summary": "A relaxed lounge concept for a change of scene.",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Illustrative coffee setting",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1442512595331-e89e73853f31)",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Illustrative spend: AED 60–120 per visit",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  },
+  {
+    "id": "demo-03",
+    "slug": "the-long-table-works",
+    "name": "The Long Table Works",
+    "isSample": true,
+    "category": "Co-working",
+    "neighbourhood": "JLT",
+    "summary": "A shared workspace concept for a day with your team.",
+    "image": "/images/scene-3.jpg",
+    "imageAlt": "Illustrative shared office interior",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1497366811353-6870744d04b2)",
+    "modes": [
+      "Focus",
+      "Together",
+      "Meetings"
+    ],
+    "priceNote": "Illustrative day pass: AED 90–150",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  },
+  {
+    "id": "demo-04",
+    "slug": "terrace-eight-kitchen",
+    "name": "Terrace Eight Kitchen",
+    "isSample": true,
+    "category": "Restaurant",
+    "neighbourhood": "Dubai Marina",
+    "summary": "A restaurant concept for light work between meals.",
+    "image": "/images/scene-4.jpg",
+    "imageAlt": "Illustrative restaurant interior",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1517248135467-4c7edcad34c4)",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Illustrative meal: AED 55–100",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  },
+  {
+    "id": "demo-05",
+    "slug": "sikka-study-club",
+    "name": "Sikka Study Club",
+    "isSample": true,
+    "category": "Café",
+    "neighbourhood": "Al Quoz",
+    "summary": "A window-side setting imagined for a quiet solo session.",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Illustrative café interior with tables and daylight",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1501339847302-ac426a4a7cbb)",
+    "modes": [
+      "Focus",
+      "Casual"
+    ],
+    "priceNote": "Illustrative spend: AED 25–55 per visit",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-05-01T09:00:00Z",
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-05-01T09:00:00Z",
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-05-01T09:00:00Z",
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-05-01T09:00:00Z",
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  },
+  {
+    "id": "demo-06",
+    "slug": "creekside-common-room",
+    "name": "Creekside Common Room",
+    "isSample": true,
+    "category": "Hotel lounge",
+    "neighbourhood": "Al Jaddaf",
+    "summary": "A relaxed lounge concept for a change of scene.",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Illustrative coffee setting",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1442512595331-e89e73853f31)",
+    "modes": [
+      "Meetings",
+      "Together"
+    ],
+    "priceNote": "Illustrative spend: AED 60–120 per visit",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  },
+  {
+    "id": "demo-07",
+    "slug": "neighbourhood-desk-house",
+    "name": "Neighbourhood Desk House",
+    "isSample": true,
+    "category": "Co-working",
+    "neighbourhood": "JVC",
+    "summary": "A shared workspace concept for a day with your team.",
+    "image": "/images/scene-3.jpg",
+    "imageAlt": "Illustrative shared office interior",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1497366811353-6870744d04b2)",
+    "modes": [
+      "Together",
+      "Focus"
+    ],
+    "priceNote": "Illustrative day pass: AED 90–150",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  },
+  {
+    "id": "demo-08",
+    "slug": "juniper-lunch-room",
+    "name": "Juniper Lunch Room",
+    "isSample": true,
+    "category": "Restaurant",
+    "neighbourhood": "JLT",
+    "summary": "A restaurant concept for light work between meals.",
+    "image": "/images/scene-4.jpg",
+    "imageAlt": "Illustrative restaurant interior",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1517248135467-4c7edcad34c4)",
+    "modes": [
+      "Casual"
+    ],
+    "priceNote": "Illustrative meal: AED 55–100",
+    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
+    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Guest network; speed not measured. Fictional scenario."
+      },
+      "power": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Sockets at some tables only. Fictional scenario."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "conflicting",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "verified",
+        "source": "Fictional editorial visit",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Ask staff before taking a call. Fictional scenario."
+      },
+      "stepFree": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Fictional venue message",
+        "checkedAt": "2026-10-20T09:00:00Z",
+        "note": "Entrance route needs an independent access check. Fictional scenario."
+      }
+    }
+  }
+]

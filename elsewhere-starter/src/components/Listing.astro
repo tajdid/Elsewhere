@@ -1,0 +1,19 @@
+---
+import PlaceCard from './PlaceCard.astro';
+import EvidencePill from './EvidencePill.astro';
+import {places} from '../lib/places';
+import {categories,modes,amenityKeys,amenityLabels} from '../lib/schema';
+interface Props { saved?:boolean; }
+const {saved=false}=Astro.props;
+---
+<div data-pending={saved?"true":undefined} data-listing data-saved-only={String(saved)}>
+{!saved && <form id="filters" class="filters" role="search">
+ <div class="filter-top"><div class="grow"><label for="q">Search places or neighbourhoods</label><input type="search" id="q" name="q" maxlength="120" placeholder="Try JLT or café"/></div><button class="primary" type="submit">Search</button><button type="button" id="filter-toggle" aria-expanded="false" aria-controls="extra-filters" hidden>Filters<span id="filter-count"></span></button></div>
+ <fieldset class="modes"><legend>Work mode</legend><div class="chip-row"><label class="chip"><input type="radio" name="mode" value="" checked/><span>Any</span></label>{modes.map(m=><label class="chip"><input type="radio" name="mode" value={m}/><span>{m}</span></label>)}</div></fieldset>
+ <div id="extra-filters" class="extra-filters"><div><label for="category">Place type</label><select name="category" id="category"><option value="">All types</option>{categories.map(c=><option>{c}</option>)}</select></div><div><label for="neighbourhood">Neighbourhood</label><select name="neighbourhood" id="neighbourhood"><option value="">All neighbourhoods</option>{[...new Set(places.map(p=>p.neighbourhood))].sort().map(n=><option>{n}</option>)}</select></div><label class="check"><input type="checkbox" name="wifi"/>Verified Wi-Fi</label><label class="check"><input type="checkbox" name="power"/>Verified power</label><button type="reset">Clear all</button><p class="meta filter-help">Verified filters only include a current, dated “Yes · Verified”. Reported, conflicting, unchecked and outdated evidence is left out.</p></div>
+</form>}
+<p class="meta" id="result-count" aria-live="polite">{saved?'Loading your saved places…':`${places.length} fictional places`}</p>
+<div class="cards" id="results">{places.map((p,i)=><PlaceCard place={p} priority={i<2}/>)}</div>
+{saved && <section class="compare" id="compare" aria-labelledby="compare-title" hidden><h2 id="compare-title">Compare evidence</h2><p class="meta">Each amenity’s evidence, side by side. Fictional demonstration data.</p><div class="table-scroll" tabindex="0" role="region" aria-labelledby="compare-title"><table><thead><tr><th scope="col">Place</th>{amenityKeys.map(k=><th scope="col">{amenityLabels[k]}</th>)}</tr></thead><tbody>{places.map(p=><tr data-compare={p.id}><th scope="row"><a href={`/places/${p.slug}/`}>{p.name}</a><span class="meta">{p.neighbourhood} · {p.category}</span></th>{amenityKeys.map(k=><td><EvidencePill evidence={p.amenities[k]} placeId={p.id} amenity={k}/></td>)}</tr>)}</tbody></table></div></section>}
+<div id="empty" class="empty" hidden><h2>{saved?'Your next workday starts here.':'No places match just yet.'}</h2><p>{saved?'Save a few places to keep them here on this device.':'Try another neighbourhood or clear a filter. Unknown or outdated evidence does not pass verified filters.'}</p>{saved?<a class="primary" href="/explore/">Explore places</a>:<button type="button" id="empty-clear">Clear filters</button>}</div>
+</div>

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+playwright-report/
+test-results/
+.DS_Store
+.env*
+# Original handoff checksums; stale after these changes and not regenerated (packaging skipped).
+MANIFEST.sha256

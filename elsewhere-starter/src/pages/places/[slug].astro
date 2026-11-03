@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';import SaveButton from '../../components/SaveButton.astro';import EvidencePill from '../../components/EvidencePill.astro';
+import { places } from '../../lib/places';import {directionsUrl} from '../../lib/discovery';import {amenityLabels} from '../../lib/schema';
+export function getStaticPaths(){return places.map(place=>({params:{slug:place.slug},props:{place}}));}
+const {place:p}=Astro.props;
+const fmt=(iso:string)=>new Date(iso).toLocaleDateString('en-GB',{timeZone:'Asia/Dubai',day:'numeric',month:'short',year:'numeric'});
+---
+<Layout title={p.name}>
+<p class="breadcrumb"><a href="/explore/">Explore</a> / <a href={`/explore/?neighbourhood=${encodeURIComponent(p.neighbourhood)}`}>{p.neighbourhood}</a></p>
+<div class="detail-heading"><div><p class="meta">{p.neighbourhood} · {p.category} · Fictional sample</p><h1>{p.name}</h1><p class="lead">{p.summary}</p></div><SaveButton id={p.id} name={p.name}/></div>
+<div class="detail-grid">
+ <figure class="detail-photo"><img src={p.image} alt={p.imageAlt} width="1200" height="700" fetchpriority="high"/><figcaption>{p.imageCredit}. Does not depict this fictional listing.</figcaption></figure>
+ <aside class="visit" aria-labelledby="visit-title"><h2 id="visit-title">Plan a visit</h2>
+  <dl class="visit-facts"><div><dt>Spend</dt><dd>{p.priceNote}</dd></div><div><dt>Area</dt><dd>{p.neighbourhood}, Dubai</dd></div><div><dt>Hours</dt><dd>{p.hoursNote}</dd></div></dl>
+  <p class="meta">Sample pricing only. No live opening status or seat availability.</p>
+  <a class="primary" href={directionsUrl(p)} target="_blank" rel="noopener noreferrer">Neighbourhood directions <span aria-hidden="true">↗</span><span class="sr-only"> (opens Google Maps in a new tab)</span></a>
+  <p class="meta">This place is fictional, so directions open the {p.neighbourhood} area in Google Maps, not a venue address.</p>
+ </aside>
+ <section class="detail-body"><h2>Will it work for you?</h2><p>Each amenity carries its own evidence: value, state, source and date. All evidence below is a fictional demonstration.</p>
+  <dl class="amenities">{Object.entries(p.amenities).map(([key,e])=><div><dt>{amenityLabels[key as keyof typeof amenityLabels]}</dt><dd><EvidencePill evidence={e} placeId={p.id} amenity={key}/><p>{e.note}</p><p class="meta">{e.source || 'No source yet'}{e.checkedAt && <> · observed <time datetime={e.checkedAt}>{fmt(e.checkedAt)}</time></>}</p></dd></div>)}</dl>
+  <p class="meta"><a href="/about/">How to read evidence states</a></p>
+  <h2>Work modes</h2><ul class="mode-list">{p.modes.map(m=><li><a href={`/explore/?mode=${m}`}>{m}</a></li>)}</ul><p class="meta">Illustrative editorial fit, not a guarantee of silence, privacy or seating.</p>
+  <h2>Before you visit</h2><p>{p.policyNote}</p>
+ </section>
+</div>
+</Layout>

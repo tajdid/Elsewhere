@@ -1,0 +1,17 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/geist';
+interface Props { title: string; description?: string; }
+const {title,description='Discover places for a different workday in Dubai. Fictional MVP demonstration.'}=Astro.props;
+const path=Astro.url.pathname;
+---
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><title>{title} · Elsewhere</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="shell-header wrap"><a href="/" class="wordmark" aria-label="Elsewhere home">elsewhere<span aria-hidden="true">↗</span></a><span class="city">Dubai</span><nav aria-label="Main navigation">{[['/','Discover'],['/explore/','Explore'],['/saved/','Saved']].map(([href,label])=><a href={href} aria-current={path===href?'page':undefined}>{label}</a>)}</nav></header>
+<div class="demo wrap">MVP demo · All venues and amenity evidence are fictional. Photos are illustrative.</div>
+<main id="main" class="wrap" tabindex="-1"><slot/></main>
+<footer class="wrap footer"><a class="wordmark" href="/">elsewhere↗</a><p>Work from somewhere new.</p><p class="meta">Dubai, for a different kind of workday.</p><p class="meta">Demo only · <a href="/about/">About this prototype & photo credits</a></p></footer>
+<p id="app-status" class="sr-only" aria-live="polite" role="status"></p>
+<noscript><p class="wrap notice">Enable JavaScript to search, filter and save. You can still browse every place and use directions.</p></noscript>
+<script>import '../scripts/app';</script>
+</body></html>

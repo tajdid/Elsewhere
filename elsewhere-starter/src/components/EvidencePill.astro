@@ -1,0 +1,9 @@
+---
+// One amenity's evidence as a pill. The label text carries the meaning; tone and glyph only reinforce it.
+// app.ts re-evaluates label and tone at visit time, so a long-lived static build cannot keep a stale "Verified".
+import type { Evidence } from '../lib/schema';
+import { evidenceLabel, evidenceTone } from '../lib/discovery';
+interface Props { evidence: Evidence; placeId: string; amenity: string; }
+const { evidence, placeId, amenity } = Astro.props;
+---
+<span class="pill" data-tone={evidenceTone(evidence)} data-evidence={amenity} data-place-id={placeId}>{evidenceLabel(evidence)}</span>

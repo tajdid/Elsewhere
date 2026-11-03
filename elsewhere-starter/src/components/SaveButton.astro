@@ -1,0 +1,5 @@
+---
+interface Props { id: string; name: string; }
+const {id,name} = Astro.props;
+---
+<button type="button" class="save" data-save={id} data-name={name} aria-label={`Save ${name}`} aria-pressed="false" hidden>Save</button>

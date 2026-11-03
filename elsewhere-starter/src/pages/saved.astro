@@ -1,0 +1,4 @@
+---
+import Layout from '../layouts/Layout.astro';import Listing from '../components/Listing.astro';
+---
+<Layout title="Saved"><div class="page-title"><h1>Saved places.</h1><p>Your shortlist, kept in this browser. No account needed.</p></div><p id="storage-note" class="notice" hidden></p><Listing saved/><noscript><style>#results,#result-count{display:none}</style><p>Saved places need JavaScript to read this browser’s storage.</p><a href="/explore/">Browse all places</a></noscript></Layout>

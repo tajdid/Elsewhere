@@ -1,0 +1,18 @@
+---
+import SaveButton from './SaveButton.astro';
+import EvidencePill from './EvidencePill.astro';
+import type { Place } from '../lib/schema';
+interface Props { place:Place; priority?:boolean }
+const {place:p,priority=false} = Astro.props;
+---
+<article class="place-card" data-place={p.id}>
+ <div class="photo"><a href={`/places/${p.slug}/`} tabindex="-1" aria-hidden="true"><img src={p.image} alt="" width="800" height="530" loading={priority?'eager':'lazy'} /></a><span class="photo-caption">Illustrative photo</span><SaveButton id={p.id} name={p.name}/></div>
+ <p class="meta">{p.neighbourhood} · {p.category}</p>
+ <h3><a href={`/places/${p.slug}/`}>{p.name}</a></h3>
+ <p>{p.summary}</p>
+ <dl class="card-facts">
+  <div><dt>Wi-Fi</dt><dd><EvidencePill evidence={p.amenities.wifi} placeId={p.id} amenity="wifi"/></dd></div>
+  <div><dt>Power</dt><dd><EvidencePill evidence={p.amenities.power} placeId={p.id} amenity="power"/></dd></div>
+ </dl>
+ <p class="meta">Fictional sample · {p.modes.join(' / ')}</p>
+</article>
