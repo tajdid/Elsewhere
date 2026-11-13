@@ -3,8 +3,14 @@ import '../styles/global.css';
 import '@fontsource-variable/geist';
 import Icon from '../components/Icon.astro';
 import { phosphorMask } from '../lib/icons';
-interface Props { title: string; description?: string; }
+interface Props { title: string; description?: string; image?: string; }
 const { title, description = 'Cafés, co-working spaces, restaurants and bars in Dubai, with Wi-Fi speed, sockets and noise at a glance.' } = Astro.props;
+// Social and app metadata. Absolute URLs come from `site` in astro.config.mjs.
+const site = Astro.site ?? new URL('https://elsewhere.work');
+const canonical = new URL(Astro.url.pathname, site).href;
+const fullTitle = title === 'Discover' ? 'Elsewhere · Work from somewhere new' : `${title} · Elsewhere`;
+const ogImage = new URL(Astro.props.image ?? '/og.png', site).href;
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Elsewhere', url: site.href, description: 'Cafés, co-working spaces, restaurants and bars in Dubai, with Wi-Fi speed, sockets and noise at a glance.', inLanguage: 'en' });
 const path = Astro.url.pathname;
 // Place details live inside Explore, so Explore stays marked as the current section there.
 const current = (href: string) => path === href ? 'page' : href === '/explore/' && path.startsWith('/places/') ? 'true' : undefined;
@@ -14,7 +20,14 @@ const glyphs = `:root{--g-positive:${phosphorMask('check')};--g-negative:${phosp
 import Logo from '../components/Logo.astro';
 import geistUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 ---
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#F7F6F2"/><title>{title} · Elsewhere</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="preload" href={geistUrl} as="font" type="font/woff2" crossorigin/><style is:inline set:html={glyphs}></style><script is:inline>try{if(!sessionStorage.getItem('elsewhere:intro')){document.documentElement.classList.add('intro');sessionStorage.setItem('elsewhere:intro','1')}}catch(e){}</script></head>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#F7F6F2"/><title>{fullTitle}</title><link rel="canonical" href={canonical}/>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="manifest" href="/site.webmanifest"/>
+<meta name="application-name" content="Elsewhere"/><meta name="apple-mobile-web-app-title" content="Elsewhere"/><meta name="color-scheme" content="light"/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="Elsewhere"/><meta property="og:locale" content="en_GB"/>
+<meta property="og:title" content={fullTitle}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/>
+<meta property="og:image" content={ogImage}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Elsewhere: work from somewhere new. Cafés, co-working spaces, restaurants and bars in Dubai."/>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={fullTitle}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={ogImage}/>
+<script type="application/ld+json" set:html={jsonLd}></script><link rel="preload" href={geistUrl} as="font" type="font/woff2" crossorigin/><style is:inline set:html={glyphs}></style><script is:inline>try{if(!sessionStorage.getItem('elsewhere:intro')){document.documentElement.classList.add('intro');sessionStorage.setItem('elsewhere:intro','1')}}catch(e){}</script></head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">

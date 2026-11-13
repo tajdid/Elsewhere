@@ -1,6 +1,15 @@
 # Validation and delivery report
 13 November 2026 · Run by Claude Code (Opus 5.5) on macOS (Darwin 25.6), Node 26.5.0, Astro 5.18.2 (locked), Playwright 1.64.1 with Chromium build 1248. Every result below was produced in this session. It supersedes the 3 November report, whose changes (evidence pills, Saved comparison, filter fixes) are kept.
 
+## Twenty-fifth round (same day): site metadata
+- **What changed:**
+  - Added the canonical URL, Open Graph and Twitter tags, JSON-LD WebSite, a new favicon (the logo's E), Apple and Android icons, `site.webmanifest`, `robots.txt` and the `/og.png` share image. The images were rendered from HTML with Geist via Playwright, and reviewed.
+  - `noindex,nofollow` is unchanged.
+- **Checks:**
+  - `npm run build` passed.
+  - The built home and place pages carry the expected title, canonical, og:title, og:description and og:image.
+  - The manifest parses as JSON. No tests were run.
+
 ## Twenty-fourth round (same day): hero map removed
 - **Owner decision:** the map felt too overpowering. Removed `HeroMap.astro`, `hero-map.ts`, their styles and the hero's stacking context. The Discover hero is back to plain paper. `html{overflow-x:clip}` stays as a harmless guard.
 - **Checks:** `npm run build` passed; no references to the map remain. No tests were run.

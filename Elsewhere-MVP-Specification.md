@@ -277,6 +277,18 @@ SearchForm, FilterPanel, EvidenceRow and EmptyState are documented logical bound
 - Staleness is computed both during static render and at browser visit, so a long-lived static build does not retain a stale positive filter match. Without JS, static evidence ages at build time; rebuild daily in production or add server-rendered freshness before relying on no-JS current evidence.
 - If a future data backend fails, preserve cached data with date and inline Retry; never silently substitute fixtures. That backend is not implemented here.
 
+## Site metadata
+Every page (Layout) has:
+- **Title:** `<title>` set to “Page · Elsewhere”; the home page uses “Elsewhere · Work from somewhere new”.
+- **Description:** the page's own meta description.
+- **Canonical URL:** built from `site` in astro.config.mjs (https://elsewhere.work).
+- **Social cards:** Open Graph (`og:type`, `site_name`, `locale` en_GB, `title`, `description`, `url`, and the 1200×630 image `/og.png` with alt text) and Twitter `summary_large_image`.
+- **Structured data:** a JSON-LD `WebSite`.
+- **Icons and app:** `favicon.svg` (the logo's E on forest), `apple-touch-icon.png` (180), and `site.webmanifest` with 192 and 512 icons (the 512 is maskable-safe). Also `application-name`, `apple-mobile-web-app-title`, `theme-color` and `color-scheme: light`.
+- **Search engines:** `robots.txt` allows crawling so crawlers can read each page's `noindex,nofollow`, which stays until launch.
+
+Place pages use the site image rather than their temporary photos, which don't show the venue.
+
 
 ---
 
@@ -512,6 +524,15 @@ No deployment, domain registration, trademark clearance or real venue verificati
 
 # Validation and delivery report
 13 November 2026 · Run by Claude Code (Opus 5.5) on macOS (Darwin 25.6), Node 26.5.0, Astro 5.18.2 (locked), Playwright 1.64.1 with Chromium build 1248. Every result below was produced in this session. It supersedes the 3 November report, whose changes (evidence pills, Saved comparison, filter fixes) are kept.
+
+## Twenty-fifth round (same day): site metadata
+- **What changed:**
+  - Added the canonical URL, Open Graph and Twitter tags, JSON-LD WebSite, a new favicon (the logo's E), Apple and Android icons, `site.webmanifest`, `robots.txt` and the `/og.png` share image. The images were rendered from HTML with Geist via Playwright, and reviewed.
+  - `noindex,nofollow` is unchanged.
+- **Checks:**
+  - `npm run build` passed.
+  - The built home and place pages carry the expected title, canonical, og:title, og:description and og:image.
+  - The manifest parses as JSON. No tests were run.
 
 ## Twenty-fourth round (same day): hero map removed
 - **Owner decision:** the map felt too overpowering. Removed `HeroMap.astro`, `hero-map.ts`, their styles and the hero's stacking context. The Discover hero is back to plain paper. `html{overflow-x:clip}` stays as a harmless guard.
