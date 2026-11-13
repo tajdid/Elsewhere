@@ -1,7 +1,7 @@
 # Elsewhere
 Work from somewhere new.
 
-A runnable, mobile-first Dubai discovery MVP built with Astro 5, TypeScript, Tailwind 4 and self-hosted Geist. Includes Discover, Explore, Place details and Saved. No accounts, keys, backend, geolocation or paid services required.
+A runnable, mobile-first Dubai discovery MVP built with Astro 5, TypeScript, Tailwind 4, self-hosted Geist and Phosphor icons (inlined at build time). Includes Discover, Explore, Place details and Saved. No accounts, keys, backend, geolocation or paid services required.
 
 **Demo content only:** all eight venue names, policies, prices, work modes and evidence records are fictional scenarios. Photographs are illustrative stock images, not venue photos. The dates demonstrate verification aging; they do not certify anything. Directions intentionally open neighbourhoods, clearly labelled in the UI.
 
@@ -46,7 +46,7 @@ On Linux, Playwright may request OS dependencies via `npx playwright install --w
 The design token source is `src/styles/global.css`; portable values are in `docs/tokens.json`. Data is `src/data/places.json`, validated by `src/lib/schema.ts`. The source tree and route map are in the implementation guide. A lockfile pins installed versions; the chosen Astro 5 baseline is deliberate, not a claim to be the newest major.
 
 ## What works
-Search by name, neighbourhood, type and summary; combined filters with an active-filter count on smaller screens; work-mode links; shareable Explore URLs and browser Back; per-amenity provenance and freshness shown as evidence pills (only a current verified yes is styled positive) on cards, details and a Saved comparison table; details; Google Maps directions; saves with reload persistence, cross-tab updates and blocked-storage feedback; empty states; 404; keyboard navigation and reduced motion.
+Search by name, neighbourhood, type and summary; combined filters with an active-filter count on smaller screens; work-mode links; shareable Explore URLs and browser Back; per-amenity provenance and freshness shown as evidence pills (only a current verified yes is styled positive) on cards, details and a Saved comparison table; details; Google Maps directions; saves with reload persistence, cross-tab updates and blocked-storage feedback; empty states; a Submit a place page that explains requirements without pretending to send anything; 404; keyboard navigation; icon hover micro-animations that switch off under reduced motion.
 
 ## Before publishing
 This is an implementation starter, not a live verified directory. Keep demo labels and `noindex` until real venue data and photo rights are approved. The user reported elsewhere.work available; registration, ownership and trademark clearance have not been established. Review brand clearance before launch. No domain purchase or deployment is included.

@@ -1,56 +1,80 @@
 # Design system and tokens
 ## Direction
-A useful city guide with editorial hierarchy: photography invites a closer look; practical evidence supports the decision. Mobbin is a reference for clarity and density, not a copied screen or asset library. Taste Skill informs composition and review. The explicit brand takes priority over skill defaults.
+A calm, photography-led city guide: large rounded photographs invite a closer look, and compact evidence chips support the decision. The 13 November 2026 redesign replaced a boxy, rule-heavy first pass that the owner judged "clunky". It takes cues, not layouts or assets, from two owner-supplied references: on.design (neutral ground, big rounded image cards, a grey segmented pill navigation with a white active pill, quiet metadata under each image) and a Ruma real-estate concept (an editorial headline, a search pill with the button inside it, icon chips under the search field, a photo with a floating listing card, and a short row of figures). Mobbin remains a reference for clarity and density.
 
-Taste draw: `editorial-greeting`, seed 1958382861, light, workspace. Chosen for a centred column and calm tonal structure. Adaptations: three labelled destinations use a top navigation rather than the dealt sidebar; the discovery intro uses the requested tagline instead of a personal greeting; photography replaces irrelevant workspace metrics. App title-size and accent-budget rules are relaxed on Discover to support the user's editorial brand. No invented KPIs or decorative chart panels. No redraws.
+Signature element: work intent → visible amenity evidence. The product's face comes from warm paper, forest green used sparingly, the Elsewhere outward arrow, local area names, real neighbourhood shortcuts and photographs. The arrow is a navigation gesture, not a trademark-cleared logo.
 
-Signature element: work intent → visible amenity evidence. The product face comes from warm paper, restrained forest green, the Elsewhere outward arrow, local area names and photograph-led choices. The arrow is a navigation gesture, not a trademark-cleared logo.
+Taste Skill (`design-taste-frontend`, app-screen mode) was used for the gate and review. Intentional deviations from its defaults, at the owner's request: soft 20–24px card radii and pill controls (its "soft" mode), a segmented pill navigation, editorial title sizes, and the required cream paper ground. No gradients, glass, emoji, eyebrows, index numbers or tinted icon tiles.
 
 ## Semantic palette
 | Role | Token | Value | Usage |
 |---|---|---|---|
-| Paper | `--ground` / `--color-paper` | #F7F6F2 | Page and control ground |
-| Ink | `--text` / `--color-ink` | #20231F | Titles and primary copy |
-| Forest | `--accent` / `--color-forest` | #285943 | Main action, focus and evidence text |
-| Lime | `--signal` / `--color-lime` | #DCE9B5 | Saved state, never small text on paper |
-| Muted | `--muted` | #585E54 | Secondary copy and metadata |
-| Surface | `--surface` | #EEEEE7 | Work-mode panels, empty state, visit block |
-| Structural border | `--border` | #D7D9CE | Noninteractive separators |
-| Control outline | `--control` | #767E70 | Inputs, secondary buttons |
+| Paper | `--ground` / `--color-paper` | #F7F6F2 | Page ground |
+| Raised | `--raised` | #FFFFFF | Search field, select pills, chips, visit panel, active nav pill, floating hero card |
+| Surface | `--surface` | #EDECE5 | One tone step: segmented tracks, mode tiles, demo strip, footer, empty states |
+| Surface hover | `--surface-2` | #E4E3DA | Hover on surface tiles |
+| Ink | `--text` / `--color-ink` | #20231F | Titles, running text, selected segment/toggle fill |
+| Muted | `--muted` | #585E54 | Secondary copy and metadata (≈6.2:1 on paper) |
+| Forest | `--accent` / `--color-forest` | #285943 | The one primary action per context, focus ring, saved heart, the "Know before you go" field |
+| Lime | `--signal` / `--color-lime` | #DCE9B5 | Saved state and current verified yes only; never small text on paper |
+| Sand | `--caution` | #F0E9D6 | Reported, conflicting, needs-recheck pills; storage notice |
+| Neutral | `--negative` | #E4E5DC | Verified-no pill |
+| Structural border | `--border` | #DEDDD3 | Card/field outlines and row rules |
+| Control outline | `--control` | #767E70 | Hover outline on fields |
 
-Do not communicate evidence state by colour alone. Structural borders are not control boundaries. Forest on paper and paper on forest are approved pairings; see validation report for measured ratios. There is no dark theme in this scoped MVP.
+White is a neutral addition for raised fields; the four brand colours are unchanged. Do not communicate evidence state by colour alone. There is no dark theme in this scoped MVP.
+
+## Icons
+[Phosphor](https://phosphoricons.com) (MIT), from the `@phosphor-icons/core` dev dependency, inlined as SVG at build time by `src/components/Icon.astro` (no runtime request or JS). Regular weight at 14–26px in the text colour or muted; fill weight for the active nav item and the saved heart. Evidence-state glyphs (check, x, warning, minus) are CSS masks generated in `Layout.astro`, so a pill can change tone at visit time. Icons are always `aria-hidden`; a visible label or an `aria-label` names every control. Mappings live in `src/lib/ui.ts`: categories (coffee, desktop, fork-knife, armchair), modes (headphones, coffee, chats-circle, users-three), amenities (wifi-high, plug, laptop, phone-call, wheelchair).
 
 ## Typography
-Self-hosted `@fontsource-variable/geist`, variable weight. Fallback system-ui, sans-serif. Source and license remain in installed package; retain license when redistributing a built font.
-- Wordmark: 29px/1.5, 650, tight tracking; mobile 26px. Below 360px, navigation moves to its own row.
-- Discover headline: 40–66px desktop, 44px phone (36px below 360px), 550, 1.12, -0.055em; intentional two-line tagline.
-- Page title: Discover greeting 40–66px (44px phone). Explore/Saved titles 30–40px; detail name 34–48px. Weight 550, leading 1.12, tracking -0.035em.
-- Section title: 28px/1.12, 550.
-- Card title: 21px desktop, 23px phone, 550.
-- Lead: 19px/1.55, mobile 17px; detail mobile 16px.
-- Body: 16px/1.5. Card body and evidence notes: 14px/1.5. Metadata: 13px/1.55. Caption 12px; image label 11px only.
-- No text embedded in images. Sentence case, no all-caps metadata. Avoid truncating place names. Use actual content with long-name tests.
+Self-hosted `@fontsource-variable/geist`, variable weight, one family. Fallback system-ui, sans-serif.
+- Wordmark: 27px (25px phone), 650, -0.06em, with a forest arrow-up-right. Footer repeats it at 48–96px.
+- Discover headline: 46–80px, 600, leading 0.98, -0.055em; 38–52px on phones.
+- Page titles: Explore/Saved 34–46px (32px phone); place name 36–56px. Section titles 24–28px. Leading 1.08, -0.035em, balanced wrapping.
+- Card title: 18px desktop, 20px phone, 600.
+- Lead: 19px/1.55 (17px phone). Body 16px/1.5. Card summary and evidence notes 14–15px. Metadata 13–14px. Photo tags 11.5px; nothing smaller.
+- Figures (Discover stats): 32px, tabular. Sentence case everywhere.
 
 ## Layout and spacing
-4px base; preferred steps 4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 56, 64. Max width 1200px; desktop outer gutters 32px; mobile 16px.
-- ≥1000px: four listing columns, 20px gutters. At 1264px viewport, 1200px content = 4×285 + 3×20. Detail uses a 2fr / 1fr grid: photo then evidence on the left, a sticky “Plan a visit” panel on the right from the photo’s top edge, so the photo, visit facts and directions share the first desktop screen.
-- 768–999px: detail grid 1.4fr / 1fr. 640–999px: two listing columns; two work-mode columns on Discover; filter disclosure whose button shows “· N active” for hidden filters that are on. Intro stays two columns until 639px.
-- ≤767px: detail stacks photo → visit panel → evidence. ≤639px: single listing column; two work-mode columns on Discover; Explore work modes as one row of chips that scrolls inside itself, never the page; stacked intro, full-width search; no floating action covers content.
-- Discover has a 1:1 text/photo split with 64px gap desktop. Photo ratio 1.12 desktop and 1.65 phone. Listing ratio 1.45. Detail ratio 1.9 desktop / 1.4 below 768px.
-- Footer has useful brand and provenance links; no newsletter or invented contact info.
+4px base. Max width 1320px; desktop gutters 32px; phones 16px.
+- ≥1000px: four listing columns, 20px gaps. Discover hero is text / photo at 1 : 1.05 with a 64px gap. Detail is 2fr / 1fr: photo then evidence on the left, a sticky white "Plan a visit" panel on the right.
+- ≤999px: two listing columns; 2×2 mode tiles; Explore filter disclosure ("Filters · N active").
+- ≤860px: the segmented nav takes its own full-width row under the wordmark.
+- ≤767px: hero and detail stack (detail: photo → visit → evidence).
+- ≤639px: one listing column; select pills go full width; the work-mode segmented control scrolls inside itself, never the page.
+- ≤359px: nav and mode icons hide; labels stay.
+- Ratios: listing photo 4 : 3.1; hero 1 : 1.02 desktop, 1.2 phone; detail 1.75 desktop, 1.35 phone.
+- Sections on Discover sit 96px apart (64px phone).
 
 ## Components and states
-Cards have image corners at 8px, no resting shadow, no boxed body. Panels/control corners 8px; tiny photo label 4px. Native controls have clear 1px outlines, ≥46px height; radio/checkbox labels create ≥44px target. One primary forest action per context. Explore work modes are native radios presented as 44px pill chips (selected = charcoal fill, paper text; focus ring on the chip via :has). Evidence pills: 26px tall, 13px/500, fully rounded; tone by `evidenceTone()` — positive (current verified yes) lime fill + ✓; negative (verified no) neutral #E4E5DC + ×; caution (reported, conflicting, needs recheck) paper with dashed control border + !; unknown (not checked) transparent with border + –. The label words always carry the meaning; colour and glyph never stand alone. Only a current verified yes uses the lime signal. Save overlays are opaque paper; selected state lime with forest border plus “Saved” and pressed semantics.
+- **Navigation:** grey `--surface` track with pill links (icon + label); current page is a white pill with a filled icon. On place details, Explore is marked `aria-current="true"` as the current section. At the top right, a white outlined “Submit a place” pill with a plus icon (outline turns ink when current) replaced the static “Dubai” label; Dubai is still named in the hero, the copy and every area.
+- **Search pill:** white, fully rounded, magnifying-glass icon, input, and a forest "Search" button inside. The label is visually hidden; the icon, placeholder and adjacent button make the purpose visible.
+- **Chips:** white pills with an icon (area shortcuts, work-mode links).
+- **Work modes (Explore):** native radios as a segmented control; selected = ink fill with paper text; focus ring on the segment via `:has`.
+- **Select pills:** native `<select>` without native chrome inside a white pill that shows its visible label ("Place type", "Neighbourhood") and a caret.
+- **Toggles:** native checkboxes as pills; checked = ink fill plus a check icon.
+- **Cards:** no box. Rounded 20px photo with a "Sample · illustrative photo" tag and a round 44px heart Save button; below, the title link, category and area with icons, the summary, and two compact evidence chips (amenity icon + state words; the amenity name is in visually hidden text and a `title`).
+- **Evidence pills:** 26px, 13px/500, fully rounded. Positive (current verified yes) = lime + check; negative (verified no) = neutral + x; caution (reported, conflicting, needs recheck) = sand + warning; unknown (not checked) = transparent with an inset outline + minus. Tone comes from `evidenceTone()`; the words always carry the meaning.
+- **Save:** heart outline → filled forest heart on lime; the label variant on details reads "Save"/"Saved". `aria-pressed` plus an action-specific `aria-label`.
+- **Panels:** visit panel white with a 1px border; mode tiles, empty states and the policy note on `--surface`. Only the floating hero card has a (small) shadow.
 
-Hover is restrained outline/ink feedback, never image zoom or reflow. Focus: 3px forest outline, 4px offset. Default motion: colour/border transition 140ms, no entrance animations. Reduced-motion preference disables those transitions. No scroll hijack, parallax or autoplay.
+## Motion
+Reviewed against Emil Kowalski's design-engineering rules (`emil-design-eng` skill). Transform and opacity only; one strong ease-out, `cubic-bezier(.23,1,.32,1)`; nothing over 300ms.
+- **Press:** everything pressable scales to 0.97 on `:active` (0.98 for the large mode tiles), over 160ms.
+- **Hover:** only on `(hover:hover) and (pointer:fine)`, as transitions (not keyframes) so skimming across controls retargets smoothly. Icons over 200ms: arrows nudge (up-right diagonally, right arrows 3px, back caret left), the compass and reset icons rotate 90°, the map and filter icons tilt 14°, mode and area icons lift 2px, hearts grow to 1.15. Card and hero photographs scale to 1.025 over 300ms inside their rounded frames.
+- **Save:** the filled heart enters from scale 0.6 and opacity 0 via `@starting-style` (never from nothing), and a new save plays a one-off 360ms pulse (0.85 → 1.18 → 1).
+- **Colour:** background, border and text colour fade over 160ms.
+- **Reduced motion:** all movement goes (transform transitions, hover moves, press scale, the pulse); colour fades stay, because reduced motion means gentler, not none. Measured: 0 moving elements, 26 colour fades on Explore.
+- No entrance animations, stagger, scroll hijack, parallax or autoplay. Keyboard actions never animate.
 
 ## Photography
-Four bundled Unsplash images are illustrative only. See source IDs and URLs in SOURCES.md. They must not be treated as Dubai venue photos. Maintain persistent fictional banner and image captions. Replace with licensed real venue photographs before launch; preserve source, rights holder, permitted use and alt text in editorial records. Keep meaningful interior alt text on detail images; linked card images are decorative because adjacent title provides the accessible link name. Set dimensions to reserve layout, lazy-load lower photos, eager-load the first viewport image. Consider AVIF/WebP variants after real image selection; no remote image dependency at runtime.
+Eight bundled Unsplash images, one per fictional place, are illustrative only (source IDs in SOURCES.md and on the About page). They must not be treated as Dubai venue photos. Keep the persistent demo strip, the photo tags and the captions. Replace with licensed real venue photographs before launch; preserve source, rights holder, permitted use and alt text. Card images are decorative links (the adjacent title is the accessible link); detail and hero images have meaningful alt text. Dimensions are reserved; the first row is eager-loaded and lower photos are lazy. No remote image dependency at runtime.
 
 ## Accessibility contract
 Target WCAG 2.2 AA; this target requires manual assistive-technology validation, not merely a build.
 - Landmarks, skip link, one h1, logical headings, active nav via aria-current, visible labels and native form controls.
-- Search and selects work by keyboard. Native radio group supports arrow keys. Filter toggle uses aria-expanded/controls and does not trap focus (it is an inline disclosure, not a modal).
+- Search and selects work by keyboard. Search fields use a visually hidden label plus a visible icon, placeholder and Search button; selects keep visible labels inside their pills. Native radio group supports arrow keys. Filter toggle uses aria-expanded/controls and does not trap focus (it is an inline disclosure, not a modal).
 - Save is a separate button, never nested in a card link. Use aria-pressed and action-specific accessible name. Live region announces save/remove and storage failure.
 - Dynamic result count is polite. Empty-state action is reachable. Removing a focused saved card moves focus to the next save or empty-state link.
 - Text ≥4.5:1 except qualifying large text ≥3:1; focus and interactive boundaries ≥3:1. Pairings must be rechecked after any token change.

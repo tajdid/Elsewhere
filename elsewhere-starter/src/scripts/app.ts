@@ -27,7 +27,8 @@ const extra = document.querySelector<HTMLElement>('#extra-filters');
 document.querySelectorAll<HTMLElement>('[data-evidence][data-place-id]').forEach(el => {
   const p = places.find(p => p.id === el.dataset.placeId);
   const e = p?.amenities[el.dataset.evidence as keyof typeof p.amenities];
-  if (e) { el.textContent = evidenceLabel(e); el.dataset.tone = evidenceTone(e); }
+  const label = el.querySelector<HTMLElement>('[data-evidence-label]') ?? el;
+  if (e) { label.textContent = evidenceLabel(e); el.dataset.tone = evidenceTone(e); }
 });
 
 function syncButtons() {
@@ -35,7 +36,8 @@ function syncButtons() {
     const active = saved.includes(b.dataset.save!);
     b.hidden = false;
     b.setAttribute('aria-pressed', String(active));
-    b.textContent = active ? 'Saved' : 'Save';
+    const text = b.querySelector<HTMLElement>('.save-text');
+    if (text) text.textContent = active ? 'Saved' : 'Save';
     b.setAttribute('aria-label', `${active ? 'Remove' : 'Save'} ${b.dataset.name}${active ? ' from saved places' : ''}`);
   });
 }
@@ -103,6 +105,8 @@ storageNotice();
 listing?.removeAttribute('data-pending');
 if (form) readURL(); else render();
 
+document.addEventListener('animationend', e => { (e.target as Element).closest?.('.save')?.classList.remove('is-pulsing'); });
+
 document.addEventListener('click', e => {
   const b = (e.target as Element).closest<HTMLButtonElement>('[data-save]');
   if (!b) return;
@@ -111,6 +115,8 @@ document.addEventListener('click', e => {
   saved = removing ? saved.filter(x => x !== id) : [...saved, id];
   try { if (storageOK) localStorage.setItem(key, JSON.stringify({ version: 1, ids: saved })); } catch { storageOK = false; }
   syncButtons(); render(); storageNotice();
+  // A one-off pulse on the heart confirms a new save (CSS drops it under reduced motion).
+  if (!removing) { b.classList.remove('is-pulsing'); void b.offsetWidth; b.classList.add('is-pulsing'); }
   announce(`${removing ? 'Removed' : 'Saved'} ${b.dataset.name}.${storageOK ? '' : ' Browser storage unavailable; this page only.'}`);
   if (savedOnly && removing) {
     const next = document.querySelector<HTMLButtonElement>('[data-place]:not([hidden]) [data-save]');

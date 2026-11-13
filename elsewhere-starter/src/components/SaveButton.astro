@@ -1,5 +1,10 @@
 ---
-interface Props { id: string; name: string; }
-const {id,name} = Astro.props;
+// Save toggle. Hidden until app.ts can read storage (no-JS never shows a control that can't work).
+// `icon`: round heart on photos (accessible name from aria-label). `label`: heart plus visible Save/Saved text.
+import Icon from './Icon.astro';
+interface Props { id: string; name: string; variant?: 'icon' | 'label'; }
+const { id, name, variant = 'icon' } = Astro.props;
 ---
-<button type="button" class="save" data-save={id} data-name={name} aria-label={`Save ${name}`} aria-pressed="false" hidden>Save</button>
+<button type="button" class:list={['save', `save--${variant}`]} data-save={id} data-name={name} aria-label={`Save ${name}`} aria-pressed="false" hidden>
+ <Icon name="heart" class="heart-off" anim="pop" /><Icon name="heart" weight="fill" class="heart-on" anim="pop" /><span class="save-text">Save</span>
+</button>

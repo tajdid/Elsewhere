@@ -1,6 +1,6 @@
 # Screen previews
 
-Captured from the static production build. Explore is unfiltered. Saved is seeded with demo-01 and demo-03 for illustration.
+Captured from the static production build (`astro preview`) at 1× device pixel ratio, full page. Explore is unfiltered. Saved is seeded with demo-01 and demo-03 for illustration.
 
 - [Discover at 390px](discover-390.png)
 - [Discover at 768px](discover-768.png)

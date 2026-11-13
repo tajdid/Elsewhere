@@ -1,10 +1,10 @@
 # Elsewhere · MVP specification and implementation handoff
 
-Version 1.1 · 3 November 2026 · regenerated from elsewhere-starter/docs after the evidence-pill, comparison and filter refinements
+Version 1.2 · 13 November 2026 · regenerated from elsewhere-starter/docs after the visual redesign (Phosphor icons, rounded photo cards, segmented controls)
 
 Work from somewhere new.
 
-The elsewhere-starter/ folder in this repository contains runnable source, fixtures, tokens, tests and screen previews. All sample venues and evidence are fictional.
+The elsewhere-starter/ folder contains runnable source, fixtures, tokens, tests and screen previews. All sample venues and evidence are fictional. Local run steps are under "Implementation, Codex and local operations"; Taste Skill setup is in the same chapter.
 
 
 ---
@@ -94,67 +94,93 @@ Launch only after: replace/remove all samples; check every laptop-policy claim; 
 - No CMS: editorial updates require a source change and static rebuild.
 - Real launch inventory size, monetization, venue outreach method and analytics provider remain product decisions; none blocks the runnable prototype.
 
+
 ---
 
 # Design system and tokens
 ## Direction
-A useful city guide with editorial hierarchy: photography invites a closer look; practical evidence supports the decision. Mobbin is a reference for clarity and density, not a copied screen or asset library. Taste Skill informs composition and review. The explicit brand takes priority over skill defaults.
+A calm, photography-led city guide: large rounded photographs invite a closer look, and compact evidence chips support the decision. The 13 November 2026 redesign replaced a boxy, rule-heavy first pass that the owner judged "clunky". It takes cues, not layouts or assets, from two owner-supplied references: on.design (neutral ground, big rounded image cards, a grey segmented pill navigation with a white active pill, quiet metadata under each image) and a Ruma real-estate concept (an editorial headline, a search pill with the button inside it, icon chips under the search field, a photo with a floating listing card, and a short row of figures). Mobbin remains a reference for clarity and density.
 
-Taste draw: `editorial-greeting`, seed 1958382861, light, workspace. Chosen for a centred column and calm tonal structure. Adaptations: three labelled destinations use a top navigation rather than the dealt sidebar; the discovery intro uses the requested tagline instead of a personal greeting; photography replaces irrelevant workspace metrics. App title-size and accent-budget rules are relaxed on Discover to support the user's editorial brand. No invented KPIs or decorative chart panels. No redraws.
+Signature element: work intent → visible amenity evidence. The product's face comes from warm paper, forest green used sparingly, the Elsewhere outward arrow, local area names, real neighbourhood shortcuts and photographs. The arrow is a navigation gesture, not a trademark-cleared logo.
 
-Signature element: work intent → visible amenity evidence. The product face comes from warm paper, restrained forest green, the Elsewhere outward arrow, local area names and photograph-led choices. The arrow is a navigation gesture, not a trademark-cleared logo.
+Taste Skill (`design-taste-frontend`, app-screen mode) was used for the gate and review. Intentional deviations from its defaults, at the owner's request: soft 20–24px card radii and pill controls (its "soft" mode), a segmented pill navigation, editorial title sizes, and the required cream paper ground. No gradients, glass, emoji, eyebrows, index numbers or tinted icon tiles.
 
 ## Semantic palette
 | Role | Token | Value | Usage |
 |---|---|---|---|
-| Paper | `--ground` / `--color-paper` | #F7F6F2 | Page and control ground |
-| Ink | `--text` / `--color-ink` | #20231F | Titles and primary copy |
-| Forest | `--accent` / `--color-forest` | #285943 | Main action, focus and evidence text |
-| Lime | `--signal` / `--color-lime` | #DCE9B5 | Saved state, never small text on paper |
-| Muted | `--muted` | #585E54 | Secondary copy and metadata |
-| Surface | `--surface` | #EEEEE7 | Work-mode panels, empty state, visit block |
-| Structural border | `--border` | #D7D9CE | Noninteractive separators |
-| Control outline | `--control` | #767E70 | Inputs, secondary buttons |
+| Paper | `--ground` / `--color-paper` | #F7F6F2 | Page ground |
+| Raised | `--raised` | #FFFFFF | Search field, select pills, chips, visit panel, active nav pill, floating hero card |
+| Surface | `--surface` | #EDECE5 | One tone step: segmented tracks, mode tiles, demo strip, footer, empty states |
+| Surface hover | `--surface-2` | #E4E3DA | Hover on surface tiles |
+| Ink | `--text` / `--color-ink` | #20231F | Titles, running text, selected segment/toggle fill |
+| Muted | `--muted` | #585E54 | Secondary copy and metadata (≈6.2:1 on paper) |
+| Forest | `--accent` / `--color-forest` | #285943 | The one primary action per context, focus ring, saved heart, the "Know before you go" field |
+| Lime | `--signal` / `--color-lime` | #DCE9B5 | Saved state and current verified yes only; never small text on paper |
+| Sand | `--caution` | #F0E9D6 | Reported, conflicting, needs-recheck pills; storage notice |
+| Neutral | `--negative` | #E4E5DC | Verified-no pill |
+| Structural border | `--border` | #DEDDD3 | Card/field outlines and row rules |
+| Control outline | `--control` | #767E70 | Hover outline on fields |
 
-Do not communicate evidence state by colour alone. Structural borders are not control boundaries. Forest on paper and paper on forest are approved pairings; see validation report for measured ratios. There is no dark theme in this scoped MVP.
+White is a neutral addition for raised fields; the four brand colours are unchanged. Do not communicate evidence state by colour alone. There is no dark theme in this scoped MVP.
+
+## Icons
+[Phosphor](https://phosphoricons.com) (MIT), from the `@phosphor-icons/core` dev dependency, inlined as SVG at build time by `src/components/Icon.astro` (no runtime request or JS). Regular weight at 14–26px in the text colour or muted; fill weight for the active nav item and the saved heart. Evidence-state glyphs (check, x, warning, minus) are CSS masks generated in `Layout.astro`, so a pill can change tone at visit time. Icons are always `aria-hidden`; a visible label or an `aria-label` names every control. Mappings live in `src/lib/ui.ts`: categories (coffee, desktop, fork-knife, armchair), modes (headphones, coffee, chats-circle, users-three), amenities (wifi-high, plug, laptop, phone-call, wheelchair).
 
 ## Typography
-Self-hosted `@fontsource-variable/geist`, variable weight. Fallback system-ui, sans-serif. Source and license remain in installed package; retain license when redistributing a built font.
-- Wordmark: 29px/1.5, 650, tight tracking; mobile 26px. Below 360px, navigation moves to its own row.
-- Discover headline: 40–66px desktop, 44px phone (36px below 360px), 550, 1.12, -0.055em; intentional two-line tagline.
-- Page title: Discover greeting 40–66px (44px phone). Explore/Saved titles 30–40px; detail name 34–48px. Weight 550, leading 1.12, tracking -0.035em.
-- Section title: 28px/1.12, 550.
-- Card title: 21px desktop, 23px phone, 550.
-- Lead: 19px/1.55, mobile 17px; detail mobile 16px.
-- Body: 16px/1.5. Card body and evidence notes: 14px/1.5. Metadata: 13px/1.55. Caption 12px; image label 11px only.
-- No text embedded in images. Sentence case, no all-caps metadata. Avoid truncating place names. Use actual content with long-name tests.
+Self-hosted `@fontsource-variable/geist`, variable weight, one family. Fallback system-ui, sans-serif.
+- Wordmark: 27px (25px phone), 650, -0.06em, with a forest arrow-up-right. Footer repeats it at 48–96px.
+- Discover headline: 46–80px, 600, leading 0.98, -0.055em; 38–52px on phones.
+- Page titles: Explore/Saved 34–46px (32px phone); place name 36–56px. Section titles 24–28px. Leading 1.08, -0.035em, balanced wrapping.
+- Card title: 18px desktop, 20px phone, 600.
+- Lead: 19px/1.55 (17px phone). Body 16px/1.5. Card summary and evidence notes 14–15px. Metadata 13–14px. Photo tags 11.5px; nothing smaller.
+- Figures (Discover stats): 32px, tabular. Sentence case everywhere.
 
 ## Layout and spacing
-4px base; preferred steps 4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 56, 64. Max width 1200px; desktop outer gutters 32px; mobile 16px.
-- ≥1000px: four listing columns, 20px gutters. At 1264px viewport, 1200px content = 4×285 + 3×20. Detail uses a 2fr / 1fr grid: photo then evidence on the left, a sticky “Plan a visit” panel on the right from the photo’s top edge, so the photo, visit facts and directions share the first desktop screen.
-- 768–999px: detail grid 1.4fr / 1fr. 640–999px: two listing columns; two work-mode columns on Discover; filter disclosure whose button shows “· N active” for hidden filters that are on. Intro stays two columns until 639px.
-- ≤767px: detail stacks photo → visit panel → evidence. ≤639px: single listing column; two work-mode columns on Discover; Explore work modes as one row of chips that scrolls inside itself, never the page; stacked intro, full-width search; no floating action covers content.
-- Discover has a 1:1 text/photo split with 64px gap desktop. Photo ratio 1.12 desktop and 1.65 phone. Listing ratio 1.45. Detail ratio 1.9 desktop / 1.4 below 768px.
-- Footer has useful brand and provenance links; no newsletter or invented contact info.
+4px base. Max width 1320px; desktop gutters 32px; phones 16px.
+- ≥1000px: four listing columns, 20px gaps. Discover hero is text / photo at 1 : 1.05 with a 64px gap. Detail is 2fr / 1fr: photo then evidence on the left, a sticky white "Plan a visit" panel on the right.
+- ≤999px: two listing columns; 2×2 mode tiles; Explore filter disclosure ("Filters · N active").
+- ≤860px: the segmented nav takes its own full-width row under the wordmark.
+- ≤767px: hero and detail stack (detail: photo → visit → evidence).
+- ≤639px: one listing column; select pills go full width; the work-mode segmented control scrolls inside itself, never the page.
+- ≤359px: nav and mode icons hide; labels stay.
+- Ratios: listing photo 4 : 3.1; hero 1 : 1.02 desktop, 1.2 phone; detail 1.75 desktop, 1.35 phone.
+- Sections on Discover sit 96px apart (64px phone).
 
 ## Components and states
-Cards have image corners at 8px, no resting shadow, no boxed body. Panels/control corners 8px; tiny photo label 4px. Native controls have clear 1px outlines, ≥46px height; radio/checkbox labels create ≥44px target. One primary forest action per context. Explore work modes are native radios presented as 44px pill chips (selected = charcoal fill, paper text; focus ring on the chip via :has). Evidence pills: 26px tall, 13px/500, fully rounded; tone by `evidenceTone()` — positive (current verified yes) lime fill + ✓; negative (verified no) neutral #E4E5DC + ×; caution (reported, conflicting, needs recheck) paper with dashed control border + !; unknown (not checked) transparent with border + –. The label words always carry the meaning; colour and glyph never stand alone. Only a current verified yes uses the lime signal. Save overlays are opaque paper; selected state lime with forest border plus “Saved” and pressed semantics.
+- **Navigation:** grey `--surface` track with pill links (icon + label); current page is a white pill with a filled icon. On place details, Explore is marked `aria-current="true"` as the current section. At the top right, a white outlined “Submit a place” pill with a plus icon (outline turns ink when current) replaced the static “Dubai” label; Dubai is still named in the hero, the copy and every area.
+- **Search pill:** white, fully rounded, magnifying-glass icon, input, and a forest "Search" button inside. The label is visually hidden; the icon, placeholder and adjacent button make the purpose visible.
+- **Chips:** white pills with an icon (area shortcuts, work-mode links).
+- **Work modes (Explore):** native radios as a segmented control; selected = ink fill with paper text; focus ring on the segment via `:has`.
+- **Select pills:** native `<select>` without native chrome inside a white pill that shows its visible label ("Place type", "Neighbourhood") and a caret.
+- **Toggles:** native checkboxes as pills; checked = ink fill plus a check icon.
+- **Cards:** no box. Rounded 20px photo with a "Sample · illustrative photo" tag and a round 44px heart Save button; below, the title link, category and area with icons, the summary, and two compact evidence chips (amenity icon + state words; the amenity name is in visually hidden text and a `title`).
+- **Evidence pills:** 26px, 13px/500, fully rounded. Positive (current verified yes) = lime + check; negative (verified no) = neutral + x; caution (reported, conflicting, needs recheck) = sand + warning; unknown (not checked) = transparent with an inset outline + minus. Tone comes from `evidenceTone()`; the words always carry the meaning.
+- **Save:** heart outline → filled forest heart on lime; the label variant on details reads "Save"/"Saved". `aria-pressed` plus an action-specific `aria-label`.
+- **Panels:** visit panel white with a 1px border; mode tiles, empty states and the policy note on `--surface`. Only the floating hero card has a (small) shadow.
 
-Hover is restrained outline/ink feedback, never image zoom or reflow. Focus: 3px forest outline, 4px offset. Default motion: colour/border transition 140ms, no entrance animations. Reduced-motion preference disables those transitions. No scroll hijack, parallax or autoplay.
+## Motion
+Reviewed against Emil Kowalski's design-engineering rules (`emil-design-eng` skill). Transform and opacity only; one strong ease-out, `cubic-bezier(.23,1,.32,1)`; nothing over 300ms.
+- **Press:** everything pressable scales to 0.97 on `:active` (0.98 for the large mode tiles), over 160ms.
+- **Hover:** only on `(hover:hover) and (pointer:fine)`, as transitions (not keyframes) so skimming across controls retargets smoothly. Icons over 200ms: arrows nudge (up-right diagonally, right arrows 3px, back caret left), the compass and reset icons rotate 90°, the map and filter icons tilt 14°, mode and area icons lift 2px, hearts grow to 1.15. Card and hero photographs scale to 1.025 over 300ms inside their rounded frames.
+- **Save:** the filled heart enters from scale 0.6 and opacity 0 via `@starting-style` (never from nothing), and a new save plays a one-off 360ms pulse (0.85 → 1.18 → 1).
+- **Colour:** background, border and text colour fade over 160ms.
+- **Reduced motion:** all movement goes (transform transitions, hover moves, press scale, the pulse); colour fades stay, because reduced motion means gentler, not none. Measured: 0 moving elements, 26 colour fades on Explore.
+- No entrance animations, stagger, scroll hijack, parallax or autoplay. Keyboard actions never animate.
 
 ## Photography
-Four bundled Unsplash images are illustrative only. See source IDs and URLs in SOURCES.md. They must not be treated as Dubai venue photos. Maintain persistent fictional banner and image captions. Replace with licensed real venue photographs before launch; preserve source, rights holder, permitted use and alt text in editorial records. Keep meaningful interior alt text on detail images; linked card images are decorative because adjacent title provides the accessible link name. Set dimensions to reserve layout, lazy-load lower photos, eager-load the first viewport image. Consider AVIF/WebP variants after real image selection; no remote image dependency at runtime.
+Eight bundled Unsplash images, one per fictional place, are illustrative only (source IDs in SOURCES.md and on the About page). They must not be treated as Dubai venue photos. Keep the persistent demo strip, the photo tags and the captions. Replace with licensed real venue photographs before launch; preserve source, rights holder, permitted use and alt text. Card images are decorative links (the adjacent title is the accessible link); detail and hero images have meaningful alt text. Dimensions are reserved; the first row is eager-loaded and lower photos are lazy. No remote image dependency at runtime.
 
 ## Accessibility contract
 Target WCAG 2.2 AA; this target requires manual assistive-technology validation, not merely a build.
 - Landmarks, skip link, one h1, logical headings, active nav via aria-current, visible labels and native form controls.
-- Search and selects work by keyboard. Native radio group supports arrow keys. Filter toggle uses aria-expanded/controls and does not trap focus (it is an inline disclosure, not a modal).
+- Search and selects work by keyboard. Search fields use a visually hidden label plus a visible icon, placeholder and Search button; selects keep visible labels inside their pills. Native radio group supports arrow keys. Filter toggle uses aria-expanded/controls and does not trap focus (it is an inline disclosure, not a modal).
 - Save is a separate button, never nested in a card link. Use aria-pressed and action-specific accessible name. Live region announces save/remove and storage failure.
 - Dynamic result count is polite. Empty-state action is reachable. Removing a focused saved card moves focus to the next save or empty-state link.
 - Text ≥4.5:1 except qualifying large text ≥3:1; focus and interactive boundaries ≥3:1. Pairings must be rechecked after any token change.
 - At 200% zoom/320px CSS viewport: no horizontal page scrolling, clipped actions or fixed overlays. All core information remains available.
 - No colour-only statuses, tooltip-only evidence, hover-only controls or inaccessible custom dropdowns. Unknown access is never described as accessible.
 - External Maps link announces new tab. No automatic geolocation request. Respect reduced motion.
+
 
 ---
 
@@ -166,10 +192,11 @@ Target WCAG 2.2 AA; this target requires manual assistive-technology validation,
 | `/explore/` | Explore | Discover, direct query URL → details | noindex |
 | `/places/[slug]/` | Place details | Card/title → directions/save/Explore | noindex |
 | `/saved/` | Saved | Main navigation → details/remove/Explore | noindex |
+| `/submit/` | Submit a place: what a submission needs and how it is treated | Header “Submit a place” link → About | noindex |
 | `/about/` | Trust and photo provenance | Footer, evidence explanation | noindex |
 | `/404.html` | Unknown URL fallback | Host fallback → Explore | noindex |
 
-Desktop and mobile have visible Discover / Explore / Saved text links. Place details is a destination within Explore, not a fourth primary tab. Logo goes home. Detail breadcrumb returns to unfiltered Explore; browser Back restores the original filtered URL. No SPA router or view-transition persistence is required.
+Desktop and mobile show a segmented Discover / Explore / Saved navigation with icons and visible text labels (icons hide below 360px; labels never do). Place details is a destination within Explore, not a fourth primary tab: Explore stays marked as the current section there (`aria-current="true"`). Logo goes home. The header's right side links to Submit a place. That page has no form: the demo has no backend or inbox, so it states plainly that submissions are not open and nothing is sent, lists what a submission would need (the place, per-amenity observations, the visit time, rights-cleared photos), and explains that submissions start as Reported. Detail breadcrumb returns to unfiltered Explore; browser Back restores the original filtered URL. No SPA router or view-transition persistence is required.
 
 ## URL contract
 Explore accepts `q`, `category`, `neighbourhood`, `mode`, `wifi=true`, `power=true`. Example:
@@ -180,13 +207,13 @@ Matching: OR is implicit within the search corpus for each word, AND across word
 
 ## Discover
 **Question:** Where could I work today?
-**Order:** product navigation → fictional-content banner → tagline and concrete description → labelled search → popular area links → large illustrative photograph → four work intents → four starter listings → evidence explanation → footer.
+**Order:** fictional-content strip → product navigation → tagline and concrete description → search pill → area chips (JVC, JLT, Dubai Marina, Business Bay) → three figures counted from the data (sample places, neighbourhoods, amenities per place) → large illustrative photograph with a floating sample-listing card (The Long Table Works, its Wi-Fi and power evidence, a link to details) → four work intents with place counts → four starter listings → evidence explanation with the pill legend on a forest field → footer.
 Search uses native GET form to Explore so entry works even without client JavaScript. Area and mode shortcuts use real query links. Four featured cards are the first four data records, not ratings or algorithmic popularity. “Explore all” count derives from data.
-Mobile composition prioritizes search over hero photo. No carousel; all four intents visible in a 2×2 grid. Full listing card image is not the sole way to open details.
+Mobile composition puts the headline, search and area chips before the hero photo. No carousel; all four intents visible in a 2×2 grid. Full listing card image is not the sole way to open details.
 
 ## Explore
 **Question:** Which places fit my plan and what do we know?
-**Order:** title → query field and Search/Filters actions → work-mode radios → additional type/area/amenity controls → live result count → listing grid or empty panel.
+**Order:** title → search pill (with a Filters button below 1000px) → work-mode segmented control → select pills for place type and neighbourhood, Verified Wi-Fi / Verified power toggles, Clear all, and a note on what passes “Verified” → live result count → listing grid or empty panel.
 Filter disclosure appears below 1000px; its button reads “Filters · N active” while type, area or amenity filters are on, so a closed disclosure never hides why results are fewer. A short note under the amenity checkboxes says which evidence passes “Verified”. Closed by default with JS; controls remain visible without JS through CSS enhancement. Open state is inline, does not obscure results and has no focus trap. Desktop shows all filters. Clear all resets query, mode, type, area and both amenity filters; URL becomes `/explore/`. Zero results keeps the controls and explains the restrictive verified rules, with Clear filters action. Empty results are not an error.
 All cards are pre-rendered for no-JS browsing. Search/filter enhancement requires JS; show a visible notice when disabled. No fake skeleton or spinner for synchronous local filtering.
 
@@ -211,14 +238,15 @@ Storage failure: keep in-memory state for current page, announce failure and dis
 | WorkModeGroup | four enum modes, selected | native fieldset/legend/radio labels | any, single selected |
 | FilterPanel | type/area/verified flags | native selects, checkboxes, reset | closed/open mobile, visible desktop |
 | Listing | savedOnly boolean | SSR cards, count, filter form or saved list | all, filtered, zero, saved loading |
-| PlaceCard | validated Place, priority | photo, area/type, title link, summary, Wi-Fi and power evidence pills, modes | default, focused, saved |
-| EvidencePill | Evidence, placeId, amenity | label from `evidenceLabel`, `data-tone` from `evidenceTone`; re-evaluated at visit time | positive, negative, caution, unknown |
+| PlaceCard | validated Place, priority, headingLevel | rounded photo with sample tag and heart Save, title link (h2 on Explore/Saved, h3 on Discover), category and area with icons, summary, compact Wi-Fi and power evidence chips | default, hover (photo scale, reduced-motion safe), focused, saved |
+| EvidencePill | Evidence, placeId, amenity, compact? | label in `[data-evidence-label]` from `evidenceLabel`, `data-tone` from `evidenceTone`; tone glyph via CSS mask; `compact` leads with the amenity icon plus visually hidden amenity name; re-evaluated at visit time | positive, negative, caution, unknown |
 | CompareTable | saved IDs | table of EvidencePills per saved place (Saved only) | hidden when empty |
-| SaveButton | ID and place name | button aria-pressed, local storage mutation | hidden no-JS, unsaved, saved, storage unavailable |
+| SaveButton | ID, place name, variant (icon/label) | button with heart icons, aria-pressed, action-specific aria-label, `.save-text` updated by app.ts; local storage mutation | hidden no-JS, unsaved, saved (filled heart, lime), new-save pulse, storage unavailable |
 | EvidenceRow | Evidence and amenity label | state text, source/date, context note | unknown/reported/verified/stale/conflicting |
 | VisitPanel | Place | spend/area/hours list, qualifier and Maps link | demo-area or real-destination |
 | EmptyState | context, reset/explore action | heading and useful next action | no matches, no saves |
 | LiveStatus | event text | polite role=status region | saved, removed, unavailable |
+| Icon | Phosphor name, weight, size, anim | inline aria-hidden SVG read at build time from @phosphor-icons/core; optional hover animation (`nudge`, `slide`, `back`, `pop`, `spin`, `tilt`, `bob`) | static, hover (motion only when allowed) |
 
 SearchForm, FilterPanel, EvidenceRow and EmptyState are documented logical boundaries currently inline in pages/components; split them when adding real editorial data or a second use, not preemptively into a framework dependency.
 
@@ -229,6 +257,7 @@ SearchForm, FilterPanel, EvidenceRow and EmptyState are documented logical bound
 - `localStorage` read/write errors are caught. A probe detects blocked writes. On failure, in-memory saves survive only the current page. Announce that limitation on every attempted save.
 - Staleness is computed both during static render and at browser visit, so a long-lived static build does not retain a stale positive filter match. Without JS, static evidence ages at build time; rebuild daily in production or add server-rendered freshness before relying on no-JS current evidence.
 - If a future data backend fails, preserve cached data with date and inline Retry; never silently substitute fixtures. That backend is not implemented here.
+
 
 ---
 
@@ -318,6 +347,7 @@ All names below are invented concepts even if coincidental real-world name simil
 
 The eight entries cover four categories, six neighbourhoods and four modes. All address/coordinate fields are null; prices are illustrative AED ranges; hours are unknown. See JSON for exact timestamps and individual amenity values. Do not convert fixtures into real venues by merely removing sample labels.
 
+
 ---
 
 # Acceptance criteria and QA
@@ -369,6 +399,7 @@ P0 means required for MVP behavior. Production/editorial gates are separate from
 ## Budget and quality gates
 Static HTML with one lightweight client module, no React runtime or map SDK. Budget goals: client JS ≤60KB gzip, primary photo ≤250KB, lower photos ≤200KB each, CSS ≤25KB gzip. Report actual sizes rather than claiming budgets pass. Real photos may need different crops/resolutions and responsive sources. Test critical paths in Safari/iOS and Chrome/Android before launch; Chromium automation alone is insufficient.
 
+
 ---
 
 # Implementation, Codex and local operations
@@ -397,12 +428,12 @@ elsewhere-starter/
     SOURCES.md / tokens.json
   public/
     favicon.svg
-    images/scene-{1..4}.jpg
+    images/scene-{1..8}.jpg
   src/
-    components/Listing.astro / PlaceCard.astro / SaveButton.astro / EvidencePill.astro
+    components/Listing.astro / PlaceCard.astro / SaveButton.astro / EvidencePill.astro / Icon.astro
     data/places.json
     layouts/Layout.astro
-    lib/schema.ts / places.ts / discovery.ts
+    lib/schema.ts / places.ts / discovery.ts / icons.ts (build-time Phosphor reader) / ui.ts (icon mappings)
     pages/index.astro / explore.astro / saved.astro / about.astro / 404.astro
     pages/places/[slug].astro
     scripts/app.ts
@@ -449,47 +480,103 @@ Build command `npm ci && npm run build`; publish directory `dist`; no server ada
 
 No deployment, domain registration, trademark clearance or real venue verification is included. elsewhere.work availability is user-reported only. Assign an editorial owner and recheck schedule before operating the directory.
 
+
 ---
 
 # Validation and delivery report
-3 November 2026 · Run by Claude Code (Opus 5.5) on macOS (Darwin 25.6), Node 26.5.0, npm 11.17.0, Astro 5 (locked), Playwright Chromium (build 1248). Every result below was produced in this session; earlier reports are superseded.
+13 November 2026 · Run by Claude Code (Opus 5.5) on macOS (Darwin 25.6), Node 26.5.0, Astro 5.18.2 (locked), Playwright 1.64.1 with Chromium build 1248. Every result below was produced in this session. It supersedes the 3 November report, whose changes (evidence pills, Saved comparison, filter fixes) are kept.
+
+## Second round (same day): Submit a place and a motion review
+- **Header:** the static “Dubai” label at the top right became a “Submit a place” link to a new `/submit/` page (14 static pages now). The demo has no backend or inbox, so the page has no form. It says submissions are not open, lists what a submission needs, and explains that submissions start as Reported. A new browser test covers the link, the page and its `aria-current` state.
+- **Motion review** with the `emil-design-eng` skill:
+  - A stronger ease-out, `cubic-bezier(.23,1,.32,1)`.
+  - Press feedback (scale 0.97) on every pressable control.
+  - Hover motion gated to `(hover:hover) and (pointer:fine)`.
+  - The hover keyframes (wiggle, heart pop) became interruptible transitions.
+  - Photo hover went from 700ms / 1.035 to 300ms / 1.025; icon moves went from 280ms to 200ms.
+  - The saved heart enters with `@starting-style` from a visible scale.
+  - Reduced motion now keeps colour fades and removes only movement.
+- **Measured on the production preview** (Chromium):
+  - The primary button's timing function is `cubic-bezier(0.23, 1, 0.32, 1)`, and pressing it gives `matrix(0.97…)`.
+  - Card photo hover gives `matrix(1.025…)`, and a new save plays `heart-pop`.
+  - Under `prefers-reduced-motion: reduce`, **0** elements animate or transition transform, while 26 keep colour fades.
+- **Server mix-up, recorded:** during this round a stray `astro dev` server, spawned by Playwright's webServer, held `[::1]:4321` beside the preview. Chromium resolved `localhost` to it, and one set of screenshots showed the dev toolbar. Both servers were killed, the preview was restarted alone (checked on localhost, 127.0.0.1 and [::1]), and every browser result in this section and the screenshots was re-run on it.
+- **Results:**
+  - `npm test` 9/9.
+  - `npm run build`: 0 errors / 0 warnings / 0 hints, 14 pages.
+  - `npm run test:e2e` on the preview: **12/12**.
+  - Overflow is 0px at 320px and at 200% zoom on every route, including `/submit/`.
+  - 0 console errors and 0 broken images; Geist loads; the result counts match.
+  - Previews were recaptured.
 
 ## Baseline before changes
-`npm ci`, then `npm test` 8/8, `astro check` 0 errors / 0 warnings / 0 hints, `npm run build` 13 pages, `npm run test:e2e` 8/8. Production screenshots of all four screens at 390/768/1440 were reviewed before any edit.
+`npm ci`; `npm test` 9/9; `npm run build` (`astro check` 0 errors / 0 warnings / 0 hints, 13 pages).
 
 ## What changed and why
-1. **Evidence states were visually identical.** Every card's Wi-Fi line used the same forest text, so "No · Verified", "Not checked" and "Conflicting reports" looked as affirmative as "Yes · Verified". Added `evidenceTone()` and an `EvidencePill` component: only a current verified yes uses the lime signal; verified no, caution (reported / conflicting / needs recheck) and unknown each have their own tone and glyph, and the words still carry the meaning. Tone is re-evaluated at visit time, like the label.
-2. **Cards hid the power evidence** although "Verified power" is a filter. Cards now show Wi-Fi and power pills on two aligned rows.
-3. **Invalid `?mode=` in a URL unchecked every work-mode radio** (the spec requires a fallback to Any). Fixed; unknown select values also fall back to All. Covered by a new browser test.
-4. **Closed filter disclosure hid active filters** on phones and tablets. The Filters button now reads "Filters · N active".
-5. **Work-mode radios wrapped onto two ragged rows on phones.** They are now native radios shown as one row of 44px chips that scrolls inside itself; the page never scrolls sideways.
-6. **Details placed every content block below the first desktop screen.** The photo and a sticky "Plan a visit" panel (spend, area, hours, directions) now share the first screen; evidence follows the photo. Below 768px the order is photo, visit, evidence.
-7. **Saved gave no way to decide between saved places.** Added a "Compare evidence" table (place × five amenities, same pills), hidden when nothing is saved.
-8. **About** now has a legend that uses the real pills for every evidence state.
-9. Typing in the search field and leaving it no longer pushes history (the spec says typing updates only on submit), and identical URLs are not pushed twice.
+The owner found the previous UI "clunky" and generic, and supplied screenshots of on.design and a Ruma concept as inspiration, with Phosphor icons that animate on hover. Behaviour, data rules and URL contracts are unchanged.
+
+1. **Shell.** The ruled header and demo bar became a quiet demo strip and a segmented pill navigation with icons. Explore stays marked as the current section on place pages.
+2. **Discover.** Editorial headline; search pill with the button inside; area chips; three figures counted from the data; a large rounded photo with a floating sample-listing card showing its evidence; mode tiles with icons and place counts; an evidence legend on a forest field; a large-wordmark footer.
+3. **Cards.** The boxed "Save" button became a round heart toggle. The two-row label/pill grid became two compact chips (amenity icon + state words). Category and area are shown with icons. The repeated "Fictional sample · modes" line was replaced by a "Sample · illustrative photo" tag on each photo.
+4. **Explore.** Work modes are a segmented control. The native selects sit inside pills with visible labels. The verified filters are toggle pills.
+5. **Details.** Icon-led meta line; a white visit panel with icon rows; amenity rows led by icons; mode chips; the policy note as a tinted callout.
+6. **Saved.** The compare table has icon headers and a pinned place column, and stays readable on phones.
+7. **Icons.** Phosphor through a new `Icon.astro`, read from `@phosphor-icons/core` (new dev dependency, MIT) at build time; no client JS or network. Hover animations are transform-only and disabled under reduced motion.
+8. **Photos.** Four Unsplash scenes were added, so each of the eight places has its own illustrative photo instead of four repeated ones. Provenance is recorded in SOURCES.md and on the About page.
+9. **Code.** `app.ts` now updates `[data-evidence-label]` and `.save-text` instead of the whole element, so state changes keep their icons. A new-save heart pulse was added.
 
 ## Executed checks (final state)
-- `npm test`: **9/9 pass** (new: evidence tone is positive only for a current verified yes; stale, future, reported, conflicting, verified-no and unknown are not).
-- `npm run build`: `astro check` **0 errors, 0 warnings, 0 hints**; 13 static pages including all eight detail slugs.
-- `npm run test:e2e` against the dev server: **10/10 pass** (new: invalid URL fallback plus "N active" count; per-amenity pills on cards plus Saved comparison rows, and the table hides after the last removal). The first run after editing the test file failed once at `page.goto` while the dev server recompiled; three immediate full reruns and the final runs passed. Recorded here instead of being dropped.
-- The same 10 browser tests against the **static production preview** (`astro preview` on 4321): **10/10 pass**.
-- Production preview, scripted: horizontal overflow is **0px** on Discover, Explore, filtered Explore, details, Saved and About at 320px, at 640 CSS px with DPR 2 (200% zoom of a 1280px window), and at 320 CSS px with DPR 2. With `prefers-reduced-motion: reduce`, **0** elements have a transition or animation (35 have short colour transitions otherwise). Geist Variable loads; 0 broken images after scrolling; the result count matches visible cards; **0 console or page errors** (`docs/previews/browser-errors.json`).
-- Taste Skill (`design-taste-frontend`, local copy, app-screen mode): `lint.mjs src` **0 FAIL, 0 WARN**. `inspect.mjs --app` on the production preview at 1440/768/390: **0 FAIL** on all four screens. Before: 0 FAIL with 2, 2, 3, 3 WARN. After: 2, 3, 3, 3 WARN. Warnings kept on purpose:
-  - `palette-cream` (all screens): #F7F6F2 is the required brand paper.
-  - `app-title-size`: the Discover tagline is the editorial greeting; Explore and Saved titles were reduced from 52px to 40px and the detail name from 52px to 48px. Further reduction would break the requested Mobbin-like editorial hierarchy.
-  - `edge-text` on Explore at 390px: the last work-mode chip is cut at the edge of its own scrolling row on purpose, so the row reads as scrollable.
-  - `below-fold` on details: improved from 0 to 1 of 7 blocks (the photo and visit panel share the block); the evidence heading starts just below a 900px-tall window.
-  - `hero-void` on Saved: the inspector opens a fresh browser with no saves, so it measures the empty state beside the title. With saves, the comparison table fills the page width (see `saved-1440.png`).
-- Bundle (production): client JS 71.9KB raw / **16.0KB gzip**; CSS 22.7KB raw / **6.1KB gzip**. Both are inside the 60KB / 25KB budgets. Photos are unchanged at about 125, 109, 154 and 237KiB; scene 4 is still over the 200KB goal for lower photos.
+- `npm test`: **9/9 pass**.
+- `npm run build`: `astro check` **0 errors, 0 warnings, 0 hints**; 13 static pages.
+- `npm run test:e2e` against the dev server: **11/11 pass**. This includes one new test: the heart and the evidence chips keep their icons and accessible text after a state change, and Explore stays current on place pages. The discover test was updated to the new "Search" button name.
+- **First dev run, recorded rather than dropped:** the first run on a cold dev server had 2 timeouts, and the overflow test failed because Discover overflowed by 25px at 320px. The overflow was fixed with a `minmax(0,1fr)` hero track and wrapping stats. Later dev runs passed 11/11.
+- The same 11 tests against the **production preview** (`astro preview`, port 4321, confirmed free of the dev toolbar and Vite client): **11/11 pass**.
+- Production preview, scripted (Playwright Chromium):
+  - Horizontal overflow is **0px** on Discover, Explore, filtered Explore, details, Saved, About and the 404 page, both at 320px and at 640 CSS px with DPR 2 (200% zoom of a 1280px window).
+  - With `prefers-reduced-motion: reduce`, **0** elements had a transition or animation (62 otherwise). This was superseded in the second round: colour fades now stay.
+  - Geist Variable loads, and **0** images are broken after scrolling.
+  - Result counts match the visible cards for `?wifi=true` (2), `?q=JLT` (2) and `?mode=Meetings&power=true` (1).
+  - **0** console or page errors (`docs/previews/browser-errors.json`).
+- **A mistake corrected during this run:** one interim round of screenshots and inspections ran against a leftover dev server on port 4321 (the Astro dev toolbar was visible in the images). Every server was killed, a genuine preview was started, and all screenshots, inspections and checks above were repeated on it.
+- Taste Skill (`design-taste-frontend`, app-screen mode):
+  - `lint.mjs src`: **0 FAIL, 0 WARN**. Four box-shadows are marked `taste-skill-ignore`: the search focus ring, two inset outlines used as pill borders, and the floating hero card.
+  - `inspect.mjs --app` on the production preview at 1440/768/390: **0 FAIL** on all four screens, with 3, 2, 3 and 2 WARN. The first pass had 1 FAIL (the hero card's shadow was too heavy, now 0 2px 8px at 8%) and an icon-chips warning (amenity icons in tinted circles, now plain).
+  - Warnings kept on purpose:
+    - `palette-cream` is the required brand paper.
+    - `app-title-size` reflects the owner's editorial references.
+    - `below-fold` on Discover and details: the hero, and the photo with the visit panel, fill the first screen by design.
+- Bundle (production): client JS 72.3KB raw / **16.3KB gzip** (unchanged); CSS 33.1KB raw / **8.0KB gzip**; Explore HTML 53.8KB raw / 7.3KB gzip (inline icons). All are inside the 60KB / 25KB budgets. Photos are 110–242KB; scenes 4, 6 and 8 are over the 200KB goal for lower photos.
 
 ## Screenshot review
-Captured from the production build at 390, 768 and 1440px into `docs/previews/`. Saved is seeded with demo-01 and demo-03; Explore is unfiltered. Each image was opened and reviewed after the last change. Findings fixed during review: the work-mode legend touched the Search buttons; card pills wrapped unevenly at 768px. Remaining visible tradeoffs: the eight fictional venues reuse four illustrative photos; at 1440px, two saved cards leave the right half of the card row empty, with the comparison table below at full width.
+All four screens were captured from the production build at 390, 768 and 1440px into `docs/previews/` (Saved is seeded with demo-01 and demo-03), and each image was opened and reviewed after the last change.
+
+Fixed during review:
+- Long names were squeezed by the category label on cards.
+- Explore overflowed by 71px at 390px (grid items defaulting to `min-width:auto`).
+- The Discover stats were misaligned when a label wrapped.
+- The compare table's place column collapsed to one word per line on phones.
+
+Remaining tradeoffs:
+- At 1440px, two saved cards leave the right half of the row empty above the full-width comparison.
+- The mode tiles are deliberately airy.
 
 ## Not performed here
-No VoiceOver or NVDA pass; no Safari/iOS, Firefox or Chrome/Android runs (Chromium only); no Lighthouse or field performance data; no increased-default-font-size audit beyond the zoom emulation above. The packaged ZIP, MANIFEST.sha256 checksums and fresh-extract verification described in CLAUDE.md were **intentionally skipped at the owner's request**; the source is delivered through the Git repository instead.
+- No VoiceOver or NVDA pass.
+- No Safari/iOS, Firefox or Chrome/Android runs (Chromium only).
+- No Lighthouse or field performance data.
+- No increased-default-font-size audit beyond the zoom emulation above.
+- Hover animations were checked in code and by state screenshots, not by recording video.
 
 ## Still required before public launch
-Manual screen-reader evaluation, cross-browser and device checks, lab and field performance; an independently sourced real venue inventory with per-amenity evidence; access review; licensed venue photography and media-rights review; domain ownership and trademark clearance; production host, DNS, HTTPS and 404 checks; removal of `noindex` only after all of these. Domain availability remains user-reported. No purchase, deployment, venue outreach, payment integration or trademark work was done.
+- Manual screen-reader evaluation, cross-browser and device checks, and lab and field performance.
+- An independently sourced real venue inventory with per-amenity evidence, plus an access review.
+- Licensed venue photography and a media-rights review.
+- Domain ownership and trademark clearance (domain availability remains user-reported).
+- A production host, DNS, HTTPS and 404 checks.
+- Removal of `noindex` only after all of the above.
+
+No purchase, deployment, venue outreach, payment integration or trademark work was done.
+
 
 ---
 
@@ -511,8 +598,99 @@ Files were downloaded from the following Unsplash image endpoints, resized to 12
 | public/images/scene-2.jpg | https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=80&fit=crop |
 | public/images/scene-3.jpg | https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80&fit=crop |
 | public/images/scene-4.jpg | https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&fit=crop |
+| public/images/scene-5.jpg | https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026) |
+| public/images/scene-6.jpg | https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026; re-encoded at JPEG quality 55) |
+| public/images/scene-7.jpg | https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026) |
+| public/images/scene-8.jpg | https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026; re-encoded at JPEG quality 55) |
 
-Geist is installed from `@fontsource-variable/geist`; retain upstream font license and package metadata when distributing compiled assets. npm dependencies retain their respective licenses. No Mobbin screenshots or third-party venue imagery are copied.
+Scenes 5–8 were added so that each of the eight fictional places has its own illustrative photo. They were chosen from a contact sheet because none shows an identifiable face or legible venue branding. The same provenance caveats apply: the photographer names were not confirmed, so none is invented.
+
+Icons are [Phosphor](https://phosphoricons.com) via `@phosphor-icons/core` 2.1.1 (MIT), inlined into the built HTML; keep its license with redistributed builds. Geist is installed from `@fontsource-variable/geist`; retain upstream font license and package metadata when distributing compiled assets. npm dependencies retain their respective licenses. No Mobbin, on.design or Ruma screenshots, layouts or assets are copied; the owner-supplied screenshots of those products were used as visual inspiration only.
 
 ## Design process record
 The installed local Taste Skill selected `editorial-greeting`, seed 1958382861. The generated direction record is included in `.taste-skill/`. The user-requested palette/type were kept. A simpler top navigation, larger Discover headline and photo listings intentionally adapt the workspace-oriented draw to a consumer city guide. No delegation was requested or used.
+
+
+---
+
+# Appendix · Portable design tokens (docs/tokens.json)
+
+```json
+{
+  "color": {
+    "paper": "#F7F6F2",
+    "ink": "#20231F",
+    "forest": "#285943",
+    "lime": "#DCE9B5",
+    "surface": "#EDECE5",
+    "muted": "#585E54",
+    "border": "#DEDDD3",
+    "control": "#767E70",
+    "surface2": "#E4E3DA",
+    "raised": "#FFFFFF",
+    "caution": "#F0E9D6",
+    "negative": "#E4E5DC"
+  },
+  "font": {
+    "family": "Geist Variable, system-ui, sans-serif",
+    "weights": [
+      400,
+      500,
+      550,
+      600,
+      650
+    ],
+    "bodyPx": 16,
+    "metaPx": 13
+  },
+  "spacingPx": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    40,
+    48,
+    56,
+    64
+  ],
+  "radiusPx": {
+    "photo": 20,
+    "panel": 24,
+    "control": "pill (999)",
+    "photoTag": "pill (999)"
+  },
+  "layout": {
+    "maxWidthPx": 1320,
+    "desktopGutterPx": 32,
+    "mobileGutterPx": 16,
+    "tabletStartPx": 640,
+    "desktopStartPx": 1000,
+    "listingGapPx": 20
+  },
+  "motion": {
+    "feedbackMs": 160,
+    "iconMs": 280,
+    "photoHoverMs": 700,
+    "easing": "cubic-bezier(.2,.8,.2,1)",
+    "photoHoverScale": 1.035,
+    "reducedMotion": "none"
+  },
+  "verification": {
+    "staleAfterDays": 90,
+    "timezone": "Asia/Dubai"
+  },
+  "icons": {
+    "set": "Phosphor (@phosphor-icons/core, MIT)",
+    "delivery": "inlined SVG at build time",
+    "weights": [
+      "regular",
+      "fill",
+      "bold (evidence glyph masks)"
+    ]
+  }
+}
+```

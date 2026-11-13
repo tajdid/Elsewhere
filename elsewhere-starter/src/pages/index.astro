@@ -1,9 +1,80 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PlaceCard from '../components/PlaceCard.astro';
-import {places} from '../lib/places';
+import EvidencePill from '../components/EvidencePill.astro';
+import Icon from '../components/Icon.astro';
+import { places } from '../lib/places';
+import { modes, amenityKeys } from '../lib/schema';
+import { modeIcons, modeLines, categoryIcons } from '../lib/ui';
+// The hero shows one sample listing over its own illustrative photo; every figure below is counted from the data.
+const hero = places.find(p => p.id === 'demo-03') ?? places[0];
+const areaCount = new Set(places.map(p => p.neighbourhood)).size;
+const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).length;
+const areas = ['JVC', 'JLT', 'Dubai Marina', 'Business Bay'];
 ---
-<Layout title="Discover"><section class="intro"><div><p class="meta">A change of scene, in Dubai</p><h1>Work from<br/>somewhere new.</h1><p class="lead">Cafés, co-working spaces, restaurants and hotel lounges for your next workday.</p><form action="/explore/" class="search"><label for="discover-q">Find a place or neighbourhood</label><div><input id="discover-q" name="q" type="search" placeholder="Try JVC, JLT or a place name" maxlength="120"/><button class="primary">Explore places <span aria-hidden="true">↗</span></button></div></form><p class="meta popular">Start with <a href="/explore/?neighbourhood=JVC">JVC</a> · <a href="/explore/?neighbourhood=JLT">JLT</a> · <a href="/explore/?neighbourhood=Dubai+Marina">Dubai Marina</a></p></div><figure class="hero-photo"><img src="/images/scene-1.jpg" alt="Illustrative café interior, not a listed Dubai venue" width="800" height="700" fetchpriority="high"/><figcaption>Room for a different routine. Illustrative stock photography.</figcaption></figure></section>
-<section class="mode-section"><div class="section-title"><h2>What’s the plan?</h2><p>Find a setting for the way you work.</p></div><div class="mode-grid">{[['Focus','A little space to concentrate.'],['Casual','Emails over a coffee.'],['Meetings','A setting for a conversation.'],['Together','Bring the team along.']].map(([m,t])=><a href={`/explore/?mode=${m}`}><strong>{m}<span aria-hidden="true">↗</span></strong><span>{t}</span></a>)}</div><p class="meta">Work modes are editorial suggestions. Check each place’s amenity evidence and policies.</p></section>
-<section><div class="section-title"><div><h2>A few places to begin</h2><p>Fictional listings to explore the experience.</p></div><a href="/explore/">Explore all {places.length} places ↗</a></div><div class="cards">{places.slice(0,4).map(p=><PlaceCard place={p}/>)}</div></section>
-<section class="trust"><h2>Know before you go.</h2><p>Wi-Fi, power and laptop policies need their own evidence. See what was checked, when, and what still needs confirming.</p><a href="/about/">How evidence works ↗</a></section></Layout>
+<Layout title="Discover">
+<section class="hero">
+ <div class="hero-copy">
+  <h1>Work from somewhere new.</h1>
+  <p class="lead">Cafés, co-working spaces, restaurants and hotel lounges in Dubai, with what’s been checked about Wi-Fi, power and laptops.</p>
+  <form action="/explore/" class="searchbar searchbar--hero" role="search">
+   <label for="discover-q" class="sr-only">Find a place or neighbourhood</label>
+   <Icon name="magnifying-glass" size={20} class="searchbar-icon" />
+   <input id="discover-q" name="q" type="search" placeholder="Try JVC, JLT or a place name" maxlength="120" />
+   <button class="primary">Search</button>
+  </form>
+  <ul class="chips" aria-label="Start with an area">
+   {areas.map(a => <li><a class="chip-link" href={`/explore/?neighbourhood=${encodeURIComponent(a)}`}><Icon name="map-pin" size={16} anim="bob" />{a}</a></li>)}
+  </ul>
+  <dl class="stats">
+   <div><dt>sample places</dt><dd>{places.length}</dd></div>
+   <div><dt>neighbourhoods</dt><dd>{areaCount}</dd></div>
+   <div><dt>amenities with evidence, each</dt><dd>{amenityKeys.length}</dd></div>
+  </dl>
+ </div>
+ <figure class="hero-visual">
+  <img src={hero.image} alt={hero.imageAlt} width="1200" height="801" fetchpriority="high" />
+  <span class="photo-tag">Illustrative photo</span>
+  <a class="hero-card" href={`/places/${hero.slug}/`}>
+   <span class="hero-card-top"><strong>{hero.name}</strong><Icon name="arrow-up-right" size={18} anim="nudge" /></span>
+   <span class="hero-card-meta"><Icon name={categoryIcons[hero.category]} size={15} />{hero.category} · {hero.neighbourhood} · Fictional sample</span>
+   <span class="card-evidence">
+    <EvidencePill evidence={hero.amenities.wifi} placeId={hero.id} amenity="wifi" compact />
+    <EvidencePill evidence={hero.amenities.power} placeId={hero.id} amenity="power" compact />
+   </span>
+  </a>
+ </figure>
+</section>
+
+<section class="block" aria-labelledby="modes-title">
+ <div class="section-head"><div><h2 id="modes-title">What’s the plan?</h2><p>Find a setting for the way you work. Modes are editorial suggestions, not proof of amenities.</p></div></div>
+ <ul class="mode-grid">
+  {modes.map(m => <li><a href={`/explore/?mode=${m}`}>
+   <span class="mode-top"><Icon name={modeIcons[m]} size={26} anim="bob" /><Icon name="arrow-up-right" size={18} anim="nudge" class="mode-arrow" /></span>
+   <strong>{m}</strong>
+   <span class="mode-line">{modeLines[m]}</span>
+   <span class="mode-count">{modeCount(m)} places</span>
+  </a></li>)}
+ </ul>
+</section>
+
+<section class="block" aria-labelledby="featured-title">
+ <div class="section-head"><div><h2 id="featured-title">A few places to begin</h2><p>Fictional listings to explore the experience.</p></div><a class="text-link" href="/explore/">Explore all {places.length} places<Icon name="arrow-right" size={18} anim="slide" /></a></div>
+ <div class="cards">{places.slice(0, 4).map((p, i) => <PlaceCard place={p} priority={i < 2} />)}</div>
+</section>
+
+<section class="trust" aria-labelledby="trust-title">
+ <div>
+  <h2 id="trust-title">Know before you go.</h2>
+  <p>Wi-Fi, power and laptop policies each carry their own evidence: what was checked, by whom, when, and what still needs confirming. Only a dated, independent check from the last 90 days counts as verified.</p>
+  <a class="primary primary--light" href="/about/">How evidence works<Icon name="arrow-right" size={18} anim="slide" /></a>
+ </div>
+ <ul class="trust-legend">
+  <li><span class="pill" data-tone="positive"><span>Yes · Verified</span></span>Checked within 90 days</li>
+  <li><span class="pill" data-tone="caution"><span>Yes · Reported</span></span>A claim nobody has checked</li>
+  <li><span class="pill" data-tone="caution"><span>Yes · Needs recheck</span></span>Verified, but too long ago</li>
+  <li><span class="pill" data-tone="negative"><span>No · Verified</span></span>Checked and absent</li>
+  <li><span class="pill" data-tone="unknown"><span>Not checked</span></span>No reliable information yet</li>
+ </ul>
+</section>
+</Layout>

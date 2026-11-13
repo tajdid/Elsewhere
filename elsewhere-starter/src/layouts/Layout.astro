@@ -1,16 +1,42 @@
 ---
 import '../styles/global.css';
 import '@fontsource-variable/geist';
+import Icon from '../components/Icon.astro';
+import { phosphorMask } from '../lib/icons';
 interface Props { title: string; description?: string; }
-const {title,description='Discover places for a different workday in Dubai. Fictional MVP demonstration.'}=Astro.props;
-const path=Astro.url.pathname;
+const { title, description = 'Discover places for a different workday in Dubai. Fictional MVP demonstration.' } = Astro.props;
+const path = Astro.url.pathname;
+// Place details live inside Explore, so Explore stays marked as the current section there.
+const current = (href: string) => path === href ? 'page' : href === '/explore/' && path.startsWith('/places/') ? 'true' : undefined;
+const nav = [['/', 'Discover', 'compass', 'spin'], ['/explore/', 'Explore', 'map-trifold', 'tilt'], ['/saved/', 'Saved', 'heart', 'pop']] as const;
+// Evidence glyphs are CSS masks so app.ts can change a pill's tone at visit time without re-rendering icons.
+const glyphs = `:root{--g-positive:${phosphorMask('check')};--g-negative:${phosphorMask('x')};--g-caution:${phosphorMask('warning')};--g-unknown:${phosphorMask('minus')}}`;
 ---
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><title>{title} · Elsewhere</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/></head>
-<body><a class="skip" href="#main">Skip to content</a>
-<header class="shell-header wrap"><a href="/" class="wordmark" aria-label="Elsewhere home">elsewhere<span aria-hidden="true">↗</span></a><span class="city">Dubai</span><nav aria-label="Main navigation">{[['/','Discover'],['/explore/','Explore'],['/saved/','Saved']].map(([href,label])=><a href={href} aria-current={path===href?'page':undefined}>{label}</a>)}</nav></header>
-<div class="demo wrap">MVP demo · All venues and amenity evidence are fictional. Photos are illustrative.</div>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#F7F6F2"/><title>{title} · Elsewhere</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><style is:inline set:html={glyphs}></style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<p class="demo"><span class="wrap"><Icon name="info" size={15} /><span>MVP demo · All venues and amenity evidence are fictional. Photos are illustrative. <a href="/about/">About this demo</a></span></span></p>
+<header class="topbar">
+ <div class="wrap topbar-inner">
+  <a href="/" class="wordmark" aria-label="Elsewhere home">elsewhere<Icon name="arrow-up-right" weight="bold" size={22} anim="nudge" /></a>
+  <nav aria-label="Main navigation" class="tabs">{nav.map(([href, label, icon, anim]) => <a href={href} aria-current={current(href)}><Icon name={icon} weight={current(href) ? 'fill' : 'regular'} size={18} anim={anim} />{label}</a>)}</nav>
+  <a class="submit-link" href="/submit/" aria-current={path === '/submit/' ? 'page' : undefined}><Icon name="plus" weight="bold" size={14} anim="spin" />Submit a place</a>
+ </div>
+</header>
 <main id="main" class="wrap" tabindex="-1"><slot/></main>
-<footer class="wrap footer"><a class="wordmark" href="/">elsewhere↗</a><p>Work from somewhere new.</p><p class="meta">Dubai, for a different kind of workday.</p><p class="meta">Demo only · <a href="/about/">About this prototype & photo credits</a></p></footer>
+<footer class="footer">
+ <div class="wrap footer-inner">
+  <div>
+   <a class="wordmark wordmark--big" href="/" aria-label="Elsewhere home">elsewhere<Icon name="arrow-up-right" weight="bold" size={40} anim="nudge" /></a>
+   <p class="footer-line">Work from somewhere new. Dubai, for a different kind of workday.</p>
+  </div>
+  <ul class="footer-links">
+   <li><a href="/explore/">Explore places<Icon name="arrow-right" size={16} anim="slide" /></a></li>
+   <li><a href="/about/">How evidence works<Icon name="arrow-right" size={16} anim="slide" /></a></li>
+   <li><a href="/about/#credits">Demo notes and photo credits<Icon name="arrow-right" size={16} anim="slide" /></a></li>
+  </ul>
+ </div>
+</footer>
 <p id="app-status" class="sr-only" aria-live="polite" role="status"></p>
 <noscript><p class="wrap notice">Enable JavaScript to search, filter and save. You can still browse every place and use directions.</p></noscript>
 <script>import '../scripts/app';</script>

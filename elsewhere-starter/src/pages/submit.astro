@@ -1,0 +1,31 @@
+---
+// Submit a place: explains what a submission needs and how it would be treated.
+// The demo has no backend or inbox, so there is deliberately no form that pretends to send anything.
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+const asks = [
+  ['storefront', 'The place', 'Its name, type (café, co-working, restaurant or hotel lounge) and neighbourhood. An address only if the venue has agreed to be listed.'],
+  ['wifi-high', 'What you saw, amenity by amenity', 'Wi-Fi, power sockets, laptop policy, calls and step-free access: yes, no or not sure, with where in the venue and when you visited.'],
+  ['calendar-check', 'When you were there', 'The date and time of day. A quiet morning says nothing about a busy lunch.'],
+  ['image', 'Photos you have the rights to', 'Optional. Only pictures you took or are licensed to share, never the venue’s own marketing images without permission.'],
+] as const;
+---
+<Layout title="Submit a place" description="What a place submission to Elsewhere needs and how it is checked. Submissions are not open in this demo.">
+<div class="page-title"><h1>Submit a place.</h1><p>Know somewhere good to work in Dubai? Here’s what we’d ask for, and what happens to it.</p></div>
+<p class="notice notice--row"><Icon name="info" size={18} /><span><strong>Submissions aren’t open in this demo.</strong> There’s no form or inbox behind this page yet, so nothing you type anywhere here is sent.</span></p>
+<div class="submit-grid">
+ <section aria-labelledby="ask-title">
+  <h2 id="ask-title">What we’ll ask for</h2>
+  <ul class="ask-list">{asks.map(([icon, title, text]) => <li><Icon name={icon} size={22} /><div><h3>{title}</h3><p>{text}</p></div></li>)}</ul>
+ </section>
+ <aside class="visit" aria-labelledby="treat-title">
+  <h2 id="treat-title">How it’s treated</h2>
+  <ul class="treat-list">
+   <li><span class="pill" data-tone="caution">Yes · Reported</span><p>Everything submitted starts as a report, never as verified.</p></li>
+   <li><span class="pill" data-tone="positive">Yes · Verified</span><p>Only after an editor checks it in person, with a source and date. It needs a recheck after 90 days.</p></li>
+   <li><span class="pill" data-tone="caution">Conflicting reports</span><p>If reports disagree, nothing positive is shown until a new check settles it.</p></li>
+  </ul>
+  <a class="primary" href="/about/">How evidence works<Icon name="arrow-right" size={18} anim="slide" /></a>
+ </aside>
+</div>
+</Layout>

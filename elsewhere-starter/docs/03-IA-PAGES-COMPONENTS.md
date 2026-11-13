@@ -6,10 +6,11 @@
 | `/explore/` | Explore | Discover, direct query URL → details | noindex |
 | `/places/[slug]/` | Place details | Card/title → directions/save/Explore | noindex |
 | `/saved/` | Saved | Main navigation → details/remove/Explore | noindex |
+| `/submit/` | Submit a place: what a submission needs and how it is treated | Header “Submit a place” link → About | noindex |
 | `/about/` | Trust and photo provenance | Footer, evidence explanation | noindex |
 | `/404.html` | Unknown URL fallback | Host fallback → Explore | noindex |
 
-Desktop and mobile have visible Discover / Explore / Saved text links. Place details is a destination within Explore, not a fourth primary tab. Logo goes home. Detail breadcrumb returns to unfiltered Explore; browser Back restores the original filtered URL. No SPA router or view-transition persistence is required.
+Desktop and mobile show a segmented Discover / Explore / Saved navigation with icons and visible text labels (icons hide below 360px; labels never do). Place details is a destination within Explore, not a fourth primary tab: Explore stays marked as the current section there (`aria-current="true"`). Logo goes home. The header's right side links to Submit a place. That page has no form: the demo has no backend or inbox, so it states plainly that submissions are not open and nothing is sent, lists what a submission would need (the place, per-amenity observations, the visit time, rights-cleared photos), and explains that submissions start as Reported. Detail breadcrumb returns to unfiltered Explore; browser Back restores the original filtered URL. No SPA router or view-transition persistence is required.
 
 ## URL contract
 Explore accepts `q`, `category`, `neighbourhood`, `mode`, `wifi=true`, `power=true`. Example:
@@ -20,13 +21,13 @@ Matching: OR is implicit within the search corpus for each word, AND across word
 
 ## Discover
 **Question:** Where could I work today?
-**Order:** product navigation → fictional-content banner → tagline and concrete description → labelled search → popular area links → large illustrative photograph → four work intents → four starter listings → evidence explanation → footer.
+**Order:** fictional-content strip → product navigation → tagline and concrete description → search pill → area chips (JVC, JLT, Dubai Marina, Business Bay) → three figures counted from the data (sample places, neighbourhoods, amenities per place) → large illustrative photograph with a floating sample-listing card (The Long Table Works, its Wi-Fi and power evidence, a link to details) → four work intents with place counts → four starter listings → evidence explanation with the pill legend on a forest field → footer.
 Search uses native GET form to Explore so entry works even without client JavaScript. Area and mode shortcuts use real query links. Four featured cards are the first four data records, not ratings or algorithmic popularity. “Explore all” count derives from data.
-Mobile composition prioritizes search over hero photo. No carousel; all four intents visible in a 2×2 grid. Full listing card image is not the sole way to open details.
+Mobile composition puts the headline, search and area chips before the hero photo. No carousel; all four intents visible in a 2×2 grid. Full listing card image is not the sole way to open details.
 
 ## Explore
 **Question:** Which places fit my plan and what do we know?
-**Order:** title → query field and Search/Filters actions → work-mode radios → additional type/area/amenity controls → live result count → listing grid or empty panel.
+**Order:** title → search pill (with a Filters button below 1000px) → work-mode segmented control → select pills for place type and neighbourhood, Verified Wi-Fi / Verified power toggles, Clear all, and a note on what passes “Verified” → live result count → listing grid or empty panel.
 Filter disclosure appears below 1000px; its button reads “Filters · N active” while type, area or amenity filters are on, so a closed disclosure never hides why results are fewer. A short note under the amenity checkboxes says which evidence passes “Verified”. Closed by default with JS; controls remain visible without JS through CSS enhancement. Open state is inline, does not obscure results and has no focus trap. Desktop shows all filters. Clear all resets query, mode, type, area and both amenity filters; URL becomes `/explore/`. Zero results keeps the controls and explains the restrictive verified rules, with Clear filters action. Empty results are not an error.
 All cards are pre-rendered for no-JS browsing. Search/filter enhancement requires JS; show a visible notice when disabled. No fake skeleton or spinner for synchronous local filtering.
 
@@ -51,14 +52,15 @@ Storage failure: keep in-memory state for current page, announce failure and dis
 | WorkModeGroup | four enum modes, selected | native fieldset/legend/radio labels | any, single selected |
 | FilterPanel | type/area/verified flags | native selects, checkboxes, reset | closed/open mobile, visible desktop |
 | Listing | savedOnly boolean | SSR cards, count, filter form or saved list | all, filtered, zero, saved loading |
-| PlaceCard | validated Place, priority | photo, area/type, title link, summary, Wi-Fi and power evidence pills, modes | default, focused, saved |
-| EvidencePill | Evidence, placeId, amenity | label from `evidenceLabel`, `data-tone` from `evidenceTone`; re-evaluated at visit time | positive, negative, caution, unknown |
+| PlaceCard | validated Place, priority, headingLevel | rounded photo with sample tag and heart Save, title link (h2 on Explore/Saved, h3 on Discover), category and area with icons, summary, compact Wi-Fi and power evidence chips | default, hover (photo scale, reduced-motion safe), focused, saved |
+| EvidencePill | Evidence, placeId, amenity, compact? | label in `[data-evidence-label]` from `evidenceLabel`, `data-tone` from `evidenceTone`; tone glyph via CSS mask; `compact` leads with the amenity icon plus visually hidden amenity name; re-evaluated at visit time | positive, negative, caution, unknown |
 | CompareTable | saved IDs | table of EvidencePills per saved place (Saved only) | hidden when empty |
-| SaveButton | ID and place name | button aria-pressed, local storage mutation | hidden no-JS, unsaved, saved, storage unavailable |
+| SaveButton | ID, place name, variant (icon/label) | button with heart icons, aria-pressed, action-specific aria-label, `.save-text` updated by app.ts; local storage mutation | hidden no-JS, unsaved, saved (filled heart, lime), new-save pulse, storage unavailable |
 | EvidenceRow | Evidence and amenity label | state text, source/date, context note | unknown/reported/verified/stale/conflicting |
 | VisitPanel | Place | spend/area/hours list, qualifier and Maps link | demo-area or real-destination |
 | EmptyState | context, reset/explore action | heading and useful next action | no matches, no saves |
 | LiveStatus | event text | polite role=status region | saved, removed, unavailable |
+| Icon | Phosphor name, weight, size, anim | inline aria-hidden SVG read at build time from @phosphor-icons/core; optional hover animation (`nudge`, `slide`, `back`, `pop`, `spin`, `tilt`, `bob`) | static, hover (motion only when allowed) |
 
 SearchForm, FilterPanel, EvidenceRow and EmptyState are documented logical boundaries currently inline in pages/components; split them when adding real editorial data or a second use, not preemptively into a framework dependency.
 

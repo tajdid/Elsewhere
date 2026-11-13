@@ -24,12 +24,12 @@ elsewhere-starter/
     SOURCES.md / tokens.json
   public/
     favicon.svg
-    images/scene-{1..4}.jpg
+    images/scene-{1..8}.jpg
   src/
-    components/Listing.astro / PlaceCard.astro / SaveButton.astro / EvidencePill.astro
+    components/Listing.astro / PlaceCard.astro / SaveButton.astro / EvidencePill.astro / Icon.astro
     data/places.json
     layouts/Layout.astro
-    lib/schema.ts / places.ts / discovery.ts
+    lib/schema.ts / places.ts / discovery.ts / icons.ts (build-time Phosphor reader) / ui.ts (icon mappings)
     pages/index.astro / explore.astro / saved.astro / about.astro / 404.astro
     pages/places/[slug].astro
     scripts/app.ts

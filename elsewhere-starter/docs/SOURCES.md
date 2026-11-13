@@ -16,8 +16,14 @@ Files were downloaded from the following Unsplash image endpoints, resized to 12
 | public/images/scene-2.jpg | https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=80&fit=crop |
 | public/images/scene-3.jpg | https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80&fit=crop |
 | public/images/scene-4.jpg | https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&fit=crop |
+| public/images/scene-5.jpg | https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026) |
+| public/images/scene-6.jpg | https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026; re-encoded at JPEG quality 55) |
+| public/images/scene-7.jpg | https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026) |
+| public/images/scene-8.jpg | https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=1200&q=80&fit=crop&fm=jpg (added 13 Nov 2026; re-encoded at JPEG quality 55) |
 
-Geist is installed from `@fontsource-variable/geist`; retain upstream font license and package metadata when distributing compiled assets. npm dependencies retain their respective licenses. No Mobbin screenshots or third-party venue imagery are copied.
+Scenes 5–8 were added so that each of the eight fictional places has its own illustrative photo. They were chosen from a contact sheet because none shows an identifiable face or legible venue branding. The same provenance caveats apply: the photographer names were not confirmed, so none is invented.
+
+Icons are [Phosphor](https://phosphoricons.com) via `@phosphor-icons/core` 2.1.1 (MIT), inlined into the built HTML; keep its license with redistributed builds. Geist is installed from `@fontsource-variable/geist`; retain upstream font license and package metadata when distributing compiled assets. npm dependencies retain their respective licenses. No Mobbin, on.design or Ruma screenshots, layouts or assets are copied; the owner-supplied screenshots of those products were used as visual inspiration only.
 
 ## Design process record
 The installed local Taste Skill selected `editorial-greeting`, seed 1958382861. The generated direction record is included in `.taste-skill/`. The user-requested palette/type were kept. A simpler top navigation, larger Discover headline and photo listings intentionally adapt the workspace-oriented draw to a consumer city guide. No delegation was requested or used.

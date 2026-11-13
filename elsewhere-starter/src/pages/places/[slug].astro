@@ -1,26 +1,46 @@
 ---
-import Layout from '../../layouts/Layout.astro';import SaveButton from '../../components/SaveButton.astro';import EvidencePill from '../../components/EvidencePill.astro';
-import { places } from '../../lib/places';import {directionsUrl} from '../../lib/discovery';import {amenityLabels} from '../../lib/schema';
-export function getStaticPaths(){return places.map(place=>({params:{slug:place.slug},props:{place}}));}
-const {place:p}=Astro.props;
-const fmt=(iso:string)=>new Date(iso).toLocaleDateString('en-GB',{timeZone:'Asia/Dubai',day:'numeric',month:'short',year:'numeric'});
+import Layout from '../../layouts/Layout.astro'; import SaveButton from '../../components/SaveButton.astro'; import EvidencePill from '../../components/EvidencePill.astro'; import Icon from '../../components/Icon.astro';
+import { places } from '../../lib/places'; import { directionsUrl } from '../../lib/discovery'; import { amenityLabels, type Place } from '../../lib/schema';
+import { amenityIcons, categoryIcons, modeIcons } from '../../lib/ui';
+export function getStaticPaths() { return places.map(place => ({ params: { slug: place.slug }, props: { place } })); }
+const { place: p } = Astro.props as { place: Place };
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { timeZone: 'Asia/Dubai', day: 'numeric', month: 'short', year: 'numeric' });
+const amenities = Object.entries(p.amenities) as [keyof typeof amenityIcons, Place['amenities']['wifi']][];
 ---
-<Layout title={p.name}>
-<p class="breadcrumb"><a href="/explore/">Explore</a> / <a href={`/explore/?neighbourhood=${encodeURIComponent(p.neighbourhood)}`}>{p.neighbourhood}</a></p>
-<div class="detail-heading"><div><p class="meta">{p.neighbourhood} · {p.category} · Fictional sample</p><h1>{p.name}</h1><p class="lead">{p.summary}</p></div><SaveButton id={p.id} name={p.name}/></div>
+<Layout title={p.name} description={`${p.name}: a fictional ${p.category.toLowerCase()} sample in ${p.neighbourhood}, Dubai.`}>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/explore/"><Icon name="caret-left" size={16} anim="back" />Explore</a><span aria-hidden="true">/</span><a href={`/explore/?neighbourhood=${encodeURIComponent(p.neighbourhood)}`}>{p.neighbourhood}</a></nav>
+<div class="detail-heading">
+ <div>
+  <h1>{p.name}</h1>
+  <p class="detail-meta"><span><Icon name={categoryIcons[p.category]} size={17} />{p.category}</span><span><Icon name="map-pin" size={17} />{p.neighbourhood}</span><span class="sample-tag">Fictional sample</span></p>
+  <p class="lead">{p.summary}</p>
+ </div>
+ <SaveButton id={p.id} name={p.name} variant="label" />
+</div>
 <div class="detail-grid">
- <figure class="detail-photo"><img src={p.image} alt={p.imageAlt} width="1200" height="700" fetchpriority="high"/><figcaption>{p.imageCredit}. Does not depict this fictional listing.</figcaption></figure>
+ <figure class="detail-photo"><img src={p.image} alt={p.imageAlt} width="1200" height="800" fetchpriority="high" /><span class="photo-tag">Illustrative photo</span><figcaption>{p.imageCredit}. Does not depict this fictional listing.</figcaption></figure>
  <aside class="visit" aria-labelledby="visit-title"><h2 id="visit-title">Plan a visit</h2>
-  <dl class="visit-facts"><div><dt>Spend</dt><dd>{p.priceNote}</dd></div><div><dt>Area</dt><dd>{p.neighbourhood}, Dubai</dd></div><div><dt>Hours</dt><dd>{p.hoursNote}</dd></div></dl>
-  <p class="meta">Sample pricing only. No live opening status or seat availability.</p>
-  <a class="primary" href={directionsUrl(p)} target="_blank" rel="noopener noreferrer">Neighbourhood directions <span aria-hidden="true">↗</span><span class="sr-only"> (opens Google Maps in a new tab)</span></a>
-  <p class="meta">This place is fictional, so directions open the {p.neighbourhood} area in Google Maps, not a venue address.</p>
+  <dl class="visit-facts">
+   <div><dt><Icon name="wallet" size={18} />Spend</dt><dd>{p.priceNote}</dd></div>
+   <div><dt><Icon name="map-pin" size={18} />Area</dt><dd>{p.neighbourhood}, Dubai</dd></div>
+   <div><dt><Icon name="clock" size={18} />Hours</dt><dd>{p.hoursNote}</dd></div>
+  </dl>
+  <p class="visit-note">Sample pricing only. No live opening status or seat availability.</p>
+  <a class="primary" href={directionsUrl(p)} target="_blank" rel="noopener noreferrer"><Icon name="navigation-arrow" size={18} anim="nudge" />Neighbourhood directions<span class="sr-only"> (opens Google Maps in a new tab)</span><Icon name="arrow-up-right" size={16} anim="nudge" /></a>
+  <p class="visit-note">This place is fictional, so directions open the {p.neighbourhood} area in Google Maps, not a venue address.</p>
  </aside>
- <section class="detail-body"><h2>Will it work for you?</h2><p>Each amenity carries its own evidence: value, state, source and date. All evidence below is a fictional demonstration.</p>
-  <dl class="amenities">{Object.entries(p.amenities).map(([key,e])=><div><dt>{amenityLabels[key as keyof typeof amenityLabels]}</dt><dd><EvidencePill evidence={e} placeId={p.id} amenity={key}/><p>{e.note}</p><p class="meta">{e.source || 'No source yet'}{e.checkedAt && <> · observed <time datetime={e.checkedAt}>{fmt(e.checkedAt)}</time></>}</p></dd></div>)}</dl>
-  <p class="meta"><a href="/about/">How to read evidence states</a></p>
-  <h2>Work modes</h2><ul class="mode-list">{p.modes.map(m=><li><a href={`/explore/?mode=${m}`}>{m}</a></li>)}</ul><p class="meta">Illustrative editorial fit, not a guarantee of silence, privacy or seating.</p>
-  <h2>Before you visit</h2><p>{p.policyNote}</p>
+ <section class="detail-body" aria-labelledby="evidence-title">
+  <h2 id="evidence-title">Will it work for you?</h2>
+  <p class="section-intro">Each amenity carries its own evidence: value, state, source and date. All evidence below is a fictional demonstration. <a href="/about/">How to read evidence states</a></p>
+  <dl class="amenities">{amenities.map(([key, e]) => <div>
+   <dt><span class="amenity-icon"><Icon name={amenityIcons[key]} size={20} /></span>{amenityLabels[key]}</dt>
+   <dd><EvidencePill evidence={e} placeId={p.id} amenity={key} /><p>{e.note}</p><p class="amenity-source">{e.source || 'No source yet'}{e.checkedAt && <> · observed <time datetime={e.checkedAt}>{fmt(e.checkedAt)}</time></>}</p></dd>
+  </div>)}</dl>
+  <h2>Work modes</h2>
+  <ul class="chips">{p.modes.map(m => <li><a class="chip-link" href={`/explore/?mode=${m}`}><Icon name={modeIcons[m]} size={17} anim="bob" />{m}</a></li>)}</ul>
+  <p class="section-intro">Illustrative editorial fit, not a guarantee of silence, privacy or seating.</p>
+  <h2>Before you visit</h2>
+  <p class="policy"><Icon name="info" size={20} />{p.policyNote}</p>
  </section>
 </div>
 </Layout>

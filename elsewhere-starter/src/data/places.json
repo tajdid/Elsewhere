@@ -240,9 +240,9 @@
     "category": "Café",
     "neighbourhood": "Al Quoz",
     "summary": "A window-side setting imagined for a quiet solo session.",
-    "image": "/images/scene-1.jpg",
-    "imageAlt": "Illustrative café interior with tables and daylight",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1501339847302-ac426a4a7cbb)",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Illustrative café table beside tall windows, not a listed Dubai venue",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1445116572660-236099ec97a0)",
     "modes": [
       "Focus",
       "Casual"
@@ -298,9 +298,9 @@
     "category": "Hotel lounge",
     "neighbourhood": "Al Jaddaf",
     "summary": "A relaxed lounge concept for a change of scene.",
-    "image": "/images/scene-2.jpg",
-    "imageAlt": "Illustrative coffee setting",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1442512595331-e89e73853f31)",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Illustrative open café floor with long wooden tables, not a listed Dubai venue",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1521017432531-fbd92d768814)",
     "modes": [
       "Meetings",
       "Together"
@@ -356,9 +356,9 @@
     "category": "Co-working",
     "neighbourhood": "JVC",
     "summary": "A shared workspace concept for a day with your team.",
-    "image": "/images/scene-3.jpg",
-    "imageAlt": "Illustrative shared office interior",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1497366811353-6870744d04b2)",
+    "image": "/images/scene-7.jpg",
+    "imageAlt": "Illustrative bright window desk with a laptop, not a listed Dubai venue",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1497215728101-856f4ea42174)",
     "modes": [
       "Together",
       "Focus"
@@ -414,9 +414,9 @@
     "category": "Restaurant",
     "neighbourhood": "JLT",
     "summary": "A restaurant concept for light work between meals.",
-    "image": "/images/scene-4.jpg",
-    "imageAlt": "Illustrative restaurant interior",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1517248135467-4c7edcad34c4)",
+    "image": "/images/scene-8.jpg",
+    "imageAlt": "Illustrative plant-filled restaurant with a counter, not a listed Dubai venue",
+    "imageCredit": "Illustrative stock photo · Unsplash (photo-1600093463592-8e36ae95ef56)",
     "modes": [
       "Casual"
     ],

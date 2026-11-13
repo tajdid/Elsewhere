@@ -1,4 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro';import Listing from '../components/Listing.astro';
+import Layout from '../layouts/Layout.astro'; import Listing from '../components/Listing.astro'; import Icon from '../components/Icon.astro';
 ---
-<Layout title="Saved"><div class="page-title"><h1>Saved places.</h1><p>Your shortlist, kept in this browser. No account needed.</p></div><p id="storage-note" class="notice" hidden></p><Listing saved/><noscript><style>#results,#result-count{display:none}</style><p>Saved places need JavaScript to read this browser’s storage.</p><a href="/explore/">Browse all places</a></noscript></Layout>
+<Layout title="Saved"><div class="page-title"><h1>Saved places.</h1><p>Your shortlist, kept in this browser. No account needed, and nothing syncs between devices.</p></div><p id="storage-note" class="notice" hidden></p><Listing saved/><noscript><style>#results,#result-count{display:none}</style><div class="empty"><span class="empty-icon"><Icon name="heart" size={26} /></span><h2>Saved places need JavaScript.</h2><p>They are read from this browser’s storage.</p><a class="primary" href="/explore/">Browse all places</a></div></noscript></Layout>

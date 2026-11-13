@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 test('discover search, URL restoration, filters and reset',async({page})=>{
- await page.goto('/');await page.getByLabel('Find a place or neighbourhood').fill('JLT');await page.getByRole('button',{name:'Explore places'}).click();
+ await page.goto('/');await page.getByLabel('Find a place or neighbourhood').fill('JLT');await page.getByRole('search').getByRole('button',{name:'Search',exact:true}).click();
  await expect(page.locator('#q')).toHaveValue('JLT');await expect(page.locator('[data-place]:visible')).toHaveCount(2);
  await page.getByLabel('Place type').selectOption('Co-working');await expect(page.locator('[data-place]:visible')).toHaveCount(1);
  await page.goBack();await expect(page.getByLabel('Place type')).toHaveValue('');await expect(page.locator('[data-place]:visible')).toHaveCount(2);
@@ -45,4 +45,21 @@ test('cards and Saved comparison show per-amenity evidence states',async({page})
  await page.getByRole('button',{name:'Save The Long Table Works',exact:true}).click();await page.goto('/saved/');
  await expect(page.locator('#compare')).toBeVisible();await expect(page.locator('[data-compare]:visible')).toHaveCount(1);await expect(page.locator('[data-compare="demo-03"] [data-evidence]')).toHaveCount(5);
  await page.getByRole('button',{name:'Remove The Long Table Works from saved places'}).click();await expect(page.locator('#compare')).toBeHidden();
+});
+test('icon controls keep their icons and accessible text after state changes',async({page})=>{
+ await page.goto('/places/palm-and-paper-studio/');
+ await expect(page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Explore'})).toHaveAttribute('aria-current','true');
+ const save=page.getByRole('button',{name:'Save Palm & Paper Studio',exact:true});
+ await expect(save.locator('svg.icon')).toHaveCount(2);await save.click();
+ const saved=page.getByRole('button',{name:'Remove Palm & Paper Studio from saved places'});
+ await expect(saved).toHaveAttribute('aria-pressed','true');await expect(saved.locator('.save-text')).toHaveText('Saved');
+ await expect(saved.locator('svg.icon')).toHaveCount(2);await expect(saved.locator('.heart-on')).toBeVisible();
+ await page.goto('/explore/');const pill=page.locator('[data-place="demo-05"] [data-evidence="power"]');
+ await expect(pill.locator('svg.icon')).toHaveCount(1);await expect(pill).toContainText('Power sockets');await expect(pill.locator('[data-evidence-label]')).toHaveText('Yes · Needs recheck');
+});
+test('submit a place link opens an honest, non-submitting page',async({page})=>{
+ await page.goto('/');await page.getByRole('banner').getByRole('link',{name:'Submit a place'}).click();
+ await expect(page).toHaveURL(/\/submit\/$/);await expect(page.getByRole('heading',{level:1})).toHaveText('Submit a place.');
+ await expect(page.getByText('Submissions aren’t open in this demo.')).toBeVisible();await expect(page.locator('main form')).toHaveCount(0);
+ await expect(page.getByRole('banner').getByRole('link',{name:'Submit a place'})).toHaveAttribute('aria-current','page');
 });

@@ -1,9 +1,16 @@
 ---
-// One amenity's evidence as a pill. The label text carries the meaning; tone and glyph only reinforce it.
-// app.ts re-evaluates label and tone at visit time, so a long-lived static build cannot keep a stale "Verified".
+// One amenity's evidence as a pill. The label text carries the meaning; tone, glyph and colour only reinforce it.
+// app.ts re-evaluates [data-evidence-label] and data-tone at visit time, so a long-lived static build cannot keep a stale "Verified".
+// With `compact`, the amenity's icon leads the pill (on cards) and its name is given to assistive technology.
 import type { Evidence } from '../lib/schema';
 import { evidenceLabel, evidenceTone } from '../lib/discovery';
-interface Props { evidence: Evidence; placeId: string; amenity: string; }
-const { evidence, placeId, amenity } = Astro.props;
+import { amenityLabels } from '../lib/schema';
+import { amenityIcons } from '../lib/ui';
+import Icon from './Icon.astro';
+interface Props { evidence: Evidence; placeId: string; amenity: keyof typeof amenityIcons; compact?: boolean; }
+const { evidence, placeId, amenity, compact = false } = Astro.props;
 ---
-<span class="pill" data-tone={evidenceTone(evidence)} data-evidence={amenity} data-place-id={placeId}>{evidenceLabel(evidence)}</span>
+<span class:list={['pill', { 'pill--amenity': compact }]} data-tone={evidenceTone(evidence)} data-evidence={amenity} data-place-id={placeId} title={compact ? amenityLabels[amenity] : undefined}>
+ {compact && <><Icon name={amenityIcons[amenity]} size={14} /><span class="sr-only">{amenityLabels[amenity]}: </span></>}
+ <span data-evidence-label>{evidenceLabel(evidence)}</span>
+</span>
