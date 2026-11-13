@@ -27,3 +27,6 @@ Icons are [Phosphor](https://phosphoricons.com) via `@phosphor-icons/core` 2.1.1
 
 ## Design process record
 The installed local Taste Skill selected `editorial-greeting`, seed 1958382861. The generated direction record is included in `.taste-skill/`. The user-requested palette/type were kept. A simpler top navigation, larger Discover headline and photo listings intentionally adapt the workspace-oriented draw to a consumer city guide. No delegation was requested or used.
+
+## Place data (from 13 Nov 2026)
+The places are the owner's own Notion database “WFH in Dubai”. Each fact is dated to when its entry was added (Aug 2020 to Jan 2023). The scene photographs above are used as **temporary** photos for the places, chosen by type, at the owner’s request. They show other venues; alt text, credits and a caption on each place page say so. Replace them with licensed photos of each venue before launch.

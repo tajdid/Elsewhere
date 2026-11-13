@@ -16,6 +16,6 @@ export function readPhosphor(name: string, weight: 'regular' | 'fill' | 'bold' =
 }
 
 /** A Phosphor icon as a CSS url() for mask-image, so CSS can swap glyphs when JS changes a state. */
-export function phosphorMask(name: string, weight: 'regular' | 'fill' | 'bold' = 'bold'): string {
+export function phosphorMask(name: string, weight: 'regular' | 'fill' | 'bold' = 'fill'): string {
   return `url("data:image/svg+xml,${encodeURIComponent(readPhosphor(name, weight))}")`;
 }

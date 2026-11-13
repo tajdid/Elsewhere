@@ -1,466 +1,4264 @@
 [
   {
-    "id": "demo-01",
-    "slug": "palm-and-paper-studio",
-    "name": "Palm & Paper Studio",
-    "isSample": true,
+    "id": "1762",
+    "slug": "1762",
+    "name": "1762",
+    "isSample": false,
     "category": "Café",
-    "neighbourhood": "JVC",
-    "summary": "A window-side setting imagined for a quiet solo session.",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
     "image": "/images/scene-1.jpg",
-    "imageAlt": "Illustrative café interior with tables and daylight",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1501339847302-ac426a4a7cbb)",
-    "modes": [
-      "Focus",
-      "Casual"
-    ],
-    "priceNote": "Illustrative spend: AED 25–55 per visit",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not 1762",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 2,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T10:37:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
     "address": null,
     "coordinates": null,
+    "website": "https://1762.ae/",
     "amenities": {
       "wifi": {
-        "value": "no",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Guest network; speed not measured. Fictional scenario."
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
       },
       "power": {
         "value": "yes",
         "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Sockets at some tables only. Fictional scenario."
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T10:37:00Z",
+        "note": "Some sockets."
       },
       "laptops": {
         "value": "unknown",
         "status": "unknown",
         "source": null,
         "checkedAt": null,
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+        "note": "Not added yet."
       },
       "calls": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Ask staff before taking a call. Fictional scenario."
-      },
-      "stepFree": {
-        "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Entrance route needs an independent access check. Fictional scenario."
-      }
-    }
-  },
-  {
-    "id": "demo-02",
-    "slug": "canal-reading-room",
-    "name": "Canal Reading Room",
-    "isSample": true,
-    "category": "Hotel lounge",
-    "neighbourhood": "Business Bay",
-    "summary": "A relaxed lounge concept for a change of scene.",
-    "image": "/images/scene-2.jpg",
-    "imageAlt": "Illustrative coffee setting",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1442512595331-e89e73853f31)",
-    "modes": [
-      "Casual",
-      "Meetings"
-    ],
-    "priceNote": "Illustrative spend: AED 60–120 per visit",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
-    "address": null,
-    "coordinates": null,
-    "amenities": {
-      "wifi": {
-        "value": "yes",
-        "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Guest network; speed not measured. Fictional scenario."
-      },
-      "power": {
         "value": "unknown",
         "status": "unknown",
         "source": null,
         "checkedAt": null,
-        "note": "Sockets at some tables only. Fictional scenario."
-      },
-      "laptops": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
-      },
-      "calls": {
-        "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Ask staff before taking a call. Fictional scenario."
+        "note": "Not added yet."
       },
       "stepFree": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Entrance route needs an independent access check. Fictional scenario."
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
       }
-    }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
   },
   {
-    "id": "demo-03",
-    "slug": "the-long-table-works",
-    "name": "The Long Table Works",
-    "isSample": true,
+    "id": "a4-space",
+    "slug": "a4-space",
+    "name": "A4 Space",
+    "isSample": false,
     "category": "Co-working",
-    "neighbourhood": "JLT",
-    "summary": "A shared workspace concept for a day with your team.",
-    "image": "/images/scene-3.jpg",
-    "imageAlt": "Illustrative shared office interior",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1497366811353-6870744d04b2)",
-    "modes": [
-      "Focus",
-      "Together",
-      "Meetings"
+    "tags": [
+      "Co-working"
     ],
-    "priceNote": "Illustrative day pass: AED 90–150",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
-    "address": null,
-    "coordinates": null,
-    "amenities": {
-      "wifi": {
-        "value": "unknown",
-        "status": "unknown",
-        "source": null,
-        "checkedAt": null,
-        "note": "Guest network; speed not measured. Fictional scenario."
-      },
-      "power": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Sockets at some tables only. Fictional scenario."
-      },
-      "laptops": {
-        "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
-      },
-      "calls": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Ask staff before taking a call. Fictional scenario."
-      },
-      "stepFree": {
-        "value": "yes",
-        "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Entrance route needs an independent access check. Fictional scenario."
-      }
-    }
-  },
-  {
-    "id": "demo-04",
-    "slug": "terrace-eight-kitchen",
-    "name": "Terrace Eight Kitchen",
-    "isSample": true,
-    "category": "Restaurant",
-    "neighbourhood": "Dubai Marina",
-    "summary": "A restaurant concept for light work between meals.",
-    "image": "/images/scene-4.jpg",
-    "imageAlt": "Illustrative restaurant interior",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1517248135467-4c7edcad34c4)",
-    "modes": [
-      "Casual",
-      "Together"
-    ],
-    "priceNote": "Illustrative meal: AED 55–100",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
-    "address": null,
-    "coordinates": null,
-    "amenities": {
-      "wifi": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Guest network; speed not measured. Fictional scenario."
-      },
-      "power": {
-        "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Sockets at some tables only. Fictional scenario."
-      },
-      "laptops": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
-      },
-      "calls": {
-        "value": "yes",
-        "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Ask staff before taking a call. Fictional scenario."
-      },
-      "stepFree": {
-        "value": "unknown",
-        "status": "unknown",
-        "source": null,
-        "checkedAt": null,
-        "note": "Entrance route needs an independent access check. Fictional scenario."
-      }
-    }
-  },
-  {
-    "id": "demo-05",
-    "slug": "sikka-study-club",
-    "name": "Sikka Study Club",
-    "isSample": true,
-    "category": "Café",
     "neighbourhood": "Al Quoz",
-    "summary": "A window-side setting imagined for a quiet solo session.",
-    "image": "/images/scene-5.jpg",
-    "imageAlt": "Illustrative café table beside tall windows, not a listed Dubai venue",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1445116572660-236099ec97a0)",
+    "summary": "",
+    "image": "/images/scene-3.jpg",
+    "imageAlt": "Temporary photo of a bright shared workspace, not A4 Space",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1497366811353-6870744d04b2). Not this venue.",
+    "sockets": 4,
+    "noise": "quiet",
+    "entry": "free",
+    "mapsUrl": "https://maps.app.goo.gl/BLqJdSpSdUWQUR3S6",
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:20:18Z",
     "modes": [
       "Focus",
-      "Casual"
+      "Together",
+      "Meetings"
     ],
-    "priceNote": "Illustrative spend: AED 25–55 per visit",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
     "address": null,
     "coordinates": null,
+    "website": "https://alserkalavenue.ae/en/venue/a4-space.php",
     "amenities": {
       "wifi": {
-        "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-05-01T09:00:00Z",
-        "note": "Guest network; speed not measured. Fictional scenario."
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:20:18Z",
+        "note": "Wi-Fi listed when the place was added."
       },
       "power": {
         "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-05-01T09:00:00Z",
-        "note": "Sockets at some tables only. Fictional scenario."
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:20:18Z",
+        "note": "Plenty of sockets."
       },
       "laptops": {
-        "value": "yes",
-        "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-05-01T09:00:00Z",
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
-      },
-      "calls": {
         "value": "unknown",
         "status": "unknown",
         "source": null,
         "checkedAt": null,
-        "note": "Ask staff before taking a call. Fictional scenario."
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:20:18Z",
+        "note": "Quiet: good for calls."
       },
       "stepFree": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-05-01T09:00:00Z",
-        "note": "Entrance route needs an independent access check. Fictional scenario."
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
       }
-    }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "open",
+      "password": null,
+      "source": "Elsewhere visit",
+      "checkedAt": "2020-08-18T03:20:18Z"
+    },
+    "hours": null
   },
   {
-    "id": "demo-06",
-    "slug": "creekside-common-room",
-    "name": "Creekside Common Room",
-    "isSample": true,
-    "category": "Hotel lounge",
-    "neighbourhood": "Al Jaddaf",
-    "summary": "A relaxed lounge concept for a change of scene.",
-    "image": "/images/scene-6.jpg",
-    "imageAlt": "Illustrative open café floor with long wooden tables, not a listed Dubai venue",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1521017432531-fbd92d768814)",
+    "id": "alchemy",
+    "slug": "alchemy",
+    "name": "Alchemy",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Alchemy",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:20:18Z",
     "modes": [
-      "Meetings",
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.alchemydubai.com/",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:20:18Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:20:18Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "barasti",
+    "slug": "barasti",
+    "name": "Barasti",
+    "isSample": false,
+    "category": "Bar",
+    "tags": [
+      "Bar",
+      "Restaurant"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-4.jpg",
+    "imageAlt": "Temporary photo of a restaurant dining room, not Barasti",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1517248135467-4c7edcad34c4). Not this venue.",
+    "sockets": 1,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-06-13T09:29:00Z",
+    "modes": [
+      "Casual",
       "Together"
     ],
-    "priceNote": "Illustrative spend: AED 60–120 per visit",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
     "address": null,
     "coordinates": null,
+    "website": null,
     "amenities": {
       "wifi": {
         "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Guest network; speed not measured. Fictional scenario."
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-06-13T09:29:00Z",
+        "note": "Wi-Fi listed when the place was added."
       },
       "power": {
         "value": "yes",
         "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Sockets at some tables only. Fictional scenario."
+        "source": "Elsewhere list",
+        "checkedAt": "2021-06-13T09:29:00Z",
+        "note": "A few sockets."
       },
       "laptops": {
         "value": "unknown",
         "status": "unknown",
         "source": null,
         "checkedAt": null,
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+        "note": "Not added yet."
       },
       "calls": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Ask staff before taking a call. Fictional scenario."
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-06-13T09:29:00Z",
+        "note": "Loud: not great for calls."
       },
       "stepFree": {
-        "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Entrance route needs an independent access check. Fictional scenario."
-      }
-    }
-  },
-  {
-    "id": "demo-07",
-    "slug": "neighbourhood-desk-house",
-    "name": "Neighbourhood Desk House",
-    "isSample": true,
-    "category": "Co-working",
-    "neighbourhood": "JVC",
-    "summary": "A shared workspace concept for a day with your team.",
-    "image": "/images/scene-7.jpg",
-    "imageAlt": "Illustrative bright window desk with a laptop, not a listed Dubai venue",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1497215728101-856f4ea42174)",
-    "modes": [
-      "Together",
-      "Focus"
-    ],
-    "priceNote": "Illustrative day pass: AED 90–150",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
-    "address": null,
-    "coordinates": null,
-    "amenities": {
-      "wifi": {
-        "value": "yes",
-        "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Guest network; speed not measured. Fictional scenario."
-      },
-      "power": {
         "value": "unknown",
         "status": "unknown",
         "source": null,
         "checkedAt": null,
-        "note": "Sockets at some tables only. Fictional scenario."
-      },
-      "laptops": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
-      },
-      "calls": {
-        "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Ask staff before taking a call. Fictional scenario."
-      },
-      "stepFree": {
-        "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Entrance route needs an independent access check. Fictional scenario."
+        "note": "Not added yet."
       }
-    }
+    },
+    "wifiSpeed": {
+      "downMbps": 5,
+      "upMbps": null,
+      "measuredAt": "2021-06-13T09:29:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
   },
   {
-    "id": "demo-08",
-    "slug": "juniper-lunch-room",
-    "name": "Juniper Lunch Room",
-    "isSample": true,
+    "id": "bla-bla-dubai",
+    "slug": "bla-bla-dubai",
+    "name": "Bla Bla Dubai",
+    "isSample": false,
     "category": "Restaurant",
-    "neighbourhood": "JLT",
-    "summary": "A restaurant concept for light work between meals.",
-    "image": "/images/scene-8.jpg",
-    "imageAlt": "Illustrative plant-filled restaurant with a counter, not a listed Dubai venue",
-    "imageCredit": "Illustrative stock photo · Unsplash (photo-1600093463592-8e36ae95ef56)",
-    "modes": [
-      "Casual"
+    "tags": [
+      "Restaurant",
+      "Bar"
     ],
-    "priceNote": "Illustrative meal: AED 55–100",
-    "hoursNote": "Opening hours not checked. Contact the venue before visiting.",
-    "policyNote": "Fictional laptop policy: check with staff on arrival; busy periods may differ.",
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-4.jpg",
+    "imageAlt": "Temporary photo of a restaurant dining room, not Bla Bla Dubai",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1517248135467-4c7edcad34c4). Not this venue.",
+    "sockets": 2,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-03-01T11:29:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
     "address": null,
     "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-03-01T11:29:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-03-01T11:29:00Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-03-01T11:29:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 290,
+      "upMbps": null,
+      "measuredAt": "2021-03-01T11:29:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "signup",
+      "password": null,
+      "source": "Elsewhere list",
+      "checkedAt": "2021-03-01T11:29:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "breeze",
+    "slug": "breeze",
+    "name": "Breeze",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant",
+      "Bar"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-8.jpg",
+    "imageAlt": "Temporary photo of a restaurant filled with plants, not Breeze",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1600093463592-8e36ae95ef56). Not this venue.",
+    "sockets": 1,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-02-08T10:20:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-02-08T10:20:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-02-08T10:20:00Z",
+        "note": "A few sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 75,
+      "upMbps": null,
+      "measuredAt": "2021-02-08T10:20:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "feelthebreeze",
+      "source": "Elsewhere list",
+      "checkedAt": "2021-02-08T10:20:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "cafe-rider",
+    "slug": "cafe-rider",
+    "name": "Cafe Rider",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Cafe Rider",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 5,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-01-14T07:05:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-01-14T07:05:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-01-14T07:05:00Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-01-14T07:05:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 15,
+      "upMbps": null,
+      "measuredAt": "2022-01-14T07:05:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "canvas-by-coffee-culture",
+    "slug": "canvas-by-coffee-culture",
+    "name": "Canvas by Coffee + Culture",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Canvas by Coffee + Culture",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-11-23T08:03:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-11-23T08:03:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-11-23T08:03:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-11-23T08:03:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 120,
+      "upMbps": null,
+      "measuredAt": "2021-11-23T08:03:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "caribou-coffee",
+    "slug": "caribou-coffee",
+    "name": "Caribou Coffee",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not Caribou Coffee",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 1,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-08-18T07:51:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.cariboucoffee.com/",
     "amenities": {
       "wifi": {
         "value": "unknown",
         "status": "unknown",
         "source": null,
         "checkedAt": null,
-        "note": "Guest network; speed not measured. Fictional scenario."
+        "note": "Not added yet."
       },
       "power": {
         "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Sockets at some tables only. Fictional scenario."
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-18T07:51:00Z",
+        "note": "A few sockets."
       },
       "laptops": {
         "value": "unknown",
-        "status": "conflicting",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Laptop use intended outside busy meal times. Fictional scenario."
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "circle-mall",
+    "slug": "circle-mall",
+    "name": "Circle Mall",
+    "isSample": false,
+    "category": null,
+    "tags": [],
+    "neighbourhood": "JVC",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Circle Mall",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": null,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-03-03T09:04:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-03-03T09:04:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 150,
+      "upMbps": null,
+      "measuredAt": "2022-03-03T09:04:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "coffee-club-bluewater-island",
+    "slug": "coffee-club-bluewater-island",
+    "name": "Coffee Club - Bluewater Island",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Bluewater Island",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Coffee Club - Bluewater Island",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-10-01T12:00:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-10-01T12:00:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-10-01T12:00:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
       },
       "calls": {
         "value": "yes",
-        "status": "verified",
-        "source": "Fictional editorial visit",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Ask staff before taking a call. Fictional scenario."
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-10-01T12:00:00Z",
+        "note": "Some background noise: okay for calls."
       },
       "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 88,
+      "upMbps": null,
+      "measuredAt": "2020-10-01T12:00:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": null,
+      "source": "Elsewhere list",
+      "checkedAt": "2020-10-01T12:00:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "coffee-club-marina-mall",
+    "slug": "coffee-club-marina-mall",
+    "name": "Coffee Club - Marina Mall",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Dubai Marina",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Coffee Club - Marina Mall",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-09-29T10:03:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
         "value": "yes",
         "status": "reported",
-        "source": "Fictional venue message",
-        "checkedAt": "2026-10-20T09:00:00Z",
-        "note": "Entrance route needs an independent access check. Fictional scenario."
+        "source": "Elsewhere list",
+        "checkedAt": "2020-09-29T10:03:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-09-29T10:03:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-09-29T10:03:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
       }
-    }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "password",
+      "password": "Tccguest@123",
+      "source": "Elsewhere list",
+      "checkedAt": "2020-09-29T10:03:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "coffee-island-nakhell-mall-palm",
+    "slug": "coffee-island-nakhell-mall-palm",
+    "name": "Coffee Island - Nakhell Mall Palm",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Palm Jumeirah",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Coffee Island - Nakhell Mall Palm",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": "Nakhell Mall - The Palm",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-05-06T06:52:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-05-06T06:52:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-05-06T06:52:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-05-06T06:52:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 120,
+      "upMbps": null,
+      "measuredAt": "2022-05-06T06:52:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "Guest@2020",
+      "source": "Elsewhere list",
+      "checkedAt": "2022-05-06T06:52:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "coffee-planet-circle-mall-jvc",
+    "slug": "coffee-planet-circle-mall-jvc",
+    "name": "Coffee Planet - Circle Mall JVC",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "JVC",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not Coffee Planet - Circle Mall JVC",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-09-16T09:44:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-16T09:44:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-16T09:44:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-16T09:44:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 80,
+      "upMbps": null,
+      "measuredAt": "2022-09-16T09:44:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "cpcm2021",
+      "source": "Elsewhere list",
+      "checkedAt": "2022-09-16T09:44:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "common-grounds-dubai-hills-mall",
+    "slug": "common-grounds-dubai-hills-mall",
+    "name": "Common Grounds - Dubai Hills Mall",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Dubai Hills",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Common Grounds - Dubai Hills Mall",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": 2,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": "Dubai Hills Mall - 1st Floor",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-10-19T07:03:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-10-19T07:03:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-10-19T07:03:00Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-10-19T07:03:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 280,
+      "upMbps": null,
+      "measuredAt": "2022-10-19T07:03:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "costa-coffee-index-difc",
+    "slug": "costa-coffee-index-difc",
+    "name": "Costa Coffee - Index DIFC",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "DIFC",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Costa Coffee - Index DIFC",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 3,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-09-21T04:57:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-21T04:57:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-21T04:57:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 45,
+      "upMbps": null,
+      "measuredAt": "2022-09-21T04:57:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "costa-coffee-jlt",
+    "slug": "costa-coffee-jlt",
+    "name": "Costa Coffee JLT",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "JLT",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Costa Coffee JLT",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 2,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:42:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:42:00Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "dolce-green-cafe",
+    "slug": "dolce-green-cafe",
+    "name": "Dolce Green Cafe",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not Dolce Green Cafe",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": null,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-03-14T05:24:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-03-14T05:24:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 55,
+      "upMbps": null,
+      "measuredAt": "2022-03-14T05:24:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "doubletree-jbr",
+    "slug": "doubletree-jbr",
+    "name": "Doubletree JBR",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café",
+      "Bar"
+    ],
+    "neighbourhood": "JBR",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Doubletree JBR",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": 1,
+    "noise": null,
+    "entry": "paid",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T06:46:00Z",
+    "modes": [],
+    "priceNote": "Paid entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T06:46:00Z",
+        "note": "A few sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "encounter-coffee-moe",
+    "slug": "encounter-coffee-moe",
+    "name": "Encounter Coffee - MoE",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Al Barsha",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Encounter Coffee - MoE",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 3,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": "Mall of the Emirates",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-09-20T10:55:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://encountercoffeeroasters.com/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-20T10:55:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-20T10:55:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 85,
+      "upMbps": null,
+      "measuredAt": "2022-09-20T10:55:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "fairmont-palm",
+    "slug": "fairmont-palm",
+    "name": "Fairmont Palm",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Palm Jumeirah",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Fairmont Palm",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 1,
+    "noise": null,
+    "entry": "paid",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:43:00Z",
+    "modes": [],
+    "priceNote": "Paid entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:43:00Z",
+        "note": "A few sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "friends-avenue-jlt",
+    "slug": "friends-avenue-jlt",
+    "name": "Friends Avenue JLT",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "JLT",
+    "summary": "Okay for calls but probably not good if you're presenting something important. Music playing in the background, coffee machine, people chatting, etc.",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not Friends Avenue JLT",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 4,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:58:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.friendsavenue.ae/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:58:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:58:00Z",
+        "note": "Plenty of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:58:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 120,
+      "upMbps": null,
+      "measuredAt": "2020-08-18T03:58:00Z",
+      "source": "Elsewhere visit"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "friends3",
+      "source": "Elsewhere visit",
+      "checkedAt": "2020-08-18T03:58:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "goose-island",
+    "slug": "goose-island",
+    "name": "Goose Island",
+    "isSample": false,
+    "category": null,
+    "tags": [],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Goose Island",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 5,
+    "noise": "loud",
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-08-03T15:32:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-08-03T15:32:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-08-03T15:32:00Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-08-03T15:32:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 5,
+      "upMbps": null,
+      "measuredAt": "2021-08-03T15:32:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "have",
+    "slug": "have",
+    "name": "HAVE",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "DIFC",
+    "summary": "Hipster coffee shop on the ground floor of Gate Avenue",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not HAVE",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": 5,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-12-12T10:40:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-12-12T10:40:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-12-12T10:40:00Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-12-12T10:40:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 11,
+      "upMbps": null,
+      "measuredAt": "2021-12-12T10:40:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "huna-by-the-pond",
+    "slug": "huna-by-the-pond",
+    "name": "Huna by the Pond",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Huna by the Pond",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": null,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-11-19T07:48:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-11-19T07:48:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-11-19T07:48:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 35,
+      "upMbps": null,
+      "measuredAt": "2020-11-19T07:48:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "ivy-secret-garden",
+    "slug": "ivy-secret-garden",
+    "name": "Ivy Secret Garden",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Ivy Secret Garden",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 5,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-09-01T10:11:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-01T10:11:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-01T10:11:00Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-09-01T10:11:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 8,
+      "upMbps": null,
+      "measuredAt": "2022-09-01T10:11:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "vanillaicelatte",
+      "source": "Elsewhere list",
+      "checkedAt": "2022-09-01T10:11:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "jones-the-grocer-the-palm",
+    "slug": "jones-the-grocer-the-palm",
+    "name": "Jones The Grocer - The Palm",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café",
+      "Restaurant"
+    ],
+    "neighbourhood": "Palm Jumeirah",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not Jones The Grocer - The Palm",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 5,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": "https://g.page/jones-the-grocer-the-palm?share",
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-04-19T08:22:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-19T08:22:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-19T08:22:00Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-19T08:22:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 10,
+      "upMbps": null,
+      "measuredAt": "2021-04-19T08:22:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "la-ramona-dal-1947",
+    "slug": "la-ramona-dal-1947",
+    "name": "La Ramona Dal 1947",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Palm Jumeirah",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not La Ramona Dal 1947",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": 2,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": "Palm Jumeirah, Nakheel Mall - Dubai",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-02-08T09:24:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-02-08T09:24:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-02-08T09:24:00Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-02-08T09:24:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 85,
+      "upMbps": null,
+      "measuredAt": "2021-02-08T09:24:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "horec@106",
+      "source": "Elsewhere list",
+      "checkedAt": "2021-02-08T09:24:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "lah-lah",
+    "slug": "lah-lah",
+    "name": "Lah Lah",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant",
+      "Bar"
+    ],
+    "neighbourhood": "",
+    "summary": "Before 5/6pm is pretty chill",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Lah Lah",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 2,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-08-26T09:52:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.zabeelhouse.com/restaurants/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-26T09:52:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-26T09:52:00Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-26T09:52:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 70,
+      "upMbps": null,
+      "measuredAt": "2020-08-26T09:52:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "ldc-kitchen-and-coffee",
+    "slug": "ldc-kitchen-and-coffee",
+    "name": "LDC Kitchen and Coffee",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "Construction going on outside, so if you have important calls sit inside",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not LDC Kitchen and Coffee",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": "https://goo.gl/maps/sbApH3eQYr1oyXJU7",
+    "locationNote": null,
+    "menuUrl": "https://qr.mydigimenu.com/165863a6-9036-4f20-b789-5569d0cd3bd8",
+    "visited": false,
+    "addedAt": "2021-03-01T06:39:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.instagram.com/ldckitchen/?hl=en",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-03-01T06:39:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-03-01T06:39:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-03-01T06:39:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 22,
+      "upMbps": null,
+      "measuredAt": "2021-03-01T06:39:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "mama-zonia",
+    "slug": "mama-zonia",
+    "name": "Mama Zonia",
+    "isSample": false,
+    "category": "Bar",
+    "tags": [
+      "Bar",
+      "Restaurant"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-8.jpg",
+    "imageAlt": "Temporary photo of a restaurant filled with plants, not Mama Zonia",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1600093463592-8e36ae95ef56). Not this venue.",
+    "sockets": 1,
+    "noise": "loud",
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-04-22T12:20:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-22T12:20:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-22T12:20:00Z",
+        "note": "A few sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-22T12:20:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 130,
+      "upMbps": null,
+      "measuredAt": "2021-04-22T12:20:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "mcgettigans-jlt",
+    "slug": "mcgettigans-jlt",
+    "name": "Mcgettigan's JLT",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant",
+      "Bar"
+    ],
+    "neighbourhood": "JLT",
+    "summary": "",
+    "image": "/images/scene-4.jpg",
+    "imageAlt": "Temporary photo of a restaurant dining room, not Mcgettigan's JLT",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1517248135467-4c7edcad34c4). Not this venue.",
+    "sockets": null,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:45:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:45:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:45:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 69,
+      "upMbps": null,
+      "measuredAt": "2020-08-18T03:45:00Z",
+      "source": "Elsewhere visit"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "mitts-and-trays",
+    "slug": "mitts-and-trays",
+    "name": "Mitts & Trays",
+    "isSample": false,
+    "category": null,
+    "tags": [],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not Mitts & Trays",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-03-14T05:31:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "nightjar-cafe",
+    "slug": "nightjar-cafe",
+    "name": "Nightjar Cafe",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Nightjar Cafe",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 3,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T06:35:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://nightjar.coffee/",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T06:35:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "nola-eatery-and-social-house",
+    "slug": "nola-eatery-and-social-house",
+    "name": "Nola Eatery & Social House",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant",
+      "Bar"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-8.jpg",
+    "imageAlt": "Temporary photo of a restaurant filled with plants, not Nola Eatery & Social House",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1600093463592-8e36ae95ef56). Not this venue.",
+    "sockets": null,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T07:42:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.nola-social.com/",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "one-life-dxb-hive-jvc",
+    "slug": "one-life-dxb-hive-jvc",
+    "name": "One Life DXB - Hive JVC",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "JVC",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not One Life DXB - Hive JVC",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 1,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-06-15T06:25:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-06-15T06:25:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-06-15T06:25:00Z",
+        "note": "A few sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-06-15T06:25:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 100,
+      "upMbps": null,
+      "measuredAt": "2022-06-15T06:25:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "panifico-media-city",
+    "slug": "panifico-media-city",
+    "name": "Panifico Media City",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Dubai Media City",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Panifico Media City",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": 3,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T06:18:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.panifico.me/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T06:18:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T06:18:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 90,
+      "upMbps": null,
+      "measuredAt": "2020-08-18T06:18:00Z",
+      "source": "Elsewhere visit"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "sandwichmasters",
+      "source": "Elsewhere visit",
+      "checkedAt": "2020-08-18T06:18:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "pipes-dxb",
+    "slug": "pipes-dxb",
+    "name": "Pipes DXB",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant",
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "New shisha place, cheap at around AED 30.",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Pipes DXB",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 3,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": "https://maps.app.goo.gl/SZDaDSq91hBDxFQVA",
+    "locationNote": null,
+    "menuUrl": "http://uqr.to/kkpi",
+    "visited": false,
+    "addedAt": "2020-08-18T08:59:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-18T08:59:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-18T08:59:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 7.55,
+      "upMbps": null,
+      "measuredAt": "2020-08-18T08:59:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "pipes2020",
+      "source": "Elsewhere list",
+      "checkedAt": "2020-08-18T08:59:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "roast-speciality-coffee",
+    "slug": "roast-speciality-coffee",
+    "name": "Roast - Speciality Coffee",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Roast - Speciality Coffee",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 2,
+    "noise": "moderate",
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-04-01T04:15:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-01T04:15:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-01T04:15:00Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-04-01T04:15:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "password",
+      "password": "ilovecoffee",
+      "source": "Elsewhere list",
+      "checkedAt": "2021-04-01T04:15:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "roh-at-studiorepublik",
+    "slug": "roh-at-studiorepublik",
+    "name": "ROH at StudioRepublik",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not ROH at StudioRepublik",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 4,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:39:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:39:00Z",
+        "note": "Plenty of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "rove-marina",
+    "slug": "rove-marina",
+    "name": "Rove Marina",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant",
+      "Café"
+    ],
+    "neighbourhood": "Dubai Marina",
+    "summary": "",
+    "image": "/images/scene-4.jpg",
+    "imageAlt": "Temporary photo of a restaurant dining room, not Rove Marina",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1517248135467-4c7edcad34c4). Not this venue.",
+    "sockets": 5,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-08-18T07:46:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.rovehotels.com/the-daily/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-18T07:46:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-18T07:46:00Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-08-18T07:46:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 160,
+      "upMbps": null,
+      "measuredAt": "2020-08-18T07:46:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "scene",
+    "slug": "scene",
+    "name": "Scene",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-8.jpg",
+    "imageAlt": "Temporary photo of a restaurant filled with plants, not Scene",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1600093463592-8e36ae95ef56). Not this venue.",
+    "sockets": 3,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-02-03T07:33:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-02-03T07:33:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-02-03T07:33:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 10,
+      "upMbps": null,
+      "measuredAt": "2021-02-03T07:33:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "signup",
+      "password": null,
+      "source": "Elsewhere list",
+      "checkedAt": "2021-02-03T07:33:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "social-distrikt",
+    "slug": "social-distrikt",
+    "name": "Social Distrikt",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not Social Distrikt",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 3,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-06-22T06:43:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-06-22T06:43:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-06-22T06:43:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-06-22T06:43:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 580,
+      "upMbps": null,
+      "measuredAt": "2022-06-22T06:43:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "sd#101010",
+      "source": "Elsewhere list",
+      "checkedAt": "2022-06-22T06:43:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "social-house-dubai-mall",
+    "slug": "social-house-dubai-mall",
+    "name": "Social House - Dubai Mall",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Downtown Dubai",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Social House - Dubai Mall",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": null,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2021-07-18T06:52:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-07-18T06:52:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-07-18T06:52:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 54,
+      "upMbps": null,
+      "measuredAt": "2021-07-18T06:52:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "signup",
+      "password": null,
+      "source": "Elsewhere list",
+      "checkedAt": "2021-07-18T06:52:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "spaces-eatery",
+    "slug": "spaces-eatery",
+    "name": "Spaces Eatery",
+    "isSample": false,
+    "category": null,
+    "tags": [],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not Spaces Eatery",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2023-01-23T09:35:38Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2023-01-23T09:35:38Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 65,
+      "upMbps": null,
+      "measuredAt": "2023-01-23T09:35:38Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "Spacesdxb@22",
+      "source": "Elsewhere list",
+      "checkedAt": "2023-01-23T09:35:38Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "starbucks-marina-walk",
+    "slug": "starbucks-marina-walk",
+    "name": "Starbucks - Marina Walk",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Dubai Marina",
+    "summary": "The Wi-Fi is useless; use a hotspot. Busy in waves through the day. Shaded outdoor seats work for calls.",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Starbucks - Marina Walk",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 3,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-03-04T07:20:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-03-04T07:20:00Z",
+        "note": "A network exists but was too slow to use."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-03-04T07:20:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-03-04T07:20:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 1,
+      "upMbps": null,
+      "measuredAt": "2022-03-04T07:20:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "starbucks-reserve-dubai-hills-mall",
+    "slug": "starbucks-reserve-dubai-hills-mall",
+    "name": "Starbucks Reserve - Dubai Hills Mall",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Dubai Hills",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Starbucks Reserve - Dubai Hills Mall",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 5,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2022-10-19T08:25:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-10-19T08:25:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-10-19T08:25:00Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2022-10-19T08:25:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 280,
+      "upMbps": null,
+      "measuredAt": "2022-10-19T08:25:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "techarc",
+    "slug": "techarc",
+    "name": "Techarc",
+    "isSample": false,
+    "category": "Co-working",
+    "tags": [
+      "Co-working"
+    ],
+    "neighbourhood": "Al Quoz",
+    "summary": "",
+    "image": "/images/scene-7.jpg",
+    "imageAlt": "Temporary photo of a desk by tall windows, not Techarc",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1497215728101-856f4ea42174). Not this venue.",
+    "sockets": 5,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T03:20:18Z",
+    "modes": [
+      "Focus",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://alserkalavenue.ae/en/neighborhood/techarc.php",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T03:20:18Z",
+        "note": "Sockets at most seats."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "the-london-project",
+    "slug": "the-london-project",
+    "name": "The London Project",
+    "isSample": false,
+    "category": "Restaurant",
+    "tags": [
+      "Restaurant",
+      "Bar"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not The London Project",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": null,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-10-27T11:08:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://www.thelondonproject.com/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-10-27T11:08:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 150,
+      "upMbps": null,
+      "measuredAt": "2020-10-27T11:08:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "the-social-company",
+    "slug": "the-social-company",
+    "name": "The Social Company",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-1.jpg",
+    "imageAlt": "Temporary photo of a café counter with a lit sign, not The Social Company",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1501339847302-ac426a4a7cbb). Not this venue.",
+    "sockets": 2,
+    "noise": "moderate",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-09-28T10:30:00Z",
+    "modes": [
+      "Casual",
+      "Meetings"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-09-28T10:30:00Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2020-09-28T10:30:00Z",
+        "note": "Some background noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "the-sum-of-us",
+    "slug": "the-sum-of-us",
+    "name": "The Sum of Us",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-2.jpg",
+    "imageAlt": "Temporary photo of coffee being poured over, not The Sum of Us",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1442512595331-e89e73853f31). Not this venue.",
+    "sockets": null,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2020-08-18T07:50:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "http://www.thesumofusdubai.com/",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null
+  },
+  {
+    "id": "tom-and-serg",
+    "slug": "tom-and-serg",
+    "name": "Tom & Serg",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-5.jpg",
+    "imageAlt": "Temporary photo of a café table by a window, not Tom & Serg",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1445116572660-236099ec97a0). Not this venue.",
+    "sockets": 1,
+    "noise": null,
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": true,
+    "addedAt": "2020-08-18T06:35:00Z",
+    "modes": [],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://tomandserg.com/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T06:35:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere visit",
+        "checkedAt": "2020-08-18T06:35:00Z",
+        "note": "A few sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 15,
+      "upMbps": null,
+      "measuredAt": "2020-08-18T06:35:00Z",
+      "source": "Elsewhere visit"
+    },
+    "wifiAccess": {
+      "value": "open",
+      "password": null,
+      "source": "Elsewhere visit",
+      "checkedAt": "2020-08-18T06:35:00Z"
+    },
+    "hours": null
+  },
+  {
+    "id": "vibe",
+    "slug": "vibe",
+    "name": "Vibe",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café",
+      "Restaurant"
+    ],
+    "neighbourhood": "",
+    "summary": "",
+    "image": "/images/scene-6.jpg",
+    "imageAlt": "Temporary photo of a café with long wooden tables, not Vibe",
+    "imageCredit": "Temporary stock photo: Unsplash (photo-1521017432531-fbd92d768814). Not this venue.",
+    "sockets": 3,
+    "noise": "loud",
+    "entry": "free",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": "https://qr.mydigimenu.com/2ac9f4ae-3298-4c11-bd71-65e0f2a85fc8",
+    "visited": false,
+    "addedAt": "2021-06-17T10:58:00Z",
+    "modes": [
+      "Casual",
+      "Together"
+    ],
+    "priceNote": "Free entry",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-06-17T10:58:00Z",
+        "note": "Wi-Fi listed when the place was added."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-06-17T10:58:00Z",
+        "note": "A fair number of sockets."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "no",
+        "status": "reported",
+        "source": "Elsewhere list",
+        "checkedAt": "2021-06-17T10:58:00Z",
+        "note": "Loud: not great for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": {
+      "downMbps": 30,
+      "upMbps": null,
+      "measuredAt": "2021-06-17T10:58:00Z",
+      "source": "Elsewhere list"
+    },
+    "wifiAccess": {
+      "value": "password",
+      "password": "stayvibing",
+      "source": "Elsewhere list",
+      "checkedAt": "2021-06-17T10:58:00Z"
+    },
+    "hours": null
   }
 ]

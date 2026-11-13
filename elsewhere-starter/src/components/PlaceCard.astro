@@ -1,27 +1,35 @@
 ---
+// Photo-led card. The whole card is one link (the title's link is stretched over it); the Save heart sits
+// above that layer so it stays its own control, with no link nested inside another control.
+// Three compact facts with filled icons: Wi-Fi speed, sockets and noise. Missing facts read "not added".
 import SaveButton from './SaveButton.astro';
-import EvidencePill from './EvidencePill.astro';
 import Icon from './Icon.astro';
 import type { Place } from '../lib/schema';
-import { categoryIcons } from '../lib/ui';
+import { typeLabel, areaLabel, typeIcon, socketWords, noiseWords } from '../lib/ui';
+import { formatMbps } from '../lib/details';
 interface Props { place: Place; priority?: boolean; headingLevel?: 2 | 3 }
 const { place: p, priority = false, headingLevel = 3 } = Astro.props;
 const H: 'h2' | 'h3' = headingLevel === 2 ? 'h2' : 'h3';
 const href = `/places/${p.slug}/`;
+const passText = { open: 'No password', password: 'Ask staff for the password', signup: 'Sign-up page', unknown: 'Wi-Fi access not added' } as const;
 ---
 <article class="place-card" data-place={p.id}>
  <div class="photo">
-  <a href={href} tabindex="-1" aria-hidden="true"><img src={p.image} alt="" width="800" height="560" loading={priority ? 'eager' : 'lazy'} /></a>
-  <span class="photo-tag">Sample · illustrative photo</span>
-  <SaveButton id={p.id} name={p.name} />
+  {p.image
+    ? <img src={p.image} alt="" width="800" height="560" loading={priority ? 'eager' : 'lazy'} />
+    : <span class="photo-empty"><Icon name={typeIcon(p)} weight="fill" size={40} /></span>}
  </div>
+ <SaveButton id={p.id} name={p.name} />
  <div class="card-body">
   <H class="card-title"><a href={href}>{p.name}</a></H>
-  <p class="card-meta"><span><Icon name={categoryIcons[p.category]} size={16} />{p.category}</span><span><Icon name="map-pin" size={16} />{p.neighbourhood}</span></p>
-  <p class="card-summary">{p.summary}</p>
-  <div class="card-evidence">
-   <EvidencePill evidence={p.amenities.wifi} placeId={p.id} amenity="wifi" compact />
-   <EvidencePill evidence={p.amenities.power} placeId={p.id} amenity="power" compact />
-  </div>
+  <p class="card-kind"><Icon name={typeIcon(p)} weight="fill" size={15} /><span>{typeLabel(p)}</span><span aria-hidden="true">·</span><span class:list={[{ 'fact-muted': !p.neighbourhood }]}>{areaLabel(p)}</span></p>
+  <ul class="card-facts-row">
+   <li class:list={[{ 'is-empty': !p.wifiSpeed }]}><Icon name="lightning" weight="fill" size={16} /><span class="sr-only">Wi-Fi speed: </span>{p.wifiSpeed ? formatMbps(p.wifiSpeed.downMbps) : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>
+   <li class:list={[{ 'is-empty': !p.sockets }]}><Icon name="plug" weight="fill" size={16} /><span class="sr-only">Sockets: </span>{p.sockets ? socketWords[p.sockets] : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>
+   <li class:list={[{ 'is-empty': !p.noise }]}><Icon name="speaker-high" weight="fill" size={16} /><span class="sr-only">Noise: </span>{p.noise ? noiseWords[p.noise][0] : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>
+  </ul>
+  {p.wifiAccess.password
+    ? <p class="card-pass"><Icon name="lock-simple" size={15} /><span class="sr-only">Wi-Fi password: </span><code data-password>{p.wifiAccess.password}</code><button type="button" class="copy-btn copy-btn--icon" data-copy={p.wifiAccess.password} aria-label={`Copy the Wi-Fi password for ${p.name}`} hidden><Icon name="copy" size={15} /><span data-copy-label class="sr-only">Copy</span></button></p>
+    : <p class:list={['card-pass', 'card-pass--info', { 'is-empty': p.wifiAccess.value === 'unknown' }]}><Icon name={p.wifiAccess.value === 'open' ? 'lock-simple-open' : 'lock-simple'} size={15} /><span class="sr-only">Wi-Fi access: </span><span>{passText[p.wifiAccess.value]}</span></p>}
  </div>
 </article>

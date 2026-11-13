@@ -23,19 +23,22 @@ P0 means required for MVP behavior. Production/editorial gates are separate from
 | AC18 | P0 | Given 390, 768 and 1440px, no page overflow, nav/actions readable, photos reserved, filter disclosure works; at 320px and 200% zoom, content reflows. | screenshots + manual |
 | AC19 | P0 | Given keyboard/screen reader, skip link, headings, labels, radio keys, save state, result announcements, focus order and external link context are understandable. | manual NVDA/VoiceOver |
 | AC20 | P0 | Given reduced motion, no nonessential transition/animation occurs; content is available immediately. | browser/manual |
-| AC21 | P0 | Given all screens, fictional label, photo disclaimer, pricing qualifier remain visible; no real venue claims, fake reviews or ratings. | editorial |
+| AC21 | P0 | Given all screens, no fake reviews or ratings and a pricing qualifier (“typical ranges”) on details. Demo/fictional labels were removed from the UI by owner decision (13 Nov 2026); therefore no public deployment until real, evidenced venues and licensed photos replace the fixtures, and noindex stays on every page. | editorial |
 | AC22 | P0 | Given dependency lock and clean install, tests and Astro check/build pass; static pages emit all eight slugs. | automated |
 | AC25 | P0 | Given any card, detail row or comparison cell, each amenity's evidence shows as words plus a tone; only a current verified yes uses the positive (lime) tone, and stale, reported, conflicting, verified-no and unknown never do. | unit + browser |
 | AC26 | P0 | Given an Explore URL with an unknown mode or type, the controls fall back to Any/All; on a narrow screen the closed Filters button states how many hidden filters are active. | browser |
 | AC27 | P0 | Given saved places, Saved shows a comparison table with one row per saved place and five evidence cells; removing the last save hides the table and shows the empty state. | browser |
 | AC23 | Launch | Given real assets/content, evidence review, rights, brand/domain checks, HTTPS, host 404 and metadata pass before public indexing. | owner sign-off |
 | AC24 | Launch | Given mobile lab tests and then field data, performance meets PRD targets or variance is documented with remediation. | Lighthouse + field |
+| AC28 | P0 | Given /submit/ or a place's “Report what you found”, invalid name/area/future date shows inline errors and focuses the first; a valid report is POSTed to PUBLIC_SUBMIT_ENDPOINT when set (failure keeps the form and offers retry) or saved locally with copy saying it was not sent; confirmation takes focus and the report appears in “Your reports”. | browser |
+| AC29 | P0 | Given Discover, the featured carousel shows five listings with name, type and area only; Previous/Next wrap around, dots jump to a slide and show the current one, the change is announced politely, off-screen slides are inert, swiping works without JavaScript, and autoplay advances every 3 seconds. Autoplay pauses on hover, on focus and in a hidden tab, stops with a labelled Pause button, and is off under reduced motion. |
+| AC30 | P0 | Given a place with Wi-Fi details or hours, cards, details and Saved show the speed with its test date (“needs retest” after 90 days or when future-dated), the access method without any password, and usual hours for today in Dubai time worded as “Usually …”, never “open now”. Places without the data say “Speed not tested”, “Access not checked” or “Hours not checked”. The report form accepts an optional speed (number up to 2000) and an access answer, and never a password. |
 
 ## Test commands
 `npm test` runs the data/logic contracts with an injected verification clock. `npm run build` runs strict Astro/TypeScript diagnostics then emits static output. `npm run test:e2e` uses a local dev server and Chromium; install browser via Playwright first. Browser fixture tests freeze only evidence evaluation where needed through date-specific unit tests; UI expectations avoid assuming today's verification stays current indefinitely.
 
 ## Manual test script
-1. New browser/profile, no saved IDs. Inspect banner; enter JLT; choose Focus; open The Long Table Works; read laptop evidence.
+1. New browser/profile, no saved IDs. Enter JLT; choose Focus; open The Long Table Works; read laptop evidence.
 2. Return with Back. Reset; try Meetings, Together, Casual and Focus separately. Try café/restaurant/hotel/co-working and six areas. Force empty state and reset.
 3. Save two different venues from card and detail. Reload Saved. Remove both with keyboard and watch focus. Clear site storage, retry. Open two tabs and repeat.
 4. Disable local storage via browser policy/test harness. Save and confirm the on-page-only announcement; navigate and confirm no durable promise.
@@ -46,3 +49,4 @@ P0 means required for MVP behavior. Production/editorial gates are separate from
 
 ## Budget and quality gates
 Static HTML with one lightweight client module, no React runtime or map SDK. Budget goals: client JS ≤60KB gzip, primary photo ≤250KB, lower photos ≤200KB each, CSS ≤25KB gzip. Report actual sizes rather than claiming budgets pass. Real photos may need different crops/resolutions and responsive sources. Test critical paths in Safari/iOS and Chrome/Android before launch; Chromium automation alone is insufficient.
+

@@ -6,5 +6,5 @@ interface Props { id: string; name: string; variant?: 'icon' | 'label'; }
 const { id, name, variant = 'icon' } = Astro.props;
 ---
 <button type="button" class:list={['save', `save--${variant}`]} data-save={id} data-name={name} aria-label={`Save ${name}`} aria-pressed="false" hidden>
- <Icon name="heart" class="heart-off" anim="pop" /><Icon name="heart" weight="fill" class="heart-on" anim="pop" /><span class="save-text">Save</span>
+ <Icon name="heart" weight="regular" class="heart-off" anim="pop" /><Icon name="heart" weight="fill" class="heart-on" anim="pop" /><span class="save-text">Save</span>
 </button>

@@ -11,7 +11,7 @@ Taste Skill (`design-taste-frontend`, app-screen mode) was used for the gate and
 |---|---|---|---|
 | Paper | `--ground` / `--color-paper` | #F7F6F2 | Page ground |
 | Raised | `--raised` | #FFFFFF | Search field, select pills, chips, visit panel, active nav pill, floating hero card |
-| Surface | `--surface` | #EDECE5 | One tone step: segmented tracks, mode tiles, demo strip, footer, empty states |
+| Surface | `--surface` | #EDECE5 | One tone step: segmented tracks, mode tiles, footer, empty states |
 | Surface hover | `--surface-2` | #E4E3DA | Hover on surface tiles |
 | Ink | `--text` / `--color-ink` | #20231F | Titles, running text, selected segment/toggle fill |
 | Muted | `--muted` | #585E54 | Secondary copy and metadata (≈6.2:1 on paper) |
@@ -29,7 +29,7 @@ White is a neutral addition for raised fields; the four brand colours are unchan
 
 ## Typography
 Self-hosted `@fontsource-variable/geist`, variable weight, one family. Fallback system-ui, sans-serif.
-- Wordmark: 27px (25px phone), 650, -0.06em, with a forest arrow-up-right. Footer repeats it at 48–96px.
+- Wordmark: the supplied “Elsewhere” logo SVG (294×50), inlined by `src/components/Logo.astro` with `fill="currentColor"` in ink. It is 22px tall in the header (20px on phones). The footer repeats it at the full content width above a hairline base row. Both copies are links named “Elsewhere home”.
 - Discover headline: 46–80px, 600, leading 0.98, -0.055em; 38–52px on phones.
 - Page titles: Explore/Saved 34–46px (32px phone); place name 36–56px. Section titles 24–28px. Leading 1.08, -0.035em, balanced wrapping.
 - Card title: 18px desktop, 20px phone, 600.
@@ -54,22 +54,33 @@ Self-hosted `@fontsource-variable/geist`, variable weight, one family. Fallback 
 - **Work modes (Explore):** native radios as a segmented control; selected = ink fill with paper text; focus ring on the segment via `:has`.
 - **Select pills:** native `<select>` without native chrome inside a white pill that shows its visible label ("Place type", "Neighbourhood") and a caret.
 - **Toggles:** native checkboxes as pills; checked = ink fill plus a check icon.
-- **Cards:** no box. Rounded 20px photo with a "Sample · illustrative photo" tag and a round 44px heart Save button; below, the title link, category and area with icons, the summary, and two compact evidence chips (amenity icon + state words; the amenity name is in visually hidden text and a `title`).
+- **Cards:** no box. Rounded 20px photo with a round 44px heart Save button; below, the title link, category and area with icons, the summary, and two compact evidence chips (amenity icon + state words; the amenity name is in visually hidden text and a `title`).
 - **Evidence pills:** 26px, 13px/500, fully rounded. Positive (current verified yes) = lime + check; negative (verified no) = neutral + x; caution (reported, conflicting, needs recheck) = sand + warning; unknown (not checked) = transparent with an inset outline + minus. Tone comes from `evidenceTone()`; the words always carry the meaning.
 - **Save:** heart outline → filled forest heart on lime; the label variant on details reads "Save"/"Saved". `aria-pressed` plus an action-specific `aria-label`.
+- **Forms:** labels above fields; white 48px fields with 14px radius and a forest focus ring; yes / no / not sure as small segmented radios (full width on phones); inline errors in a dark rust tone (#8A2F1F) with aria-invalid; one forest submit button.
 - **Panels:** visit panel white with a 1px border; mode tiles, empty states and the policy note on `--surface`. Only the floating hero card has a (small) shadow.
 
 ## Motion
 Reviewed against Emil Kowalski's design-engineering rules (`emil-design-eng` skill). Transform and opacity only; one strong ease-out, `cubic-bezier(.23,1,.32,1)`; nothing over 300ms.
 - **Press:** everything pressable scales to 0.97 on `:active` (0.98 for the large mode tiles), over 160ms.
-- **Hover:** only on `(hover:hover) and (pointer:fine)`, as transitions (not keyframes) so skimming across controls retargets smoothly. Icons over 200ms: arrows nudge (up-right diagonally, right arrows 3px, back caret left), the compass and reset icons rotate 90°, the map and filter icons tilt 14°, mode and area icons lift 2px, hearts grow to 1.15. Card and hero photographs scale to 1.025 over 300ms inside their rounded frames.
+- **Hover:** only on `(hover:hover) and (pointer:fine)`, as transitions (not keyframes) so skimming across controls retargets smoothly. Icons over 200ms: arrows nudge (up-right diagonally, right arrows 3px, back caret left), the compass and reset icons rotate 90°, the map and filter icons tilt 14°, mode and area icons lift 2px, hearts grow to 1.15. Card and carousel photographs scale to 1.025 over 300ms inside their rounded frames.
+- **Page transitions:** native cross-document view transitions (`@view-transition{navigation:auto}`). The header (`site-header`) holds still. The old page fades out over 140ms, and the new one fades in and rises 8px over 280ms with the strong ease-out curve. Reduced motion keeps the fade without the rise. Browsers without support navigate normally. Links are prefetched on hover or focus (Astro `prefetchAll`, hover strategy), and Geist is preloaded, so the next page is usually ready before the click. `scrollbar-gutter: stable` stops pages of different heights shifting sideways. The navigation pill is placed without animation on load, so the active item doesn't flicker between pages.
+- **Icon weight:** Phosphor **fill** for things: places, amenities, facts and the evidence-pill glyphs. **Outline** for functional icons that act or point: search, arrows, carets, plus and minus, close, filters, reset, copy and directions. `Icon` picks this by name unless a weight is passed. Hearts are the exception: they stay outlined (regular) until something is saved, on Save buttons, the Saved nav item when it isn’t the current page, and the empty Saved state.
+- **Logo:** on the first page of a visit (sessionStorage flag set in `<head>` before paint), the nine letters rise from the baseline left to right, 640ms each with a 45ms stagger, clipped by the SVG box. On mouse hover, a 520ms wave runs across the letters (32ms stagger). `src/scripts/logo.ts` lets the wave finish and clears the intro so it never replays. Both are off under reduced motion.
+- **Footer logo:** `logo.ts` arms it with the letters below the baseline. The first time the footer is 35% in view, they rise in turn: 900ms each, 70ms stagger. After that, each letter lifts 7% under a mouse pointer and settles back, as an interruptible transition. Hover uses the letter's bounding box where the browser supports it. The reveal is skipped under reduced motion or without JavaScript, so the logo simply shows.
+- **Phone (under 640px):**
+  - The main navigation becomes a floating bottom tab bar (icon over label, frosted surface, safe-area aware), and the header is one row: logo and Submit a place. The header gets `z-index:40` so the fixed bar stays above content, and `site-nav` has its own view-transition name.
+  - Place cards become compact rows: a 96px square thumbnail with the name, type and area, the facts row and the Wi-Fi row beside it. The heart sits at the row's top right and the whole row is still one link. On the 53 places, this cut the Explore page from about 25,000px to about 8,600px at 390px.
+  - Filter selects use 16px text so iOS doesn't zoom on focus.
+- **Main navigation:** one white pill (`src/scripts/tabs.ts`) slides to the item under the mouse or keyboard focus over 280ms with the strong ease-out curve. It returns to the current page when the pointer or focus leaves. It fades in place, without sliding in from the edge, on pages outside the menu. Under reduced motion it only fades. Without JavaScript the current item paints its own white background.
+- **Carousel:** a native scroll-snap track, so it swipes and works without JavaScript. Buttons scroll smoothly (instantly under reduced motion), the current dot widens from 6px to 18px over 200ms, and slides off screen are `inert`. It advances every 3 seconds. It pauses while hovered or focused and when the tab is hidden, and stops with the pause button. It does not autoplay under reduced motion.
 - **Save:** the filled heart enters from scale 0.6 and opacity 0 via `@starting-style` (never from nothing), and a new save plays a one-off 360ms pulse (0.85 → 1.18 → 1).
 - **Colour:** background, border and text colour fade over 160ms.
 - **Reduced motion:** all movement goes (transform transitions, hover moves, press scale, the pulse); colour fades stay, because reduced motion means gentler, not none. Measured: 0 moving elements, 26 colour fades on Explore.
 - No entrance animations, stagger, scroll hijack, parallax or autoplay. Keyboard actions never animate.
 
 ## Photography
-Eight bundled Unsplash images, one per fictional place, are illustrative only (source IDs in SOURCES.md and on the About page). They must not be treated as Dubai venue photos. Keep the persistent demo strip, the photo tags and the captions. Replace with licensed real venue photographs before launch; preserve source, rights holder, permitted use and alt text. Card images are decorative links (the adjacent title is the accessible link); detail and hero images have meaningful alt text. Dimensions are reserved; the first row is eager-loaded and lower photos are lazy. No remote image dependency at runtime.
+Eight bundled Unsplash images, one per place, are stock photos, not venue photos (source IDs in SOURCES.md and the About page credits). At the owner's request (13 Nov 2026) the UI no longer shows a demo strip, photo tags or “does not depict” captions, so these images and the fictional fixtures must be replaced before any public launch. Replace with licensed real venue photographs before launch; preserve source, rights holder, permitted use and alt text. Card images are decorative links (the adjacent title is the accessible link); detail and hero images have meaningful alt text. Dimensions are reserved; the first row is eager-loaded and lower photos are lazy. No remote image dependency at runtime.
 
 ## Accessibility contract
 Target WCAG 2.2 AA; this target requires manual assistive-technology validation, not merely a build.

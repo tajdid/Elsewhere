@@ -1,5 +1,7 @@
 import { places } from '../lib/places';
 import { filterPlaces, parseSaved, evidenceLabel, evidenceTone, type Filters } from '../lib/discovery';
+import { dubaiDay, usualTodayText, speedIsStale } from '../lib/details';
+import { shortDate, longDate } from '../lib/dates';
 
 const key = 'elsewhere:saved:v1';
 const ids = places.map(p => p.id);
@@ -31,6 +33,19 @@ document.querySelectorAll<HTMLElement>('[data-evidence][data-place-id]').forEach
   if (e) { label.textContent = evidenceLabel(e); el.dataset.tone = evidenceTone(e); }
 });
 
+// "Today" depends on when the page is read, not when it was built, so usual hours and speed-test age are set here.
+const today = dubaiDay();
+document.querySelectorAll<HTMLElement>('[data-today-hours]').forEach(el => {
+  try { el.textContent = usualTodayText(JSON.parse(el.dataset.todayHours!), today); } catch { /* keep the built text */ }
+});
+document.querySelectorAll<HTMLElement>('.week [data-day]').forEach(li => { if (li.dataset.day === today) li.setAttribute('aria-current', 'date'); });
+document.querySelectorAll<HTMLElement>('[data-speed-meta]').forEach(el => {
+  const s = places.find(p => p.id === el.dataset.speedMeta)?.wifiSpeed;
+  if (!s) return;
+  const retest = speedIsStale(s) ? ' · needs retest' : '';
+  el.textContent = el.hasAttribute('data-long') ? `${s.source} · tested ${longDate(s.measuredAt)}${retest}` : `tested ${shortDate(s.measuredAt)}${retest}`;
+});
+
 function syncButtons() {
   document.querySelectorAll<HTMLButtonElement>('[data-save]').forEach(b => {
     const active = saved.includes(b.dataset.save!);
@@ -47,11 +62,11 @@ function storageNotice() {
   if (n && !storageOK) { n.hidden = false; n.textContent = 'Browser storage is unavailable. Saves will last only on this page.'; }
 }
 
-function readFilters(): Required<Filters> {
+function readFilters(): Required<Omit<Filters, 'wifi' | 'power'>> {
   const d = form ? new FormData(form) : null;
   return {
     q: String(d?.get('q') || ''), category: String(d?.get('category') || ''), neighbourhood: String(d?.get('neighbourhood') || ''),
-    mode: String(d?.get('mode') || ''), wifi: d?.has('wifi') || false, power: d?.has('power') || false,
+    mode: String(d?.get('mode') || ''), fast: d?.has('fast') || false, sockets: d?.has('sockets') || false, calls: d?.has('calls') || false,
   };
 }
 
@@ -64,11 +79,11 @@ function render(updateUrl = false) {
   compareRows.forEach(r => { r.hidden = !visible.has(r.dataset.compare!); });
   if (compare) compare.hidden = matches.length === 0;
   const count = document.querySelector('#result-count');
-  if (count) count.textContent = `${matches.length} ${savedOnly ? 'saved' : 'matching fictional'} ${matches.length === 1 ? 'place' : 'places'}`;
+  if (count) count.textContent = `${matches.length} ${savedOnly ? 'saved ' : ''}${matches.length === 1 ? 'place' : 'places'}`;
   const empty = document.querySelector<HTMLElement>('#empty');
   if (empty) empty.hidden = matches.length > 0;
   // The collapsed disclosure on smaller screens still says how many of its filters are on.
-  const hiddenActive = [filters.category, filters.neighbourhood, filters.wifi, filters.power].filter(Boolean).length;
+  const hiddenActive = [filters.category, filters.neighbourhood, filters.fast, filters.sockets, filters.calls].filter(Boolean).length;
   if (filterCount) filterCount.textContent = hiddenActive ? ` · ${hiddenActive} active` : '';
   if (updateUrl) {
     const params = new URLSearchParams();
@@ -122,6 +137,26 @@ document.addEventListener('click', e => {
     const next = document.querySelector<HTMLButtonElement>('[data-place]:not([hidden]) [data-save]');
     (next || document.querySelector<HTMLAnchorElement>('#empty a'))?.focus();
   }
+});
+
+// Copy the Wi-Fi password. Falls back to selecting the text when the clipboard isn't available.
+document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach(b => { b.hidden = false; });
+document.addEventListener('click', async e => {
+  const b = (e.target as Element).closest<HTMLButtonElement>('[data-copy]');
+  if (!b) return;
+  const label = b.querySelector<HTMLElement>('[data-copy-label]');
+  const code = b.parentElement?.querySelector('[data-password]');
+  try {
+    await navigator.clipboard.writeText(b.dataset.copy!);
+    if (label) label.textContent = 'Copied';
+    b.dataset.state = 'copied';
+    announce('Wi-Fi password copied.');
+  } catch {
+    if (code) { const r = document.createRange(); r.selectNodeContents(code); const sel = getSelection(); sel?.removeAllRanges(); sel?.addRange(r); }
+    if (label) label.textContent = 'Selected';
+    announce('Password selected. Copy it with your keyboard.');
+  }
+  window.setTimeout(() => { if (label) label.textContent = 'Copy'; delete b.dataset.state; }, 2000);
 });
 
 window.addEventListener('storage', e => {

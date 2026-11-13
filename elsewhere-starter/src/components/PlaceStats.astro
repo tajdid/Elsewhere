@@ -1,0 +1,29 @@
+---
+// The three facts people check first, as tiles: Wi-Fi speed, sockets (1–5) and noise. Missing facts say "Not added".
+import Icon from './Icon.astro';
+import type { Place } from '../lib/schema';
+import { socketWords, noiseWords } from '../lib/ui';
+import { formatMbps } from '../lib/details';
+interface Props { place: Place; large?: boolean }
+const { place: p, large = false } = Astro.props;
+const speed = p.wifiSpeed;
+const noise = p.noise ? noiseWords[p.noise] : null;
+---
+ <dl class:list={['card-stats', { 'card-stats--large': large }]}>
+  <div>
+   <dt><Icon name="wifi-high" weight="fill" size={15} />Wi-Fi</dt>
+   {speed
+     ? <dd><strong>{formatMbps(speed.downMbps).replace(' Mbps', '')}</strong><span>Mbps</span></dd>
+     : <dd class="stat-empty">Not added</dd>}
+  </div>
+  <div>
+   <dt><Icon name="plug" weight="fill" size={15} />Sockets</dt>
+   {p.sockets
+     ? <dd><span class="meter" role="img" aria-label={`${p.sockets} out of 5`}>{[1, 2, 3, 4, 5].map(n => <i class:list={[{ on: n <= p.sockets! }]} />)}</span><span>{socketWords[p.sockets]}</span></dd>
+     : <dd class="stat-empty">Not added</dd>}
+  </div>
+  <div>
+   <dt><Icon name="speaker-high" weight="fill" size={15} />Noise</dt>
+   {noise ? <dd><strong class="stat-word">{noise[0]}</strong><span>{noise[1]}</span></dd> : <dd class="stat-empty">Not added</dd>}
+  </div>
+ </dl>

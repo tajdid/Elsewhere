@@ -4,40 +4,55 @@ import '@fontsource-variable/geist';
 import Icon from '../components/Icon.astro';
 import { phosphorMask } from '../lib/icons';
 interface Props { title: string; description?: string; }
-const { title, description = 'Discover places for a different workday in Dubai. Fictional MVP demonstration.' } = Astro.props;
+const { title, description = 'Cafés, co-working spaces, restaurants and bars in Dubai, with Wi-Fi speed, sockets and noise at a glance.' } = Astro.props;
 const path = Astro.url.pathname;
 // Place details live inside Explore, so Explore stays marked as the current section there.
 const current = (href: string) => path === href ? 'page' : href === '/explore/' && path.startsWith('/places/') ? 'true' : undefined;
 const nav = [['/', 'Discover', 'compass', 'spin'], ['/explore/', 'Explore', 'map-trifold', 'tilt'], ['/saved/', 'Saved', 'heart', 'pop']] as const;
 // Evidence glyphs are CSS masks so app.ts can change a pill's tone at visit time without re-rendering icons.
 const glyphs = `:root{--g-positive:${phosphorMask('check')};--g-negative:${phosphorMask('x')};--g-caution:${phosphorMask('warning')};--g-unknown:${phosphorMask('minus')}}`;
+import Logo from '../components/Logo.astro';
+import geistUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 ---
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#F7F6F2"/><title>{title} · Elsewhere</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><style is:inline set:html={glyphs}></style></head>
-<body>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#F7F6F2"/><title>{title} · Elsewhere</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="preload" href={geistUrl} as="font" type="font/woff2" crossorigin/><style is:inline set:html={glyphs}></style><script is:inline>try{if(!sessionStorage.getItem('elsewhere:intro')){document.documentElement.classList.add('intro');sessionStorage.setItem('elsewhere:intro','1')}}catch(e){}</script></head>
+<body id="top">
 <a class="skip" href="#main">Skip to content</a>
-<p class="demo"><span class="wrap"><Icon name="info" size={15} /><span>MVP demo · All venues and amenity evidence are fictional. Photos are illustrative. <a href="/about/">About this demo</a></span></span></p>
 <header class="topbar">
  <div class="wrap topbar-inner">
-  <a href="/" class="wordmark" aria-label="Elsewhere home">elsewhere<Icon name="arrow-up-right" weight="bold" size={22} anim="nudge" /></a>
-  <nav aria-label="Main navigation" class="tabs">{nav.map(([href, label, icon, anim]) => <a href={href} aria-current={current(href)}><Icon name={icon} weight={current(href) ? 'fill' : 'regular'} size={18} anim={anim} />{label}</a>)}</nav>
+  <a href="/" class="wordmark" aria-label="Elsewhere home"><Logo /></a>
+  <nav aria-label="Main navigation" class="tabs">{nav.map(([href, label, icon, anim]) => <a href={href} aria-current={current(href)}><Icon name={icon} weight={icon === 'heart' && !current(href) ? 'regular' : 'fill'} size={18} anim={anim} />{label}</a>)}</nav>
   <a class="submit-link" href="/submit/" aria-current={path === '/submit/' ? 'page' : undefined}><Icon name="plus" weight="bold" size={14} anim="spin" />Submit a place</a>
  </div>
 </header>
 <main id="main" class="wrap" tabindex="-1"><slot/></main>
 <footer class="footer">
- <div class="wrap footer-inner">
-  <div>
-   <a class="wordmark wordmark--big" href="/" aria-label="Elsewhere home">elsewhere<Icon name="arrow-up-right" weight="bold" size={40} anim="nudge" /></a>
-   <p class="footer-line">Work from somewhere new. Dubai, for a different kind of workday.</p>
+ <div class="wrap">
+  <div class="footer-top">
+   <p class="footer-line">Work from somewhere new.<span>Cafés, co-working spaces, restaurants and bars across Dubai, with Wi-Fi speed, sockets and noise at a glance.</span></p>
+   <nav class="footer-cols" aria-label="Footer">
+    <div><h2>Find</h2><ul>
+     <li><a href="/">Discover</a></li>
+     <li><a href="/explore/">Explore places</a></li>
+     <li><a href="/saved/">Saved</a></li>
+    </ul></div>
+    <div><h2>Contribute</h2><ul>
+     <li><a href="/submit/">Submit a place</a></li>
+     <li><a href="/about/#reports">How reports work</a></li>
+    </ul></div>
+    <div><h2>Elsewhere</h2><ul>
+     <li><a href="/about/">How evidence works</a></li>
+     <li><a href="/about/#credits">Where the list comes from</a></li>
+    </ul></div>
+   </nav>
   </div>
-  <ul class="footer-links">
-   <li><a href="/explore/">Explore places<Icon name="arrow-right" size={16} anim="slide" /></a></li>
-   <li><a href="/about/">How evidence works<Icon name="arrow-right" size={16} anim="slide" /></a></li>
-   <li><a href="/about/#credits">Demo notes and photo credits<Icon name="arrow-right" size={16} anim="slide" /></a></li>
-  </ul>
+  <a class="footer-mark" href="/" aria-label="Elsewhere home"><Logo /></a>
+  <div class="footer-base">
+   <p>Saved places stay in this browser. No account needed.</p>
+   <a href="#top" class="footer-top-link">Back to top<Icon name="arrow-up" size={16} anim="nudge" /></a>
+  </div>
  </div>
 </footer>
 <p id="app-status" class="sr-only" aria-live="polite" role="status"></p>
 <noscript><p class="wrap notice">Enable JavaScript to search, filter and save. You can still browse every place and use directions.</p></noscript>
-<script>import '../scripts/app';</script>
+<script>import '../scripts/app'; import '../scripts/tabs'; import '../scripts/logo';</script>
 </body></html>

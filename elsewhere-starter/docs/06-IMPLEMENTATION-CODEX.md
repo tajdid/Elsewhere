@@ -29,10 +29,10 @@ elsewhere-starter/
     components/Listing.astro / PlaceCard.astro / SaveButton.astro / EvidencePill.astro / Icon.astro
     data/places.json
     layouts/Layout.astro
-    lib/schema.ts / places.ts / discovery.ts / icons.ts (build-time Phosphor reader) / ui.ts (icon mappings)
-    pages/index.astro / explore.astro / saved.astro / about.astro / 404.astro
+    lib/schema.ts / places.ts / discovery.ts / icons.ts (build-time Phosphor reader) / ui.ts (icon mappings) / details.ts (speed tiers, access labels, usual hours) / dates.ts (Dubai-time dates) / submissions.ts (report validation and storage)
+    pages/index.astro / explore.astro / saved.astro / about.astro / submit.astro / 404.astro
     pages/places/[slug].astro
-    scripts/app.ts
+    scripts/app.ts (search, filters, saves) / submit.ts (report form) / carousel.ts (Discover featured places)
     styles/global.css
   tests/discovery.test.ts / app.spec.ts
 ```

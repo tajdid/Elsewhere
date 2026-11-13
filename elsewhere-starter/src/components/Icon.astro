@@ -4,7 +4,12 @@
 // control's aria-label names the action. `anim` selects a hover animation defined in global.css.
 import { readPhosphor } from '../lib/icons';
 interface Props { name: string; weight?: 'regular' | 'fill' | 'bold'; size?: number; class?: string; anim?: 'nudge' | 'slide' | 'back' | 'pop' | 'spin' | 'tilt' | 'bob' | 'drop'; }
-const { name, weight = 'regular', size = 20, class: cls, anim } = Astro.props;
+// Filled is the house style for things (places, amenities, facts). Functional icons that act or point,
+// such as search, arrows, carets, plus, close, filters, reset and copy, default to outline. The unsaved heart
+// passes weight="regular" explicitly.
+const functional = /^(arrow|caret|magnifying-glass|plus|minus|x$|sliders|copy|funnel|navigation-arrow)/;
+const { name, size = 20, class: cls, anim } = Astro.props;
+const weight = Astro.props.weight ?? (functional.test(name) ? 'regular' : 'fill');
 const inner = readPhosphor(name, weight).replace(/^<svg[^>]*>|<\/svg>\s*$/g, '');
 ---
 <svg class:list={['icon', cls]} data-anim={anim} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width={size} height={size} fill="currentColor" aria-hidden="true" focusable="false" set:html={inner} />

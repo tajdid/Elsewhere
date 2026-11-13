@@ -15,13 +15,17 @@
 | image, imageAlt, imageCredit | strings | Local source, meaningful alt, attribution/provenance |
 | modes | enum array | Focus / Casual / Meetings / Together; editorial fit only |
 | priceNote | string | Currency, range, unit and qualifiers visible |
-| hoursNote | string | Human-readable uncertainty; not machine opening hours |
+| hoursNote | string | Human-readable qualifier shown with the hours (or instead of them when `hours` is null) |
 | policyNote | string | Laptop windows, purchase/booking requirements if sourced |
 | address | string or null | Null for all sample venues |
 | coordinates | `{lat,lng}` or null | Valid latitude/longitude ranges, null for all fixtures |
+| website | URL or null | Null for all fixtures; shown only when set, opening in a new tab |
 | amenities | object | All five evidence records required |
+| wifiSpeed | `{downMbps, upMbps or null, measuredAt, source}` or null | One dated speed test. Older than 90 days or future-dated reads “needs retest”. Not allowed when Wi-Fi is “no” |
+| wifiAccess | `{value: open/password/signup/unknown, password or null, source, checkedAt}` | Known values need a source and date. `password` only when the value is `password`. It's shown with Copy and its listed date, since passwords change |
+| hours | `{source, checkedAt, week: {mon…sun: [open, close] or null}}` or null | Usual hours in 24-hour Dubai time; a close at or before the open runs past midnight; equal times mean 24 hours; null day = closed |
 
-Fixture amenities: wifi, power, laptops, calls, stepFree. Wi-Fi speed, toilets, parking, noise, prayer space, outdoor seating, accessibility beyond step-free entry, and sockets per table are **not inferred**. Add separately verified fields if introduced.
+Fixture amenities: wifi, power, laptops, calls, stepFree. Wi-Fi speed, Wi-Fi access and usual hours are separate dated records (above), never inferred from the Wi-Fi evidence. Toilets, parking, noise, prayer space, outdoor seating, accessibility beyond step-free entry, and sockets per table are **not inferred**. Add separately verified fields if introduced.
 
 ## Evidence contract
 ```
@@ -69,17 +73,17 @@ Proposed production extension: add `modeEvidence[]` with mode, reason, editorRef
 - media: id, place_id, path, alt, source_url, rights_holder, license, approved_at.
 Saved places remain client-only in MVP; no users table is needed.
 
-## Fixture inventory
-All names below are invented concepts even if coincidental real-world name similarities exist. No assertions are made about similarly named businesses.
-| ID | Fictional concept | Actual area label | Scenario |
-|---|---|---|---|
-| demo-01 | Palm & Paper Studio | JVC | Verified negative Wi-Fi, mixed evidence |
-| demo-02 | Canal Reading Room | Business Bay | Reported Wi-Fi, current positive calls |
-| demo-03 | The Long Table Works | JLT | Unknown Wi-Fi, mixed current evidence |
-| demo-04 | Terrace Eight Kitchen | Dubai Marina | Current positive Wi-Fi and conflicting power |
-| demo-05 | Sikka Study Club | Al Quoz | Conflicting Wi-Fi, expired verification records |
-| demo-06 | Creekside Common Room | Al Jaddaf | Current positive Wi-Fi and reported power |
-| demo-07 | Neighbourhood Desk House | JVC | Reported Wi-Fi and unknown power |
-| demo-08 | Juniper Lunch Room | JLT | Unknown Wi-Fi and current positive power |
+## Place inventory
+53 places from the owner's Notion database “WFH in Dubai” (collection dbf937f7…), imported 13 Nov 2026 by a one-off converter. Mapping:
+- **Name, website, menu link, Google Maps link** are copied. A plain-text “Directions” value becomes `locationNote`.
+- **Tags** (Cafe, Co-working, Restaurant, Bar) become `tags`, and the first tag becomes `category`. Untagged places show “Type not added”.
+- **Speed (Mbps)** becomes `wifiSpeed`, dated to when the entry was added. **Password** becomes `wifiAccess`: “No password” is open, “Sign up” is sign-up, “Ask server” is a password from staff with none listed, and any other value is the guest password itself (`wifiAccess.password`, 13 places). It's shown on cards and the place page with a Copy button and the month it was listed.
+- **Sockets** (⚡ count, 1–5) become `sockets` and Reported power evidence. **Noise level** becomes `noise` and Reported calls evidence (loud is a reported “no”). **Entry type** becomes `entry`. **Visited** becomes `visited` and source “Elsewhere visit”; otherwise the source is “Elsewhere list”.
+- **Area** is set only where the list names it (title, directions, notes or website): 24 of 53. Everything else reads “Area not added”.
+- **Laptop policy, step-free access and hours** are not in the list, so they stay unknown. Work modes are derived from noise and co-working tags as suggestions.
+- **Photos:** temporary stock photos (scene-1 to scene-8) are assigned by type in rotation. Alt text and credit say “not this venue”, and the place page captions each one.
 
-The eight entries cover four categories, six neighbourhoods and four modes. All address/coordinate fields are null; prices are illustrative AED ranges; hours are unknown. See JSON for exact timestamps and individual amenity values. Do not convert fixtures into real venues by merely removing sample labels.
+## Wi-Fi details and usual hours
+- **Speed** is a snapshot from one test, shown with its tester and date and a plain tier: 50+ Mbps “Plenty for video calls”, 20+ “Good for video calls”, 5+ “Fine for email and browsing”, otherwise “Slow for most work”. A speed never upgrades the Wi-Fi evidence and does not count towards the Verified Wi-Fi filter.
+- **Access** says how to get on (no password, password from staff, sign-up page). Publishing passwords is out of scope: they change, and venues may not want them shared. The report form asks visitors not to include them, and the payload has no password field.
+- **Hours** are usual hours as checked, with a source and date. The UI says “Usually 8 am – 5 pm today” or “Usually closed today”, with today worked out in Dubai time when the page is read, and never “open now”. The visit panel adds that public holidays and Ramadan hours may differ, and still tells visitors to check with the venue.

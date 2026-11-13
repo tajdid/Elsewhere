@@ -67,7 +67,7 @@ Only one mode filter is active at a time. A place may have several modes. Unknow
 - Price is an explicit indicative range and unit, not a guaranteed minimum. No price filter until price data is normalized.
 - No “open now” because hours are not verified or represented as a schedule.
 - Missing data is visible as “Not checked”. No icon-only positive ticks. Evidence belongs to the amenity, not the venue as a whole.
-- Sample directions use neighbourhood names and are labelled accordingly. Real venue directions require validated address or coordinates.
+- Places without a validated address get neighbourhood-level directions, and the visit panel says the link opens the area. Real venue directions require validated address or coordinates.
 - Date display uses Asia/Dubai; storage timestamps use UTC ISO 8601. Verification aging uses elapsed 24-hour periods.
 
 ## Launch ownership and gates
