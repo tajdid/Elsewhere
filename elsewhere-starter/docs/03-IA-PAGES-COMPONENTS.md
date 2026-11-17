@@ -7,7 +7,6 @@
 | `/places/[slug]/` | Place details | Card/title → directions/save/Explore | noindex |
 | `/saved/` | Saved | Main navigation → details/remove/Explore | noindex |
 | `/submit/` | Submit a place, or report on one (`?place=<slug>`) | Header “Submit a place”; “Report what you found” on place details → back to the place or Explore | noindex |
-| `/about/` | Trust and photo provenance | Footer, evidence explanation | noindex |
 | `/404.html` | Unknown URL fallback | Host fallback → Explore | noindex |
 
 Desktop and mobile show a segmented Discover / Explore / Saved navigation with icons and visible text labels (icons hide below 360px; labels never do). Place details is a destination within Explore, not a fourth primary tab: Explore stays marked as the current section there (`aria-current="true"`). Logo goes home. The header's right side links to Submit a place. Each place page has a “Been here recently?” panel linking to `/submit/?place=<slug>`, which prefills the place and retitles the page “Report on <name>.” The form has native labelled controls: place name, type, neighbourhood (with a datalist), yes / no / not sure radios for each amenity, the visit date (no future dates, Dubai time) and optional notes. Errors appear inline and are tied with aria-describedby and aria-invalid, and focus moves to the first invalid field. On success the form is replaced by a confirmation that takes focus, plus a “Your reports” list. Delivery is POST JSON to `PUBLIC_SUBMIT_ENDPOINT` when configured, otherwise local storage, and the confirmation copy states which happened. Submissions start as Reported. Detail breadcrumb returns to unfiltered Explore; browser Back restores the original filtered URL. No SPA router or view-transition persistence is required.
@@ -55,7 +54,7 @@ Storage failure: keep in-memory state for current page, announce failure and dis
 ## Component contracts
 | Component | Inputs | Outputs and semantics | States |
 |---|---|---|---|
-| Layout | title, description, slot | html lang, landmarks, nav, meta, footer (tagline, Find / Contribute / Elsewhere link columns in a labelled Footer nav, oversized wordmark, base row with the browser-local saves note and Back to top), script | current route, no-JS notice |
+| Layout | title, description, slot | html lang, landmarks, nav, meta, footer (tagline and Submit a place, the oversized wordmark, and a base row with the browser-local saves note and Back to top), script | current route, no-JS notice |
 | SearchForm | query, action | labelled search input, submit GET or enhancement | empty, populated, submitted |
 | WorkModeGroup | four enum modes, selected | native fieldset/legend/radio labels | any, single selected |
 | FilterPanel | type/area/verified flags | native selects, checkboxes, reset | closed/open mobile, visible desktop |
@@ -91,3 +90,9 @@ Every page (Layout) has:
 - **Search engines:** `robots.txt` allows crawling so crawlers can read each page's `noindex,nofollow`, which stays until launch.
 
 Place pages use the site image rather than their temporary photos, which don't show the venue.
+
+
+## About and footer (14 Nov 2026)
+- **`/about/`:** what Elsewhere is, with three figures counted from the data. "Who's behind it" credits Tajdid Rahman (tajdidrahman.co.uk). "What things mean" covers Wi-Fi speed tiers, the sockets scale, noise, Wi-Fi access, Visited and Not added. "The labels on each place" covers the evidence pills, and "Good to know" covers temporary photos, local saves, changing hours and directions.
+- **Footer:** tagline and description, Explore / Saved / About links, Submit a place, the big wordmark, then “Made with ☕ by Tajdid Rahman” (a coffee icon, with a link opening tajdidrahman.co.uk in a new tab) and Back to top.
+- **Place page:** the laptop tip sits in the left column under “What we know”, as a callout reading “Laptops: …”.

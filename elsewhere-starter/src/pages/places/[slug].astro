@@ -58,12 +58,12 @@ const wifiNote = (note: string) => speed ? `${formatMbps(speed.downMbps)} when t
     {p.menuUrl && <a href={p.menuUrl} target="_blank" rel="noopener noreferrer">Menu<span class="sr-only"> (opens in a new tab)</span><Icon name="arrow-up-right" size={14} anim="nudge" /></a>}
    </dd></div>}
   </dl>
-  <a class="primary" href={directionsUrl(p)} target="_blank" rel="noopener noreferrer"><Icon name="navigation-arrow" size={18} anim="nudge" />{search ? 'Find on Google Maps' : 'Directions'}<span class="sr-only"> (opens Google Maps in a new tab)</span><Icon name="arrow-up-right" size={16} anim="nudge" /></a>
+  <a class="primary" href={directionsUrl(p)} target="_blank" rel="noopener noreferrer">{search ? 'Find on Google Maps' : 'Directions'}<span class="sr-only"> (opens Google Maps in a new tab)</span><Icon name="navigation-arrow" weight="fill" size={18} anim="nudge" /></a>
   <p class="visit-note">{search ? `Searches Google Maps for “${p.name}”. Check it’s the right place before you set off.` : 'Opens this place in Google Maps.'}</p>
-  <p class="visit-tip"><Icon name="info" size={16} />{p.policyNote}</p>
  </aside>
  <section class="detail-body" aria-labelledby="evidence-title">
-  <div class="body-head"><h2 id="evidence-title">What we know</h2><a class="text-link" href="/about/">How to read these labels<Icon name="arrow-right" size={16} anim="slide" /></a></div>
+  <div class="body-head"><h2 id="evidence-title">What we know</h2></div>
+  <p class="section-intro">“Reported” means it came from our list or a visitor and hasn’t been re-checked yet. Things change, so check with the venue.</p>
   {known.length > 0 && <dl class="facts">{known.map(([key, e]) => <div>
    <dt><Icon name={amenityIcons[key]} size={20} />{amenityLabels[key]}</dt>
    <dd>
@@ -72,6 +72,7 @@ const wifiNote = (note: string) => speed ? `${formatMbps(speed.downMbps)} when t
     <p class="amenity-source">{e.source}{e.checkedAt && <> · <time datetime={e.checkedAt}>{fmt(e.checkedAt)}</time></>}</p>
    </dd>
   </div>)}</dl>}
+  <p class="policy"><Icon name="laptop" size={20} /><span><strong>Laptops:</strong> {p.policyNote}</span></p>
   {unknown.length > 0 && <p class="unknown-line"><Icon name="question" size={18} /><span><strong>Not added yet:</strong> {unknown.join(', ')}.</span></p>}
   {p.modes.length > 0 && <div class="good-for">
    <h2>Good for</h2>

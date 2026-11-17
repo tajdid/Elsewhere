@@ -1,6 +1,25 @@
 # Validation and delivery report
 13 November 2026 · Run by Claude Code (Opus 5.5) on macOS (Darwin 25.6), Node 26.5.0, Astro 5.18.2 (locked), Playwright 1.64.1 with Chromium build 1248. Every result below was produced in this session. It supersedes the 3 November report, whose changes (evidence pills, Saved comparison, filter fixes) are kept.
 
+## Twenty-seventh round (14 Nov 2026): About page back, fuller footer, laptop tip on the left
+- **What changed:**
+  - New About page: what the site is, who made it, what the facts and labels mean, and the small print.
+  - The footer has a tagline and description, short links, Submit a place and a “Made with coffee by Tajdid Rahman” credit linking to tajdidrahman.co.uk.
+  - The laptop tip moved from the visit panel to the left column of the place page.
+  - About copy avoids saying reports are read, because without an endpoint they stay in the visitor's browser.
+- **Checks:**
+  - `npm run build` passed (59 pages).
+  - About, the footer and the place page were screenshotted at 1440 and 390px. That review led to the phone figures sharing one row.
+  - No horizontal overflow; no page errors. No tests were run.
+
+## Twenty-sixth round (14 Nov 2026): simpler footer, About removed
+- **Owner request:** keep the MVP simple: drop the informational pages and the footer link columns.
+- **What changed:**
+  - Deleted `src/pages/about.astro`; `/about/` now returns 404.
+  - The footer is the tagline with a Submit a place button, the big wordmark, and the base row.
+  - The place page's “How to read these labels” link became a one-line note on what “Reported” means. The Submit aside lost its About link.
+- **Checks:** `npm run build` passed (58 pages). No links to `/about` remain in `src`. Footer screenshotted at 1440 and 390px. No page errors. No tests were run.
+
 ## Twenty-fifth round (same day): site metadata
 - **What changed:**
   - Added the canonical URL, Open Graph and Twitter tags, JSON-LD WebSite, a new favicon (the logo's E), Apple and Android icons, `site.webmanifest`, `robots.txt` and the `/og.png` share image. The images were rendered from HTML with Geist via Playwright, and reviewed.

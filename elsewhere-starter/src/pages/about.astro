@@ -1,4 +1,68 @@
 ---
+// About: what Elsewhere is, who made it, and what the labels and numbers on the site mean.
 import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { places } from '../lib/places';
+const areas = new Set(places.map(p => p.neighbourhood).filter(Boolean)).size;
 ---
-<Layout title="About" description="How Elsewhere checks Wi-Fi, power, laptop policies and access, and what each evidence state means."><article class="prose"><h1>Know what’s known.</h1><p>Elsewhere helps you find a place for a different workday in Dubai: cafés, co-working spaces, restaurants and hotel lounges. Instead of one overall rating, every amenity carries its own evidence, so you can see what was checked, when, and what still needs confirming.</p><h2>Reading the evidence</h2><p>Each amenity shows a value and an evidence state. The words carry the meaning; the mark and tone only reinforce it.</p><dl class="legend"><div><dt><span class="pill" data-tone="positive">Yes · Verified</span></dt><dd>Independently observed, with a source and date, within the last 90 days. The only state that passes a “Verified” filter.</dd></div><div><dt><span class="pill" data-tone="negative">No · Verified</span></dt><dd>Checked and absent.</dd></div><div><dt><span class="pill" data-tone="caution">Yes · Reported</span></dt><dd>A claim from the venue or a visitor that nobody has independently checked yet.</dd></div><div><dt><span class="pill" data-tone="caution">Yes · Needs recheck</span></dt><dd>A verification older than 90 days. It no longer counts as verified.</dd></div><div><dt><span class="pill" data-tone="caution">Conflicting reports</span></dt><dd>Sources disagree, so no positive claim is made until a new check settles it.</dd></div><div><dt><span class="pill" data-tone="unknown">Not checked</span></dt><dd>No reliable information yet.</dd></div></dl><p>Wi-Fi availability says nothing about speed. Work modes are our suggestions, not proof of amenities. Step-free access is recorded separately and is never judged from photographs. There is no venue-wide “verified” badge.</p><h2 id="reports">Reports from visitors</h2><p>Anyone can <a href="/submit/">submit a place</a> or report what they found at one. Reports start as Reported and only become Verified after an independent check.</p><h2>Your saved places</h2><p>Saved places stay in this browser. They do not sync across devices, and clearing browser data removes them. No account is needed.</p><h2 id="credits">Where the list comes from</h2><p>Places, Wi-Fi speeds, socket ratings and noise levels come from the Elsewhere list, built from our own visits and tips. Each one shows when it was added. Speeds and setups change, so anything older than 90 days needs a recheck. Places don’t have photos yet.</p></article></Layout>
+<Layout title="About" description="What Elsewhere is, who made it, and what Wi-Fi speed, sockets, noise and the Reported and Verified labels mean.">
+<article class="about">
+ <header class="about-head">
+  <h1>About Elsewhere.</h1>
+  <p class="lead">A short list of places in Dubai where you can open a laptop and get some work done: cafés, co-working spaces, restaurants and bars. Each place shows what matters before you go: how fast the Wi-Fi is, whether you’ll find a socket, how noisy it gets and how to get online.</p>
+  <dl class="about-figures">
+   <div><dt>places</dt><dd>{places.length}</dd></div>
+   <div><dt>areas named so far</dt><dd>{areas}</dd></div>
+   <div><dt>accounts needed</dt><dd>0</dd></div>
+  </dl>
+ </header>
+
+ <section class="about-section" aria-labelledby="who">
+  <h2 id="who">Who’s behind it</h2>
+  <div class="about-body">
+   <p>Elsewhere is made by <a href="https://tajdidrahman.co.uk" target="_blank" rel="noopener noreferrer">Tajdid Rahman<span class="sr-only"> (opens in a new tab)</span></a>. It started as a personal list of places to work from around Dubai, noting the Wi-Fi, the sockets and whether a call would be drowned out. This site turns that list into something anyone can browse.</p>
+   <p>Know somewhere good, or spotted something out of date? <a href="/submit/">Submit a place</a>. Suggestions start as Reported, and nothing is marked Verified until someone has been in person.</p>
+  </div>
+ </section>
+
+ <section class="about-section" aria-labelledby="meaning">
+  <h2 id="meaning">What things mean</h2>
+  <div class="about-body">
+   <dl class="glossary">
+    <div><dt><Icon name="lightning" size={18} />Wi-Fi speed</dt><dd>Download speed from one speed test, taken when the place was added. 50+ Mbps is plenty for video calls, 20+ is good, 5+ is fine for email and browsing. Speeds change, so older tests say they need a retest.</dd></div>
+    <div><dt><Icon name="plug" size={18} />Sockets</dt><dd>How easy it is to plug in, from 1 to 5: A few, Some, Fair, Plenty, Lots.</dd></div>
+    <div><dt><Icon name="speaker-high" size={18} />Noise</dt><dd>Quiet: calls are fine. Moderate: some background noise, calls are okay. Loud: best avoided for calls.</dd></div>
+    <div><dt><Icon name="lock-simple" size={18} />Wi-Fi access</dt><dd>The guest password when we have it (tap Copy), or how to get on: no password, ask staff, or a sign-up page. Passwords change, so ask staff if one doesn’t work.</dd></div>
+    <div><dt><Icon name="check-circle" size={18} />Visited</dt><dd>Someone from Elsewhere has worked from there.</dd></div>
+    <div><dt><Icon name="question" size={18} />Not added</dt><dd>We don’t have that detail yet. If you know it, tell us.</dd></div>
+   </dl>
+  </div>
+ </section>
+
+ <section class="about-section" aria-labelledby="labels">
+  <h2 id="labels">The labels on each place</h2>
+  <div class="about-body">
+   <p>Each detail on a place page carries its own label, so you can see how sure we are.</p>
+   <dl class="glossary glossary--pills">
+    <div><dt><span class="pill" data-tone="caution">Yes · Reported</span></dt><dd>From our list or a visitor, not re-checked yet. Most of the list is here today.</dd></div>
+    <div><dt><span class="pill" data-tone="positive">Yes · Verified</span></dt><dd>Checked in person, with a date, within the last 90 days.</dd></div>
+    <div><dt><span class="pill" data-tone="caution">Yes · Needs recheck</span></dt><dd>It was verified, but more than 90 days ago.</dd></div>
+    <div><dt><span class="pill" data-tone="caution">Conflicting reports</span></dt><dd>Sources disagree, so nothing is claimed until it’s checked again.</dd></div>
+    <div><dt><span class="pill" data-tone="unknown">Not checked</span></dt><dd>No reliable information yet.</dd></div>
+   </dl>
+  </div>
+ </section>
+
+ <section class="about-section" aria-labelledby="small-print">
+  <h2 id="small-print">Good to know</h2>
+  <div class="about-body">
+   <ul class="about-list">
+    <li><strong>Photos are temporary.</strong> Most places show a stand-in photo until we have one of the real venue. Place pages say so on the photo.</li>
+    <li><strong>Saved places stay on this device.</strong> They live in your browser, don’t sync anywhere and need no account. Clearing your browser data removes them.</li>
+    <li><strong>Hours and prices change.</strong> Check with the venue before a long day out, and ask staff about laptops at busy times.</li>
+    <li><strong>Directions</strong> open Google Maps: straight to the place when we have its pin, otherwise a search by name.</li>
+   </ul>
+  </div>
+ </section>
+</article>
+</Layout>
