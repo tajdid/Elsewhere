@@ -1,4 +1,0 @@
-# Crawling is allowed so search engines can read each page's noindex tag.
-# The site stays out of search results until launch (see CLAUDE.md).
-User-agent: *
-Allow: /

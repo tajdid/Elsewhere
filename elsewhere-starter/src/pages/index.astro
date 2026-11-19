@@ -6,18 +6,20 @@ import { places } from '../lib/places';
 import { modes } from '../lib/schema';
 import { modeIcons, modeLines, typeLabel, areaLabel, typeIcon, socketChips, noiseWords } from '../lib/ui';
 import { formatMbps } from '../lib/details';
+import { areaPages, collectionPages, homeGraph } from '../lib/seo';
 // The hero carousel shows five featured places over their (temporary) photos. "A few places to begin" picks the most complete listings.
 const featuredIds = ['friends-avenue-jlt', 'a4-space', 'starbucks-reserve-dubai-hills-mall', 'panifico-media-city', 'rove-marina'];
 const featured = featuredIds.map(id => places.find(p => p.id === id)).filter((p): p is (typeof places)[number] => !!p);
 const completeness = (p: (typeof places)[number]) => [p.wifiSpeed, p.sockets, p.noise, p.neighbourhood, p.wifiAccess.value !== 'unknown', p.entry, p.category].filter(Boolean).length + (p.visited ? 0.5 : 0);
 const starters = places.filter(p => !featuredIds.includes(p.id)).sort((a, b) => completeness(b) - completeness(a)).slice(0, 4);
+const areas = areaPages(places); const collections = collectionPages(places);
 const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).length;
 ---
-<Layout title="Discover">
+<Layout title="Discover" seoTitle="Best cafés to work from in Dubai | Elsewhere" description="Find laptop-friendly cafés and workspaces in Dubai. Compare Wi-Fi speeds, power sockets, noise levels and places suited to remote work." jsonLd={homeGraph(Astro.site!)}>
 <section class="hero">
  <div class="hero-copy">
   <h1>Work from somewhere new.</h1>
-  <p class="lead">Cafés, co-working spaces, restaurants and bars in Dubai, with Wi-Fi speed, sockets and noise at a glance.</p>
+  <p class="lead">Find laptop-friendly cafés and workspaces across Dubai. Compare <span class="nowrap">Wi-Fi</span>, power sockets and noise before heading out.</p>
   <form action="/explore/" class="searchbar searchbar--hero" role="search">
    <label for="discover-q" class="sr-only">Find a place or neighbourhood</label>
    <Icon name="magnifying-glass" size={20} class="searchbar-icon" />
@@ -67,6 +69,16 @@ const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).
  <div class="cards">{starters.map(p => <PlaceCard place={p} />)}</div>
 </section>
 
+<section class="block" aria-labelledby="guides-title">
+ <div class="section-head"><div><h2 id="guides-title">Where to work in Dubai</h2></div></div>
+ <div class="guide-cols">
+  <div><h3 class="guide-label">By neighbourhood</h3>
+   <ul class="guide-list">{areas.map(a => <li><a href={a.path}><span class="guide-name"><Icon name="map-pin" weight="fill" size={20} />{a.name}</span><span class="guide-count">{a.places.length} places<Icon name="arrow-right" size={16} anim="slide" /></span></a></li>)}</ul></div>
+  <div><h3 class="guide-label">By what you need</h3>
+   <ul class="guide-list">{collections.map(c => <li><a href={c.path}><span class="guide-name"><Icon name={c.icon} weight="fill" size={20} />{c.short}</span><span class="guide-count">{c.places.length} places<Icon name="arrow-right" size={16} anim="slide" /></span></a></li>)}</ul></div>
+ </div>
+</section>
+
 <section class="trust" aria-labelledby="trust-title">
  <div class="trust-copy">
   <h2 id="trust-title">Know a good spot?</h2>
@@ -79,7 +91,7 @@ const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).
  <ol class="trust-panel steps">
   <li><span class="step-icon"><Icon name="map-pin" size={20} /></span><div><h3>Add the place</h3><p>Name, type and neighbourhood. It takes a minute.</p></div></li>
   <li><span class="step-icon"><Icon name="wifi-high" size={20} /></span><div><h3>Say what you found</h3><p>Wi-Fi, power, laptops, calls and access, plus a speed test if you ran one.</p></div></li>
-  <li><span class="step-icon"><Icon name="check" weight="bold" size={20} /></span><div><h3>We check it</h3><p>We visit before anything is marked as verified.</p></div></li>
+  <li><span class="step-icon"><Icon name="check" weight="bold" size={20} /></span><div><h3>It starts as Reported</h3><p>Nothing is marked Verified until someone has checked it in person, with a date.</p></div></li>
  </ol>
 </section>
 <script>import '../scripts/carousel';</script>

@@ -16,7 +16,7 @@ const passText = { open: 'No password', password: 'Ask staff for the password', 
 <article class="place-card" data-place={p.id}>
  <div class="photo">
   {p.image
-    ? <img src={p.image} alt="" width="800" height="560" loading={priority ? 'eager' : 'lazy'} />
+    ? <img src={p.image} srcset={`${p.image.replace(/\.jpg$/, '-640.jpg')} 640w, ${p.image} 1200w`} sizes="(max-width: 639px) 96px, (max-width: 999px) 50vw, 320px" alt="" width="800" height="560" loading={priority ? 'eager' : 'lazy'} decoding="async" />
     : <span class="photo-empty"><Icon name={typeIcon(p)} weight="fill" size={40} /></span>}
  </div>
  <SaveButton id={p.id} name={p.name} />

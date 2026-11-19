@@ -32,10 +32,10 @@ const areas = [...new Set(places.map(p => p.neighbourhood).filter(Boolean))].sor
  <div id="extra-filters" class="extra-filters">
   <div class="select-pill"><label for="category">Place type</label><select name="category" id="category"><option value="">All</option>{categories.map(c => <option>{c}</option>)}</select><Icon name="caret-down" size={14} /></div>
   <div class="select-pill"><label for="neighbourhood">Neighbourhood</label><select name="neighbourhood" id="neighbourhood"><option value="">All</option>{areas.map(n => <option>{n}</option>)}</select><Icon name="caret-down" size={14} /></div>
-  <label class="toggle"><input type="checkbox" name="fast" /><Icon name="lightning" size={17} />50+ Mbps<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
-  <label class="toggle"><input type="checkbox" name="sockets" /><Icon name="plug" size={17} />Plenty of sockets<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
-  <label class="toggle"><input type="checkbox" name="calls" /><Icon name="phone-call" size={17} />OK for calls<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
-  <button type="reset" class="text-button"><Icon name="arrow-counter-clockwise" size={16} anim="spin" />Clear all</button>
+  <label class="toggle"><input type="checkbox" name="fast" /><Icon name="lightning" weight="fill" size={17} />Fast Wi-Fi<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
+  <label class="toggle"><input type="checkbox" name="sockets" /><Icon name="plug" weight="fill" size={17} />Plenty of sockets<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
+  <label class="toggle"><input type="checkbox" name="calls" /><Icon name="phone-call" weight="fill" size={17} />Okay for calls<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
+  <button type="reset" class="text-button" id="clear-all" hidden><Icon name="arrow-counter-clockwise" size={16} anim="spin" />Clear all</button>
  </div>
 </form>}
 <p class="result-count" id="result-count" aria-live="polite">{saved ? 'Loading your saved places…' : `${places.length} places`}</p>

@@ -85,6 +85,13 @@ function render(updateUrl = false) {
   // The collapsed disclosure on smaller screens still says how many of its filters are on.
   const hiddenActive = [filters.category, filters.neighbourhood, filters.fast, filters.sockets, filters.calls].filter(Boolean).length;
   if (filterCount) filterCount.textContent = hiddenActive ? ` · ${hiddenActive} active` : '';
+  // "Clear all" only shows when there is something to clear; if it had focus, focus moves to the search box.
+  const clearAll = document.querySelector<HTMLButtonElement>('#clear-all');
+  if (clearAll) {
+    const any = hiddenActive > 0 || !!filters.q || !!filters.mode;
+    if (!any && document.activeElement === clearAll) document.querySelector<HTMLInputElement>('#q')?.focus();
+    clearAll.hidden = !any;
+  }
   if (updateUrl) {
     const params = new URLSearchParams();
     Object.entries(filters).forEach(([k, v]) => { if (v) params.set(k, String(v)); });

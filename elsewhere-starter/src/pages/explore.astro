@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro'; import Listing from '../components/Listing.astro';
+import { places } from '../lib/places'; import { collectionGraph } from '../lib/seo';
+const description = `All ${places.length} cafés, co-working spaces, restaurants and bars on the Elsewhere list, with Wi-Fi speed, sockets and noise. Filter by neighbourhood or work mode.`;
 ---
-<Layout title="Explore">
+<Layout title="Explore" seoTitle="Places to work from in Dubai | Elsewhere" description={description} jsonLd={collectionGraph({ path: '/explore/', name: 'Places to work from in Dubai', description, items: places, crumbs: [['Explore']] }, Astro.site!)}>
 <div class="page-title page-title--center">
  <h1>Find your next spot.</h1>
- <p>Browse Dubai by neighbourhood, work mode and what’s been checked.</p>
+ <p>Compare Wi-Fi, sockets and noise at {places.length} places across Dubai.</p>
 </div>
 <Listing/>
 </Layout>

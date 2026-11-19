@@ -57,5 +57,10 @@ Search by name, neighbourhood, type and summary; combined filters with an active
 - Without it, reports are kept in this browser's local storage (`elsewhere:submissions:v1`, newest 50) and the confirmation says “saved in this browser… hasn't been sent anywhere yet”. The UI never claims a report was received unless the endpoint accepted it.
 - No backend, moderation queue or spam protection is included; add those with the endpoint. Reports never change evidence on the site automatically: they are Reported until an editor verifies them.
 
+## Search settings
+- `PUBLIC_SITE_URL`: canonical base URL (defaults to the Vercel production domain, else `https://elsewhere-silk.vercel.app`).
+- `PUBLIC_ALLOW_INDEXING=true`: removes the site-wide `noindex` and lists the sitemap in robots.txt. Set it in Vercel for Production only when the owner launches.
+- After launch: verify the domain in Google Search Console and Bing Webmaster Tools, submit `/sitemap.xml`, and run Google’s Rich Results Test on a place page.
+
 ## Before publishing
 This is an implementation starter, not a live verified directory. The UI shows no demo labels, so keep `noindex` and do not deploy publicly until real venue data and photo rights are approved. The user reported elsewhere.work available; registration, ownership and trademark clearance have not been established. Review brand clearance before launch. No domain purchase or deployment is included.

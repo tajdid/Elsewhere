@@ -11,7 +11,7 @@ const endpoint = import.meta.env.PUBLIC_SUBMIT_ENDPOINT as string | undefined;
 const areas = [...new Set(places.map(p => p.neighbourhood).filter(Boolean))].sort();
 const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category: p.category, neighbourhood: p.neighbourhood }));
 ---
-<Layout title="Submit a place" description="Add a place to Elsewhere, or report what you found at one: Wi-Fi, power, laptop policy, calls and step-free access.">
+<Layout title="Submit a place" noindex description="Add a place to Elsewhere, or report what you found at one: Wi-Fi, power, laptop policy, calls and step-free access.">
 <div class="page-title"><h1 id="submit-title">Submit a place.</h1><p id="submit-intro">Know somewhere good to work in Dubai, or been somewhere lately? Tell us what you found.</p></div>
 <div class="submit-grid">
  <div>

@@ -4,8 +4,15 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import { places } from '../lib/places';
 const areas = new Set(places.map(p => p.neighbourhood).filter(Boolean)).size;
+import { breadcrumbs, abs } from '../lib/seo';
+const visited = places.filter(p => p.visited).length;
+const years = places.map(p => Number(p.addedAt.slice(0, 4)));
+const [from, to] = [Math.min(...years), Math.max(...years)];
+const site = Astro.site!;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'AboutPage', '@id': abs('/about/', site), url: abs('/about/', site), name: 'About Elsewhere', inLanguage: 'en-GB',
+  isPartOf: { '@id': abs('/#website', site) }, about: { '@id': abs('/#organization', site) }, breadcrumb: breadcrumbs([['Home', '/'], ['About']], site) };
 ---
-<Layout title="About" description="What Elsewhere is, who made it, and what Wi-Fi speed, sockets, noise and the Reported and Verified labels mean.">
+<Layout title="About" seoTitle="About Elsewhere: how places are chosen and checked | Elsewhere" description="Who makes Elsewhere, where each detail comes from, what Reported and Verified mean, and how to send a correction." jsonLd={jsonLd}>
 <article class="about">
  <header class="about-head">
   <h1>About Elsewhere.</h1>
@@ -22,6 +29,19 @@ const areas = new Set(places.map(p => p.neighbourhood).filter(Boolean)).size;
   <div class="about-body">
    <p>Elsewhere is made by <a href="https://tajdidrahman.co.uk" target="_blank" rel="noopener noreferrer">Tajdid Rahman<span class="sr-only"> (opens in a new tab)</span></a>. It started as a personal list of places to work from around Dubai, noting the Wi-Fi, the sockets and whether a call would be drowned out. This site turns that list into something anyone can browse.</p>
    <p>Know somewhere good, or spotted something out of date? <a href="/submit/">Submit a place</a>. Suggestions start as Reported, and nothing is marked Verified until someone has been in person.</p>
+  </div>
+ </section>
+
+ <section class="about-section" aria-labelledby="method">
+  <h2 id="method">How the list is made</h2>
+  <div class="about-body">
+   <dl class="glossary">
+    <div><dt>How places are chosen</dt><dd>Every place comes from Tajdid’s own list of places to work from in Dubai, added between {from} and {to}. {visited} are marked Visited, meaning someone from Elsewhere worked from there.</dd></div>
+    <div><dt>Where the details come from</dt><dd>Each detail is copied from that list and dated by when the place was added. Wi-Fi speed is one speed test from then. When the list doesn’t say something, the site shows “not added” instead of guessing.</dd></div>
+    <div><dt>What Verified means</dt><dd>A detail is Verified only when someone has checked it in person and dated it within the last 90 days. No detail is Verified yet; everything on the site today is Reported.</dd></div>
+    <div><dt>How it’s kept up to date</dt><dd>When a place is checked again, the detail gets the new date and source. Dates are never moved forward without a new check, so an old date means old information.</dd></div>
+    <div><dt>Corrections</dt><dd>Use “Report what you found” on any place, or <a href="/submit/">Submit a place</a>. Reports stay separate from the list until they’re checked, and the form tells you whether yours was sent or only saved on your device.</dd></div>
+   </dl>
   </div>
  </section>
 

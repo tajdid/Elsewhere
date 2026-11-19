@@ -371,3 +371,14 @@ Remaining tradeoffs:
 - Removal of `noindex` only after all of the above.
 
 No purchase, deployment, venue outreach, payment integration or trademark work was done.
+
+
+## Round 28 · search and answer-engine pass (18 Nov 2026)
+Run on macOS (Darwin 25.6), Node 22, Astro 5.18.2, against the production build and `astro preview` on port 4330.
+- `npm run build` (astro check + build): 0 errors, 0 warnings, 0 hints; 66 pages.
+- Static output check (scratchpad script over `dist/`): 66 pages, 49 sitemap URLs, 0 problems: one h1 per page, unique titles and descriptions, titles ≤70 characters, canonical on every page, every JSON-LD block parses and only references pages that exist, no broken internal links, every sitemap URL exists.
+- Indexing-on build (`PUBLIC_ALLOW_INDEXING=true`): home, guides and full place pages `index,follow`; `/places/1762/` and `/saved/` `noindex,follow` and absent from the sitemap; robots.txt lists the sitemap. Default build: every page `noindex,nofollow`, no sitemap line.
+- `npx tsx --test tests/seo.test.ts`: 6/6 pass. `npm test`: 21 tests, 16 pass, 5 fail. The 5 failures are the old fixture tests that still expect the fictional sample catalogue (known since the Notion import; not caused by this round).
+- Playwright on the preview at 1440, 390 and 320px for /, /explore/, /about/, /dubai/jlt/, /collections/fast-wifi-dubai/, /places/friends-avenue-jlt/: no console errors, no horizontal overflow, no broken images. Screenshots reviewed at 1440 and 390.
+- Not run: `npm run test:e2e` (suite still written for the old fixtures), Google Rich Results Test and Schema.org validator (need the public URL; JSON-LD was checked for parse and types locally), Lighthouse, assistive-technology testing.
+- Card images now use 640px variants via `srcset` (about 55% fewer bytes per card).

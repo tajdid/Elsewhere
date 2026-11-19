@@ -1,0 +1,24 @@
+---
+// Server-rendered comparison of the work facts for a set of places, so the answer is in the HTML, not behind filters.
+import Icon from './Icon.astro';
+import type { Place } from '../lib/schema';
+import { typeLabel, areaLabel, socketWords, noiseWords } from '../lib/ui';
+import { formatMbps, accessLabels } from '../lib/details';
+import { monthYear } from '../lib/dates';
+interface Props { places: Place[]; caption: string; showArea?: boolean }
+const { places, caption, showArea = false } = Astro.props;
+---
+<div class="table-scroll guide-table" tabindex="0" role="region" aria-label={caption}>
+ <table>
+  <caption class="sr-only">{caption}</caption>
+  <thead><tr><th scope="col">Place</th><th scope="col"><span class="th-icon"><Icon name="lightning" size={16} />Wi-Fi speed</span></th><th scope="col"><span class="th-icon"><Icon name="plug" size={16} />Sockets</span></th><th scope="col"><span class="th-icon"><Icon name="speaker-high" size={16} />Noise</span></th><th scope="col"><span class="th-icon"><Icon name="lock-simple" size={16} />Wi-Fi access</span></th><th scope="col">Added</th></tr></thead>
+  <tbody>{places.map(p => <tr>
+   <th scope="row"><a href={`/places/${p.slug}/`}>{p.name}</a><span>{showArea ? `${typeLabel(p)} · ${areaLabel(p)}` : typeLabel(p)}</span></th>
+   <td>{p.wifiSpeed ? formatMbps(p.wifiSpeed.downMbps) : <span class="fact-muted">{p.amenities.wifi.value === 'no' ? 'No usable Wi-Fi' : 'Not added'}</span>}</td>
+   <td>{p.sockets ? `${socketWords[p.sockets]} (${p.sockets}/5)` : <span class="fact-muted">Not added</span>}</td>
+   <td>{p.noise ? `${noiseWords[p.noise][0]}: ${noiseWords[p.noise][1].toLowerCase()}` : <span class="fact-muted">Not added</span>}</td>
+   <td>{p.wifiAccess.value === 'unknown' ? <span class="fact-muted">Not added</span> : p.wifiAccess.password ? 'Password listed' : accessLabels[p.wifiAccess.value]}</td>
+   <td><time datetime={p.addedAt}>{monthYear(p.addedAt)}</time></td>
+  </tr>)}</tbody>
+ </table>
+</div>
