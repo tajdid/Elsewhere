@@ -408,7 +408,7 @@ main{padding-bottom:24px}
 @media(max-width:639px){.about-head .lead{font-size:17px}.term-cards,.about-facts{grid-template-columns:1fr}.about-panel{padding:4px 18px}.about-labels>div{grid-template-columns:1fr;gap:6px}}
 /* Steps: a list on the left; on wide screens a pinned picture on the right follows the step in the middle of the screen. */
 .steps-list{display:grid;gap:8px;margin-top:28px}
-.steps-list>li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;padding:16px 0 16px 18px;border-left:2px solid var(--border);transition:border-color var(--med) var(--ease)}
+.steps-list>li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;padding:16px 0}
 .steps-n{display:grid;place-items:center;width:30px;height:30px;border-radius:var(--r-pill);background:var(--surface);font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;transition:background-color var(--med),color var(--med)}
 .steps-list h3{font-size:18px;transition:color var(--med)}
 .steps-list p{margin-top:4px;font-size:15px;color:var(--muted);max-width:46ch}
@@ -424,11 +424,9 @@ main{padding-bottom:24px}
  .steps-inline{display:none}
  .steps-stage{display:block;position:sticky;top:calc(50vh - 220px);align-self:start}
  .steps-scene.is-live .steps-list>li{min-height:30vh;align-content:center}
- .steps-scene.is-live .steps-list>li.is-active{border-left-color:var(--accent)}
  .steps-scene.is-live .steps-list>li:not(.is-active) h3{color:var(--muted)}
  .steps-scene.is-live .steps-list>li.is-active .steps-n{background:var(--accent);color:var(--ground)}
 }
-@media(max-width:899px){.steps-list>li{border-left:0;padding-left:0}}
 @media (prefers-reduced-motion:reduce){.steps-window>.mock{transition:none;transform:none}}
 /* Mock-ups: small, decorative copies of real screens, built from the place's own listed details. */
 .mock{width:100%;max-width:420px;border-radius:18px;background:var(--raised);box-shadow:0 1px 2px rgb(32 35 31/.06),0 14px 32px -14px rgb(32 35 31/.22);overflow:hidden;font-size:14px;text-align:left}

@@ -27,12 +27,12 @@ const listRows = ['friends-avenue-jlt', 'rove-marina', 'common-grounds-dubai-hil
   .map(id => places.find(p => p.id === id)).filter((p): p is NonNullable<typeof p> => !!p);
 const reportTrack = ['Received', 'Pending review', 'Checked by hand', 'On the site as Reported'];
 const glossary = [
-  { icon: 'lightning', term: 'Wi-Fi speed', text: 'Download speed from one speed test, taken when the place was added. 50+ Mbps is plenty for video calls, 20+ is good, 5+ is fine for email and browsing. Speeds change, so older tests say they need a retest.' },
-  { icon: 'plug', term: 'Sockets', text: 'How easy it is to plug in, from 1 to 5: A few, Some, Fair, Plenty, Lots.' },
-  { icon: 'speaker-high', term: 'Noise', text: 'Quiet: calls are fine. Moderate: some background noise, calls are okay. Loud: best avoided for calls.' },
-  { icon: 'lock-simple', term: 'Wi-Fi access', text: 'The guest password when we have it (tap Copy), or how to get on: no password, ask staff, or a sign-up page. Passwords change, so ask staff if one doesn’t work.' },
-  { icon: 'check-circle', term: 'Visited', text: 'Someone from Elsewhere has worked from there.' },
-  { icon: 'question', term: 'Not added', text: 'We don’t have that detail yet. If you know it, tell us.' },
+  { icon: 'lightning', term: 'Wi-Fi speed', text: 'One speed test from when the place was added. 50+ Mbps handles video calls; 5+ is fine for email.' },
+  { icon: 'plug', term: 'Sockets', text: 'How easy it is to plug in, from A few to Lots.' },
+  { icon: 'speaker-high', term: 'Noise', text: 'Quiet or Moderate is fine for calls. Loud is best avoided.' },
+  { icon: 'lock-simple', term: 'Wi-Fi access', text: 'The password if we have it, or how to get on. If it doesn’t work, ask staff.' },
+  { icon: 'check-circle', term: 'Visited', text: 'We’ve worked from there ourselves.' },
+  { icon: 'question', term: 'Not added', text: 'We don’t know yet. If you do, tell us.' },
 ];
 const sources = [
   { kind: 'list', label: 'Where it started', icon: 'note-pencil', title: 'A list kept since ' + from, text: `${places.length} places, each noted with its Wi-Fi speed, sockets, noise and how to get online. Every detail shows when it was added, so you know how fresh it is.` },
@@ -128,7 +128,7 @@ const sources = [
  <section class="about-wide" aria-labelledby="meaning">
   <div class="about-sec-head">
    <h2 id="meaning">What things mean</h2>
-   <p class="about-intro">The labels you’ll see on every place, in plain words.</p>
+   <p class="about-intro">The labels you’ll see on every place.</p>
   </div>
   <dl class="term-cards">
    {glossary.map(g => <div><dt><Icon name={g.icon} size={22} />{g.term}</dt><dd>{g.text}</dd></div>)}
