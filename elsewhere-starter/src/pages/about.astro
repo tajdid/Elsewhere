@@ -3,9 +3,11 @@
 // the labels and numbers on the site mean. Every figure here is counted from the data, not written by hand.
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import StepFrame from '../components/StepFrame.astro';
 import { places } from '../lib/places';
 import { directionsIsSearch } from '../lib/discovery';
 import { breadcrumbs, abs } from '../lib/seo';
+import { monthYear } from '../lib/dates';
 const visited = places.filter(p => p.visited).length;
 const exact = places.filter(p => !directionsIsSearch(p)).length;
 const years = places.map(p => Number(p.addedAt.slice(0, 4)));
@@ -14,15 +16,28 @@ const site = Astro.site!;
 const jsonLd = { '@context': 'https://schema.org', '@type': 'AboutPage', '@id': abs('/about/', site), url: abs('/about/', site), name: 'About Elsewhere', inLanguage: 'en-GB',
   isPartOf: { '@id': abs('/#website', site) }, about: { '@id': abs('/#organization', site) }, breadcrumb: breadcrumbs([['Home', '/'], ['About']], site) };
 const steps = [
-  { icon: 'magnifying-glass', title: 'Find the place', text: 'Start typing its name and pick it from the Google Maps suggestions, so we get the exact spot. You can also just type the name.' },
+  { icon: 'magnifying-glass', title: 'Find the place', text: 'Start typing its name and pick it from the suggestions, so we get the exact spot. You can also just type the name.' },
   { icon: 'wifi-high', title: 'Say what you found', text: 'Yes, no or not sure for Wi-Fi, sockets, laptops, calls and step-free access. Add a speed test, the Wi-Fi password or a note if you have them.' },
   { icon: 'paper-plane-tilt', title: 'Send it', text: 'It’s saved for review straight away, marked Pending. You only see “Thanks, that’s in” once it’s saved. If sending fails, it stays on your device so you can try again.' },
   { icon: 'check-circle', title: 'We check it', text: 'Every report is read by hand. Places that fit are added as Reported; nothing is published automatically.' },
 ];
+// The example place in the submitting picture, and three real rows from the list for the sources card.
+const example = places.find(p => p.id === 'friends-avenue-jlt') ?? places[0];
+const listRows = ['friends-avenue-jlt', 'rove-marina', 'common-grounds-dubai-hills-mall']
+  .map(id => places.find(p => p.id === id)).filter((p): p is NonNullable<typeof p> => !!p);
+const reportTrack = ['Received', 'Pending review', 'Checked by hand', 'On the site as Reported'];
+const glossary = [
+  { icon: 'lightning', term: 'Wi-Fi speed', text: 'Download speed from one speed test, taken when the place was added. 50+ Mbps is plenty for video calls, 20+ is good, 5+ is fine for email and browsing. Speeds change, so older tests say they need a retest.' },
+  { icon: 'plug', term: 'Sockets', text: 'How easy it is to plug in, from 1 to 5: A few, Some, Fair, Plenty, Lots.' },
+  { icon: 'speaker-high', term: 'Noise', text: 'Quiet: calls are fine. Moderate: some background noise, calls are okay. Loud: best avoided for calls.' },
+  { icon: 'lock-simple', term: 'Wi-Fi access', text: 'The guest password when we have it (tap Copy), or how to get on: no password, ask staff, or a sign-up page. Passwords change, so ask staff if one doesn’t work.' },
+  { icon: 'check-circle', term: 'Visited', text: 'Someone from Elsewhere has worked from there.' },
+  { icon: 'question', term: 'Not added', text: 'We don’t have that detail yet. If you know it, tell us.' },
+];
 const sources = [
-  { icon: 'note-pencil', title: 'Tajdid’s list', text: `${places.length} places noted between ${from} and ${to}: Wi-Fi speed, sockets, noise and how to get online. Each detail is dated by when it was added, and a speed is one test from then, not a live reading.` },
-  { icon: 'clipboard-text', title: 'Your reports', text: 'What visitors tell us. Reports stay separate from the list until they’re checked; then the detail gets the new date and its source.' },
-  { icon: 'map-trifold', title: 'Google Maps', text: `Where a place is: exact directions and a small map for ${exact} places, and opening hours shown live when you tap “Show hours”. Google’s details aren’t copied into the list.` },
+  { kind: 'list', label: 'Where it started', icon: 'note-pencil', title: 'A list kept since ' + from, text: `${places.length} places, each noted with its Wi-Fi speed, sockets, noise and how to get online. Every detail shows when it was added, so you know how fresh it is.` },
+  { kind: 'reports', label: 'From visitors', icon: 'clipboard-text', title: 'Your reports', text: 'What people find when they visit. Reports are checked before they change anything, and the detail then shows its new date.' },
+  { kind: 'google', label: 'Getting there', icon: 'map-trifold', title: 'Directions and hours', text: `Exact directions and a small map for ${exact} places. Opening hours load when you tap “Show hours”, so they’re current.` },
 ];
 ---
 <Layout title="About" seoTitle="About Elsewhere: how places are chosen and checked | Elsewhere" description="Who makes Elsewhere, how submitting a place works, where each detail comes from, and what Reported and Verified mean." jsonLd={jsonLd}>
@@ -37,43 +52,70 @@ const sources = [
   </dl>
  </header>
 
- <section class="about-section" aria-labelledby="who">
-  <h2 id="who">Who’s behind it</h2>
-  <div class="about-body">
-   <p>Elsewhere is made by <a href="https://tajdidrahman.co.uk" target="_blank" rel="noopener noreferrer">Tajdid Rahman<span class="sr-only"> (opens in a new tab)</span></a>. It started as a personal list of places to work from around Dubai, noting the Wi-Fi, the sockets and whether a call would be drowned out. This site turns that list into something anyone can browse, and anyone can add to.</p>
+ <section class="about-wide" aria-labelledby="submitting">
+  <div class="about-sec-head">
+   <h2 id="submitting">How submitting works</h2>
+   <p class="about-intro">Four steps, about two minutes. Nothing goes on the site until it’s been read.</p>
   </div>
- </section>
-
- <section class="about-section" aria-labelledby="submitting">
-  <h2 id="submitting">How submitting works</h2>
-  <div class="about-body">
-   <ol class="about-steps">
-    {steps.map((s, i) => <li>
-     <span class="about-step-top"><span class="about-step-n" aria-hidden="true">{i + 1}</span><Icon name={s.icon} weight="fill" size={20} /></span>
-     <h3>{s.title}</h3>
-     <p>{s.text}</p>
+  <div class="steps-scene" data-steps>
+  <div class="steps-copy">
+   <ol class="steps-list">
+    {steps.map((s, i) => <li data-step={i} class:list={{ 'is-active': i === 0 }}>
+     <span class="steps-n" aria-hidden="true">{i + 1}</span>
+     <div><h3>{s.title}</h3><p>{s.text}</p></div>
+     <div class="steps-inline" aria-hidden="true"><StepFrame step={i} place={example} /></div>
     </li>)}
    </ol>
    <p class="about-note">Been to a place that’s already listed? Use “Report what you found” on its page; it works the same way.</p>
    <a class="primary about-cta" href="/submit/"><Icon name="plus" weight="bold" size={16} anim="spin" />Submit a place</a>
   </div>
- </section>
-
- <section class="about-section" aria-labelledby="sources">
-  <h2 id="sources">Where the details come from</h2>
-  <div class="about-body">
-   <ul class="about-sources">
-    {sources.map(s => <li><Icon name={s.icon} weight="fill" size={22} /><h3>{s.title}</h3><p>{s.text}</p></li>)}
-   </ul>
-   <p class="about-note">When none of these says something, the site shows “not added” instead of guessing.</p>
+  <div class="steps-stage" aria-hidden="true">
+   <div class="steps-window" data-active="0">
+    {steps.map((_, i) => <StepFrame step={i} place={example} />)}
+   </div>
+   <p class="steps-chip">Example: {example.name}, using its listed details</p>
+  </div>
   </div>
  </section>
 
- <section class="about-section" aria-labelledby="labels">
-  <h2 id="labels">How sure we are</h2>
-  <div class="about-body">
-   <p>Each detail on a place page carries its own label. A detail is Verified only when someone has checked it in person and dated it within the last 90 days. Dates are never moved forward without a new check, so an old date means old information. No detail is Verified yet; everything on the site today is Reported.</p>
-   <dl class="glossary glossary--pills">
+ <section class="about-wide" aria-labelledby="sources">
+  <div class="about-sec-head">
+   <h2 id="sources">Where the details come from</h2>
+   <p class="about-intro">Three sources, kept apart. When none of them says something, the site shows “not added” instead of guessing.</p>
+  </div>
+  <ul class="source-cards">
+   {sources.map(s => <li class="source-card">
+    <div class="source-media" aria-hidden="true">
+     {s.kind === 'list' && <div class="mock mock--list">
+      <p class="mock-bar"><span><Icon name="note-pencil" size={14} />The list</span><span>{places.length} places</span></p>
+      <ul>{listRows.map(p => <li><strong>{p.name}</strong><span>{p.neighbourhood}</span><span>{p.wifiSpeed?.downMbps} Mbps</span><span>{monthYear(p.addedAt)}</span></li>)}</ul>
+     </div>}
+     {s.kind === 'reports' && <div class="mock mock--track">
+      <p class="mock-bar"><span>A new report</span><span>Pending</span></p>
+      <ol>{reportTrack.map((t, i) => <li class:list={{ 'is-done': i === 0, 'is-now': i === 1 }}>{t}</li>)}</ol>
+     </div>}
+     {s.kind === 'google' && <div class="mock mock--google">
+      <div class="mock-map"><Icon name="map-pin" size={30} /></div>
+      <p class="mock-button"><Icon name="clock" size={15} />Show hours</p>
+      <ul class="mock-week">{['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => <li><span>{d}</span><span class="mock-line"></span></li>)}</ul>
+     </div>}
+    </div>
+    <div class="source-text">
+     <p class="source-label"><Icon name={s.icon} size={16} />{s.label}</p>
+     <h3>{s.title}</h3>
+     <p>{s.text}</p>
+    </div>
+   </li>)}
+  </ul>
+ </section>
+
+ <section class="about-wide" aria-labelledby="labels">
+  <div class="about-sec-head">
+   <h2 id="labels">How sure we are</h2>
+   <p class="about-intro">Every detail carries its own label. Verified means checked in person within the last 90 days, and dates never move forward without a new check. Nothing is Verified yet: everything on the site today is Reported.</p>
+  </div>
+  <div class="about-panel">
+   <dl class="glossary glossary--pills about-labels">
     <div><dt><span class="pill" data-tone="caution">Yes · Reported</span></dt><dd>From our list or a visitor, not rechecked yet.</dd></div>
     <div><dt><span class="pill" data-tone="positive">Yes · Verified</span></dt><dd>Checked in person, with a date, within the last 90 days.</dd></div>
     <div><dt><span class="pill" data-tone="caution">Yes · Needs recheck</span></dt><dd>It was verified, but more than 90 days ago.</dd></div>
@@ -83,32 +125,39 @@ const sources = [
   </div>
  </section>
 
- <section class="about-section" aria-labelledby="meaning">
-  <h2 id="meaning">What things mean</h2>
-  <div class="about-body">
-   <dl class="glossary">
-    <div><dt><Icon name="lightning" size={18} />Wi-Fi speed</dt><dd>Download speed from one speed test, taken when the place was added. 50+ Mbps is plenty for video calls, 20+ is good, 5+ is fine for email and browsing. Speeds change, so older tests say they need a retest.</dd></div>
-    <div><dt><Icon name="plug" size={18} />Sockets</dt><dd>How easy it is to plug in, from 1 to 5: A few, Some, Fair, Plenty, Lots.</dd></div>
-    <div><dt><Icon name="speaker-high" size={18} />Noise</dt><dd>Quiet: calls are fine. Moderate: some background noise, calls are okay. Loud: best avoided for calls.</dd></div>
-    <div><dt><Icon name="lock-simple" size={18} />Wi-Fi access</dt><dd>The guest password when we have it (tap Copy), or how to get on: no password, ask staff, or a sign-up page. Passwords change, so ask staff if one doesn’t work.</dd></div>
-    <div><dt><Icon name="check-circle" size={18} />Visited</dt><dd>Someone from Elsewhere has worked from there.</dd></div>
-    <div><dt><Icon name="question" size={18} />Not added</dt><dd>We don’t have that detail yet. If you know it, tell us.</dd></div>
-   </dl>
+ <section class="about-wide" aria-labelledby="meaning">
+  <div class="about-sec-head">
+   <h2 id="meaning">What things mean</h2>
+   <p class="about-intro">The labels you’ll see on every place, in plain words.</p>
   </div>
+  <dl class="term-cards">
+   {glossary.map(g => <div><dt><Icon name={g.icon} size={22} />{g.term}</dt><dd>{g.text}</dd></div>)}
+  </dl>
  </section>
 
- <section class="about-section" aria-labelledby="small-print">
-  <h2 id="small-print">Good to know</h2>
-  <div class="about-body">
-   <ul class="about-list">
-    <li><strong>Photos are stand-ins.</strong> Every place shows a temporary photo, not the venue itself, until we have a real one. Place pages say so on the photo.</li>
-    <li><strong>Directions</strong> open Google Maps: straight to the place for {exact} places, otherwise a search by name, so check it’s the right one.</li>
-    <li><strong>Hours come from Google Maps</strong> when you ask, and holiday hours can differ. Check with the venue before a long day out, and ask staff about laptops at busy times.</li>
-    <li><strong>Saved places stay on this device.</strong> They live in your browser, don’t sync anywhere and need no account. Clearing your browser data removes them.</li>
-    <li><strong>Your email is optional.</strong> If you leave one with a report, it’s only used to ask about that report and is never shown on the site.</li>
-    <li><strong>Visits are counted without cookies,</strong> using Vercel Web Analytics. There are no accounts and no ads.</li>
+ <section class="about-wide" aria-labelledby="small-print">
+  <div class="about-sec-head">
+   <h2 id="small-print">Good to know</h2>
+  </div>
+  <div>
+   <ul class="about-facts">
+    <li><strong>Photos are stand-ins</strong>Every place shows a temporary photo, not the venue itself, until we have a real one. Place pages say so on the photo.</li>
+    <li><strong>Directions</strong>Go straight to the place for {exact} places; for the rest they search by name, so check it’s the right one.</li>
+    <li><strong>Opening hours</strong>Load when you ask, and holiday hours can differ. Check with the venue before a long day out, and ask staff about laptops at busy times.</li>
+    <li><strong>Saved places stay on this device</strong>They live in your browser, don’t sync anywhere and need no account. Clearing your browser data removes them.</li>
+    <li><strong>Your email is optional</strong>If you leave one with a report, it’s only used to ask about that report and is never shown on the site.</li>
+    <li><strong>No cookies, accounts or ads</strong>Visits are counted anonymously, without cookies.</li>
    </ul>
+  </div>
+ </section>
+ <section class="about-close" aria-labelledby="who">
+  <h2 id="who">Who’s behind it</h2>
+  <p>Elsewhere is made by <a href="https://tajdidrahman.co.uk" target="_blank" rel="noopener noreferrer">Tajdid Rahman<span class="sr-only"> (opens in a new tab)</span></a>. It started as a personal list of places to work from around Dubai, noting the Wi-Fi, the sockets and whether a call would be drowned out. This site turns that list into something anyone can browse, and anyone can add to.</p>
+  <div class="about-close-actions">
+   <a class="primary" href="/explore/">Explore {places.length} places<Icon name="arrow-right" size={16} anim="slide" /></a>
+   <a class="pill-button" href="/submit/"><Icon name="plus" weight="bold" size={16} anim="spin" />Submit a place</a>
   </div>
  </section>
 </article>
 </Layout>
+<script>import '../scripts/about';</script>

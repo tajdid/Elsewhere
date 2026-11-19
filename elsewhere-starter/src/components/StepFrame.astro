@@ -1,0 +1,50 @@
+---
+// One frame of the "How submitting works" picture on About: a small, decorative copy of the real Submit form at
+// each step. It uses the example place's own listed facts (never invented ones) and nothing from Google.
+import Icon from './Icon.astro';
+import type { Place } from '../lib/schema';
+interface Props { step: number; place: Place }
+const { step, place } = Astro.props;
+const area = place.neighbourhood ? `${place.neighbourhood}, Dubai` : 'Dubai';
+const answer = (v: string | undefined) => (v === 'yes' ? 0 : v === 'no' ? 1 : 2);
+const rows = [
+  ['Wi-Fi', answer(place.amenities.wifi?.value)],
+  ['Power sockets', answer(place.amenities.power?.value)],
+  ['Laptops welcome', answer(place.amenities.laptops?.value)],
+  ['Okay for calls', answer(place.amenities.calls?.value)],
+] as const;
+const typed = place.name.slice(0, Math.min(10, place.name.length));
+---
+<div class="mock" data-frame={step}>
+ <p class="mock-bar"><span>Submit a place</span><span>Step {step + 1} of 4</span></p>
+ <div class="mock-body">
+ {step === 0 && <>
+  <p class="mock-label">Place name</p>
+  <p class="mock-input is-focus">{typed}<span class="mock-caret"></span></p>
+  <ul class="mock-options">
+   <li class="is-active"><strong>{place.name}</strong><span>{area}</span></li>
+  </ul>
+  <p class="mock-hint">Pick it from the list for the exact spot.</p>
+ </>}
+ {step === 1 && <>
+  <p class="mock-label">Place name</p>
+  <p class="mock-input">{place.name}</p>
+  <div class="mock-place">
+   <div class="mock-map"><Icon name="map-pin" size={28} /></div>
+   <div><strong>{place.name}</strong><span>{area}</span><span class="mock-small">Exact spot saved</span></div>
+  </div>
+ </>}
+ {step === 2 && <>
+  <ul class="mock-answers">
+   {rows.map(([label, on]) => <li><span>{label}</span><span class="mock-seg">{['Yes', 'No', 'Not sure'].map((t, i) => <span class:list={{ 'is-on': i === on }}>{t}</span>)}</span></li>)}
+  </ul>
+  {place.wifiSpeed?.downMbps != null && <p class="mock-row"><span>Wi-Fi download speed</span><span class="mock-input mock-input--sm">{place.wifiSpeed.downMbps} Mbps</span></p>}
+ </>}
+ {step === 3 && <div class="mock-done">
+  <Icon name="check-circle" size={44} />
+  <strong>Thanks, that’s in.</strong>
+  <span class="pill" data-tone="caution">Pending review</span>
+  <span class="mock-small">Read by hand before anything goes on the site.</span>
+ </div>}
+ </div>
+</div>
