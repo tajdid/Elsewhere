@@ -1,5 +1,5 @@
 ---
-// Photo-led card. The whole card is one link (the title's link is stretched over it); the Save heart sits
+// Card without a photo: a type icon, the name and the facts that decide a visit. The whole card is one link (the title's link is stretched over it); the Save heart sits
 // above that layer so it stays its own control, with no link nested inside another control.
 // Three compact facts with filled icons: Wi-Fi speed, sockets and noise. Missing facts read "not added".
 import SaveButton from './SaveButton.astro';
@@ -8,21 +8,17 @@ import type { Place } from '../lib/schema';
 import { typeLabel, areaLabel, typeIcon, socketWords, noiseWords } from '../lib/ui';
 import { formatMbps } from '../lib/details';
 interface Props { place: Place; priority?: boolean; headingLevel?: 2 | 3 }
-const { place: p, priority = false, headingLevel = 3 } = Astro.props;
+const { place: p, headingLevel = 3 } = Astro.props;
 const H: 'h2' | 'h3' = headingLevel === 2 ? 'h2' : 'h3';
 const href = `/places/${p.slug}/`;
 const passText = { open: 'No password', password: 'Ask staff for the password', signup: 'Sign-up page', unknown: 'Wi-Fi access not added' } as const;
 ---
 <article class="place-card" data-place={p.id}>
- <div class="photo">
-  {p.image
-    ? <img src={p.image} srcset={`${p.image.replace(/\.jpg$/, '-640.jpg')} 640w, ${p.image} 1200w`} sizes="(max-width: 639px) 96px, (max-width: 999px) 50vw, 320px" alt="" width="800" height="560" loading={priority ? 'eager' : 'lazy'} decoding="async" />
-    : <span class="photo-empty"><Icon name={typeIcon(p)} weight="fill" size={40} /></span>}
- </div>
+ <span class="card-badge" aria-hidden="true"><Icon name={typeIcon(p)} weight="fill" size={24} /></span>
  <SaveButton id={p.id} name={p.name} />
  <div class="card-body">
   <H class="card-title"><a href={href}>{p.name}</a></H>
-  <p class="card-kind"><Icon name={typeIcon(p)} weight="fill" size={15} /><span>{typeLabel(p)}</span><span aria-hidden="true">·</span><span class:list={[{ 'fact-muted': !p.neighbourhood }]}>{areaLabel(p)}</span></p>
+  <p class="card-kind"><span>{typeLabel(p)}</span><span aria-hidden="true">·</span><span class:list={[{ 'fact-muted': !p.neighbourhood }]}>{areaLabel(p)}</span></p>
   <ul class="card-facts-row">
    <li class:list={[{ 'is-empty': !p.wifiSpeed }]}><Icon name="lightning" weight="fill" size={16} /><span class="sr-only">Wi-Fi speed: </span>{p.wifiSpeed ? formatMbps(p.wifiSpeed.downMbps) : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>
    <li class:list={[{ 'is-empty': !p.sockets }]}><Icon name="plug" weight="fill" size={16} /><span class="sr-only">Sockets: </span>{p.sockets ? socketWords[p.sockets] : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>

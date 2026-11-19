@@ -7,7 +7,7 @@ import { modes } from '../lib/schema';
 import { modeIcons, modeLines, typeLabel, areaLabel, typeIcon, socketChips, noiseWords } from '../lib/ui';
 import { formatMbps } from '../lib/details';
 import { areaPages, collectionPages, homeGraph } from '../lib/seo';
-// The hero carousel shows five featured places over their (temporary) photos. "A few places to begin" picks the most complete listings.
+// "A few places to begin" picks the most complete listings.
 const featuredIds = ['friends-avenue-jlt', 'a4-space', 'starbucks-reserve-dubai-hills-mall', 'panifico-media-city', 'rove-marina'];
 const featured = featuredIds.map(id => places.find(p => p.id === id)).filter((p): p is (typeof places)[number] => !!p);
 const completeness = (p: (typeof places)[number]) => [p.wifiSpeed, p.sockets, p.noise, p.neighbourhood, p.wifiAccess.value !== 'unknown', p.entry, p.category].filter(Boolean).length + (p.visited ? 0.5 : 0);
@@ -16,7 +16,7 @@ const areas = areaPages(places); const collections = collectionPages(places);
 const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).length;
 ---
 <Layout title="Discover" seoTitle="Best cafés to work from in Dubai | Elsewhere" description="Find laptop-friendly cafés and workspaces in Dubai. Compare Wi-Fi speeds, power sockets, noise levels and places suited to remote work." jsonLd={homeGraph(Astro.site!)}>
-<section class="hero">
+<section class="hero hero--plain">
  <div class="hero-copy">
   <h1>Work from somewhere new.</h1>
   <p class="lead">Find laptop-friendly cafés and workspaces across Dubai. Compare <span class="nowrap">Wi-Fi</span>, power sockets and noise before heading out.</p>
@@ -26,29 +26,6 @@ const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).
    <input id="discover-q" name="q" type="search" placeholder="Try JLT, Marina or a place name" maxlength="120" />
    <button class="primary">Search</button>
   </form>
- </div>
- <div class="hero-visual carousel" role="region" aria-roledescription="carousel" aria-label="Featured places" data-carousel>
-  <ul class="carousel-track" data-track>
-   {featured.map((p, i) => <li class="slide" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${featured.length}: ${p.name}`}>
-    <img src={p.image!} alt={p.imageAlt ?? ''} width="1200" height="801" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
-    <a class="hero-card" href={`/places/${p.slug}/`}>
-     <span class="hero-card-top"><strong>{p.name}</strong><Icon name="arrow-up-right" size={18} anim="nudge" /></span>
-     <span class="hero-card-meta"><Icon name={typeIcon(p)} weight="fill" size={15} />{typeLabel(p)} · {areaLabel(p)}</span>
-     <span class="card-chips">
-      {p.wifiSpeed && <span><Icon name="lightning" weight="fill" size={14} />{formatMbps(p.wifiSpeed.downMbps)}</span>}
-      {p.sockets && <span><Icon name="plug" weight="fill" size={14} />{socketChips[p.sockets]}</span>}
-      {p.noise && <span><Icon name="speaker-high" weight="fill" size={14} />{noiseWords[p.noise][0]}</span>}
-     </span>
-    </a>
-   </li>)}
-  </ul>
-  <div class="carousel-controls" data-controls hidden>
-   <button type="button" class="carousel-btn" data-prev aria-label="Previous place"><Icon name="caret-left" weight="bold" size={16} anim="back" /></button>
-   {featured.map((p, i) => <button type="button" class="carousel-dot" data-dot={i} aria-label={`Show ${p.name}`} aria-current={i === 0 ? 'true' : 'false'}></button>)}
-   <button type="button" class="carousel-btn" data-next aria-label="Next place"><Icon name="caret-right" weight="bold" size={16} anim="slide" /></button>
-   <button type="button" class="carousel-btn" data-play aria-label="Pause slideshow"><Icon name="pause" weight="fill" size={14} class="icon-pause" /><Icon name="play" weight="fill" size={14} class="icon-play" /></button>
-  </div>
-  <p class="sr-only" aria-live="polite" data-carousel-status></p>
  </div>
 </section>
 
@@ -94,5 +71,4 @@ const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).
   <li><span class="step-icon"><Icon name="check" weight="bold" size={20} /></span><div><h3>It starts as Reported</h3><p>Nothing is marked Verified until someone has checked it in person, with a date.</p></div></li>
  </ol>
 </section>
-<script>import '../scripts/carousel';</script>
 </Layout>

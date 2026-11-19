@@ -52,7 +52,6 @@ const wifiNote = (note: string) => speed ? `${formatMbps(speed.downMbps)} when t
 </div>
 <div class="detail-grid">
  <div class="detail-photo">
-  {p.image && <figure><img src={p.image} alt={p.imageAlt ?? ''} width="1200" height="800" fetchpriority="high" /><figcaption class="photo-note">Temporary photo, not this place</figcaption></figure>}
   <div class="detail-glance"><PlaceStats place={p} large /></div>
  </div>
  <aside class="visit" aria-labelledby="visit-title"><h2 id="visit-title">Plan a visit</h2>
