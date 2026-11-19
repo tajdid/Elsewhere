@@ -11,21 +11,34 @@ import { amenityIcons } from '../lib/ui';
 // On Vercel the endpoint defaults to the Sheets function; set PUBLIC_SUBMIT_ENDPOINT to override (or to '' to keep reports local).
 const endpoint = (import.meta.env.PUBLIC_SUBMIT_ENDPOINT as string | undefined) ?? (process.env.VERCEL ? '/api/submit' : undefined);
 const areas = [...new Set(places.map(p => p.neighbourhood).filter(Boolean))].sort();
+// Place search (Google Places through /api/places) and the map preview (Google Maps, browser key restricted to this site).
+const placesEndpoint = (import.meta.env.PUBLIC_PLACES_ENDPOINT as string | undefined) ?? (process.env.VERCEL ? '/api/places' : '');
+const mapsKey = (import.meta.env.PUBLIC_GOOGLE_MAPS_BROWSER_KEY as string | undefined) ?? '';
+const mapId = (import.meta.env.PUBLIC_GOOGLE_MAPS_MAP_ID as string | undefined) || 'DEMO_MAP_ID';
 const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category: p.category, neighbourhood: p.neighbourhood }));
 ---
 <Layout title="Submit a place" noindex description="Add a place to Elsewhere, or report what you found at one: Wi-Fi, power, laptop policy, calls and step-free access.">
 <div class="page-title"><h1 id="submit-title">Submit a place.</h1><p id="submit-intro">Know somewhere good to work in Dubai, or been somewhere lately? Tell us what you found.</p></div>
 <div class="submit-grid">
  <div>
-  <form id="submit-form" class="submit-form" novalidate method="post" action={endpoint || undefined} data-endpoint={endpoint || ''} data-places={JSON.stringify(known)}>
+  <form id="submit-form" class="submit-form" novalidate method="post" action={endpoint || undefined} data-endpoint={endpoint || ''} data-places={JSON.stringify(known)} data-places-endpoint={placesEndpoint} data-maps-key={mapsKey} data-map-id={mapId} data-areas={JSON.stringify(areas)}>
    <input type="hidden" name="placeId" id="placeId" />
+   <input type="hidden" name="googlePlaceId" id="googlePlaceId" /><input type="hidden" name="placeAddress" id="placeAddress" /><input type="hidden" name="lat" id="lat" /><input type="hidden" name="lng" id="lng" />
    <div class="hp-field" aria-hidden="true"><label for="elsewhere_hp">Leave this empty</label><input id="elsewhere_hp" name="elsewhere_hp" type="text" tabindex="-1" autocomplete="off" /></div>
    <fieldset class="form-section">
     <legend><h2>The place</h2></legend>
     <div class="field">
      <label for="name">Place name</label>
-     <input id="name" name="name" type="text" required maxlength="120" autocomplete="off" aria-describedby="name-error" />
+     <div class="combo">
+      <input id="name" name="name" type="text" required maxlength="120" autocomplete="off" aria-describedby="name-help name-error" />
+      <ul id="name-options" class="combo-list" role="listbox" aria-label="Matching places" hidden></ul>
+     </div>
+     <p class="form-help" id="name-help" hidden>Start typing and pick the place from the list, or just type its name.</p>
      <p class="field-error" id="name-error" hidden>Enter the place’s name.</p>
+    </div>
+    <div class="place-picked" id="place-picked" hidden>
+     <div class="place-map" id="place-map" hidden></div>
+     <p class="place-address"><Icon name="map-pin" weight="fill" size={17} /><span><span id="place-address-text"></span><span class="place-source">Location from Google Maps</span></span><button type="button" class="text-button" id="place-clear">Not this place</button></p>
     </div>
     <div class="field-row">
      <div class="field"><label for="category">Type</label><div class="select-wrap"><select id="category" name="category">{categories.map(c => <option>{c}</option>)}</select><Icon name="caret-down" size={14} /></div></div>
@@ -45,7 +58,10 @@ const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category:
     </fieldset>)}</div>
     <div class="field-row wifi-fields">
      <div class="field"><label for="wifiSpeed">Wi-Fi download speed, Mbps <span class="optional">Optional</span></label><input id="wifiSpeed" name="wifiSpeed" type="text" inputmode="decimal" autocomplete="off" maxlength="8" aria-describedby="wifiSpeed-help wifiSpeed-error" /><p class="form-help" id="wifiSpeed-help">From any speed test, run where you sat.</p><p class="field-error" id="wifiSpeed-error" hidden>Enter a number up to 2000, or leave it blank.</p></div>
-     <div class="field"><label for="wifiAccess">Getting on the Wi-Fi</label><div class="select-wrap"><select id="wifiAccess" name="wifiAccess" aria-describedby="wifiAccess-help"><option value="unsure">Not sure</option><option value="open">No password</option><option value="password">Password from staff</option><option value="signup">Sign-up page</option></select><Icon name="caret-down" size={14} /></div><p class="form-help" id="wifiAccess-help">Please don’t include the password itself.</p></div>
+     <div class="field-stack">
+      <div class="field"><label for="wifiAccess">Getting on the Wi-Fi</label><div class="select-wrap"><select id="wifiAccess" name="wifiAccess"><option value="unsure">Not sure</option><option value="open">No password</option><option value="password">Password from staff</option><option value="signup">Sign-up page</option></select><Icon name="caret-down" size={14} /></div></div>
+      <div class="field" id="wifiPassword-field" hidden><label for="wifiPassword">Wi-Fi password <span class="optional">Optional</span></label><input id="wifiPassword" name="wifiPassword" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="64" aria-describedby="wifiPassword-help" /><p class="form-help" id="wifiPassword-help">The guest password, if you have it. Once checked, it may be shown on the place page.</p></div>
+     </div>
     </div>
    </fieldset>
    <fieldset class="form-section">
@@ -78,5 +94,5 @@ const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category:
   </ul>
  </aside>
 </div>
-<script>import '../scripts/submit';</script>
+<script>import '../scripts/submit'; import '../scripts/place-search';</script>
 </Layout>

@@ -6,3 +6,6 @@ test-results/
 .DS_Store
 .taste-skill/*
 !.taste-skill/direction.json
+.env*
+!.env.example
+scripts/place-matches.csv

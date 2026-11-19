@@ -48,6 +48,8 @@ export const placeSchema = z.object({
   modes:z.array(z.enum(modes)), priceNote:z.string(), hoursNote:z.string(), policyNote:z.string(),
   address:z.string().nullable(), coordinates:z.object({lat:z.number().min(-90).max(90),lng:z.number().min(-180).max(180)}).nullable(),
   website:z.string().url().nullable(),
+  // Google place ID, confirmed by the owner (src/data/google-places.json, merged in src/lib/places.ts). Gives exact directions.
+  googlePlaceId:z.string().nullable().default(null),
   amenities:z.object({wifi:evidenceSchema,power:evidenceSchema,laptops:evidenceSchema,calls:evidenceSchema,stepFree:evidenceSchema}),
   wifiSpeed:wifiSpeedSchema.nullable(), wifiAccess:wifiAccessSchema, hours:hoursSchema.nullable(),
 }).superRefine((p,ctx) => {

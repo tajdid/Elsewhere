@@ -53,7 +53,7 @@ Search by name, neighbourhood, type and summary; combined filters with an active
 ## Submissions
 `/submit/` adds a new place; `/submit/?place=<slug>` reports on a listed one (linked from each place page as “Report what you found”). The form validates name, neighbourhood and a visit date that is not in the future (Dubai time), and captures yes / no / not sure for all five amenities plus notes.
 
-The form also has an optional contact email (“only used if we have a question about your report”).
+The form also has an optional contact email (“only used if we have a question about your report”) and, when “Password from staff” is chosen, an optional Wi-Fi password field. The password is saved in the Sheet's last column (only for that choice), is never kept in the browser, and reaches the site only if you add it through the import.
 
 **Where reports go.** On Vercel the form sends each report to `api/submit.ts` (`PUBLIC_SUBMIT_ENDPOINT` defaults to `/api/submit` there), a Vercel function next to the static site (no Astro adapter; every page is still prerendered). It appends one row to a Google Sheet with a new submission ID, the time received and the status **Pending**, and answers 201 only after Google confirms the row. Nothing is published automatically: review the Sheet and add approved places through the usual import.
 
@@ -63,7 +63,7 @@ The form also has an optional contact email (“only used if we have a question 
 
 **Google Sheets setup (owner; keys never go in the repo):**
 1. Create a Google Sheet with a tab named `Submissions` and this header row:
-   `Submission ID | Received at | Status | Kind | Place ID | Name | Type | Neighbourhood | Visited on | Wi-Fi | Power sockets | Laptop policy | Calls | Step-free | Wi-Fi Mbps | Wi-Fi access | Notes | Contact email | Submitted at (browser) | Form version`
+   `Submission ID | Received at | Status | Kind | Place ID | Name | Type | Neighbourhood | Visited on | Wi-Fi | Power sockets | Laptop policy | Calls | Step-free | Wi-Fi Mbps | Wi-Fi access | Notes | Contact email | Submitted at (browser) | Form version | Wi-Fi password`
 2. In Google Cloud Console create a project and enable the **Google Sheets API**.
 3. Create a **service account** (no roles needed), then add a **JSON key** and download it.
 4. Share the Sheet with the service account's email as **Editor**.
@@ -71,6 +71,22 @@ The form also has an optional contact email (“only used if we have a question 
 6. Redeploy, then delete the downloaded JSON file.
 
 A Google Workspace organisation may block service-account keys; a personal Google account does not.
+
+## Place search and maps (Google)
+**Submit a place:** the Place name box suggests places as you type (Google Places, through `api/places.ts`, so the key stays on the server; UAE only, biased to Dubai). Picking one fills the name, keeps Google's place ID, address and coordinates, suggests the neighbourhood (Google's “Jumeirah Lake Towers” becomes the list's “JLT”), and eases a small Google map to the spot: a pan, then a zoom from 11 to 16 over about a second, or an instant jump with reduced motion. “Not this place” clears it. Typing a name without picking still works, and without the keys the box is a plain text field as before. The Sheet gets four more columns at the end: `Google place ID | Address (Google) | Latitude | Longitude`.
+
+**Existing listings:** a place with a confirmed Google place ID gets exact Directions (Google Maps link to that place) and a small map in “Plan a visit” (Maps Embed API). The owner's own Maps link still wins where there is one. IDs are kept in `src/data/google-places.json`, separate from the Notion import, and only after the owner confirms them:
+1. `npx tsx --env-file=.env.local scripts/match-places.ts` proposes a match for each place and writes `scripts/place-matches.csv` (not committed).
+2. Open it, check each row (list name and area against Google's name and address) and put `yes` in `confirm` for the right ones.
+3. `npx tsx scripts/apply-place-matches.ts` saves only the `yes` rows.
+
+**Keys (owner):** in Google Cloud, on the billing account, enable **Places API (New)**, **Maps JavaScript API** and **Maps Embed API**, then create two API keys:
+- **Server key** → Vercel `GOOGLE_PLACES_API_KEY` (and `.env.local` for the matching script). Restrict it to *Places API (New)*.
+- **Browser key** → Vercel `PUBLIC_GOOGLE_MAPS_BROWSER_KEY`. Restrict it to *Maps JavaScript API* and *Maps Embed API*, and to the site's addresses (`elsewhere-silk.vercel.app/*`, and any custom domain). It is visible in the page by design.
+- Optional `PUBLIC_GOOGLE_MAPS_MAP_ID`: a Map ID from Google Maps Platform (needed for the map marker; `DEMO_MAP_ID` is used until then).
+- Set daily quotas (e.g. Places autocomplete 300/day) and a budget alert so usage stays inside the free monthly allowance.
+
+Google's terms: place IDs may be kept indefinitely; addresses and coordinates from Google are for limited caching, so the site stores only the place ID and lets Google show the address and map. The Sheet's address and coordinates are for reviewing a submission, not for publishing as-is.
 
 ## Search settings
 - `PUBLIC_SITE_URL`: canonical base URL (defaults to the Vercel production domain, else `https://elsewhere-silk.vercel.app`).

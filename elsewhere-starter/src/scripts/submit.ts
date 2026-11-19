@@ -16,6 +16,12 @@ if (form && done) {
   const formError = document.querySelector<HTMLElement>('#form-error')!;
   const date = field<HTMLInputElement>('visitedOn');
 
+  // The password field only shows when the visitor says the Wi-Fi needs a password from staff.
+  const access = field<HTMLSelectElement>('wifiAccess');
+  const passwordField = document.querySelector<HTMLElement>('#wifiPassword-field')!;
+  const syncPassword = () => { passwordField.hidden = access.value !== 'password'; };
+  access.addEventListener('change', syncPassword);
+
   // openedAt lets the server turn away forms sent faster than a person could; localId ties retries of one report together.
   let openedAt = Date.now();
   let localId = crypto.randomUUID();
@@ -24,6 +30,7 @@ if (form && done) {
   function setDefaults() {
     openedAt = Date.now();
     localId = crypto.randomUUID();
+    syncPassword();
     date.max = dubaiToday();
     date.value = dubaiToday();
     if (!target) return;
@@ -92,7 +99,12 @@ if (form && done) {
       submitButton.disabled = true; submitButton.setAttribute('aria-busy', 'true');
       const label = submitLabel.textContent; submitLabel.textContent = 'Sending…';
       try {
-        const body = { ...payload, email: (values.email ?? '').trim(), hp: values.elsewhere_hp ?? '', openedAt };
+        const wifiPassword = payload.wifiAccess === 'password' ? (values.wifiPassword ?? '').trim().slice(0, 64) : '';
+        // The place picked from the search, if any: Google's place ID, address and coordinates, sent together or not at all.
+        const lat = Number(values.lat), lng = Number(values.lng);
+        const located = values.googlePlaceId && Number.isFinite(lat) && Number.isFinite(lng) && values.lat !== '' && values.lng !== '';
+        const place = located ? { googlePlaceId: values.googlePlaceId, address: (values.placeAddress ?? '').slice(0, 300), lat, lng } : {};
+        const body = { ...payload, email: (values.email ?? '').trim(), wifiPassword, ...place, hp: values.elsewhere_hp ?? '', openedAt };
         const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) });
         if (res.status !== 201 && res.status !== 200) throw new Error(String(res.status));
         serverId = ((await res.json().catch(() => ({}))) as { id?: string }).id;

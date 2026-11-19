@@ -24,6 +24,9 @@ const unknownText = unknownLower.charAt(0).toUpperCase() + unknownLower.slice(1)
 const laptopUnknown = unknownKeys.includes('laptops');
 const speed = p.wifiSpeed;
 const search = directionsIsSearch(p);
+// With a confirmed Google place ID, a small Google map (Maps Embed API: free, loads lazily) shows the exact spot.
+const mapsKey = (import.meta.env.PUBLIC_GOOGLE_MAPS_BROWSER_KEY as string | undefined) ?? '';
+const embed = p.googlePlaceId && mapsKey ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(mapsKey)}&q=place_id:${encodeURIComponent(p.googlePlaceId)}&zoom=16` : null;
 // Search: the area page (when the neighbourhood has one), the guides this place qualifies for, and neighbours in the same area.
 const areaPath = areaPathFor(p, places);
 const guides = collectionsFor(p, places);
@@ -50,6 +53,7 @@ const wifiNote = (note: string) => speed ? `${formatMbps(speed.downMbps)} when t
   <div class="detail-glance"><PlaceStats place={p} large /></div>
  </div>
  <aside class="visit" aria-labelledby="visit-title"><h2 id="visit-title">Plan a visit</h2>
+  {embed && <iframe class="visit-map" src={embed} title={`Map showing ${p.name}`} loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>}
   <dl class="visit-facts">
    <div><dt><Icon name="ticket" size={18} />Entry</dt><dd class:list={[{ 'fact-muted': !p.entry }]}>{p.entry ? p.priceNote : 'Not added yet'}</dd></div>
    <div><dt><Icon name="map-pin" size={18} />Area</dt><dd>{p.neighbourhood ? `${p.neighbourhood}, Dubai` : <span class="fact-muted">Not added yet</span>}{p.locationNote && <span class="visit-small">{p.locationNote}</span>}</dd></div>

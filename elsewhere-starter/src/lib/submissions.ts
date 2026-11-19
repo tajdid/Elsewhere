@@ -14,7 +14,7 @@ export interface Submission {
   visitedOn: string; // YYYY-MM-DD
   amenities: Record<typeof amenityKeys[number], Answer>;
   wifiDownMbps: number | null; // from the visitor's own speed test
-  wifiAccess: AccessAnswer; // never the password itself
+  wifiAccess: AccessAnswer; // the guest password, if given, is sent separately and not kept in the browser
   notes: string;
   submittedAt: string; // ISO timestamp
 }

@@ -23,6 +23,12 @@ export function payloadSchema(now: number) {
     wifiAccess: z.enum(['open', 'password', 'signup', 'unsure']),
     notes: z.string().max(600),
     email: z.union([z.literal(''), z.string().trim().max(254).email()]).optional(),
+    wifiPassword: z.string().trim().max(64).optional(),
+    // From the place search, when the visitor picked a suggestion. Coordinates must fall in or near the UAE.
+    googlePlaceId: z.string().regex(/^[\w-]{10,300}$/).optional().or(z.literal('')),
+    address: z.string().trim().max(300).optional(),
+    lat: z.number().min(22).max(27).nullable().optional(),
+    lng: z.number().min(51).max(57).nullable().optional(),
     submittedAt: z.string().datetime(),
     // Spam checks, never stored.
     hp: z.string().max(200).optional(),
@@ -40,10 +46,15 @@ export function parsePayload(input: unknown, now = Date.now()): ParseResult {
 
 export const SHEET_HEADER = ['Submission ID', 'Received at', 'Status', 'Kind', 'Place ID', 'Name', 'Type', 'Neighbourhood', 'Visited on',
   'Wi-Fi', 'Power sockets', 'Laptop policy', 'Calls', 'Step-free', 'Wi-Fi Mbps', 'Wi-Fi access', 'Notes', 'Contact email',
-  'Submitted at (browser)', 'Form version'] as const;
+  'Submitted at (browser)', 'Form version', 'Wi-Fi password',
+  'Google place ID', 'Address (Google)', 'Latitude', 'Longitude'] as const;
 
 /** One sheet row, in SHEET_HEADER order. Values are sent with valueInputOption=RAW, so nothing is read as a formula. */
 export function toRow(p: Payload, id: string, receivedAt: string): (string | number)[] {
   return [id, receivedAt, 'Pending', p.kind, p.placeId ?? '', p.name, p.category, p.neighbourhood, p.visitedOn,
-    ...AMENITY_KEYS.map(k => p.amenities[k]), p.wifiDownMbps ?? '', p.wifiAccess, p.notes, p.email ?? '', p.submittedAt, p.version];
+    ...AMENITY_KEYS.map(k => p.amenities[k]), p.wifiDownMbps ?? '', p.wifiAccess, p.notes, p.email ?? '', p.submittedAt, p.version,
+    // Last column so existing sheets only need one header added. Only kept when access is a password from staff.
+    p.wifiAccess === 'password' ? p.wifiPassword ?? '' : '',
+    // Only kept together: a place ID with its address and location, or none of them.
+    ...(p.googlePlaceId && p.lat != null && p.lng != null ? [p.googlePlaceId, p.address ?? '', p.lat, p.lng] : ['', '', '', ''])];
 }

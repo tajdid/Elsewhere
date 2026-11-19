@@ -644,7 +644,24 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 .field label{font-size:15px;font-weight:550}
 .hp-field{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 .optional{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.combo{position:relative}
+.combo-list{position:absolute;z-index:20;left:0;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;background:var(--raised);border:1px solid var(--border);border-radius:16px;box-shadow:0 12px 32px rgb(32 35 31 / .12);max-height:320px;overflow-y:auto}
+.combo-list li{display:grid;gap:2px;padding:10px 12px;border-radius:10px;cursor:pointer}
+.combo-list li[aria-selected=true],.combo-list li:hover{background:var(--surface)}
+.combo-name{font-weight:550}
+.combo-detail{font-size:13px;color:var(--muted)}
+.place-picked{display:grid;gap:12px;animation:place-in 200ms var(--ease) both}
+.place-map{height:200px;border-radius:16px;overflow:hidden;background:var(--surface)}
+.place-address{display:flex;align-items:flex-start;gap:10px;font-size:15px}
+.place-address>.icon{flex:none;margin-top:2px;color:var(--accent)}
+.place-address>span{flex:1;display:grid;gap:2px}
+.place-source{font-size:13px;color:var(--muted)}
+.place-address .text-button{flex:none;min-height:32px;margin-top:-6px;padding:0 6px}
+@keyframes place-in{from{opacity:0;transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){.place-picked{animation:none}}
+.visit-map{display:block;width:100%;height:180px;border:0;border-radius:14px;margin:4px 0 8px;background:var(--surface)}
+.field-stack{display:grid;gap:16px;align-content:start;min-width:0}
 .wifi-fields{margin-top:20px}
 .field input,.field textarea,.select-wrap select{width:100%;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--border);background:var(--raised);font-size:16px;transition:border-color var(--fast),box-shadow var(--fast)}
 .field textarea{padding:12px 16px;min-height:120px;resize:vertical;line-height:1.5}

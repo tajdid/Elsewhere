@@ -39,12 +39,14 @@ export function filterPlaces(items: Place[], f: Filters, now = Date.now()) {
  * otherwise a Maps search for the name and whatever location the list gives. A search is labelled as a search. */
 export function directionsUrl(p: Place) {
  if (p.mapsUrl) return p.mapsUrl;
+ // A confirmed Google place ID opens that exact place (Google Maps URLs, query_place_id).
+ if (!p.isSample && p.googlePlaceId) return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.name}, Dubai`)}&query_place_id=${encodeURIComponent(p.googlePlaceId)}`;
  if (!p.isSample && p.coordinates) return `https://www.google.com/maps/dir/?api=1&destination=${p.coordinates.lat},${p.coordinates.lng}`;
  if (!p.isSample && p.address) return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(p.address)}`;
  const where = [p.name, p.locationNote || p.neighbourhood, 'Dubai'].filter(Boolean).join(', ');
  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(where)}`;
 }
-export const directionsIsSearch = (p: Place) => !p.mapsUrl && !(!p.isSample && (p.coordinates || p.address));
+export const directionsIsSearch = (p: Place) => !p.mapsUrl && !(!p.isSample && (p.googlePlaceId || p.coordinates || p.address));
 export function parseSaved(raw: string | null, validIds: string[]) : string[] {
  try { const parsed:unknown = JSON.parse(raw || 'null');
   if (!parsed || typeof parsed !== 'object' || !('version' in parsed) || parsed.version !== 1 || !('ids' in parsed) || !Array.isArray(parsed.ids)) return [];

@@ -177,3 +177,17 @@ test('the Sheet ID is read from either GOOGLE_SHEETS_ID or GOOGLE_SHEET_ID', asy
   assert.equal((await handleSubmit(req(goodBody()), d)).status, 201);
   assert.match(appends()[0].url, /spreadsheets\/other\//);
 });
+
+test('a Wi-Fi password is saved in its own column, only when access is a password from staff', async () => {
+  const a = deps();
+  await handleSubmit(req(goodBody({ wifiAccess: 'password', wifiPassword: ' cafe2026 ' })), a.d);
+  const row = JSON.parse(a.appends()[0].body).values[0];
+  const col = SHEET_HEADER.indexOf('Wi-Fi password');
+  assert.ok(col > SHEET_HEADER.indexOf('Form version'), 'added after the original columns');
+  assert.equal(row[col], 'cafe2026');
+  const b = deps();
+  await handleSubmit(req(goodBody({ wifiAccess: 'open', wifiPassword: 'leftover' })), b.d);
+  assert.equal(JSON.parse(b.appends()[0].body).values[0][SHEET_HEADER.indexOf('Wi-Fi password')], '');
+  const c = deps();
+  assert.equal((await handleSubmit(req(goodBody({ wifiAccess: 'password', wifiPassword: 'x'.repeat(65) })), c.d)).status, 422);
+});
