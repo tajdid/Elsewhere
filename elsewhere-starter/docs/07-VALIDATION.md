@@ -382,3 +382,12 @@ Run on macOS (Darwin 25.6), Node 22, Astro 5.18.2, against the production build 
 - Playwright on the preview at 1440, 390 and 320px for /, /explore/, /about/, /dubai/jlt/, /collections/fast-wifi-dubai/, /places/friends-avenue-jlt/: no console errors, no horizontal overflow, no broken images. Screenshots reviewed at 1440 and 390.
 - Not run: `npm run test:e2e` (suite still written for the old fixtures), Google Rich Results Test and Schema.org validator (need the public URL; JSON-LD was checked for parse and types locally), Lighthouse, assistive-technology testing.
 - Card images now use 640px variants via `srcset` (about 55% fewer bytes per card).
+
+## Round 29 · Launch: indexing on (19 Nov 2026)
+
+The owner asked to turn indexing on. Vercel Production builds are now indexable by default; `PUBLIC_ALLOW_INDEXING=false` switches it off, and previews and local builds stay `noindex,nofollow`.
+
+- Local build: `noindex,nofollow` on every page.
+- `VERCEL_ENV=production` build: home `index,follow,max-image-preview:large`; Saved and the thin page `/places/1762/` `noindex,follow`; robots.txt lists the sitemap.
+- `VERCEL_ENV=production PUBLIC_ALLOW_INDEXING=false`: back to `noindex,nofollow`.
+- Not yet done: Search Console and Bing verification, sitemap submission, Rich Results Test on the live URL.

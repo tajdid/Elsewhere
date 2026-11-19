@@ -3,7 +3,7 @@ Work from somewhere new.
 
 A runnable, mobile-first Dubai discovery MVP built with Astro 5, TypeScript, Tailwind 4, self-hosted Geist and Phosphor icons (inlined at build time). Includes Discover, Explore, Place details and Saved. No accounts, keys, backend, geolocation or paid services required.
 
-**Data:** Places come from the owner’s Notion list “WFH in Dubai” (imported 13 Nov 2026; 53 real venues, isSample=false). Every fact is copied from that list and dated by when the entry was added (2020–2023): status is Reported, never Verified, until someone re-checks it. Missing facts stay null/unknown and the UI shows “not added” placeholders; never fill them from general knowledge about similarly named businesses. Areas are set only where the list names them. At the owner’s request, guest Wi-Fi passwords from the list are shown with a Copy button, labelled with when they were listed. At the owner’s request (13 Nov 2026) places show temporary stock photos, chosen by type from public/images, until real photos exist. Their alt text and credit say they are not the venue, and the place page captions each one “Temporary photo, not this place”. Replace them with licensed photos of each venue before launch. Directions use the owner’s Google Maps link when present, otherwise a labelled Google Maps search by name. noindex stays until the owner decides to launch.
+**Data:** Places come from the owner’s Notion list “WFH in Dubai” (imported 13 Nov 2026; 53 real venues, isSample=false). Every fact is copied from that list and dated by when the entry was added (2020–2023): status is Reported, never Verified, until someone re-checks it. Missing facts stay null/unknown and the UI shows “not added” placeholders; never fill them from general knowledge about similarly named businesses. Areas are set only where the list names them. At the owner’s request, guest Wi-Fi passwords from the list are shown with a Copy button, labelled with when they were listed. At the owner’s request (13 Nov 2026) places show temporary stock photos, chosen by type from public/images, until real photos exist. Their alt text and credit say they are not the venue, and the place page captions each one “Temporary photo, not this place”. Replace them with licensed photos of each venue before launch. Directions use the owner’s Google Maps link when present, otherwise a labelled Google Maps search by name. The owner launched on 19 Nov 2026: Vercel Production builds are indexable (switch off with PUBLIC_ALLOW_INDEXING=false); previews and local builds stay noindex.
 
 ## Run locally
 Install Node.js 22.12+ (Node 22 LTS recommended) and npm. Unzip, open this folder in a terminal, then:
@@ -59,7 +59,7 @@ Search by name, neighbourhood, type and summary; combined filters with an active
 
 ## Search settings
 - `PUBLIC_SITE_URL`: canonical base URL (defaults to the Vercel production domain, else `https://elsewhere-silk.vercel.app`).
-- `PUBLIC_ALLOW_INDEXING=true`: removes the site-wide `noindex` and lists the sitemap in robots.txt. Set it in Vercel for Production only when the owner launches.
+- Indexing: Vercel Production builds are indexable by default since launch (19 Nov 2026). `PUBLIC_ALLOW_INDEXING=false` switches it off; `=true` turns it on for a local build. Previews never index.
 - After launch: verify the domain in Google Search Console and Bing Webmaster Tools, submit `/sitemap.xml`, and run Google’s Rich Results Test on a place page.
 
 ## Before publishing

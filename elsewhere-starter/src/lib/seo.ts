@@ -7,8 +7,12 @@ import { formatMbps, speedTier } from './details';
 const monthYear = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { timeZone: 'Asia/Dubai', month: 'long', year: 'numeric' });
 import { socketWords, socketChips } from './ui';
 
-/** Indexing is off until the owner launches: set PUBLIC_ALLOW_INDEXING=true for the production build. Vercel previews never index. */
-export const indexingAllowed = import.meta.env?.PUBLIC_ALLOW_INDEXING === 'true' && process.env.VERCEL_ENV !== 'preview';
+/** Launched 19 Nov 2026: Vercel Production builds are indexable. PUBLIC_ALLOW_INDEXING=false switches it off again;
+ *  =true turns it on for a local build. Vercel previews never index. */
+const indexFlag = import.meta.env?.PUBLIC_ALLOW_INDEXING ?? process.env.PUBLIC_ALLOW_INDEXING;
+export const indexingAllowed = process.env.VERCEL_ENV === 'preview' ? false
+  : indexFlag === 'false' ? false
+  : indexFlag === 'true' || process.env.VERCEL_ENV === 'production';
 
 export const SITE_NAME = 'Elsewhere';
 export const SITE_DESCRIPTION = 'Find laptop-friendly cafés and workspaces in Dubai. Compare Wi-Fi speeds, power sockets, noise levels and places suited to remote work.';

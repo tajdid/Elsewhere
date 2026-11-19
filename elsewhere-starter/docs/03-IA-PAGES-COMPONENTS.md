@@ -90,7 +90,7 @@ Every page (Layout) has:
 - **Social cards:** Open Graph (`og:type`, `site_name`, `locale` en_GB, `title`, `description`, `url`, and the 1200×630 image `/og.png` with alt text) and Twitter `summary_large_image`.
 - **Structured data:** a JSON-LD `WebSite`.
 - **Icons and app:** `favicon.svg` (the logo's E on forest), `apple-touch-icon.png` (180), and `site.webmanifest` with 192 and 512 icons (the 512 is maskable-safe). Also `application-name`, `apple-mobile-web-app-title`, `theme-color` and `color-scheme: light`.
-- **Search engines:** `robots.txt` allows crawling so crawlers can read each page's `noindex,nofollow`, which stays until launch.
+- **Search engines:** `robots.txt` allows crawling and, in Production, lists the sitemap.
 
 Place pages use the site image rather than their temporary photos, which don't show the venue.
 
@@ -101,7 +101,7 @@ Place pages use the site image rather than their temporary photos, which don't s
 - **Place page:** the laptop tip sits in the left column under “What we know”, as a callout reading “Laptops: …”.
 
 ## Search and answer engines (18 Nov 2026)
-- **Indexing switch.** Every page stays `noindex,nofollow` until the production build sets `PUBLIC_ALLOW_INDEXING=true` (Vercel previews never index). Then Saved, Submit, 404 and thin place pages (fewer than two of: Wi-Fi speed, sockets, noise, Wi-Fi access, a note) are `noindex,follow`; everything else is `index,follow`.
+- **Indexing switch.** Launched 19 Nov 2026: Vercel Production builds are indexable unless `PUBLIC_ALLOW_INDEXING=false`; previews and local builds are `noindex,nofollow`. Then Saved, Submit, 404 and thin place pages (fewer than two of: Wi-Fi speed, sockets, noise, Wi-Fi access, a note) are `noindex,follow`; everything else is `index,follow`.
 - **Canonical base.** `PUBLIC_SITE_URL`, else Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, else `https://elsewhere-silk.vercel.app`. Canonicals drop query strings, so filtered Explore URLs consolidate to `/explore/`.
 - **Sitemap.** Home, Explore, About, neighbourhood and collection guides, indexable place pages. No `<lastmod>`: the list's dates describe the venue facts, not page changes. robots.txt names the sitemap only when indexing is on.
 - **Titles.** Home “Best cafés to work from in Dubai | Elsewhere”; places “{Name} – {Type} in {Area}, Dubai | Elsewhere” (≤70 characters); guides use their H1.
