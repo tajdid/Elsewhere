@@ -18,9 +18,22 @@ if (form && input && list && endpoint) {
   const status = document.querySelector<HTMLElement>('#app-status');
   const announce = (s: string) => { if (status) status.textContent = s; };
   const hidden = (id: string) => form.querySelector<HTMLInputElement>(`#${id}`)!;
-  const picked = document.querySelector<HTMLElement>('#place-picked')!;
+  const preview = document.querySelector<HTMLElement>('#place-preview')!;
   const mapEl = document.querySelector<HTMLElement>('#place-map')!;
   const addressText = document.querySelector<HTMLElement>('#place-address-text')!;
+  const previewName = document.querySelector<HTMLElement>('#preview-name')!;
+  const previewFoot = document.querySelector<HTMLElement>('#preview-foot')!;
+  const side = document.querySelector<HTMLElement>('#preview-side')!;
+  const inline = document.querySelector<HTMLElement>('#preview-inline')!;
+  // Wide screens: the preview sits at the top of the right column, waiting with a prompt.
+  // Narrow screens: it moves under the name field and only appears once a place is picked.
+  const wide = matchMedia('(min-width: 768px)');
+  const placePreview = () => {
+    if (wide.matches) { if (preview.parentElement !== side) side.prepend(preview); }
+    else if (preview.parentElement !== inline) inline.append(preview);
+    preview.hidden = !wide.matches && preview.dataset.state !== 'picked';
+  };
+  wide.addEventListener('change', placePreview);
   const neighbourhood = form.querySelector<HTMLInputElement>('#neighbourhood')!;
   const areas: string[] = JSON.parse(form.dataset.areas || '[]');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -31,6 +44,15 @@ if (form && input && list && endpoint) {
   input.setAttribute('aria-expanded', 'false');
   input.setAttribute('aria-controls', list.id);
   document.querySelector<HTMLElement>('#name-help')!.hidden = false;
+  queueMicrotask(() => placePreview());
+  // Search not available after all: back to a plain text field, with no prompt to pick from a list.
+  function switchOff() {
+    disabled = true; close();
+    ['role', 'aria-autocomplete', 'aria-expanded', 'aria-controls'].forEach(a => input!.removeAttribute(a));
+    document.querySelector<HTMLElement>('#name-help')!.hidden = true;
+    preview.hidden = true; wide.removeEventListener('change', placePreview);
+  }
+  if (!form.dataset.mapsKey) preview.classList.add('no-map');
 
   let session = crypto.randomUUID();
   let items: Suggestion[] = [];
@@ -45,7 +67,7 @@ if (form && input && list && endpoint) {
     if (disabled) return null;
     try {
       const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, session }) });
-      if (res.status === 503 || res.status === 404) { disabled = true; return null; } // not configured: plain field from now on
+      if (res.status === 503 || res.status === 404) { switchOff(); return null; } // not configured: plain field from now on
       return res.ok ? await res.json() as T : null;
     } catch { return null; }
   };
@@ -78,7 +100,9 @@ if (form && input && list && endpoint) {
   function clearPick(keepName = true) {
     pickedName = '';
     ['googlePlaceId', 'placeAddress', 'lat', 'lng'].forEach(id => { hidden(id).value = ''; });
-    picked.hidden = true;
+    preview.dataset.state = 'empty';
+    previewName.hidden = true; previewFoot.hidden = true; addressText.textContent = '';
+    placePreview();
     if (neighbourhoodFilled) { neighbourhood.value = ''; neighbourhoodFilled = false; }
     if (!keepName) input!.value = '';
   }
@@ -99,7 +123,9 @@ if (form && input && list && endpoint) {
     hidden('lat').value = String(p.lat);
     hidden('lng').value = String(p.lng);
     addressText.textContent = p.address;
-    picked.hidden = false;
+    previewName.textContent = s.name; previewName.hidden = false; previewFoot.hidden = false;
+    preview.dataset.state = 'picked';
+    placePreview();
     // Suggest the neighbourhood only when the visitor hasn't typed one.
     const area = matchArea(p.area, areas);
     if (area && !neighbourhood.value.trim()) { neighbourhood.value = area; neighbourhoodFilled = true; }
@@ -145,7 +171,6 @@ if (form && input && list && endpoint) {
     }).then(async () => {
       const { Map } = await google.maps.importLibrary('maps');
       const { AdvancedMarkerElement } = await google.maps.importLibrary('marker');
-      mapEl.hidden = false;
       const map = new Map(mapEl, {
         center: { lat: 25.15, lng: 55.25 }, zoom: 11, mapId: form!.dataset.mapId || 'DEMO_MAP_ID',
         disableDefaultUI: true, gestureHandling: 'none', keyboardShortcuts: false, clickableIcons: false,
@@ -158,7 +183,7 @@ if (form && input && list && endpoint) {
     const ready = loadMap();
     if (!ready) return;
     let m;
-    try { m = await ready; } catch { mapEl.hidden = true; return; }
+    try { m = await ready; } catch { preview.classList.add('no-map'); return; } // the address still shows without the map
     const target = { lat, lng };
     m.marker.position = target;
     if (reduceMotion) { m.map.setCenter(target); m.map.setZoom(16); return; }

@@ -4,7 +4,7 @@ import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { generateKeyPairSync, createVerify } from 'node:crypto';
 import { handleSubmit, createLimiter, type Deps } from '../api/_lib/handler.js';
-import { parsePayload, toRow, SHEET_HEADER, CATEGORIES, AMENITY_KEYS, MAX_MBPS } from '../api/_lib/payload.js';
+import { parsePayload, toRow, hoursText, SHEET_HEADER, CATEGORIES, AMENITY_KEYS, MAX_MBPS } from '../api/_lib/payload.js';
 import { signJwt, normaliseKey, clearTokenCache } from '../api/_lib/sheets.js';
 import { buildSubmission, validateSubmission, addReport, emailOk, MAX_MBPS as CLIENT_MAX, type StoredReport } from '../src/lib/submissions';
 import { categories, amenityKeys } from '../src/lib/schema';
@@ -190,4 +190,36 @@ test('a Wi-Fi password is saved in its own column, only when access is a passwor
   assert.equal(JSON.parse(b.appends()[0].body).values[0][SHEET_HEADER.indexOf('Wi-Fi password')], '');
   const c = deps();
   assert.equal((await handleSubmit(req(goodBody({ wifiAccess: 'password', wifiPassword: 'x'.repeat(65) })), c.d)).status, 422);
+});
+
+test('sockets, noise, entry, website and hours: checked in the browser and on the server, and written to the Sheet', async () => {
+  const base = { name: 'X', category: 'Café', neighbourhood: 'JLT', visitedOn: '2026-11-18' };
+  // Browser checks, in form order.
+  assert.deepEqual(validateSubmission({ ...base, website: 'not a link', hoursMode: 'same', openAll: '08:00' }, NOW), ['website', 'hours']);
+  assert.deepEqual(validateSubmission({ ...base, hoursMode: 'days', monOpen: '08:00', monClose: '22:00' }, NOW), ['hours'], 'every day needs times or Closed');
+  const days: Record<string, string> = { ...base, hoursMode: 'days' };
+  for (const d of ['mon', 'tue', 'wed', 'thu', 'fri']) { days[`${d}Open`] = '08:00'; days[`${d}Close`] = '22:00'; }
+  days.satOpen = '10:00'; days.satClose = '01:00'; days.sunClosed = 'on';
+  assert.deepEqual(validateSubmission(days, NOW), []);
+  const s = buildSubmission({ ...days, sockets: '4', noise: 'moderate', entry: 'buy', website: 'instagram.com/someplace' }, null, NOW);
+  assert.equal(s.website, 'https://instagram.com/someplace');
+  assert.deepEqual(s.hours!.sat, ['10:00', '01:00']);
+  assert.equal(s.hours!.sun, null);
+  assert.equal(s.sockets, 4);
+  // Server: accepted, and readable in the Sheet.
+  const { d, appends } = deps();
+  assert.equal((await handleSubmit(req({ ...s, email: '', hp: '', openedAt: NOW - 60_000 }), d)).status, 201);
+  const row = JSON.parse(appends()[0].body).values[0];
+  const col = (h: string) => row[SHEET_HEADER.indexOf(h as typeof SHEET_HEADER[number])];
+  assert.equal(col('Sockets (1-5)'), 4);
+  assert.equal(col('Noise'), 'moderate');
+  assert.equal(col('Entry'), 'buy');
+  assert.equal(col('Website'), 'https://instagram.com/someplace');
+  assert.equal(col('Hours'), 'Mon 08:00–22:00; Tue 08:00–22:00; Wed 08:00–22:00; Thu 08:00–22:00; Fri 08:00–22:00; Sat 10:00–01:00; Sun closed');
+  assert.equal(hoursText({ mon: ['08:00', '22:00'], tue: ['08:00', '22:00'], wed: ['08:00', '22:00'], thu: ['08:00', '22:00'], fri: ['08:00', '22:00'], sat: ['08:00', '22:00'], sun: ['08:00', '22:00'] }), 'Every day 08:00–22:00');
+  // Server refuses bad values even if the browser is bypassed.
+  for (const bad of [{ sockets: 6 }, { noise: 'deafening' }, { website: 'javascript:alert(1)' }, { hours: { mon: ['25:00', '22:00'] } }]) {
+    const x = deps();
+    assert.equal((await handleSubmit(req({ ...s, ...bad, email: '', hp: '', openedAt: NOW - 60_000 }), x.d)).status, 422, JSON.stringify(bad));
+  }
 });

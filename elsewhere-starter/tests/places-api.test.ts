@@ -27,7 +27,7 @@ function placesDeps(over: Partial<PlacesDeps> = {}) {
     return new Response(JSON.stringify({ id: 'ChIJ_friends_avenue', formattedAddress: 'Cluster T, JLT, Dubai', location: { latitude: 25.07, longitude: 55.14 },
       addressComponents: [{ longText: 'Jumeirah Lake Towers', types: ['neighborhood', 'political'] }, { longText: 'Dubai', types: ['locality'] }] }));
   }) as typeof fetch;
-  const d: PlacesDeps = { key: 'server-key', fetch: fetchStub, now: () => NOW, limiter: createLimiter(120, 600_000), log: () => {}, ...over };
+  const d: PlacesDeps = { key: 'server-key', knownIds: new Set(['ChIJ_friends_avenue']), fetch: fetchStub, now: () => NOW, limiter: createLimiter(120, 600_000), log: () => {}, ...over };
   return { d, calls };
 }
 const preq = (body: unknown, origin = SITE) => new Request(`${SITE}/api/places`, { method: 'POST', headers: { 'content-type': 'application/json', origin }, body: JSON.stringify(body) });
@@ -74,19 +74,21 @@ test("Google's neighbourhood names map to the list's names", () => {
   assert.equal(areaFrom([]), null);
 });
 
-test('a submission keeps the picked place ID, address and coordinates together in the last columns', () => {
+test('a submission keeps the picked place ID, address and coordinates together in their columns', () => {
   const s = buildSubmission({ name: 'Friends Avenue', category: 'Café', neighbourhood: 'JLT', visitedOn: '2026-11-18' }, null, NOW);
   const base = { ...s, openedAt: NOW - 9000 };
+  const at = SHEET_HEADER.indexOf('Google place ID');
+  const four = (row: (string | number)[]) => row.slice(at, at + 4);
   const ok = parsePayload({ ...base, googlePlaceId: 'ChIJ_friends_avenue', address: 'Cluster T, JLT', lat: 25.07, lng: 55.14 }, NOW);
   assert.ok(ok.ok);
-  if (ok.ok) assert.deepEqual(toRow(ok.value, 'id', 'r').slice(-4), ['ChIJ_friends_avenue', 'Cluster T, JLT', 25.07, 55.14]);
-  assert.deepEqual(SHEET_HEADER.slice(-4), ['Google place ID', 'Address (Google)', 'Latitude', 'Longitude']);
+  if (ok.ok) assert.deepEqual(four(toRow(ok.value, 'id', 'r')), ['ChIJ_friends_avenue', 'Cluster T, JLT', 25.07, 55.14]);
+  assert.deepEqual(SHEET_HEADER.slice(at, at + 4), ['Google place ID', 'Address (Google)', 'Latitude', 'Longitude']);
   // Coordinates far outside the UAE are refused.
   assert.ok(!parsePayload({ ...base, googlePlaceId: 'ChIJ_friends_avenue', lat: 51.5, lng: -0.12 }, NOW).ok);
   // Without a picked place the four columns stay empty.
   const none = parsePayload(base, NOW);
   assert.ok(none.ok);
-  if (none.ok) assert.deepEqual(toRow(none.value, 'id', 'r').slice(-4), ['', '', '', '']);
+  if (none.ok) assert.deepEqual(four(toRow(none.value, 'id', 'r')), ['', '', '', '']);
 });
 
 test('review CSV round-trips, and name similarity ranks good matches higher', () => {
@@ -104,4 +106,19 @@ test('a confirmed Google place ID gives exact directions; the owner’s own Maps
   assert.equal(directionsIsSearch({ ...p, googlePlaceId: null }), true);
   const owner = places.find(x => x.mapsUrl)!;
   assert.equal(directionsUrl({ ...owner, googlePlaceId: 'ChIJ_test' }), owner.mapsUrl);
+});
+
+test('hours: only for confirmed listings, Monday-first descriptions, nothing when Google has none', async () => {
+  const week = ['Monday: 7:00 AM – 11:00 PM', 'Tuesday: 7:00 AM – 11:00 PM'];
+  const mk = (body: unknown) => (async (_u: RequestInfo | URL, init?: RequestInit) => { seen.push(init); return new Response(JSON.stringify(body)); }) as typeof fetch;
+  const seen: (RequestInit | undefined)[] = [];
+  const a = placesDeps({ fetch: mk({ regularOpeningHours: { weekdayDescriptions: week } }) });
+  const ok = await handlePlaces(preq({ action: 'hours', placeId: 'ChIJ_friends_avenue' }), a.d);
+  assert.deepEqual((await ok.json()).hours, week);
+  assert.equal((seen[0]!.headers as Record<string, string>)['X-Goog-FieldMask'], 'regularOpeningHours.weekdayDescriptions');
+  assert.equal(ok.headers.get('cache-control'), 'no-store');
+  const unknown = await handlePlaces(preq({ action: 'hours', placeId: 'ChIJ_someone_else' }), a.d);
+  assert.equal(unknown.status, 404);
+  const none = await handlePlaces(preq({ action: 'hours', placeId: 'ChIJ_friends_avenue' }), placesDeps({ fetch: mk({}) }).d);
+  assert.equal((await none.json()).hours, null);
 });

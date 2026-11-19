@@ -9,7 +9,7 @@ interface Props { title: string; description?: string; image?: string; seoTitle?
 const { title, description = SITE_DESCRIPTION, seoTitle, noindex = false, jsonLd } = Astro.props;
 // Social and app metadata. Absolute URLs come from `site` in astro.config.mjs (PUBLIC_SITE_URL or the Vercel production domain).
 // The canonical URL is the path without its query string, so filtered Explore URLs all point at /explore/.
-const site = Astro.site ?? new URL('https://elsewhere-silk.vercel.app');
+const site = Astro.site ?? new URL('https://elsewhere-work.vercel.app');
 const canonical = new URL(Astro.url.pathname, site).href;
 const fullTitle = seoTitle ?? `${title} | Elsewhere`;
 const ogImage = new URL(Astro.props.image ?? '/og.png', site).href;

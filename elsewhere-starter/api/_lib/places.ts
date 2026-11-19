@@ -44,6 +44,14 @@ export async function details(key: string, placeId: string, session: string, fet
   return { placeId: j.id, address: j.formattedAddress ?? '', lat: j.location.latitude, lng: j.location.longitude, area: areaFrom(j.addressComponents) };
 }
 
+/** Google's usual weekly hours, Monday first, e.g. "Monday: 7:00 AM – 11:00 PM". Shown live, never stored. */
+export async function openingHours(key: string, placeId: string, fetchImpl: Fetch = fetch, signal?: AbortSignal): Promise<string[] | null> {
+  const res = await fetchImpl(`${BASE}/places/${encodeURIComponent(placeId)}?languageCode=en`, { signal, headers: { 'X-Goog-Api-Key': key, 'X-Goog-FieldMask': 'regularOpeningHours.weekdayDescriptions' } });
+  if (!res.ok) throw new Error(`hours ${res.status}`);
+  const j = await res.json() as { regularOpeningHours?: { weekdayDescriptions?: string[] } };
+  return j.regularOpeningHours?.weekdayDescriptions?.length ? j.regularOpeningHours.weekdayDescriptions : null;
+}
+
 export interface TextMatch { placeId: string; name: string; address: string; }
 /** Used by scripts/match-places.ts to propose a Google place for each listing. The owner confirms every match. */
 export async function textSearch(key: string, query: string, fetchImpl: Fetch = fetch): Promise<TextMatch[]> {

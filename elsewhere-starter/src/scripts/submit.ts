@@ -1,4 +1,4 @@
-import { buildSubmission, validateSubmission, parseReports, addReport, dubaiToday, SUBMISSIONS_KEY, type StoredReport, type FieldError } from '../lib/submissions';
+import { buildSubmission, validateSubmission, parseReports, addReport, dubaiToday, SUBMISSIONS_KEY, FIELD_ORDER, type StoredReport, type FieldError } from '../lib/submissions';
 
 const form = document.querySelector<HTMLFormElement>('#submit-form');
 const done = document.querySelector<HTMLElement>('#submit-done');
@@ -22,6 +22,31 @@ if (form && done) {
   const syncPassword = () => { passwordField.hidden = access.value !== 'password'; };
   access.addEventListener('change', syncPassword);
 
+  // Opening hours: "Not sure", one pair for every day, or each day (with Closed). Only the chosen block shows.
+  const hoursSame = document.querySelector<HTMLElement>('#hours-same')!;
+  const hoursDays = document.querySelector<HTMLElement>('#hours-days')!;
+  const hoursMode = () => (form.querySelector<HTMLInputElement>('input[name=hoursMode]:checked')?.value ?? 'unsure');
+  const syncHours = () => {
+    hoursSame.hidden = hoursMode() !== 'same';
+    hoursDays.hidden = hoursMode() !== 'days';
+    hoursDays.querySelectorAll<HTMLElement>('.hours-day').forEach(row => {
+      const closed = row.querySelector<HTMLInputElement>('input[type=checkbox]')!.checked;
+      row.querySelectorAll<HTMLInputElement>('input[type=time]').forEach(t => { t.disabled = closed; });
+      row.classList.toggle('is-closed', closed);
+    });
+  };
+  form.addEventListener('change', e => { if ((e.target as HTMLInputElement).name === 'hoursMode' || (e.target as HTMLInputElement).type === 'checkbox') syncHours(); });
+  document.querySelector('#hours-copy')!.addEventListener('click', () => {
+    const get = (id: string) => field<HTMLInputElement>(id);
+    const closed = form.querySelector<HTMLInputElement>('input[name=monClosed]')!.checked;
+    ['tue', 'wed', 'thu', 'fri', 'sat', 'sun'].forEach(d => {
+      get(`${d}Open`).value = get('monOpen').value; get(`${d}Close`).value = get('monClose').value;
+      form.querySelector<HTMLInputElement>(`input[name=${d}Closed]`)!.checked = closed;
+    });
+    syncHours();
+    announce('Monday’s hours copied to every day.');
+  });
+
   // openedAt lets the server turn away forms sent faster than a person could; localId ties retries of one report together.
   let openedAt = Date.now();
   let localId = crypto.randomUUID();
@@ -31,6 +56,7 @@ if (form && done) {
     openedAt = Date.now();
     localId = crypto.randomUUID();
     syncPassword();
+    syncHours();
     date.max = dubaiToday();
     date.value = dubaiToday();
     if (!target) return;
@@ -71,12 +97,17 @@ if (form && done) {
   renderReports();
 
   function showErrors(errors: FieldError[]) {
-    (['name', 'neighbourhood', 'wifiSpeed', 'visitedOn', 'email'] as FieldError[]).forEach(id => {
+    // Hours have no single input: mark the empty, enabled time fields in the chosen block.
+    const visibleTimes = () => [...form!.querySelectorAll<HTMLInputElement>(`${hoursMode() === 'same' ? '#hours-same' : '#hours-days'} input[type=time]`)].filter(t => !t.disabled);
+    form!.querySelectorAll<HTMLInputElement>('input[type=time]').forEach(t => t.removeAttribute('aria-invalid'));
+    FIELD_ORDER.forEach(id => {
       const bad = errors.includes(id);
-      field<HTMLInputElement>(id).setAttribute('aria-invalid', String(bad));
+      if (id === 'hours') { if (bad) visibleTimes().filter(t => !t.value).forEach(t => t.setAttribute('aria-invalid', 'true')); }
+      else field<HTMLInputElement>(id).setAttribute('aria-invalid', String(bad));
       document.querySelector<HTMLElement>(`#${id}-error`)!.hidden = !bad;
     });
-    if (errors.length) { field<HTMLInputElement>(errors[0]).focus(); announce(`Check ${errors.length === 1 ? 'one field' : `${errors.length} fields`} before sending.`); }
+    const target = (e: FieldError) => e === 'hours' ? visibleTimes().find(t => !t.value) ?? visibleTimes()[0] : field<HTMLInputElement>(e);
+    if (errors.length) { target(errors[0])?.focus(); announce(`Check ${errors.length === 1 ? 'one field' : `${errors.length} fields`} before sending.`); }
   }
 
   form.addEventListener('submit', async e => {

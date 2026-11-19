@@ -7,6 +7,10 @@ export const AMENITY_KEYS = ['wifi', 'power', 'laptops', 'calls', 'stepFree'] as
 export const MAX_MBPS = 2000;
 
 const answer = z.enum(['yes', 'no', 'unsure']);
+const hhmm = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/);
+const day = z.tuple([hhmm, hhmm]).nullable();
+export const DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] as const;
+const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const dubaiToday = (now: number) => new Date(now).toLocaleDateString('en-CA', { timeZone: 'Asia/Dubai' });
 
 export function payloadSchema(now: number) {
@@ -22,6 +26,12 @@ export function payloadSchema(now: number) {
     wifiDownMbps: z.number().positive().max(MAX_MBPS).nullable(),
     wifiAccess: z.enum(['open', 'password', 'signup', 'unsure']),
     notes: z.string().max(600),
+    // Optional details visitors can add (older forms didn't send them).
+    sockets: z.number().int().min(1).max(5).nullable().optional(),
+    noise: z.enum(['quiet', 'moderate', 'loud']).nullable().optional(),
+    entry: z.enum(['free', 'buy', 'paid']).nullable().optional(),
+    website: z.union([z.literal(''), z.string().max(300).url().refine(u => /^https?:\/\//.test(u), 'http')]).optional(),
+    hours: z.object({ mon: day, tue: day, wed: day, thu: day, fri: day, sat: day, sun: day }).strict().nullable().optional(),
     email: z.union([z.literal(''), z.string().trim().max(254).email()]).optional(),
     wifiPassword: z.string().trim().max(64).optional(),
     // From the place search, when the visitor picked a suggestion. Coordinates must fall in or near the UAE.
@@ -47,7 +57,8 @@ export function parsePayload(input: unknown, now = Date.now()): ParseResult {
 export const SHEET_HEADER = ['Submission ID', 'Received at', 'Status', 'Kind', 'Place ID', 'Name', 'Type', 'Neighbourhood', 'Visited on',
   'Wi-Fi', 'Power sockets', 'Laptop policy', 'Calls', 'Step-free', 'Wi-Fi Mbps', 'Wi-Fi access', 'Notes', 'Contact email',
   'Submitted at (browser)', 'Form version', 'Wi-Fi password',
-  'Google place ID', 'Address (Google)', 'Latitude', 'Longitude'] as const;
+  'Google place ID', 'Address (Google)', 'Latitude', 'Longitude',
+  'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours'] as const;
 
 /** One sheet row, in SHEET_HEADER order. Values are sent with valueInputOption=RAW, so nothing is read as a formula. */
 export function toRow(p: Payload, id: string, receivedAt: string): (string | number)[] {
@@ -56,5 +67,15 @@ export function toRow(p: Payload, id: string, receivedAt: string): (string | num
     // Last column so existing sheets only need one header added. Only kept when access is a password from staff.
     p.wifiAccess === 'password' ? p.wifiPassword ?? '' : '',
     // Only kept together: a place ID with its address and location, or none of them.
-    ...(p.googlePlaceId && p.lat != null && p.lng != null ? [p.googlePlaceId, p.address ?? '', p.lat, p.lng] : ['', '', '', ''])];
+    ...(p.googlePlaceId && p.lat != null && p.lng != null ? [p.googlePlaceId, p.address ?? '', p.lat, p.lng] : ['', '', '', '']),
+    p.sockets ?? '', p.noise ?? '', p.entry ?? '', p.website ?? '', hoursText(p.hours)];
+}
+
+/** "Mon 08:00–22:00; Tue …; Sun closed", or "Every day 08:00–22:00" when all days match. '' when not given. */
+export function hoursText(h: Payload['hours']): string {
+  if (!h) return '';
+  const fmt = (d: [string, string] | null) => (d ? `${d[0]}–${d[1]}` : 'closed');
+  const all = DAYS.map(d => fmt(h[d]));
+  if (all.every(x => x === all[0])) return `Every day ${all[0]}`;
+  return DAYS.map((d, i) => `${DAY_NAMES[i]} ${all[i]}`).join('; ');
 }

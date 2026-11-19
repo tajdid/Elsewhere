@@ -63,7 +63,7 @@ The form also has an optional contact email (“only used if we have a question 
 
 **Google Sheets setup (owner; keys never go in the repo):**
 1. Create a Google Sheet with a tab named `Submissions` and this header row:
-   `Submission ID | Received at | Status | Kind | Place ID | Name | Type | Neighbourhood | Visited on | Wi-Fi | Power sockets | Laptop policy | Calls | Step-free | Wi-Fi Mbps | Wi-Fi access | Notes | Contact email | Submitted at (browser) | Form version | Wi-Fi password`
+   `Submission ID | Received at | Status | Kind | Place ID | Name | Type | Neighbourhood | Visited on | Wi-Fi | Power sockets | Laptop policy | Calls | Step-free | Wi-Fi Mbps | Wi-Fi access | Notes | Contact email | Submitted at (browser) | Form version | Wi-Fi password | Google place ID | Address (Google) | Latitude | Longitude | Sockets (1-5) | Noise | Entry | Website | Hours`
 2. In Google Cloud Console create a project and enable the **Google Sheets API**.
 3. Create a **service account** (no roles needed), then add a **JSON key** and download it.
 4. Share the Sheet with the service account's email as **Editor**.
@@ -80,16 +80,18 @@ A Google Workspace organisation may block service-account keys; a personal Googl
 2. Open it, check each row (list name and area against Google's name and address) and put `yes` in `confirm` for the right ones.
 3. `npx tsx scripts/apply-place-matches.ts` saves only the `yes` rows.
 
+**Opening hours:** Google's terms don't allow storing its hours, so they are never saved. Place pages with a confirmed place ID and no hours of our own show “Show hours from Google” in Plan a visit; a tap fetches the usual weekly hours live (`/api/places`, `action: hours`, only for confirmed place IDs, `no-store`) and labels them “From Google Maps, just now. Holiday hours can differ.” No “open now” claim. Hours are a higher Google pricing tier with a smaller free allowance, which is why they load only on a tap. Hours the owner records with a source and date (`hours` in the data) take priority.
+
 **Keys (owner):** in Google Cloud, on the billing account, enable **Places API (New)**, **Maps JavaScript API** and **Maps Embed API**, then create two API keys:
 - **Server key** → Vercel `GOOGLE_PLACES_API_KEY` (and `.env.local` for the matching script). Restrict it to *Places API (New)*.
-- **Browser key** → Vercel `PUBLIC_GOOGLE_MAPS_BROWSER_KEY`. Restrict it to *Maps JavaScript API* and *Maps Embed API*, and to the site's addresses (`elsewhere-silk.vercel.app/*`, and any custom domain). It is visible in the page by design.
+- **Browser key** → Vercel `PUBLIC_GOOGLE_MAPS_BROWSER_KEY`. Restrict it to *Maps JavaScript API* and *Maps Embed API*, and to the site's addresses (`elsewhere-work.vercel.app/*`, and any custom domain). It is visible in the page by design.
 - Optional `PUBLIC_GOOGLE_MAPS_MAP_ID`: a Map ID from Google Maps Platform (needed for the map marker; `DEMO_MAP_ID` is used until then).
 - Set daily quotas (e.g. Places autocomplete 300/day) and a budget alert so usage stays inside the free monthly allowance.
 
 Google's terms: place IDs may be kept indefinitely; addresses and coordinates from Google are for limited caching, so the site stores only the place ID and lets Google show the address and map. The Sheet's address and coordinates are for reviewing a submission, not for publishing as-is.
 
 ## Search settings
-- `PUBLIC_SITE_URL`: canonical base URL (defaults to the Vercel production domain, else `https://elsewhere-silk.vercel.app`).
+- `PUBLIC_SITE_URL`: canonical base URL (defaults to the Vercel production domain, else `https://elsewhere-work.vercel.app`).
 - Indexing: Vercel Production builds are indexable by default since launch (19 Nov 2026). `PUBLIC_ALLOW_INDEXING=false` switches it off; `=true` turns it on for a local build. Previews never index.
 - After launch: verify the domain in Google Search Console and Bing Webmaster Tools, submit `/sitemap.xml`, and run Google’s Rich Results Test on a place page.
 
