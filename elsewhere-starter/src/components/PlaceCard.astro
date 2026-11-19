@@ -14,16 +14,16 @@ const href = `/places/${p.slug}/`;
 const passText = { open: 'No password', password: 'Ask staff for the password', signup: 'Sign-up page', unknown: 'Wi-Fi access not added' } as const;
 ---
 <article class="place-card" data-place={p.id}>
- <span class="card-badge" aria-hidden="true"><Icon name={typeIcon(p)} weight="fill" size={24} /></span>
+ <p class="card-type"><Icon name={typeIcon(p)} weight="fill" size={15} />{typeLabel(p)}</p>
  <SaveButton id={p.id} name={p.name} />
  <div class="card-body">
   <H class="card-title"><a href={href}>{p.name}</a></H>
-  <p class="card-kind"><span>{typeLabel(p)}</span><span aria-hidden="true">·</span><span class:list={[{ 'fact-muted': !p.neighbourhood }]}>{areaLabel(p)}</span></p>
-  <ul class="card-facts-row">
-   <li class:list={[{ 'is-empty': !p.wifiSpeed }]}><Icon name="lightning" weight="fill" size={16} /><span class="sr-only">Wi-Fi speed: </span>{p.wifiSpeed ? formatMbps(p.wifiSpeed.downMbps) : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>
-   <li class:list={[{ 'is-empty': !p.sockets }]}><Icon name="plug" weight="fill" size={16} /><span class="sr-only">Sockets: </span>{p.sockets ? socketWords[p.sockets] : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>
-   <li class:list={[{ 'is-empty': !p.noise }]}><Icon name="speaker-high" weight="fill" size={16} /><span class="sr-only">Noise: </span>{p.noise ? noiseWords[p.noise][0] : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</li>
-  </ul>
+  <p class="card-kind"><Icon name="map-pin" weight="fill" size={14} /><span class:list={[{ 'fact-muted': !p.neighbourhood }]}>{areaLabel(p)}</span></p>
+  <dl class="card-facts">
+   <div class:list={[{ 'is-empty': !p.wifiSpeed }]}><dt>Wi-Fi</dt><dd>{p.wifiSpeed ? formatMbps(p.wifiSpeed.downMbps) : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</dd></div>
+   <div class:list={[{ 'is-empty': !p.sockets }]}><dt>Sockets</dt><dd>{p.sockets ? socketWords[p.sockets] : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</dd></div>
+   <div class:list={[{ 'is-empty': !p.noise }]}><dt>Noise</dt><dd>{p.noise ? noiseWords[p.noise][0] : <><span aria-hidden="true">–</span><span class="sr-only">not added</span></>}</dd></div>
+  </dl>
   {p.wifiAccess.password
     ? <p class="card-pass"><Icon name="lock-simple" size={15} /><span class="sr-only">Wi-Fi password: </span><code data-password>{p.wifiAccess.password}</code><button type="button" class="copy-btn copy-btn--icon" data-copy={p.wifiAccess.password} aria-label={`Copy the Wi-Fi password for ${p.name}`} hidden><Icon name="copy" size={15} /><span data-copy-label class="sr-only">Copy</span></button></p>
     : <p class:list={['card-pass', 'card-pass--info', { 'is-empty': p.wifiAccess.value === 'unknown' }]}><Icon name={p.wifiAccess.value === 'open' ? 'lock-simple-open' : 'lock-simple'} size={15} /><span class="sr-only">Wi-Fi access: </span><span>{passText[p.wifiAccess.value]}</span></p>}

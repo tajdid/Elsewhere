@@ -29,8 +29,7 @@ const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).
  </div>
 </section>
 
-<section class="block" aria-labelledby="modes-title">
- <div class="section-head"><div><h2 id="modes-title">What’s the plan?</h2><p>Find a setting for the way you work.</p></div></div>
+<section class="modes-near" aria-label="Ways to work">
  <ul class="mode-grid">
   {modes.map(m => <li><a href={`/explore/?mode=${m}`}>
    <span class="mode-top"><Icon name={modeIcons[m]} size={26} anim="bob" /><Icon name="arrow-up-right" size={18} anim="nudge" class="mode-arrow" /></span>
