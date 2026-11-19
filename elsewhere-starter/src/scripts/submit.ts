@@ -16,8 +16,14 @@ if (form && done) {
   const formError = document.querySelector<HTMLElement>('#form-error')!;
   const date = field<HTMLInputElement>('visitedOn');
 
+  // openedAt lets the server turn away forms sent faster than a person could; localId ties retries of one report together.
+  let openedAt = Date.now();
+  let localId = crypto.randomUUID();
+
   // Reporting on a listed place: prefill what we already know and say so.
   function setDefaults() {
+    openedAt = Date.now();
+    localId = crypto.randomUUID();
     date.max = dubaiToday();
     date.value = dubaiToday();
     if (!target) return;
@@ -58,7 +64,7 @@ if (form && done) {
   renderReports();
 
   function showErrors(errors: FieldError[]) {
-    (['name', 'neighbourhood', 'wifiSpeed', 'visitedOn'] as FieldError[]).forEach(id => {
+    (['name', 'neighbourhood', 'wifiSpeed', 'visitedOn', 'email'] as FieldError[]).forEach(id => {
       const bad = errors.includes(id);
       field<HTMLInputElement>(id).setAttribute('aria-invalid', String(bad));
       document.querySelector<HTMLElement>(`#${id}-error`)!.hidden = !bad;
@@ -77,24 +83,37 @@ if (form && done) {
     const payload = buildSubmission(values, values.placeId || null);
     const endpoint = form.dataset.endpoint || '';
     let delivery: StoredReport['delivery'] = 'device';
+    let serverId: string | undefined;
+    // The local copy never includes the contact email.
+    const store = (d: StoredReport['delivery']) => {
+      try { localStorage.setItem(SUBMISSIONS_KEY, JSON.stringify(addReport(readStored(), { ...payload, delivery: d, localId, ...(serverId ? { id: serverId } : {}) }))); return true; } catch { return false; }
+    };
     if (endpoint) {
       submitButton.disabled = true; submitButton.setAttribute('aria-busy', 'true');
       const label = submitLabel.textContent; submitLabel.textContent = 'Sending…';
       try {
-        const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
-        if (!res.ok) throw new Error(String(res.status));
+        const body = { ...payload, email: (values.email ?? '').trim(), hp: values.elsewhere_hp ?? '', openedAt };
+        const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) });
+        if (res.status !== 201 && res.status !== 200) throw new Error(String(res.status));
+        serverId = ((await res.json().catch(() => ({}))) as { id?: string }).id;
         delivery = 'sent';
       } catch {
-        formError.textContent = 'We couldn’t send your report. Check your connection and try again; nothing you entered has been lost.';
-        formError.hidden = false;
+        // Not saved on the server: keep a copy here, keep the form filled, and say exactly that.
+        const kept = store('device');
+        formError.textContent = kept
+          ? 'We couldn’t send your report. It’s saved on this device; try again in a moment.'
+          : 'We couldn’t send your report. Check your connection and try again; nothing you entered has been lost.';
+        formError.hidden = false; // role=alert announces it
+        renderReports();
         return;
       } finally {
         submitButton.disabled = false; submitButton.removeAttribute('aria-busy'); submitLabel.textContent = label;
+        // Disabling the button while sending drops focus to the page; put it back where the visitor was.
+        if (document.activeElement === document.body) submitButton.focus();
       }
     }
 
-    let stored = true;
-    try { localStorage.setItem(SUBMISSIONS_KEY, JSON.stringify(addReport(readStored(), { ...payload, delivery }))); } catch { stored = false; }
+    const stored = store(delivery);
     if (delivery === 'device' && !stored) {
       formError.textContent = 'This browser is blocking storage, so your report couldn’t be saved. Allow site data and try again.';
       formError.hidden = false;

@@ -18,7 +18,8 @@ export interface Submission {
   notes: string;
   submittedAt: string; // ISO timestamp
 }
-export interface StoredReport extends Submission { delivery: 'sent' | 'device'; }
+/** What this browser keeps: never the contact email. localId ties retries of one report together; id is the server's. */
+export interface StoredReport extends Submission { delivery: 'sent' | 'device'; localId?: string; id?: string; }
 
 export const SUBMISSIONS_KEY = 'elsewhere:submissions:v1';
 const MAX_STORED = 50;
@@ -28,7 +29,10 @@ export function dubaiToday(now = Date.now()): string {
   return new Date(now).toLocaleDateString('en-CA', { timeZone: 'Asia/Dubai' });
 }
 
-export type FieldError = 'name' | 'neighbourhood' | 'wifiSpeed' | 'visitedOn';
+export type FieldError = 'name' | 'neighbourhood' | 'wifiSpeed' | 'visitedOn' | 'email';
+
+/** Blank is fine; otherwise a plain address check (the server checks again). */
+export const emailOk = (raw?: string) => { const t = (raw ?? '').trim(); return !t || (t.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t)); };
 
 /** Blank means not tested; otherwise a positive number up to MAX_MBPS, comma or point decimals. Returns undefined when invalid. */
 export function parseMbps(raw?: string): number | null | undefined {
@@ -40,13 +44,14 @@ export function parseMbps(raw?: string): number | null | undefined {
 }
 
 /** Validate raw form values. Returns the fields in error, in form order. */
-export function validateSubmission(v: { name?: string; neighbourhood?: string; visitedOn?: string; wifiSpeed?: string }, now = Date.now()): FieldError[] {
+export function validateSubmission(v: { name?: string; neighbourhood?: string; visitedOn?: string; wifiSpeed?: string; email?: string }, now = Date.now()): FieldError[] {
   const errors: FieldError[] = [];
   if (!v.name?.trim()) errors.push('name');
   if (!v.neighbourhood?.trim()) errors.push('neighbourhood');
   if (parseMbps(v.wifiSpeed) === undefined) errors.push('wifiSpeed');
   const d = v.visitedOn ?? '';
   if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || Number.isNaN(Date.parse(d)) || d > dubaiToday(now)) errors.push('visitedOn');
+  if (!emailOk(v.email)) errors.push('email');
   return errors;
 }
 
@@ -83,5 +88,6 @@ export function parseReports(raw: string | null): StoredReport[] {
 
 /** Newest first, capped, so local history can't grow without bound. */
 export function addReport(list: StoredReport[], r: StoredReport): StoredReport[] {
-  return [r, ...list].slice(0, MAX_STORED);
+  // A retry of the same report replaces the earlier copy instead of adding a second one.
+  return [r, ...list.filter(x => !r.localId || x.localId !== r.localId)].slice(0, MAX_STORED);
 }

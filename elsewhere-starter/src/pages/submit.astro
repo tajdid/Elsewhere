@@ -1,13 +1,15 @@
 ---
 // Submit a place, or report on an existing one (/submit/?place=<slug>).
-// With PUBLIC_SUBMIT_ENDPOINT set at build time, reports are POSTed there as JSON; without it they are
-// kept in this browser and the confirmation says exactly that. Nothing claims to be sent when it isn't.
+// With PUBLIC_SUBMIT_ENDPOINT set at build time (on Vercel: /api/submit, which saves to Google Sheets), reports are
+// POSTed there as JSON; without it they are kept in this browser and the confirmation says exactly that.
+// Nothing claims to be sent when it isn't, and a failed send keeps a copy on the device.
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import { places } from '../lib/places';
 import { categories, amenityKeys, amenityLabels } from '../lib/schema';
 import { amenityIcons } from '../lib/ui';
-const endpoint = import.meta.env.PUBLIC_SUBMIT_ENDPOINT as string | undefined;
+// On Vercel the endpoint defaults to the Sheets function; set PUBLIC_SUBMIT_ENDPOINT to override (or to '' to keep reports local).
+const endpoint = (import.meta.env.PUBLIC_SUBMIT_ENDPOINT as string | undefined) ?? (process.env.VERCEL ? '/api/submit' : undefined);
 const areas = [...new Set(places.map(p => p.neighbourhood).filter(Boolean))].sort();
 const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category: p.category, neighbourhood: p.neighbourhood }));
 ---
@@ -17,6 +19,7 @@ const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category:
  <div>
   <form id="submit-form" class="submit-form" novalidate method="post" action={endpoint || undefined} data-endpoint={endpoint || ''} data-places={JSON.stringify(known)}>
    <input type="hidden" name="placeId" id="placeId" />
+   <div class="hp-field" aria-hidden="true"><label for="elsewhere_hp">Leave this empty</label><input id="elsewhere_hp" name="elsewhere_hp" type="text" tabindex="-1" autocomplete="off" /></div>
    <fieldset class="form-section">
     <legend><h2>The place</h2></legend>
     <div class="field">
@@ -49,6 +52,7 @@ const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category:
     <legend><h2>Your visit</h2></legend>
     <div class="field field--date"><label for="visitedOn">When were you there?</label><input id="visitedOn" name="visitedOn" type="date" required aria-describedby="visitedOn-error" /><p class="field-error" id="visitedOn-error" hidden>Choose a date that isn’t in the future.</p></div>
     <div class="field"><label for="notes">Anything else? <span class="optional">Optional</span></label><textarea id="notes" name="notes" rows="4" maxlength="600" placeholder="Sockets only along the window bar; calls fine on the terrace…"></textarea></div>
+    <div class="field"><label for="email">Email <span class="optional">Optional</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" spellcheck="false" aria-describedby="email-help email-error" /><p class="form-help" id="email-help">Only used if we have a question about your report. It’s never shown on the site.</p><p class="field-error" id="email-error" hidden>Enter an email address like name@example.com, or leave it blank.</p></div>
    </fieldset>
    <p class="form-error" id="form-error" role="alert" hidden></p>
    <button class="primary submit-button" type="submit"><span class="submit-label">Submit place</span><Icon name="arrow-right" size={18} anim="slide" /></button>

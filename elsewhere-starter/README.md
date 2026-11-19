@@ -53,9 +53,24 @@ Search by name, neighbourhood, type and summary; combined filters with an active
 ## Submissions
 `/submit/` adds a new place; `/submit/?place=<slug>` reports on a listed one (linked from each place page as “Report what you found”). The form validates name, neighbourhood and a visit date that is not in the future (Dubai time), and captures yes / no / not sure for all five amenities plus notes.
 
-- Set `PUBLIC_SUBMIT_ENDPOINT` at build time (for example `PUBLIC_SUBMIT_ENDPOINT=https://api.example.com/reports npm run build`) to POST each report as JSON (`version`, `kind`, `placeId`, `name`, `category`, `neighbourhood`, `visitedOn`, `amenities`, `notes`, `submittedAt`). Any non-2xx response or network failure keeps the form filled and shows a retry message.
-- Without it, reports are kept in this browser's local storage (`elsewhere:submissions:v1`, newest 50) and the confirmation says “saved in this browser… hasn't been sent anywhere yet”. The UI never claims a report was received unless the endpoint accepted it.
-- No backend, moderation queue or spam protection is included; add those with the endpoint. Reports never change evidence on the site automatically: they are Reported until an editor verifies them.
+The form also has an optional contact email (“only used if we have a question about your report”).
+
+**Where reports go.** On Vercel the form sends each report to `api/submit.ts` (`PUBLIC_SUBMIT_ENDPOINT` defaults to `/api/submit` there), a Vercel function next to the static site (no Astro adapter; every page is still prerendered). It appends one row to a Google Sheet with a new submission ID, the time received and the status **Pending**, and answers 201 only after Google confirms the row. Nothing is published automatically: review the Sheet and add approved places through the usual import.
+
+- **Checks on the server:** same-origin requests only; JSON up to 10 KB; the same field rules as the form (see `api/_lib/payload.ts`, kept in step with `src/lib/submissions.ts` by `tests/submit-api.test.ts`); a hidden trap field (filled means a quiet 200 and no row); a form sent less than 2 seconds after opening is refused; at most 5 reports per address per 10 minutes per running instance (best effort). Values are written with `valueInputOption=RAW`, so text like `=HYPERLINK(…)` is stored as text. Errors are logged by cause only, never with form data.
+- **In the browser:** if sending fails for any reason, the report is saved on the device (“Your reports” shows “Saved on this device”), the form stays filled and says so; a successful retry replaces that copy. The local copy never includes the email.
+- **Without the endpoint** (for example `astro dev`), reports are only kept in this browser's local storage (`elsewhere:submissions:v1`, newest 50) and the confirmation says they haven't been sent.
+
+**Google Sheets setup (owner; keys never go in the repo):**
+1. Create a Google Sheet with a tab named `Submissions` and this header row:
+   `Submission ID | Received at | Status | Kind | Place ID | Name | Type | Neighbourhood | Visited on | Wi-Fi | Power sockets | Laptop policy | Calls | Step-free | Wi-Fi Mbps | Wi-Fi access | Notes | Contact email | Submitted at (browser) | Form version`
+2. In Google Cloud Console create a project and enable the **Google Sheets API**.
+3. Create a **service account** (no roles needed), then add a **JSON key** and download it.
+4. Share the Sheet with the service account's email as **Editor**.
+5. In Vercel → Settings → Environment Variables (Production and Preview; mark them Sensitive): `GOOGLE_SHEETS_ID` or `GOOGLE_SHEET_ID` (from the Sheet URL), `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY` (the `private_key` value from the JSON, pasted as is) (`PUBLIC_SUBMIT_ENDPOINT` defaults to `/api/submit` on Vercel). Optional: `GOOGLE_SHEETS_TAB` if the tab isn't called `Submissions`.
+6. Redeploy, then delete the downloaded JSON file.
+
+A Google Workspace organisation may block service-account keys; a personal Google account does not.
 
 ## Search settings
 - `PUBLIC_SITE_URL`: canonical base URL (defaults to the Vercel production domain, else `https://elsewhere-silk.vercel.app`).

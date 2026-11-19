@@ -391,3 +391,12 @@ The owner asked to turn indexing on. Vercel Production builds are now indexable 
 - `VERCEL_ENV=production` build: home `index,follow,max-image-preview:large`; Saved and the thin page `/places/1762/` `noindex,follow`; robots.txt lists the sitemap.
 - `VERCEL_ENV=production PUBLIC_ALLOW_INDEXING=false`: back to `noindex,nofollow`.
 - Not yet done: Search Console and Bing verification, sitemap submission, Rich Results Test on the live URL.
+
+## Round 30 · Submissions to Google Sheets (19 Nov 2026)
+
+Added `api/submit.ts` (a Vercel function; the site stays fully static, no adapter) that appends each report to a Google Sheet as a Pending row via a service account, plus an optional contact email field and a local copy when sending fails.
+
+- `npm test`: 27 of 32 pass. All 11 new tests in `tests/submit-api.test.ts` pass (success only after Google confirms; 502 on a Google failure with no form data in the log; 503 without credentials; trap field; too-fast forms; rate limit; other origins, wrong type, oversized and broken bodies; field validation including Dubai dates and email; JWT signature; browser and server rules in step; retry replaces the local copy and never stores the email). The 5 failures are the old fixture tests, unchanged.
+- `npm run build`: 0 errors, 0 warnings; output still static.
+- Production preview with `PUBLIC_SUBMIT_ENDPOINT=/api/submit` and the endpoint mocked in Playwright: a bad email shows its inline error and takes focus; a 502 keeps the form filled, shows “It’s saved on this device; try again in a moment.”, stores one local copy without the email, and returns focus to Submit; a retry with 201 shows “Thanks, that’s in.” and replaces the local copy (now Sent, with the server ID). The trap field is not visible.
+- On Vercel the endpoint now defaults to `/api/submit`, and the Sheet ID is read from `GOOGLE_SHEETS_ID` or `GOOGLE_SHEET_ID` (the owner used the latter). 12 endpoint tests pass.
