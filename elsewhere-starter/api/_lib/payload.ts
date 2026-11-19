@@ -54,11 +54,11 @@ export function parsePayload(input: unknown, now = Date.now()): ParseResult {
   return { ok: false, fields: [...new Set(r.error.issues.map(i => String(i.path[0] ?? 'body')))] };
 }
 
-export const SHEET_HEADER = ['Submission ID', 'Received at', 'Status', 'Kind', 'Place ID', 'Name', 'Type', 'Neighbourhood', 'Visited on',
+export const SHEET_HEADER = ['Submission ID', 'Received at', 'Review status', 'Kind', 'Place ID', 'Name', 'Type', 'Neighbourhood', 'Visited on',
   'Wi-Fi', 'Power sockets', 'Laptop policy', 'Calls', 'Step-free', 'Wi-Fi Mbps', 'Wi-Fi access', 'Notes', 'Contact email',
   'Submitted at (browser)', 'Form version', 'Wi-Fi password',
   'Google place ID', 'Address (Google)', 'Latitude', 'Longitude',
-  'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours'] as const;
+  'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours', 'Raw submission (JSON)'] as const;
 
 /** One sheet row, in SHEET_HEADER order. Values are sent with valueInputOption=RAW, so nothing is read as a formula. */
 export function toRow(p: Payload, id: string, receivedAt: string): (string | number)[] {
@@ -68,7 +68,15 @@ export function toRow(p: Payload, id: string, receivedAt: string): (string | num
     p.wifiAccess === 'password' ? p.wifiPassword ?? '' : '',
     // Only kept together: a place ID with its address and location, or none of them.
     ...(p.googlePlaceId && p.lat != null && p.lng != null ? [p.googlePlaceId, p.address ?? '', p.lat, p.lng] : ['', '', '', '']),
-    p.sockets ?? '', p.noise ?? '', p.entry ?? '', p.website ?? '', hoursText(p.hours)];
+    p.sockets ?? '', p.noise ?? '', p.entry ?? '', p.website ?? '', hoursText(p.hours), rawJson(p)];
+}
+
+/** The whole validated submission as JSON, so nothing is lost if a column is renamed or added later.
+ *  Same rules as the columns: no honeypot, and a Wi-Fi password only when access is a password from staff. */
+export function rawJson(p: Payload): string {
+  const { hp: _hp, ...rest } = p;
+  if (rest.wifiAccess !== 'password') delete rest.wifiPassword;
+  return JSON.stringify(rest);
 }
 
 /** "Mon 08:00–22:00; Tue …; Sun closed", or "Every day 08:00–22:00" when all days match. '' when not given. */

@@ -223,3 +223,20 @@ test('sockets, noise, entry, website and hours: checked in the browser and on th
     assert.equal((await handleSubmit(req({ ...s, ...bad, email: '', hp: '', openedAt: NOW - 60_000 }), x.d)).status, 422, JSON.stringify(bad));
   }
 });
+
+test('sheet columns: fixed order, Pending status, raw JSON last, formulas kept as text', async () => {
+  // Changing this order breaks existing sheets: only ever add columns at the end.
+  assert.deepEqual([...SHEET_HEADER], ['Submission ID', 'Received at', 'Review status', 'Kind', 'Place ID', 'Name', 'Type',
+    'Neighbourhood', 'Visited on', 'Wi-Fi', 'Power sockets', 'Laptop policy', 'Calls', 'Step-free', 'Wi-Fi Mbps', 'Wi-Fi access',
+    'Notes', 'Contact email', 'Submitted at (browser)', 'Form version', 'Wi-Fi password', 'Google place ID', 'Address (Google)',
+    'Latitude', 'Longitude', 'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours', 'Raw submission (JSON)']);
+  const { d, appends } = deps();
+  await handleSubmit(req(goodBody()), d);
+  const row = JSON.parse(appends()[0].body).values[0];
+  assert.equal(row.length, SHEET_HEADER.length);
+  assert.equal(row[SHEET_HEADER.indexOf('Review status')], 'Pending');
+  const raw = JSON.parse(row[SHEET_HEADER.indexOf('Raw submission (JSON)')]);
+  assert.equal(raw.name, row[SHEET_HEADER.indexOf('Name')]);
+  assert.equal(raw.notes, '=HYPERLINK("x")');
+  assert.equal('hp' in raw, false);
+});

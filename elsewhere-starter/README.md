@@ -63,7 +63,7 @@ The form also has an optional contact email (“only used if we have a question 
 
 **Google Sheets setup (owner; keys never go in the repo):**
 1. Create a Google Sheet with a tab named `Submissions` and this header row:
-   `Submission ID | Received at | Status | Kind | Place ID | Name | Type | Neighbourhood | Visited on | Wi-Fi | Power sockets | Laptop policy | Calls | Step-free | Wi-Fi Mbps | Wi-Fi access | Notes | Contact email | Submitted at (browser) | Form version | Wi-Fi password | Google place ID | Address (Google) | Latitude | Longitude | Sockets (1-5) | Noise | Entry | Website | Hours`
+   `Submission ID | Received at | Review status | Kind | Place ID | Name | Type | Neighbourhood | Visited on | Wi-Fi | Power sockets | Laptop policy | Calls | Step-free | Wi-Fi Mbps | Wi-Fi access | Notes | Contact email | Submitted at (browser) | Form version | Wi-Fi password | Google place ID | Address (Google) | Latitude | Longitude | Sockets (1-5) | Noise | Entry | Website | Hours | Raw submission (JSON)`
 2. In Google Cloud Console create a project and enable the **Google Sheets API**.
 3. Create a **service account** (no roles needed), then add a **JSON key** and download it.
 4. Share the Sheet with the service account's email as **Editor**.
