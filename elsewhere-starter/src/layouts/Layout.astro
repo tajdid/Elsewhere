@@ -4,6 +4,7 @@ import '@fontsource-variable/geist';
 import Icon from '../components/Icon.astro';
 import { phosphorMask } from '../lib/icons';
 import { indexingAllowed, SITE_DESCRIPTION } from '../lib/seo';
+import Analytics from '@vercel/analytics/astro';
 interface Props { title: string; description?: string; image?: string; seoTitle?: string; noindex?: boolean; jsonLd?: Record<string, unknown>; }
 const { title, description = SITE_DESCRIPTION, seoTitle, noindex = false, jsonLd } = Astro.props;
 // Social and app metadata. Absolute URLs come from `site` in astro.config.mjs (PUBLIC_SITE_URL or the Vercel production domain).
@@ -30,7 +31,7 @@ import geistUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.w
 <meta property="og:title" content={fullTitle}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/>
 <meta property="og:image" content={ogImage}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Elsewhere: work from somewhere new. Cafés, co-working spaces, restaurants and bars in Dubai."/>
 <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={fullTitle}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={ogImage}/>
-{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')}></script>}<link rel="preload" href={geistUrl} as="font" type="font/woff2" crossorigin/><style is:inline set:html={glyphs}></style><script is:inline>try{if(!sessionStorage.getItem('elsewhere:intro')){document.documentElement.classList.add('intro');sessionStorage.setItem('elsewhere:intro','1')}}catch(e){}</script></head>
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')}></script>}<link rel="preload" href={geistUrl} as="font" type="font/woff2" crossorigin/><style is:inline set:html={glyphs}></style><script is:inline>try{if(!sessionStorage.getItem('elsewhere:intro')){document.documentElement.classList.add('intro');sessionStorage.setItem('elsewhere:intro','1')}}catch(e){}</script><Analytics /></head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
