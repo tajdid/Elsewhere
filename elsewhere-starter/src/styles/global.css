@@ -91,8 +91,8 @@ html:not(.intro) .wordmark .logo{overflow:visible}
 .tabs-pill.is-on{opacity:1}
 .tabs-pill.no-slide{transition:opacity 160ms ease}
 .tabs-pill.no-anim{transition:none}
-.submit-link{justify-self:end;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 16px 0 14px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--raised);font-size:14px;font-weight:550;white-space:nowrap;transition:border-color var(--fast)}
-.submit-link:hover,.submit-link[aria-current]{border-color:var(--text)}
+.submit-link{justify-self:end;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 18px 0 16px;border-radius:var(--r-pill);background:var(--accent);color:var(--ground);font-size:14px;font-weight:550;white-space:nowrap;transition:background-color var(--fast)}
+.submit-link:hover,.submit-link[aria-current]{background:var(--text)}
 main{padding-bottom:24px}
 
 /* ---------- Buttons, links, chips ---------- */
