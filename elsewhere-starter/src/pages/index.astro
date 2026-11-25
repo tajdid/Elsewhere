@@ -56,18 +56,20 @@ const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).
 </section>
 
 <section class="trust" aria-labelledby="trust-title">
- <div class="trust-copy">
-  <h2 id="trust-title">Know a good spot?</h2>
-  <p>Tell us about a café, co-working space or lounge you work from, and what it’s really like: the Wi-Fi, the sockets, whether laptops are welcome.</p>
+ <div class="trust-head">
+  <div class="trust-copy">
+   <h2 id="trust-title">Know a good spot?</h2>
+   <p>Tell us about a café, co-working space or lounge you work from, and what it’s really like: the Wi-Fi, the sockets, whether laptops are welcome.</p>
+  </div>
   <div class="trust-actions">
    <a class="primary primary--light" href="/submit/"><Icon name="plus" weight="bold" size={16} anim="spin" />Submit a place</a>
    <a class="trust-link" href="/explore/">Browse places<Icon name="arrow-right" size={16} anim="slide" /></a>
   </div>
  </div>
- <ol class="trust-panel steps">
-  <li><span class="step-icon"><Icon name="map-pin" size={20} /></span><div><h3>Add the place</h3><p>Name, type and neighbourhood. It takes a minute.</p></div></li>
-  <li><span class="step-icon"><Icon name="wifi-high" size={20} /></span><div><h3>Say what you found</h3><p>Wi-Fi, power, laptops, calls and access, plus a speed test if you ran one.</p></div></li>
-  <li><span class="step-icon"><Icon name="check" weight="bold" size={20} /></span><div><h3>It starts as Reported</h3><p>Nothing is marked Verified until someone has checked it in person, with a date.</p></div></li>
+ <ol class="trust-steps">
+  <li><Icon name="map-pin" weight="fill" size={22} /><h3>Add the place</h3><p>Name, type and neighbourhood. It takes a minute.</p></li>
+  <li><Icon name="wifi-high" weight="fill" size={22} /><h3>Say what you found</h3><p>Wi-Fi, power, laptops, calls and access, plus a speed test if you ran one.</p></li>
+  <li><Icon name="check-circle" weight="fill" size={22} /><h3>It starts as Reported</h3><p>Nothing is marked Verified until someone has checked it in person, with a date.</p></li>
  </ol>
 </section>
 </Layout>

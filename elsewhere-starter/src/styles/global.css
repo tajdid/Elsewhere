@@ -317,13 +317,13 @@ main{padding-bottom:24px}
 .mode-grid strong{font-size:22px;font-weight:600;letter-spacing:-.03em}
 .mode-line{margin-top:4px;font-size:15px}
 .mode-count{margin-top:14px;font-size:13px;color:var(--muted)}
-.trust{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center;margin-top:112px;padding:64px;border-radius:var(--r-panel);background:var(--accent);color:var(--ground)}
-.trust h2{font-size:clamp(36px,4.4vw,60px);line-height:1;letter-spacing:-.05em;max-width:9ch}
-.trust-copy>p{margin-block:24px 32px;font-size:18px;line-height:1.55;max-width:40ch;color:#E6ECE5}
+.trust{margin-top:112px;padding:56px;border-radius:var(--r-panel);background:var(--accent);color:var(--ground)}
+.trust-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:28px 48px}
+.trust h2{font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:-.04em}
+.trust-copy>p{margin-top:16px;font-size:17px;line-height:1.55;max-width:46ch;color:#E6ECE5}
 .trust-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px}
 .trust-link{display:inline-flex;align-items:center;gap:8px;min-height:48px;font-weight:550;font-size:15px;color:var(--ground)}
 .trust-link:hover{text-decoration:underline;text-underline-offset:4px}
-.trust-panel{padding:28px 32px 24px;border-radius:var(--r-photo);background:var(--accent-ink)}
 .trust-panel-title{font-size:15px;font-weight:550;letter-spacing:-.01em;color:#C9D4C8;margin-bottom:8px}
 .trust-legend{display:grid;font-size:15px}
 .trust-legend li{display:grid;grid-template-columns:190px 1fr;align-items:center;gap:16px;padding-block:14px;color:var(--ground)}
@@ -334,12 +334,12 @@ main{padding-bottom:24px}
  color:var(--ground);box-shadow:inset 0 0 0 1px rgba(247,246,242,.55)} /* taste-skill-ignore */
 .trust-note{display:flex;align-items:flex-start;gap:8px;margin-top:12px;padding-top:16px;border-top:1px solid #36543F;font-size:14px;color:#C9D4C8}
 .trust-note .icon{flex:none;margin-top:3px}
-.steps{display:grid;padding:12px 28px;counter-reset:none}
-.steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;padding-block:18px}
-.steps li+li{border-top:1px solid #36543F}
-.step-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--r-pill);background:var(--accent);color:var(--signal)}
-.steps h3{font-size:17px;font-weight:550;letter-spacing:-.02em;color:var(--ground)}
-.steps p{margin-top:4px;font-size:15px;color:#C9D4C8}
+.trust-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:44px;border-top:1px solid rgb(247 246 242/.2)}
+.trust-steps li{display:grid;gap:10px;align-content:start;padding:24px 28px 0 0}
+.trust-steps li+li{padding-left:28px;border-left:1px solid rgb(247 246 242/.2)}
+.trust-steps .icon{color:var(--signal)}
+.trust-steps h3{font-size:17px;font-weight:550;letter-spacing:-.02em;color:var(--ground)}
+.trust-steps p{font-size:15px;color:#C9D4C8}
 .trust-note strong{font-weight:550;color:var(--signal)}
 
 /* ---------- Footer ---------- */
@@ -656,8 +656,7 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 @media(max-width:1179px){
  .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
  .hero{gap:40px}
- .trust{grid-template-columns:1fr;gap:40px;padding:48px}
- .trust h2{max-width:none}
+ .trust{padding:48px}
  .detail-grid{gap:40px 32px}
 }
 @media(max-width:999px){
@@ -671,6 +670,10 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
  .amenities>div{grid-template-columns:180px 1fr}
 }
 @media(max-width:860px){
+ .trust-steps{grid-template-columns:1fr;margin-top:32px}
+ .trust-steps li,.trust-steps li+li{padding:20px 0;border-left:0}
+ .trust-steps li+li{border-top:1px solid rgb(247 246 242/.2)}
+ .trust-steps li:last-child{padding-bottom:4px}
  .topbar-inner{grid-template-columns:1fr auto}
  .tabs{grid-column:1/-1;grid-row:2;margin-bottom:12px}
  .tabs a{flex:1;justify-content:center}
@@ -718,9 +721,7 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
  .cards{grid-template-columns:1fr;gap:32px}
  .card-title{font-size:20px}
  .trust{padding:32px 20px 20px;margin-top:72px;border-radius:var(--r-photo)}
- .trust-copy{padding-inline:4px}
  .trust-copy>p{font-size:17px}
- .trust-panel{padding:20px 18px 16px;border-radius:16px}
  .trust-legend li{grid-template-columns:1fr;gap:6px;padding-block:12px}
  .footer{margin-top:72px}
  .footer-top{padding-block:40px 28px}
