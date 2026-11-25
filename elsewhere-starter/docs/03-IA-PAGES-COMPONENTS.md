@@ -87,7 +87,7 @@ Every page (Layout) has:
 - **Title:** `<title>` set to “Page · Elsewhere”; the home page uses “Elsewhere · Work from somewhere new”.
 - **Description:** the page's own meta description.
 - **Canonical URL:** built from `site` in astro.config.mjs (https://elsewhere.work).
-- **Social cards:** Open Graph (`og:type`, `site_name`, `locale` en_GB, `title`, `description`, `url`, and the 1200×630 image `/og.png` with alt text) and Twitter `summary_large_image`.
+- **Social cards:** Open Graph (`og:type`, `site_name`, `locale` en_GB, `title`, `description`, `url`, and the 1200×630 JPEG `/og.jpg` (owner-supplied artwork, resized from a 2400×1260 original and saved at quality 82, about 155 KB) with alt text and `og:image:type`) and Twitter `summary_large_image`.
 - **Structured data:** a JSON-LD `WebSite`.
 - **Icons and app:** `favicon.svg` (the logo's E on forest), `apple-touch-icon.png` (180), and `site.webmanifest` with 192 and 512 icons (the 512 is maskable-safe). Also `application-name`, `apple-mobile-web-app-title`, `theme-color` and `color-scheme: light`.
 - **Search engines:** `robots.txt` allows crawling and, in Production, lists the sitemap.
