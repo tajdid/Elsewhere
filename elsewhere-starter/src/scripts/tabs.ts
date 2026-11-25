@@ -39,3 +39,26 @@ if (nav) {
   new ResizeObserver(() => place(target, false)).observe(nav);
   document.fonts?.ready.then(() => place(target, false));
 }
+
+// Phones: the bottom tab bar steps aside while you scroll down, so it doesn't cover the page, and comes back
+// as soon as you scroll up, reach the end of the page or move keyboard focus into it.
+const bar = document.querySelector<HTMLElement>('.tabs');
+const phone = window.matchMedia('(max-width: 639px)');
+if (bar) {
+  let lastY = window.scrollY;
+  let ticking = false;
+  const tuck = (on: boolean) => bar.classList.toggle('is-tucked', on);
+  const update = () => {
+    ticking = false;
+    const y = window.scrollY;
+    const delta = y - lastY;
+    const nearEnd = window.innerHeight + y >= document.documentElement.scrollHeight - 80;
+    if (!phone.matches || y < 120 || nearEnd || bar.contains(document.activeElement)) tuck(false);
+    else if (delta > 6) tuck(true);
+    else if (delta < -6) tuck(false);
+    if (Math.abs(delta) > 6) lastY = y;
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  bar.addEventListener('focusin', () => tuck(false));
+  phone.addEventListener('change', () => tuck(false));
+}

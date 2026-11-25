@@ -47,14 +47,14 @@ const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category:
    <fieldset class="form-section">
     <legend><h2>What you found</h2></legend>
     <p class="form-help">Only what you saw yourself. “Not sure” is a useful answer.</p>
-    <div class="amenity-answers">{amenityKeys.map(k => <fieldset class="answer">
+    <div class="amenity-answers">{amenityKeys.map(k => <div class="answer"><fieldset>
      <legend><Icon name={amenityIcons[k]} size={20} />{amenityLabels[k]}</legend>
      <div class="segmented segmented--sm">
       <label class="seg"><input type="radio" name={k} value="yes" /><span>Yes</span></label>
       <label class="seg"><input type="radio" name={k} value="no" /><span>No</span></label>
       <label class="seg"><input type="radio" name={k} value="unsure" checked /><span>Not sure</span></label>
      </div>
-    </fieldset>)}</div>
+    </fieldset></div>)}</div>
     <div class="field-row wifi-fields">
      <div class="field"><label for="wifiSpeed">Wi-Fi download speed, Mbps <span class="optional">Optional</span></label><input id="wifiSpeed" name="wifiSpeed" type="text" inputmode="decimal" autocomplete="off" maxlength="8" aria-describedby="wifiSpeed-help wifiSpeed-error" /><p class="form-help" id="wifiSpeed-help">From any speed test, run where you sat.</p><p class="field-error" id="wifiSpeed-error" hidden>Enter a number up to 2000, or leave it blank.</p></div>
      <div class="field-stack">

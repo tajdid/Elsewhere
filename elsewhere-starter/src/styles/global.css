@@ -23,7 +23,7 @@
  --max:1320px;
  --ease:cubic-bezier(.23,1,.32,1);   /* strong ease-out for UI response */
  --fast:160ms; --med:200ms;
- font-family:var(--font-sans);color:var(--text);background:var(--ground);font-synthesis:none;
+ font-family:var(--font-sans);color:var(--text);background:var(--surface);font-synthesis:none;
  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
 }
 
@@ -31,7 +31,7 @@
 /* Native cross-document view transitions: the header holds still while the page underneath fades and settles.
    Browsers without support simply navigate as before. */
 @view-transition{navigation:auto}
-.topbar{view-transition-name:site-header;position:relative;z-index:40}
+.topbar{view-transition-name:site-header;position:relative;z-index:40;padding-top:env(safe-area-inset-top)}
 ::view-transition-group(root){animation-duration:280ms}
 ::view-transition-old(root){animation:vt-out 140ms ease both}
 ::view-transition-new(root){animation:vt-in 280ms var(--ease) both}
@@ -834,10 +834,14 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 .select-wrap .icon{position:absolute;right:16px;pointer-events:none;color:var(--muted)}
 .field--date input{max-width:240px}
 .amenity-answers{display:grid}
-.answer{border:0;margin:0;padding:14px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;min-width:0}
+/* The divider lives on a wrapper, not the fieldset: Safari draws a legend inside the fieldset's border. */
+/* The legend stays a plain block (Safari ignores float and flex on it); the buttons are pinned to the right. */
+.answer{position:relative;padding:14px 0;border-top:1px solid var(--border)}
 .answer:last-child{border-bottom:1px solid var(--border)}
-.answer>legend{float:left;display:flex;align-items:center;gap:12px;font-weight:550;padding:0}
-.answer>legend .icon{color:var(--accent)}
+.answer>fieldset{min-width:0;border:0;margin:0;padding:0}
+.answer legend{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 220px 0 0;font-weight:550}
+.answer .segmented{position:absolute;right:0;top:14px}
+.answer legend .icon{color:var(--accent)}
 .segmented--sm .seg{min-height:40px;padding:0 14px;font-size:14px}
 .submit-button{justify-self:start;min-width:200px}
 .submit-button[aria-busy=true]{opacity:.75;cursor:progress}
@@ -856,7 +860,7 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 /* Report CTA on place details */
 .check-cta{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;margin-top:48px;padding:22px 24px;border-radius:var(--r-photo);background:var(--surface)}
 .check-cta p{color:var(--muted);font-size:15px;margin-top:4px;max-width:46ch}
-@media(max-width:639px){.answer .segmented{display:flex;width:100%}.answer .seg{flex:1;justify-content:center}.field-row{grid-template-columns:1fr}.submit-done{padding:28px 22px}.submit-button{justify-self:stretch}.answer{padding:16px 0}}
+@media(max-width:639px){.answer legend{min-height:0;padding-right:0;margin-bottom:12px}.answer .segmented{position:static;display:flex;width:100%}.answer .seg{flex:1;justify-content:center}.field-row{grid-template-columns:1fr}.submit-done{padding:28px 22px}.submit-button{justify-self:stretch}.answer{padding:16px 0}}
 
 /* ---------- Phone (under 640px) ---------- */
 @media(max-width:639px){
@@ -869,6 +873,10 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
  .tabs a{flex:1;flex-direction:column;gap:2px;min-height:52px;padding:6px 4px;font-size:12px;justify-content:center}
  .tabs a .icon{display:block;width:22px;height:22px}
  .footer{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+ /* Tucks away while scrolling down, back on scroll up, at the end of the page or on keyboard focus (scripts/tabs.ts). */
+ .tabs{transition:transform 280ms var(--ease)}
+ .tabs.is-tucked{transform:translateY(calc(100% + 16px + env(safe-area-inset-bottom)))}
+ @media (prefers-reduced-motion:reduce){.tabs{transition:none}}
 
  /* Cards stack one per row on phones. */
  .cards{grid-template-columns:1fr;gap:12px}
