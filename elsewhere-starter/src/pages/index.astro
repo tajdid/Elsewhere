@@ -57,19 +57,30 @@ const modeCount = (m: string) => places.filter(p => p.modes.some(x => x === m)).
 
 <section class="trust" aria-labelledby="trust-title">
  <div class="trust-head">
-  <div class="trust-copy">
-   <h2 id="trust-title">Know a good spot?</h2>
-   <p>Tell us about a café, co-working space or lounge you work from, and what it’s really like: the Wi-Fi, the sockets, whether laptops are welcome.</p>
-  </div>
+  <h2 id="trust-title">Know a good spot?</h2>
+  <p>Tell us about a café, co-working space or lounge you work from, and what it’s really like: the Wi-Fi, the sockets, the noise, even the parking.</p>
   <div class="trust-actions">
    <a class="primary primary--light" href="/submit/"><Icon name="plus" weight="bold" size={16} anim="spin" />Submit a place</a>
    <a class="trust-link" href="/explore/">Browse places<Icon name="arrow-right" size={16} anim="slide" /></a>
   </div>
  </div>
+ <!-- Each step shows a small piece of the real form or place page, so it reads at a glance. -->
  <ol class="trust-steps">
-  <li><Icon name="map-pin" weight="fill" size={22} /><h3>Add the place</h3><p>Name, type and neighbourhood. It takes a minute.</p></li>
-  <li><Icon name="wifi-high" weight="fill" size={22} /><h3>Say what you found</h3><p>Wi-Fi, power, laptops, calls and access, plus a speed test if you ran one.</p></li>
-  <li><Icon name="check-circle" weight="fill" size={22} /><h3>It starts as Reported</h3><p>Nothing is marked Verified until someone has checked it in person, with a date.</p></li>
+  <li>
+   <div class="trust-demo" aria-hidden="true"><span class="trust-field"><Icon name="magnifying-glass" size={16} />Search a café or co-working space</span></div>
+   <h3>Add the place</h3>
+   <p>Its name, type and neighbourhood. Pick it from the list for exact directions.</p>
+  </li>
+  <li>
+   <div class="trust-demo" aria-hidden="true"><span class="trust-chip is-on"><Icon name="wifi-high" weight="fill" size={14} />Wi-Fi</span><span class="trust-chip is-on"><Icon name="plug" weight="fill" size={14} />Plenty of sockets</span><span class="trust-chip">Quiet</span></div>
+   <h3>Say what you found</h3>
+   <p>Wi-Fi speed, sockets, noise, parking and pets. Answer what you noticed and skip the rest.</p>
+  </li>
+  <li>
+   <div class="trust-demo" aria-hidden="true"><span class="pill" data-tone="caution">Yes · Reported</span><span class="trust-date">with your visit date</span></div>
+   <h3>It starts as Reported</h3>
+   <p>Every report is read by hand. Nothing is marked Verified until someone has checked it in person.</p>
+  </li>
  </ol>
 </section>
 </Layout>
