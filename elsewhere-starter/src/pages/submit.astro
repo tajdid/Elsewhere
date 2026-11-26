@@ -1,14 +1,18 @@
 ---
 // Submit a place, or report on an existing one (/submit/?place=<slug>).
+// One page of rows: every question is a row with its label on the left and its answers (chips or a field) on the
+// right, grouped into five sections with plenty of space between them. Nothing is pre-selected; anything left
+// alone counts as "Not sure". The map preview appears under the place name once a place is picked.
 // With PUBLIC_SUBMIT_ENDPOINT set at build time (on Vercel: /api/submit, which saves to Google Sheets), reports are
 // POSTed there as JSON; without it they are kept in this browser and the confirmation says exactly that.
 // Nothing claims to be sent when it isn't, and a failed send keeps a copy on the device.
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import ChoiceChips from '../components/ChoiceChips.astro';
 import { places } from '../lib/places';
-import { categories, amenityKeys, amenityLabels, dayKeys } from '../lib/schema';
+import { categories, dayKeys } from '../lib/schema';
 import { dayNames } from '../lib/details';
-import { amenityIcons } from '../lib/ui';
+import { categoryIcons } from '../lib/ui';
 // On Vercel the endpoint defaults to the Sheets function; set PUBLIC_SUBMIT_ENDPOINT to override (or to '' to keep reports local).
 const endpoint = (import.meta.env.PUBLIC_SUBMIT_ENDPOINT as string | undefined) ?? (process.env.VERCEL ? '/api/submit' : undefined);
 const areas = [...new Set(places.map(p => p.neighbourhood).filter(Boolean))].sort();
@@ -17,126 +21,207 @@ const placesEndpoint = (import.meta.env.PUBLIC_PLACES_ENDPOINT as string | undef
 const mapsKey = (import.meta.env.PUBLIC_GOOGLE_MAPS_BROWSER_KEY as string | undefined) ?? '';
 const mapId = (import.meta.env.PUBLIC_GOOGLE_MAPS_MAP_ID as string | undefined) || 'DEMO_MAP_ID';
 const known = places.map(p => ({ slug: p.slug, id: p.id, name: p.name, category: p.category, neighbourhood: p.neighbourhood }));
+const yesNo = [{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }];
+// Sockets: four answers on the list's 1–5 scale (A few = 1, Some = 2, Plenty = 4, so it counts as "plenty of sockets").
+// The meter on each chip shows the level out of three.
+const socketScale = [['0', 'None', 0], ['1', 'A few', 1], ['2', 'Some', 2], ['4', 'Plenty', 3]] as const;
 ---
 <Layout title="Submit a place" noindex description="Add a place to Elsewhere, or report what you found at one: Wi-Fi, power, laptop policy, calls and step-free access.">
-<div class="page-title"><h1 id="submit-title">Submit a place.</h1><p id="submit-intro">Know somewhere good to work in Dubai, or been somewhere lately? Tell us what you found.</p></div>
-<div class="submit-grid">
- <div>
-  <form id="submit-form" class="submit-form" novalidate method="post" action={endpoint || undefined} data-endpoint={endpoint || ''} data-places={JSON.stringify(known)} data-places-endpoint={placesEndpoint} data-maps-key={mapsKey} data-map-id={mapId} data-areas={JSON.stringify(areas)}>
-   <input type="hidden" name="placeId" id="placeId" />
-   <input type="hidden" name="googlePlaceId" id="googlePlaceId" /><input type="hidden" name="placeAddress" id="placeAddress" /><input type="hidden" name="lat" id="lat" /><input type="hidden" name="lng" id="lng" />
-   <div class="hp-field" aria-hidden="true"><label for="elsewhere_hp">Leave this empty</label><input id="elsewhere_hp" name="elsewhere_hp" type="text" tabindex="-1" autocomplete="off" /></div>
-   <fieldset class="form-section">
-    <legend><h2>The place</h2></legend>
-    <div class="field">
-     <label for="name">Place name</label>
-     <div class="combo">
-      <input id="name" name="name" type="text" required maxlength="120" autocomplete="off" aria-describedby="name-help name-error" />
-      <ul id="name-options" class="combo-list" role="listbox" aria-label="Matching places" hidden></ul>
-     </div>
-     <p class="form-help" id="name-help" hidden>Start typing and pick the place from the list, or just type its name.</p>
-     <p class="field-error" id="name-error" hidden>Enter the place’s name.</p>
-    </div>
-    <div id="preview-inline"></div>
-    <div class="field-row">
-     <div class="field"><label for="category">Type</label><div class="select-wrap"><select id="category" name="category">{categories.map(c => <option>{c}</option>)}</select><Icon name="caret-down" size={14} /></div></div>
-     <div class="field"><label for="neighbourhood">Neighbourhood</label><input id="neighbourhood" name="neighbourhood" type="text" list="areas" maxlength="80" required aria-describedby="neighbourhood-error" /><datalist id="areas">{areas.map(a => <option value={a} />)}</datalist><p class="field-error" id="neighbourhood-error" hidden>Enter the neighbourhood.</p></div>
-    </div>
-    <div class="field"><label for="website">Website or Instagram <span class="optional">Optional</span></label><input id="website" name="website" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="300" placeholder="instagram.com/placename" aria-describedby="website-error" /><p class="field-error" id="website-error" hidden>Enter a web address like instagram.com/placename, or leave it blank.</p></div>
-   </fieldset>
-   <fieldset class="form-section">
-    <legend><h2>What you found</h2></legend>
-    <p class="form-help">Only what you saw yourself. “Not sure” is a useful answer.</p>
-    <div class="amenity-answers">{amenityKeys.map(k => <div class="answer"><fieldset>
-     <legend><Icon name={amenityIcons[k]} size={20} />{amenityLabels[k]}</legend>
-     <div class="segmented segmented--sm">
-      <label class="seg"><input type="radio" name={k} value="yes" /><span>Yes</span></label>
-      <label class="seg"><input type="radio" name={k} value="no" /><span>No</span></label>
-      <label class="seg"><input type="radio" name={k} value="unsure" checked /><span>Not sure</span></label>
-     </div>
-    </fieldset></div>)}</div>
-    <div class="field-row wifi-fields">
-     <div class="field"><label for="wifiSpeed">Wi-Fi download speed, Mbps <span class="optional">Optional</span></label><input id="wifiSpeed" name="wifiSpeed" type="text" inputmode="decimal" autocomplete="off" maxlength="8" aria-describedby="wifiSpeed-help wifiSpeed-error" /><p class="form-help" id="wifiSpeed-help">From any speed test, run where you sat.</p><p class="field-error" id="wifiSpeed-error" hidden>Enter a number up to 2000, or leave it blank.</p></div>
-     <div class="field-stack">
-      <div class="field"><label for="wifiAccess">Getting on the Wi-Fi</label><div class="select-wrap"><select id="wifiAccess" name="wifiAccess"><option value="unsure">Not sure</option><option value="open">No password</option><option value="password">Password from staff</option><option value="signup">Sign-up page</option></select><Icon name="caret-down" size={14} /></div></div>
-      <div class="field" id="wifiPassword-field" hidden><label for="wifiPassword">Wi-Fi password <span class="optional">Optional</span></label><input id="wifiPassword" name="wifiPassword" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="64" aria-describedby="wifiPassword-help" /><p class="form-help" id="wifiPassword-help">The guest password, if you have it. Once checked, it may be shown on the place page.</p></div>
-     </div>
-    </div>
-    <div class="field-row">
-     <div class="field"><label for="sockets">How many sockets?</label><div class="select-wrap"><select id="sockets" name="sockets"><option value="">Not sure</option><option value="1">A few</option><option value="2">Some</option><option value="3">Fair</option><option value="4">Plenty</option><option value="5">Lots</option></select><Icon name="caret-down" size={14} /></div></div>
-     <div class="field"><label for="noise">How noisy is it?</label><div class="select-wrap"><select id="noise" name="noise"><option value="">Not sure</option><option value="quiet">Quiet: calls are fine</option><option value="moderate">Moderate: calls are okay</option><option value="loud">Loud: avoid calls</option></select><Icon name="caret-down" size={14} /></div></div>
-    </div>
-    <div class="field-row">
-     <div class="field"><label for="entry">Is it free to work there?</label><div class="select-wrap"><select id="entry" name="entry"><option value="">Not sure</option><option value="free">Free to sit and work</option><option value="buy">You’re expected to buy something</option><option value="paid">Paid entry or day pass</option></select><Icon name="caret-down" size={14} /></div></div>
-    </div>
-   </fieldset>
-   <fieldset class="form-section" aria-describedby="hours-help">
-    <legend><h2>Opening hours</h2></legend>
-    <p class="form-help" id="hours-help">As posted at the venue or on its website.</p>
-    <div class="segmented segmented--sm hours-mode" role="radiogroup" aria-label="Opening hours">
-     <label class="seg"><input type="radio" name="hoursMode" value="unsure" checked /><span>Not sure</span></label>
-     <label class="seg"><input type="radio" name="hoursMode" value="same" /><span>Same every day</span></label>
-     <label class="seg"><input type="radio" name="hoursMode" value="days" /><span>Varies by day</span></label>
-    </div>
-    <div class="hours-same field-row" id="hours-same" hidden>
-     <div class="field"><label for="openAll">Opens</label><input id="openAll" name="openAll" type="time" aria-describedby="hours-error" /></div>
-     <div class="field"><label for="closeAll">Closes</label><input id="closeAll" name="closeAll" type="time" aria-describedby="hours-error" /></div>
-    </div>
-    <div class="hours-days" id="hours-days" hidden>
-     {dayKeys.map(d => <div class="hours-day" data-day={d}>
-      <span class="hours-day-name" id={`${d}-name`}>{dayNames[d]}</span>
-      <label class="sr-only" for={`${d}Open`}>{dayNames[d]} opens</label><input id={`${d}Open`} name={`${d}Open`} type="time" aria-describedby="hours-error" />
-      <span class="hours-to" aria-hidden="true">to</span>
-      <label class="sr-only" for={`${d}Close`}>{dayNames[d]} closes</label><input id={`${d}Close`} name={`${d}Close`} type="time" aria-describedby="hours-error" />
-      <label class="hours-closed"><input type="checkbox" name={`${d}Closed`} aria-labelledby={`${d}-name ${d}-closed`} /><span id={`${d}-closed`}>Closed</span></label>
-     </div>)}
-     <button type="button" class="text-button hours-copy" id="hours-copy">Copy Monday to every day</button>
-    </div>
-    <p class="field-error" id="hours-error" hidden>Add an opening and closing time for each day, or tick Closed.</p>
-   </fieldset>
-   <fieldset class="form-section">
-    <legend><h2>Your visit</h2></legend>
-    <div class="field field--date"><label for="visitedOn">When were you there?</label><input id="visitedOn" name="visitedOn" type="date" required aria-describedby="visitedOn-error" /><p class="field-error" id="visitedOn-error" hidden>Choose a date that isn’t in the future.</p></div>
-    <div class="field"><label for="notes">Anything else? <span class="optional">Optional</span></label><textarea id="notes" name="notes" rows="4" maxlength="600" placeholder="Sockets only along the window bar; calls fine on the terrace…"></textarea></div>
-    <div class="field"><label for="email">Email <span class="optional">Optional</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" spellcheck="false" aria-describedby="email-help email-error" /><p class="form-help" id="email-help">Only used if we have a question about your report. It’s never shown on the site.</p><p class="field-error" id="email-error" hidden>Enter an email address like name@example.com, or leave it blank.</p></div>
-   </fieldset>
-   <p class="form-error" id="form-error" role="alert" hidden></p>
-   <button class="primary submit-button" type="submit"><span class="submit-label">Submit place</span><Icon name="arrow-right" size={18} anim="slide" /></button>
-  </form>
-  <section id="submit-done" class="submit-done" hidden aria-labelledby="done-title">
-   <span class="empty-icon"><Icon name="check" weight="bold" size={26} /></span>
-   <h2 id="done-title" tabindex="-1">Thanks, that’s in.</h2>
-   <p id="done-text"></p>
-   <div class="done-actions"><button type="button" class="pill-button" id="submit-another"><Icon name="plus" size={16} anim="spin" />Submit another</button><a class="text-link" id="done-back" href="/explore/">Back to Explore<Icon name="arrow-right" size={18} anim="slide" /></a></div>
-  </section>
-  <section id="my-reports" class="my-reports" hidden aria-labelledby="my-reports-title">
-   <h2 id="my-reports-title">Your reports</h2>
-   <ul id="my-reports-list"></ul>
-  </section>
-  <noscript><p class="notice">Turn on JavaScript to send a report.</p></noscript>
- </div>
- <div class="submit-side" id="preview-side">
- <section class="place-preview" id="place-preview" aria-labelledby="preview-title" data-state="empty" hidden>
-  <div class="preview-map">
-   <p class="preview-empty"><Icon name="map-pin" weight="fill" size={22} /><span>Pick a place from the list to see it on the map.</span></p>
-   <div id="place-map" class="preview-canvas"></div>
-  </div>
-  <div class="preview-body">
-   <h2 class="preview-label" id="preview-title">Place preview</h2>
-   <p class="preview-name" id="preview-name" hidden></p>
-   <p class="preview-address" id="place-address-text"></p>
-   <p class="preview-foot" id="preview-foot" hidden><span>Location from Google Maps</span><button type="button" class="text-button" id="place-clear">Not this place</button></p>
-  </div>
- </section>
- <aside class="visit" aria-labelledby="treat-title">
-  <h2 id="treat-title">How it’s treated</h2>
-  <ul class="treat-list">
-   <li><span class="pill" data-tone="caution">Yes · Reported</span><p>Everything submitted starts as a report, never as verified.</p></li>
-   <li><span class="pill" data-tone="positive">Yes · Verified</span><p>Only after we check it in person, with a source and date. It needs a recheck after 90 days.</p></li>
-   <li><span class="pill" data-tone="caution">Conflicting reports</span><p>If reports disagree, nothing positive is shown until a new check settles it.</p></li>
-  </ul>
- </aside>
- </div>
+<div class="page-title page-title--center sp-title"><h1 id="submit-title">Submit a place.</h1><p id="submit-intro">Know somewhere good to work in Dubai, or been somewhere lately? Tell us what you found. Anything you skip stays “not sure”.</p>
+ <ul class="sp-facts">
+  <li><Icon name="timer" size={18} />About two minutes</li>
+  <li><Icon name="eye" size={18} />Read by hand before anything changes</li>
+  <li><Icon name="user-circle-dashed" size={18} />No account needed</li>
+ </ul>
 </div>
+<div class="sp">
+ <form id="submit-form" class="submit-form sp-form" novalidate method="post" action={endpoint || undefined} data-endpoint={endpoint || ''} data-places={JSON.stringify(known)} data-places-endpoint={placesEndpoint} data-maps-key={mapsKey} data-map-id={mapId} data-areas={JSON.stringify(areas)}>
+  <input type="hidden" name="placeId" id="placeId" />
+  <input type="hidden" name="googlePlaceId" id="googlePlaceId" /><input type="hidden" name="placeAddress" id="placeAddress" /><input type="hidden" name="lat" id="lat" /><input type="hidden" name="lng" id="lng" />
+  <div class="hp-field" aria-hidden="true"><label for="elsewhere_hp">Leave this empty</label><input id="elsewhere_hp" name="elsewhere_hp" type="text" tabindex="-1" autocomplete="off" /></div>
+
+  <section class="sp-section" aria-labelledby="sp-place">
+   <header class="sp-head"><h2 id="sp-place">The place</h2><p>What it’s called and where it is. Pick it from the list for exact directions.</p></header>
+   <div class="sp-rows">
+    <div class="qrow">
+     <label class="qrow-label" for="name"><Icon name="storefront" size={18} />Place name</label>
+     <div class="field">
+      <div class="combo">
+       <input id="name" name="name" type="text" required maxlength="120" autocomplete="off" aria-describedby="name-help name-error" />
+       <ul id="name-options" class="combo-list" role="listbox" aria-label="Matching places" hidden></ul>
+      </div>
+      <p class="form-help" id="name-help" hidden>Start typing and pick the place from the list, or just type its name.</p>
+      <p class="field-error" id="name-error" hidden>Enter the place’s name.</p>
+      <!-- The map preview lands here on every screen size once a place is picked (src/scripts/place-search.ts). -->
+      <div id="preview-side" class="sp-map"></div><div id="preview-inline"></div>
+     </div>
+    </div>
+    <ChoiceChips name="category" legend="Type" icon="tag" unsure={false} checked={categories[0]} options={categories.map(c => ({ value: c, label: c, icon: categoryIcons[c] }))} />
+    <div class="qrow">
+     <label class="qrow-label" for="neighbourhood"><Icon name="map-pin" size={18} />Neighbourhood</label>
+     <div class="field"><input id="neighbourhood" name="neighbourhood" type="text" list="areas" maxlength="80" required aria-describedby="neighbourhood-error" /><datalist id="areas">{areas.map(a => <option value={a} />)}</datalist><p class="field-error" id="neighbourhood-error" hidden>Enter the neighbourhood.</p></div>
+    </div>
+    <div class="qrow">
+     <label class="qrow-label" for="website"><Icon name="link" size={18} />Website <span class="optional">Optional</span></label>
+     <div class="field"><input id="website" name="website" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="300" placeholder="Website or instagram.com/placename" aria-describedby="website-error" /><p class="field-error" id="website-error" hidden>Enter a web address like instagram.com/placename, or leave it blank.</p></div>
+    </div>
+   </div>
+  </section>
+
+  <section class="sp-section" aria-labelledby="sp-wifi">
+   <header class="sp-head"><h2 id="sp-wifi">Wi-Fi</h2><p>Whether you can get online, how fast it was and how to connect.</p></header>
+   <div class="sp-rows">
+    <ChoiceChips name="wifi" legend="Guest Wi-Fi" icon="wifi-high" unsure="unsure" options={yesNo} />
+    <div class="qrow" data-wifi-more>
+     <label class="qrow-label" for="wifiSpeed"><Icon name="gauge" size={18} />Speed, Mbps <span class="optional">Optional</span></label>
+     <div class="field sp-speed">
+      <input id="wifiSpeed" name="wifiSpeed" type="text" inputmode="decimal" autocomplete="off" maxlength="8" aria-describedby="wifiSpeed-help wifiSpeed-error" />
+      <div class="sf-gauge" id="speed-gauge" aria-hidden="true"><i /><i /><i /><i /></div>
+      <p class="form-help" id="wifiSpeed-help">Run a test at <a class="sf-link" href="https://fast.com" target="_blank" rel="noopener noreferrer">fast.com<span class="sr-only"> (opens in a new tab)</span></a> where you sat, then type the number it shows. <strong class="sf-tier" id="speed-tier"></strong></p>
+      <p class="field-error" id="wifiSpeed-error" hidden>Enter a number up to 2000, or leave it blank.</p>
+     </div>
+    </div>
+    <ChoiceChips name="wifiAccess" legend="Getting online" icon="lock-simple" unsure="unsure" id="wifi-access-row" options={[
+      { value: 'open', label: 'No password' }, { value: 'password', label: 'Password from staff' }, { value: 'signup', label: 'Sign-up page' },
+    ]}>
+     <div class="field sp-sub" id="wifiPassword-field" hidden><label for="wifiPassword">Wi-Fi password <span class="optional">Optional</span></label><input id="wifiPassword" name="wifiPassword" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="64" aria-describedby="wifiPassword-help" /><p class="form-help" id="wifiPassword-help">The guest password, if you have it. Once checked, it may be shown on the place page.</p></div>
+    </ChoiceChips>
+   </div>
+  </section>
+
+  <section class="sp-section" aria-labelledby="sp-work">
+   <header class="sp-head"><h2 id="sp-work">Working there</h2><p>Laptops, sockets and noise: what a working day there is like.</p></header>
+   <div class="sp-rows">
+    <ChoiceChips name="laptops" legend="Laptops welcome" icon="laptop" unsure="unsure" options={yesNo} />
+    <div class="qrow">
+     <span class="qrow-label" aria-hidden="true"><Icon name="plug" size={18} />Sockets</span>
+     <fieldset aria-describedby="sockets-hint">
+      <legend class="sr-only">Sockets</legend>
+      <div class="chips">
+       {socketScale.map(([v, label, level]) => <label class="chip"><input type="radio" name="sockets" value={v} />{level > 0 && <span class="chip-meter" aria-hidden="true">{[1, 2, 3].map(n => <i class:list={[{ on: n <= level }]} />)}</span>}<span>{label}</span></label>)}
+       <label class="chip chip--unsure"><input type="radio" name="sockets" value="" /><span>Not sure</span></label>
+      </div>
+      <p class="sp-hint" id="sockets-hint">This also answers whether you could plug in.</p>
+     </fieldset>
+    </div>
+    <div class="qrow">
+     <span class="qrow-label" aria-hidden="true"><Icon name="speaker-high" size={18} />Noise</span>
+     <fieldset aria-describedby="noise-hint">
+      <legend class="sr-only">Noise</legend>
+      <div class="chips">
+       {[['quiet', 'Quiet', 'speaker-none'], ['moderate', 'Moderate', 'speaker-low'], ['loud', 'Loud', 'speaker-high']].map(([v, l, icon]) => <label class="chip"><input type="radio" name="noise" value={v} /><Icon name={icon} size={16} /><span>{l}</span></label>)}
+       <label class="chip chip--unsure"><input type="radio" name="noise" value="" /><span>Not sure</span></label>
+      </div>
+      <p class="sp-hint" id="noise-hint">Quiet or moderate means calls are okay; loud means avoid them.</p>
+     </fieldset>
+    </div>
+   </div>
+  </section>
+
+  <section class="sp-section" aria-labelledby="sp-there">
+   <header class="sp-head"><h2 id="sp-there">Getting there</h2><p>Access, entry, parking, pets and opening hours.</p></header>
+   <div class="sp-rows">
+    <ChoiceChips name="stepFree" legend="Step-free way in" icon="wheelchair" unsure="unsure" options={yesNo} />
+    <ChoiceChips name="entry" legend="Entry" icon="ticket" options={[
+      { value: 'free', label: 'Free to sit' }, { value: 'buy', label: 'Buy something' }, { value: 'paid', label: 'Paid or day pass' },
+    ]} />
+    <ChoiceChips name="parking" legend="Parking" icon="car" options={[
+      { value: 'street', label: 'Street' }, { value: 'carpark', label: 'Car park' }, { value: 'valet', label: 'Valet' }, { value: 'none', label: 'None nearby' },
+    ]}>
+     <div class="sp-sub sp-subrow" id="parkingCost-field" hidden>
+      <span class="sp-sublabel" aria-hidden="true">Is it free?</span>
+      <fieldset><legend class="sr-only">Is parking free?</legend><div class="chips">
+       <label class="chip"><input type="radio" name="parkingCost" value="free" /><span>Free</span></label>
+       <label class="chip"><input type="radio" name="parkingCost" value="paid" /><span>Paid</span></label>
+       <label class="chip chip--unsure"><input type="radio" name="parkingCost" value="" /><span>Not sure</span></label>
+      </div></fieldset>
+     </div>
+    </ChoiceChips>
+    <ChoiceChips name="pets" legend="Pets" icon="paw-print" options={[
+      { value: 'inside', label: 'Welcome inside' }, { value: 'outdoor', label: 'Outdoor seating only' }, { value: 'no', label: 'No pets' },
+    ]} />
+    <div class="qrow">
+     <span class="qrow-label" aria-hidden="true"><Icon name="clock" size={18} />Opening hours</span>
+     <fieldset aria-describedby="hours-help">
+      <legend class="sr-only">Opening hours</legend>
+      <div class="chips">
+       <label class="chip"><input type="radio" name="hoursMode" value="same" /><span>Same every day</span></label>
+       <label class="chip"><input type="radio" name="hoursMode" value="days" /><span>Varies by day</span></label>
+       <label class="chip chip--unsure"><input type="radio" name="hoursMode" value="unsure" /><span>Not sure</span></label>
+      </div>
+      <p class="sp-hint" id="hours-help">As posted at the venue or on its website.</p>
+     </fieldset>
+     <div class="hours-same field-row sp-sub" id="hours-same" hidden>
+      <div class="field"><label for="openAll">Opens</label><input id="openAll" name="openAll" type="time" aria-describedby="hours-error" /></div>
+      <div class="field"><label for="closeAll">Closes</label><input id="closeAll" name="closeAll" type="time" aria-describedby="hours-error" /></div>
+     </div>
+     <div class="hours-days sp-sub" id="hours-days" hidden>
+      {dayKeys.map(d => <div class="hours-day" data-day={d}>
+       <span class="hours-day-name" id={`${d}-name`}>{dayNames[d]}</span>
+       <label class="sr-only" for={`${d}Open`}>{dayNames[d]} opens</label><input id={`${d}Open`} name={`${d}Open`} type="time" aria-describedby="hours-error" />
+       <span class="hours-to" aria-hidden="true">to</span>
+       <label class="sr-only" for={`${d}Close`}>{dayNames[d]} closes</label><input id={`${d}Close`} name={`${d}Close`} type="time" aria-describedby="hours-error" />
+       <label class="hours-closed"><input type="checkbox" name={`${d}Closed`} aria-labelledby={`${d}-name ${d}-closed`} /><span id={`${d}-closed`}>Closed</span></label>
+      </div>)}
+      <button type="button" class="text-button hours-copy" id="hours-copy">Copy Monday to every day</button>
+     </div>
+     <p class="field-error sp-sub" id="hours-error" hidden>Add an opening and closing time for each day, or tick Closed.</p>
+    </div>
+   </div>
+  </section>
+
+  <section class="sp-section" aria-labelledby="sp-visit">
+   <header class="sp-head"><h2 id="sp-visit">Your visit</h2><p>When you went, and anything else worth knowing.</p></header>
+   <div class="sp-rows">
+    <div class="qrow">
+     <label class="qrow-label" for="visitedOn"><Icon name="calendar-blank" size={18} />When were you there?</label>
+     <div class="field field--date"><input id="visitedOn" name="visitedOn" type="date" required aria-describedby="visitedOn-error" /><p class="field-error" id="visitedOn-error" hidden>Choose a date that isn’t in the future.</p></div>
+    </div>
+    <div class="qrow qrow--top">
+     <label class="qrow-label" for="notes"><Icon name="note-pencil" size={18} />Anything else? <span class="optional">Optional</span></label>
+     <div class="field"><textarea id="notes" name="notes" rows="3" maxlength="600" placeholder="Sockets only along the window bar; calls fine on the terrace…"></textarea></div>
+    </div>
+    <div class="qrow">
+     <label class="qrow-label" for="email"><Icon name="envelope-simple" size={18} />Email <span class="optional">Optional</span></label>
+     <div class="field"><input id="email" name="email" type="email" autocomplete="email" maxlength="254" spellcheck="false" aria-describedby="email-help email-error" /><p class="form-help" id="email-help">Only used if we have a question about your report. It’s never shown on the site.</p><p class="field-error" id="email-error" hidden>Enter an email address like name@example.com, or leave it blank.</p></div>
+    </div>
+   </div>
+  </section>
+
+  <p class="form-error sp-form-error" id="form-error" role="alert" hidden></p>
+  <div class="sp-send">
+   <div class="sp-send-copy">
+    <h2>Ready to send?</h2>
+    <p>We read every report by hand. Once added, each detail shows as Reported, with your visit date.</p>
+   </div>
+   <button class="primary primary--light submit-button" type="submit"><span class="submit-label">Submit place</span><Icon name="arrow-right" size={18} anim="slide" /></button>
+  </div>
+ </form>
+
+ <section id="submit-done" class="submit-done" hidden aria-labelledby="done-title">
+  <span class="empty-icon"><Icon name="check" weight="bold" size={26} /></span>
+  <h2 id="done-title" tabindex="-1">Thanks, that’s in.</h2>
+  <p id="done-text"></p>
+  <div class="done-actions"><button type="button" class="pill-button" id="submit-another"><Icon name="plus" size={16} anim="spin" />Submit another</button><a class="text-link" id="done-back" href="/explore/">Back to Explore<Icon name="arrow-right" size={18} anim="slide" /></a></div>
+ </section>
+ <section id="my-reports" class="my-reports" hidden aria-labelledby="my-reports-title">
+  <h2 id="my-reports-title">Your reports</h2>
+  <ul id="my-reports-list"></ul>
+ </section>
+ <noscript><p class="notice">Turn on JavaScript to send a report.</p></noscript>
+</div>
+<!-- Moved under the place name by src/scripts/place-search.ts, and shown once a place is picked. -->
+<section class="place-preview" id="place-preview" aria-labelledby="preview-title" data-state="empty" hidden>
+ <div class="preview-map">
+  <p class="preview-empty"><Icon name="map-pin" weight="fill" size={22} /><span>Pick a place from the list to see it on the map.</span></p>
+  <div id="place-map" class="preview-canvas"></div>
+ </div>
+ <div class="preview-body">
+  <h2 class="preview-label" id="preview-title">Place preview</h2>
+  <p class="preview-name" id="preview-name" hidden></p>
+  <p class="preview-address" id="place-address-text"></p>
+  <p class="preview-foot" id="preview-foot" hidden><span>Location from Google Maps</span><button type="button" class="text-button" id="place-clear">Not this place</button></p>
+ </div>
+</section>
 <script>import '../scripts/submit'; import '../scripts/place-search';</script>
 </Layout>

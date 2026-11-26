@@ -25,13 +25,13 @@ if (form && input && list && endpoint) {
   const previewFoot = document.querySelector<HTMLElement>('#preview-foot')!;
   const side = document.querySelector<HTMLElement>('#preview-side')!;
   const inline = document.querySelector<HTMLElement>('#preview-inline')!;
-  // Wide screens: the preview sits at the top of the right column, waiting with a prompt.
-  // Narrow screens: it moves under the name field and only appears once a place is picked.
+  // The preview sits under the name field (#preview-side on wide screens, #preview-inline on narrow ones) and only
+  // appears once a place is picked.
   const wide = matchMedia('(min-width: 768px)');
   const placePreview = () => {
     if (wide.matches) { if (preview.parentElement !== side) side.prepend(preview); }
     else if (preview.parentElement !== inline) inline.append(preview);
-    preview.hidden = !wide.matches && preview.dataset.state !== 'picked';
+    preview.hidden = preview.dataset.state !== 'picked';
   };
   wide.addEventListener('change', placePreview);
   const neighbourhood = form.querySelector<HTMLInputElement>('#neighbourhood')!;

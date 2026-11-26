@@ -72,7 +72,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "a4-space",
@@ -151,7 +162,18 @@
       "source": "Elsewhere visit",
       "checkedAt": "2020-08-18T03:20:18Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "alchemy",
@@ -229,7 +251,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "barasti",
@@ -313,7 +346,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "bla-bla-dubai",
@@ -397,7 +441,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2021-03-01T11:29:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "breeze",
@@ -478,7 +533,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2021-02-08T10:20:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "cafe-rider",
@@ -561,7 +627,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "canvas-by-coffee-culture",
@@ -644,7 +721,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "caribou-coffee",
@@ -719,7 +807,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "circle-mall",
@@ -797,7 +896,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "coffee-club-bluewater-island",
@@ -880,7 +990,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2020-10-01T12:00:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "coffee-club-marina-mall",
@@ -958,7 +1079,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2020-09-29T10:03:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "coffee-island-nakhell-mall-palm",
@@ -1041,7 +1173,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2022-05-06T06:52:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "coffee-planet-circle-mall-jvc",
@@ -1124,7 +1267,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2022-09-16T09:44:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "common-grounds-dubai-hills-mall",
@@ -1207,7 +1361,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "costa-coffee-index-difc",
@@ -1287,7 +1452,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "costa-coffee-jlt",
@@ -1362,7 +1538,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "dolce-green-cafe",
@@ -1442,7 +1629,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "doubletree-jbr",
@@ -1518,7 +1716,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "encounter-coffee-moe",
@@ -1598,7 +1807,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "fairmont-palm",
@@ -1673,7 +1893,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "friends-avenue-jlt",
@@ -1756,7 +1987,18 @@
       "source": "Elsewhere visit",
       "checkedAt": "2020-08-18T03:58:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "goose-island",
@@ -1837,7 +2079,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "have",
@@ -1920,7 +2173,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "huna-by-the-pond",
@@ -2003,7 +2267,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "ivy-secret-garden",
@@ -2086,7 +2361,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2022-09-01T10:11:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "jones-the-grocer-the-palm",
@@ -2170,7 +2456,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "la-ramona-dal-1947",
@@ -2253,7 +2550,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2021-02-08T09:24:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "lah-lah",
@@ -2337,7 +2645,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "ldc-kitchen-and-coffee",
@@ -2420,7 +2739,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "mama-zonia",
@@ -2504,7 +2834,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "mcgettigans-jlt",
@@ -2588,7 +2929,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "mitts-and-trays",
@@ -2661,7 +3013,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "nightjar-cafe",
@@ -2736,7 +3099,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "nola-eatery-and-social-house",
@@ -2812,7 +3186,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "one-life-dxb-hive-jvc",
@@ -2895,7 +3280,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "panifico-media-city",
@@ -2975,7 +3371,18 @@
       "source": "Elsewhere visit",
       "checkedAt": "2020-08-18T06:18:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "pipes-dxb",
@@ -3056,7 +3463,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2020-08-18T08:59:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "roast-speciality-coffee",
@@ -3134,7 +3552,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2021-04-01T04:15:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "roh-at-studiorepublik",
@@ -3209,7 +3638,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "rove-marina",
@@ -3293,7 +3733,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "scene",
@@ -3373,7 +3824,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2021-02-03T07:33:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "social-distrikt",
@@ -3456,7 +3918,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2022-06-22T06:43:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "social-house-dubai-mall",
@@ -3539,7 +4012,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2021-07-18T06:52:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "spaces-eatery",
@@ -3617,7 +4101,18 @@
       "source": "Elsewhere list",
       "checkedAt": "2023-01-23T09:35:38Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "starbucks-marina-walk",
@@ -3700,7 +4195,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "starbucks-reserve-dubai-hills-mall",
@@ -3783,7 +4289,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "techarc",
@@ -3861,7 +4378,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "the-london-project",
@@ -3942,7 +4470,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "the-social-company",
@@ -4020,7 +4559,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "the-sum-of-us",
@@ -4095,7 +4645,18 @@
       "source": null,
       "checkedAt": null
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "tom-and-serg",
@@ -4175,7 +4736,18 @@
       "source": "Elsewhere visit",
       "checkedAt": "2020-08-18T06:35:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   },
   {
     "id": "vibe",
@@ -4259,6 +4831,17 @@
       "source": "Elsewhere list",
       "checkedAt": "2021-06-17T10:58:00Z"
     },
-    "hours": null
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
   }
 ]

@@ -32,6 +32,10 @@ export function payloadSchema(now: number) {
     entry: z.enum(['free', 'buy', 'paid']).nullable().optional(),
     website: z.union([z.literal(''), z.string().max(300).url().refine(u => /^https?:\/\//.test(u), 'http')]).optional(),
     hours: z.object({ mon: day, tue: day, wed: day, thu: day, fri: day, sat: day, sun: day }).strict().nullable().optional(),
+    // Added Nov 2026: the kind of parking (and whether it's free), and the pet policy.
+    parking: z.enum(['street', 'carpark', 'valet', 'none']).nullable().optional(),
+    parkingCost: z.enum(['free', 'paid']).nullable().optional(),
+    pets: z.enum(['inside', 'outdoor', 'no']).nullable().optional(),
     email: z.union([z.literal(''), z.string().trim().max(254).email()]).optional(),
     wifiPassword: z.string().trim().max(64).optional(),
     // From the place search, when the visitor picked a suggestion. Coordinates must fall in or near the UAE.
@@ -58,7 +62,7 @@ export const SHEET_HEADER = ['Submission ID', 'Received at', 'Review status', 'K
   'Wi-Fi', 'Power sockets', 'Laptop policy', 'Calls', 'Step-free', 'Wi-Fi Mbps', 'Wi-Fi access', 'Notes', 'Contact email',
   'Submitted at (browser)', 'Form version', 'Wi-Fi password',
   'Google place ID', 'Address (Google)', 'Latitude', 'Longitude',
-  'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours', 'Raw submission (JSON)'] as const;
+  'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours', 'Parking', 'Parking cost', 'Pets', 'Raw submission (JSON)'] as const;
 
 /** One sheet row, in SHEET_HEADER order. Values are sent with valueInputOption=RAW, so nothing is read as a formula. */
 export function toRow(p: Payload, id: string, receivedAt: string): (string | number)[] {
@@ -68,7 +72,9 @@ export function toRow(p: Payload, id: string, receivedAt: string): (string | num
     p.wifiAccess === 'password' ? p.wifiPassword ?? '' : '',
     // Only kept together: a place ID with its address and location, or none of them.
     ...(p.googlePlaceId && p.lat != null && p.lng != null ? [p.googlePlaceId, p.address ?? '', p.lat, p.lng] : ['', '', '', '']),
-    p.sockets ?? '', p.noise ?? '', p.entry ?? '', p.website ?? '', hoursText(p.hours), rawJson(p)];
+    p.sockets ?? '', p.noise ?? '', p.entry ?? '', p.website ?? '', hoursText(p.hours),
+    // A cost is only kept when there is parking to pay for.
+    p.parking ?? '', p.parking && p.parking !== 'none' ? p.parkingCost ?? '' : '', p.pets ?? '', rawJson(p)];
 }
 
 /** The whole validated submission as JSON, so nothing is lost if a column is renamed or added later.

@@ -6,7 +6,7 @@ import Layout from '../../layouts/Layout.astro'; import SaveButton from '../../c
 import PlaceStats from '../../components/PlaceStats.astro';
 import { places } from '../../lib/places'; import { directionsUrl, directionsIsSearch } from '../../lib/discovery'; import { amenityLabels, dayKeys, type Place } from '../../lib/schema';
 import { amenityIcons, modeIcons, typeLabel, areaLabel, typeIcon } from '../../lib/ui';
-import { formatMbps, speedTier, speedIsStale, accessLabels, dayNames, formatRange } from '../../lib/details';
+import { formatMbps, speedTier, speedIsStale, accessLabels, dayNames, formatRange, parkingLabels, parkingCostLabels, petsLabels } from '../../lib/details';
 import { longDate, monthYear } from '../../lib/dates';
 import PlaceCard from '../../components/PlaceCard.astro';
 import { placeTitle, placeDescription, placeGraph, verdict, questions, areaPathFor, areaPages, collectionsFor, placeIsIndexable } from '../../lib/seo';
@@ -59,6 +59,12 @@ const wifiNote = (note: string) => speed ? `${formatMbps(speed.downMbps)} when t
   <dl class="visit-facts">
    <div><dt><Icon name="ticket" size={18} />Entry</dt><dd class:list={[{ 'fact-muted': !p.entry }]}>{p.entry ? p.priceNote : 'Not added yet'}</dd></div>
    <div><dt><Icon name="map-pin" size={18} />Area</dt><dd>{p.neighbourhood ? `${p.neighbourhood}, Dubai` : <span class="fact-muted">Not added yet</span>}{p.locationNote && <span class="visit-small">{p.locationNote}</span>}</dd></div>
+   <div><dt><Icon name="car" size={18} />Parking</dt>{p.parking.value === 'unknown'
+    ? <dd class="fact-muted">Not added yet</dd>
+    : <dd>{parkingLabels[p.parking.value]}{p.parking.cost !== 'unknown' && `, ${parkingCostLabels[p.parking.cost]}`}<span class="visit-small">Reported {monthYear(p.parking.checkedAt!)} · {p.parking.source}.</span></dd>}</div>
+   <div><dt><Icon name="paw-print" size={18} />Pets</dt>{p.pets.value === 'unknown'
+    ? <dd class="fact-muted">Not added yet</dd>
+    : <dd>{petsLabels[p.pets.value]}<span class="visit-small">Reported {monthYear(p.pets.checkedAt!)} · {p.pets.source}. Policies change, so check with staff first.</span></dd>}</div>
    <div><dt><Icon name={p.wifiAccess.value === 'open' ? 'lock-simple-open' : 'lock-simple'} size={18} />Wi-Fi</dt>
     {p.wifiAccess.password
       ? <dd class="wifi-pass">

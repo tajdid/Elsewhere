@@ -25,7 +25,7 @@
 | wifiAccess | `{value: open/password/signup/unknown, password or null, source, checkedAt}` | Known values need a source and date. `password` only when the value is `password`. It's shown with Copy and its listed date, since passwords change |
 | hours | `{source, checkedAt, week: {mon…sun: [open, close] or null}}` or null | Usual hours in 24-hour Dubai time; a close at or before the open runs past midnight; equal times mean 24 hours; null day = closed |
 
-Fixture amenities: wifi, power, laptops, calls, stepFree. Wi-Fi speed, Wi-Fi access and usual hours are separate dated records (above), never inferred from the Wi-Fi evidence. Toilets, parking, noise, prayer space, outdoor seating, accessibility beyond step-free entry, and sockets per table are **not inferred**. Add separately verified fields if introduced.
+Fixture amenities: wifi, power, laptops, calls, stepFree. Wi-Fi speed, Wi-Fi access and usual hours are separate dated records (above), never inferred from the Wi-Fi evidence. Toilets, noise, prayer space, outdoor seating, accessibility beyond step-free entry, and sockets per table are **not inferred**. Add separately verified fields if introduced.
 
 ## Evidence contract
 ```
@@ -87,3 +87,11 @@ Saved places remain client-only in MVP; no users table is needed.
 - **Speed** is a snapshot from one test, shown with its tester and date and a plain tier: 50+ Mbps “Plenty for video calls”, 20+ “Good for video calls”, 5+ “Fine for email and browsing”, otherwise “Slow for most work”. A speed never upgrades the Wi-Fi evidence and does not count towards the Verified Wi-Fi filter.
 - **Access** says how to get on (no password, password from staff, sign-up page). Publishing passwords is out of scope: they change, and venues may not want them shared. The report form asks visitors not to include them, and the payload has no password field.
 - **Hours** are usual hours as checked, with a source and date. The UI says “Usually 8 am – 5 pm today” or “Usually closed today”, with today worked out in Dubai time when the page is read, and never “open now”. The visit panel adds that public holidays and Ramadan hours may differ, and still tells visitors to check with the venue.
+
+## Parking and pets (added Nov 2026)
+Suggested by visitors. Both are separate dated records beside the amenities, like Wi-Fi access, and start as `unknown` for every place: the owner's Notion list has no parking or pet information, and nothing is inferred from a venue's type or location.
+- `parking`: `value` is `street`, `carpark` (mall or building), `valet`, `none` or `unknown`; `cost` is `free`, `paid` or `unknown`, and stays `unknown` unless there is parking to pay for. Prices are deliberately not stored: they change too often to keep accurate.
+- `pets`: `value` is `inside` (welcome inside), `outdoor` (outdoor seating only), `no` or `unknown`. Policies often differ between inside and the terrace, so there is no plain yes.
+- Any known value needs a `source` and `checkedAt`. Place pages show "Not added yet" for unknown, otherwise the answer with "Reported <month year> · <source>"; pets add "Policies change, so check with staff first."
+- Visitors report both through Submit a place; reports land in the Sheet as Pending and reach the list only through the owner's import. There is no parking or pet filter yet: add one once enough places have answers.
+

@@ -56,6 +56,9 @@ for r in raw:
      'wifiSpeed':{'downMbps':r['speed'],'upMbps':None,'measuredAt':added,'source':src} if r['speed'] is not None else None,
      'wifiAccess':{'value':access,'password':None,'source':None,'checkedAt':None} if access=='unknown' else {'value':access,'password':r['password'].strip() if access=='password' and pw!='ask server' else None,'source':src,'checkedAt':added},
      'hours':None,
+     # Not in the Notion list: unknown until a visitor reports them.
+     'parking':{'value':'unknown','cost':'unknown','source':None,'checkedAt':None},
+     'pets':{'value':'unknown','source':None,'checkedAt':None},
     })
 out.sort(key=lambda p:p['name'].lower())
 assert len({p['id'] for p in out})==len(out)

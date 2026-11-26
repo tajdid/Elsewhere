@@ -1,6 +1,6 @@
 // Plain-language Wi-Fi and hours details. Pure functions, unit-tested; nothing here claims a place is open now.
 import { STALE_DAYS } from './discovery';
-import { dayKeys, type DayKey, type Hours, type WifiAccess, type WifiSpeed } from './schema';
+import { dayKeys, type DayKey, type Hours, type Parking, type Pets, type WifiAccess, type WifiSpeed } from './schema';
 
 const DAY = 86400000;
 
@@ -22,6 +22,14 @@ export const speedIsStale = (s: WifiSpeed, now = Date.now()) => {
 
 export const accessLabels: Record<WifiAccess['value'], string> = {
   open: 'No password', password: 'Password from staff', signup: 'Sign-up page', unknown: 'Access not checked',
+};
+
+export const parkingLabels: Record<Parking['value'], string> = {
+  street: 'Street parking', carpark: 'Car park (mall or building)', valet: 'Valet parking', none: 'No parking nearby', unknown: 'Parking not added yet',
+};
+export const parkingCostLabels: Record<Parking['cost'], string> = { free: 'free', paid: 'paid', unknown: '' };
+export const petsLabels: Record<Pets['value'], string> = {
+  inside: 'Pets welcome inside', outdoor: 'Pets on outdoor seating only', no: 'No pets', unknown: 'Pets not added yet',
 };
 
 /** Weekday in Dubai, whatever the visitor's own time zone. */

@@ -25,6 +25,17 @@ export const wifiSpeedSchema = z.object({
 export const wifiAccessSchema = z.object({ value: z.enum(wifiAccessValues), password: z.string().min(1).max(64).nullable(), source: z.string().nullable(), checkedAt: z.string().datetime().nullable() })
   .refine(a => a.value === 'unknown' || (a.source && a.checkedAt), 'Known Wi-Fi access needs a source and date')
   .refine(a => !a.password || a.value === 'password', 'Only a password-protected network has a password');
+// Parking and pets: suggested by visitors (Nov 2026). Dated like Wi-Fi access, never inferred, and "unknown" until someone reports it.
+// Parking records the kind and whether it's free, not a price: prices change too often to keep accurate.
+export const parkingValues = ['street','carpark','valet','none','unknown'] as const;
+export const parkingCostValues = ['free','paid','unknown'] as const;
+export const parkingSchema = z.object({ value: z.enum(parkingValues), cost: z.enum(parkingCostValues), source: z.string().nullable(), checkedAt: z.string().datetime().nullable() })
+  .refine(a => a.value === 'unknown' || (a.source && a.checkedAt), 'Known parking needs a source and date')
+  .refine(a => (a.value !== 'none' && a.value !== 'unknown') || a.cost === 'unknown', 'Parking cost only applies when there is parking');
+// Pets: welcome inside, outdoor seating only, or not allowed. Policies vary, so a place is only shown as pet-friendly from a dated report.
+export const petsValues = ['inside','outdoor','no','unknown'] as const;
+export const petsSchema = z.object({ value: z.enum(petsValues), source: z.string().nullable(), checkedAt: z.string().datetime().nullable() })
+  .refine(a => a.value === 'unknown' || (a.source && a.checkedAt), 'Known pet policy needs a source and date');
 // Usual weekly hours, as checked: [open, close] in 24-hour Dubai time, a close at or before open runs past midnight; null = closed.
 export const dayKeys = ['mon','tue','wed','thu','fri','sat','sun'] as const;
 const hhmm = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/);
@@ -52,6 +63,7 @@ export const placeSchema = z.object({
   googlePlaceId:z.string().nullable().default(null),
   amenities:z.object({wifi:evidenceSchema,power:evidenceSchema,laptops:evidenceSchema,calls:evidenceSchema,stepFree:evidenceSchema}),
   wifiSpeed:wifiSpeedSchema.nullable(), wifiAccess:wifiAccessSchema, hours:hoursSchema.nullable(),
+  parking:parkingSchema, pets:petsSchema,
 }).superRefine((p,ctx) => {
   if (p.amenities.wifi.value === 'no' && (p.wifiSpeed || p.wifiAccess.value !== 'unknown')) ctx.addIssue({code:'custom',message:`${p.id}: Wi-Fi details recorded for a place with no Wi-Fi`});
 });
@@ -61,4 +73,6 @@ export type Mode = typeof modes[number];
 export type WifiSpeed = z.infer<typeof wifiSpeedSchema>;
 export type WifiAccess = z.infer<typeof wifiAccessSchema>;
 export type Hours = z.infer<typeof hoursSchema>;
+export type Parking = z.infer<typeof parkingSchema>;
+export type Pets = z.infer<typeof petsSchema>;
 export type DayKey = typeof dayKeys[number];

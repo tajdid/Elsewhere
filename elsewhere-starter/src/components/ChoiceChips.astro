@@ -1,0 +1,26 @@
+---
+// One question as a row of chips: native radios in a fieldset, so keyboard (arrow keys), screen readers and plain
+// form submission all work. Nothing is pre-selected unless `checked` is given; leaving a question alone means
+// "Not sure", and a quieter "Not sure" chip ends the row for anyone who wants to say so.
+import Icon from './Icon.astro';
+export interface Chip { value: string; label: string; icon?: string }
+interface Props {
+  name: string; legend: string; icon?: string; options: Chip[]; checked?: string;
+  unsure?: string | false; // value of the "Not sure" chip ('' or 'unsure'); false = no such chip
+  id?: string; hidden?: boolean; stacked?: boolean; // stacked: label above the chips at every width
+}
+const { name, legend, icon, options, checked, unsure = '', id, hidden, stacked = false } = Astro.props;
+---
+<div class:list={['qrow', { 'qrow--stacked': stacked }]} id={id} hidden={hidden}>
+ <!-- The visible label sits in the row's first column; the fieldset carries the same name as its legend for screen
+      readers (Safari won't place a legend in a grid column). -->
+ <span class="qrow-label" aria-hidden="true">{icon && <Icon name={icon} size={18} />}{legend}</span>
+ <fieldset>
+  <legend class="sr-only">{legend}</legend>
+  <div class="chips">
+   {options.map(o => <label class="chip"><input type="radio" name={name} value={o.value} checked={checked === o.value} />{o.icon && <Icon name={o.icon} size={16} />}<span>{o.label}</span></label>)}
+   {unsure !== false && <label class="chip chip--unsure"><input type="radio" name={name} value={unsure} /><span>Not sure</span></label>}
+  </div>
+ </fieldset>
+ <slot />
+</div>

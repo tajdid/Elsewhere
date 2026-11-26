@@ -229,7 +229,7 @@ test('sheet columns: fixed order, Pending status, raw JSON last, formulas kept a
   assert.deepEqual([...SHEET_HEADER], ['Submission ID', 'Received at', 'Review status', 'Kind', 'Place ID', 'Name', 'Type',
     'Neighbourhood', 'Visited on', 'Wi-Fi', 'Power sockets', 'Laptop policy', 'Calls', 'Step-free', 'Wi-Fi Mbps', 'Wi-Fi access',
     'Notes', 'Contact email', 'Submitted at (browser)', 'Form version', 'Wi-Fi password', 'Google place ID', 'Address (Google)',
-    'Latitude', 'Longitude', 'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours', 'Raw submission (JSON)']);
+    'Latitude', 'Longitude', 'Sockets (1-5)', 'Noise', 'Entry', 'Website', 'Hours', 'Parking', 'Parking cost', 'Pets', 'Raw submission (JSON)']);
   const { d, appends } = deps();
   await handleSubmit(req(goodBody()), d);
   const row = JSON.parse(appends()[0].body).values[0];
@@ -239,4 +239,44 @@ test('sheet columns: fixed order, Pending status, raw JSON last, formulas kept a
   assert.equal(raw.name, row[SHEET_HEADER.indexOf('Name')]);
   assert.equal(raw.notes, '=HYPERLINK("x")');
   assert.equal('hp' in raw, false);
+});
+
+test('parking and pets: kind and cost (only with parking), pet policy; checked on both sides and written to the Sheet', async () => {
+  const base = { name: 'X', category: 'Café', neighbourhood: 'JLT', visitedOn: '2026-11-18' };
+  // Browser: a cost only counts when there is parking to pay for; unknown values become "Not sure" (null).
+  const s = buildSubmission({ ...base, parking: 'carpark', parkingCost: 'paid', pets: 'outdoor' }, null, NOW);
+  assert.deepEqual([s.parking, s.parkingCost, s.pets], ['carpark', 'paid', 'outdoor']);
+  const none = buildSubmission({ ...base, parking: 'none', parkingCost: 'paid' }, null, NOW);
+  assert.deepEqual([none.parking, none.parkingCost, none.pets], ['none', null, null]);
+  const odd = buildSubmission({ ...base, parking: 'helipad', parkingCost: 'free', pets: 'llamas' }, null, NOW);
+  assert.deepEqual([odd.parking, odd.parkingCost, odd.pets], [null, null, null]);
+  // Server: accepted and readable in the Sheet, in the three new columns before the raw JSON.
+  const { d, appends } = deps();
+  assert.equal((await handleSubmit(req({ ...s, email: '', hp: '', openedAt: NOW - 60_000 }), d)).status, 201);
+  const row = JSON.parse(appends()[0].body).values[0];
+  const col = (h: string) => row[SHEET_HEADER.indexOf(h as typeof SHEET_HEADER[number])];
+  assert.deepEqual([col('Parking'), col('Parking cost'), col('Pets')], ['carpark', 'paid', 'outdoor']);
+  assert.equal(SHEET_HEADER.at(-1), 'Raw submission (JSON)');
+  // A cost sent without parking (a bypassed form) is not written.
+  const x = deps();
+  assert.equal((await handleSubmit(req({ ...none, parkingCost: 'paid', email: '', hp: '', openedAt: NOW - 60_000 }), x.d)).status, 201);
+  const row2 = JSON.parse(x.appends()[0].body).values[0];
+  assert.equal(row2[SHEET_HEADER.indexOf('Parking cost')], '');
+  // Older forms that don't send the fields still work; bad values are refused.
+  const { parking: _p, parkingCost: _c, pets: _q, ...old } = s;
+  assert.equal((await handleSubmit(req({ ...old, email: '', hp: '', openedAt: NOW - 60_000 }), deps().d)).status, 201);
+  for (const bad of [{ parking: 'helipad' }, { parkingCost: 'cheap' }, { pets: 'llamas' }]) {
+    assert.equal((await handleSubmit(req({ ...s, ...bad, email: '', hp: '', openedAt: NOW - 60_000 }), deps().d)).status, 422, JSON.stringify(bad));
+  }
+});
+
+test('the socket count answers "Could you plug in?" and noise answers "Are calls okay?"', () => {
+  const base = { name: 'X', category: 'Café', neighbourhood: 'JLT', visitedOn: '2026-11-18' };
+  const none = buildSubmission({ ...base, sockets: '0', noise: 'loud' }, null, NOW);
+  assert.deepEqual([none.amenities.power, none.amenities.calls, none.sockets, none.noise], ['no', 'no', null, 'loud']);
+  const some = buildSubmission({ ...base, sockets: '4', noise: 'moderate' }, null, NOW);
+  assert.deepEqual([some.amenities.power, some.amenities.calls, some.sockets], ['yes', 'yes', 4]);
+  // Not answered: nothing is derived, and an explicit answer (older forms) still counts.
+  const blank = buildSubmission({ ...base, power: 'yes' }, null, NOW);
+  assert.deepEqual([blank.amenities.power, blank.amenities.calls], ['yes', 'unsure']);
 });

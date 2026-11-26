@@ -758,23 +758,13 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 .compare th:first-child{min-width:200px;position:sticky;left:0;background:var(--raised);z-index:1}
 @media(max-width:639px){.compare th:first-child{min-width:150px}.filter-top{flex-wrap:wrap}.filter-top .grow{flex-basis:100%}#filter-toggle{width:100%;justify-content:center}}
 /* Submit a place */
-.submit-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:48px;align-items:start;margin-top:40px}
-.ask-list{display:grid;margin-top:20px}
-.ask-list li{display:grid;grid-template-columns:24px 1fr;gap:16px;padding:22px 0;border-top:1px solid var(--border)}
-.ask-list li:last-child{border-bottom:1px solid var(--border)}
-.ask-list .icon{color:var(--accent);margin-top:1px}
-.ask-list p{color:var(--muted);margin-top:6px;max-width:58ch}
-.treat-list{display:grid;gap:18px;margin-top:20px}
-.treat-list p{font-size:14px;color:var(--muted);margin-top:8px}
-@media(max-width:767px){.submit-grid{grid-template-columns:minmax(0,1fr);gap:32px}}
-.submit-grid .visit{grid-area:auto}
 
 /* Submit form */
 .submit-form{display:grid;gap:40px}
 .form-section{border:0;margin:0;padding:0;min-width:0;display:grid;gap:16px}
 .form-section>legend{padding:0;margin-bottom:16px}
 .form-section>legend h2{font-size:22px}
-.form-help{color:var(--muted);font-size:15px;margin-top:-8px}
+.form-help{color:var(--muted);font-size:13px;line-height:1.4;margin-top:-8px}
 .field{display:grid;gap:8px;min-width:0}
 .field label{font-size:15px;font-weight:550}
 .hp-field{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
@@ -833,15 +823,6 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 .select-wrap select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer}
 .select-wrap .icon{position:absolute;right:16px;pointer-events:none;color:var(--muted)}
 .field--date input{max-width:240px}
-.amenity-answers{display:grid}
-/* The divider lives on a wrapper, not the fieldset: Safari draws a legend inside the fieldset's border. */
-/* The legend stays a plain block (Safari ignores float and flex on it); the buttons are pinned to the right. */
-.answer{position:relative;padding:14px 0;border-top:1px solid var(--border)}
-.answer:last-child{border-bottom:1px solid var(--border)}
-.answer>fieldset{min-width:0;border:0;margin:0;padding:0}
-.answer legend{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 220px 0 0;font-weight:550}
-.answer .segmented{position:absolute;right:0;top:14px}
-.answer legend .icon{color:var(--accent)}
 .segmented--sm .seg{min-height:40px;padding:0 14px;font-size:14px}
 .submit-button{justify-self:start;min-width:200px}
 .submit-button[aria-busy=true]{opacity:.75;cursor:progress}
@@ -860,7 +841,7 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 /* Report CTA on place details */
 .check-cta{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;margin-top:48px;padding:22px 24px;border-radius:var(--r-photo);background:var(--surface)}
 .check-cta p{color:var(--muted);font-size:15px;margin-top:4px;max-width:46ch}
-@media(max-width:639px){.answer legend{min-height:0;padding-right:0;margin-bottom:12px}.answer .segmented{position:static;display:flex;width:100%}.answer .seg{flex:1;justify-content:center}.field-row{grid-template-columns:1fr}.submit-done{padding:28px 22px}.submit-button{justify-self:stretch}.answer{padding:16px 0}}
+@media(max-width:639px){.field-row{grid-template-columns:1fr}.submit-done{padding:28px 22px}.submit-button{justify-self:stretch}}
 
 /* ---------- Phone (under 640px) ---------- */
 @media(max-width:639px){
@@ -939,3 +920,88 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
 @media(max-width:767px){.guide-links,.guide-cols{grid-template-columns:1fr}.guide-cols>div+div{margin-top:28px}.guide-block{margin-top:48px}.guide-table tbody th{min-width:150px}}
 .nowrap{white-space:nowrap}
 .card-facts+.card-pass{margin-top:12px}
+
+/* ---------- Submit a place: one page of rows (Nov 2026) ----------
+   Each section has its title and a one-line explanation on the left (kept in view while its rows scroll) and its
+   rows in a white panel on the right: label on the left, answers on the right. Nothing is pre-selected; a chosen
+   answer gets a forest outline and a light forest tint. The send block is a forest field, like the home page's. */
+.sp-title{max-width:none}
+.sp-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:20px;font-size:15px;font-weight:500}
+.sp-facts li{display:inline-flex;align-items:center;gap:8px}
+.sp-facts .icon{color:var(--accent)}
+.sp{margin-top:8px}
+.sp-form{display:grid;gap:0}
+.sp-section{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:24px 56px;align-items:start;margin-top:64px}
+.sp-section:first-of-type{margin-top:40px}
+.sp-head{position:sticky;top:24px;padding-top:20px}
+.sp-head h2{font-size:26px;letter-spacing:-.035em}
+.sp-head p{margin-top:8px;max-width:32ch;font-size:15px;line-height:1.5;color:var(--muted)}
+.sp-rows{display:grid;padding:4px 28px;border:1px solid var(--border);border-radius:var(--r-panel);background:var(--raised)}
+/* Rows */
+.qrow{display:grid;grid-template-columns:200px minmax(0,1fr);gap:10px 20px;align-items:center;padding:18px 0}
+.qrow+.qrow{border-top:1px solid var(--border)}
+.qrow--top{align-items:start}
+.qrow--top .qrow-label{padding-top:6px}
+.qrow>fieldset{border:0;margin:0;padding:0;min-width:0}
+.qrow>.field{min-width:0}
+/* Icon in its own column; the words (and "Optional" under them) wrap beside it. */
+.qrow-label{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:10px;align-items:center;font-size:15px;font-weight:600;line-height:1.3}
+.qrow-label .icon{grid-row:1;align-self:center;width:32px;height:32px;padding:7px;border-radius:10px;background:color-mix(in srgb,var(--accent) 10%,var(--raised));color:var(--accent)}
+.qrow-label .optional{grid-column:2;margin:0;font-size:13px;font-weight:400}
+.qrow-label:has(.optional) .icon{grid-row:1 / span 2}
+.sp-sub{grid-column:2}
+.sp-subrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.sp-subrow>fieldset{border:0;margin:0;padding:0;min-width:0}
+.sp-sublabel{font-size:14px;font-weight:500;color:var(--muted)}
+.sp-hint{margin-top:8px;font-size:13px;line-height:1.4;color:var(--muted)}
+.sp-map:empty,#preview-inline:empty{display:none}
+.sp-map .place-preview,#preview-inline .place-preview{margin-top:10px}
+#wifiPassword-field input{max-width:360px}
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{position:relative;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--raised);font-size:14px;font-weight:500;color:var(--text);cursor:pointer;transition:background-color 160ms var(--ease),border-color 160ms var(--ease),color 160ms var(--ease),transform 160ms var(--ease)}
+.chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.chip .icon{color:var(--accent)}
+.chip:hover{border-color:var(--control)}
+.chip:active{transform:scale(.97)}
+.chip--unsure{border-color:transparent;background:var(--surface);color:var(--muted)}
+.chip--unsure:hover{border-color:transparent;background:var(--surface-2);color:var(--text)}
+.chip:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--raised));color:var(--accent-ink);font-weight:600}
+.chip:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.chip-meter{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
+.chip-meter i{width:4px;height:100%;border-radius:1px;background:var(--surface-2)}
+.chip-meter i.on{background:var(--accent)}
+/* Wi-Fi speed */
+.sp-speed input{max-width:200px}
+.sf-gauge{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;max-width:200px;height:6px;margin-top:4px}
+.sf-gauge i{border-radius:3px;background:var(--surface-2);transition:background-color 200ms var(--ease)}
+.sf-gauge i.on{background:var(--accent)}
+.sf-link{color:var(--text);font-weight:550;text-decoration:underline;text-underline-offset:3px}
+.sf-tier{display:block;margin-top:2px;font-weight:550;color:var(--accent)}
+.sf-tier:empty{display:none}
+/* Sending: a forest field with a light button. */
+.sp-form-error{margin-top:40px}
+.sp-send{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px 40px;margin-top:64px;padding:40px 48px;border-radius:var(--r-panel);background:var(--accent);color:var(--ground)}
+.sp-send-copy{max-width:52ch}
+.sp-send h2{font-size:clamp(26px,2.6vw,34px);letter-spacing:-.04em}
+.sp-send p{margin-top:8px;font-size:16px;line-height:1.5;color:#E6ECE5}
+.sp-send .submit-button{min-width:0}
+.sp .submit-done,.sp .my-reports{margin-top:40px}
+@media(max-width:999px){
+ .sp-section{grid-template-columns:minmax(0,1fr);gap:16px}
+ .sp-head{position:static;padding-top:0}
+ .sp-head p{max-width:60ch}
+}
+@media(max-width:639px){
+ .sp-section{margin-top:48px}
+ .sp-section:first-of-type{margin-top:28px}
+ .sp-head h2{font-size:23px}
+ .sp-rows{padding:2px 16px}
+ .sp-facts{gap:8px 20px;font-size:14px}
+ .qrow{grid-template-columns:1fr;gap:12px;padding:16px 0}
+ .qrow--top .qrow-label{padding-top:0}
+ .sp-sub{grid-column:1}
+ .sp-speed input,.sf-gauge{max-width:none}
+ .sp-send{padding:28px 20px}
+ .sp-send .submit-button{justify-self:stretch}
+}

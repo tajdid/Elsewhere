@@ -1,4 +1,5 @@
-import { buildSubmission, validateSubmission, parseReports, addReport, dubaiToday, SUBMISSIONS_KEY, FIELD_ORDER, type StoredReport, type FieldError } from '../lib/submissions';
+import { buildSubmission, validateSubmission, parseReports, addReport, dubaiToday, parseMbps, SUBMISSIONS_KEY, FIELD_ORDER, type StoredReport, type FieldError } from '../lib/submissions';
+import { speedTier, formatMbps } from '../lib/details';
 
 const form = document.querySelector<HTMLFormElement>('#submit-form');
 const done = document.querySelector<HTMLElement>('#submit-done');
@@ -16,11 +17,43 @@ if (form && done) {
   const formError = document.querySelector<HTMLElement>('#form-error')!;
   const date = field<HTMLInputElement>('visitedOn');
 
+  // Answers are tiles (radio groups): read the checked value by name.
+  const radio = (name: string) => form.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.value ?? '';
+  const check = (name: string, value: string) => { const r = form.querySelector<HTMLInputElement>(`input[name="${name}"][value="${CSS.escape(value)}"]`); if (r) r.checked = true; };
+
   // The password field only shows when the visitor says the Wi-Fi needs a password from staff.
-  const access = field<HTMLSelectElement>('wifiAccess');
   const passwordField = document.querySelector<HTMLElement>('#wifiPassword-field')!;
-  const syncPassword = () => { passwordField.hidden = access.value !== 'password'; };
-  access.addEventListener('change', syncPassword);
+  const syncPassword = () => { passwordField.hidden = radio('wifiAccess') !== 'password'; };
+
+  // "Is parking free?" only shows once the visitor says there is parking to pay for; otherwise it goes back to Not sure.
+  const parkingCost = document.querySelector<HTMLElement>('#parkingCost-field')!;
+  const syncParking = () => {
+    const show = ['street', 'carpark', 'valet'].includes(radio('parking'));
+    parkingCost.hidden = !show;
+    if (!show) form.querySelectorAll<HTMLInputElement>('input[name=parkingCost]').forEach(r => { r.checked = false; });
+  };
+
+  // Speed and access only matter when there is Wi-Fi.
+  const wifiMore = Array.from(document.querySelectorAll<HTMLElement>('[data-wifi-more], #wifi-access-row'));
+  const syncWifi = () => { wifiMore.forEach(el => { el.hidden = radio('wifi') === 'no'; }); };
+  form.addEventListener('change', e => {
+    const name = (e.target as HTMLInputElement).name;
+    if (name === 'wifiAccess') syncPassword();
+    if (name === 'parking') syncParking();
+    if (name === 'wifi') syncWifi();
+  });
+
+  // The speed field fills a four-step gauge and says what the number means.
+  const speedInput = field<HTMLInputElement>('wifiSpeed');
+  const gauge = Array.from(document.querySelectorAll<HTMLElement>('#speed-gauge i'));
+  const tierText = document.querySelector<HTMLElement>('#speed-tier')!;
+  const syncSpeed = () => {
+    const n = parseMbps(speedInput.value);
+    const lit = n ? [0, 5, 20, 50].filter(t => n >= t).length : 0;
+    gauge.forEach((g, i) => g.classList.toggle('on', i < lit));
+    tierText.textContent = n ? `${formatMbps(n)}: ${speedTier(n).toLowerCase()}.` : '';
+  };
+  speedInput.addEventListener('input', syncSpeed);
 
   // Opening hours: "Not sure", one pair for every day, or each day (with Closed). Only the chosen block shows.
   const hoursSame = document.querySelector<HTMLElement>('#hours-same')!;
@@ -56,13 +89,16 @@ if (form && done) {
     openedAt = Date.now();
     localId = crypto.randomUUID();
     syncPassword();
+    syncParking();
+    syncWifi();
+    syncSpeed();
     syncHours();
     date.max = dubaiToday();
     date.value = dubaiToday();
     if (!target) return;
     field<HTMLInputElement>('placeId').value = target.id;
     field<HTMLInputElement>('name').value = target.name;
-    if (target.category) field<HTMLSelectElement>('category').value = target.category;
+    if (target.category) check('category', target.category);
     field<HTMLInputElement>('neighbourhood').value = target.neighbourhood;
   }
   if (target) {
@@ -114,6 +150,8 @@ if (form && done) {
     e.preventDefault();
     formError.hidden = true;
     const values = Object.fromEntries(Array.from(new FormData(form).entries()).map(([k, v]) => [k, String(v)]));
+    // No Wi-Fi: speed and access answers left over from an earlier choice don't apply.
+    if (values.wifi === 'no') { values.wifiSpeed = ''; values.wifiAccess = 'unsure'; values.wifiPassword = ''; }
     const errors = validateSubmission(values);
     showErrors(errors);
     if (errors.length) return;

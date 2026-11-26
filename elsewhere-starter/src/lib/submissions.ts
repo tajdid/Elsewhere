@@ -20,6 +20,9 @@ export interface Submission {
   noise: typeof noiseLevels[number] | null;
   entry: 'free' | 'buy' | 'paid' | null; // free to sit, expected to buy something, or paid entry / day pass
   website: string; // website or social link, '' when not given
+  parking: 'street' | 'carpark' | 'valet' | 'none' | null; // the kind of parking, not a price
+  parkingCost: 'free' | 'paid' | null; // only when there is parking
+  pets: 'inside' | 'outdoor' | 'no' | null; // welcome inside, outdoor seating only, or not allowed
   hours: Week | null; // what the visitor saw, 24-hour "HH:MM"; null day = closed
   submittedAt: string; // ISO timestamp
 }
@@ -83,6 +86,23 @@ export function parseMbps(raw?: string): number | null | undefined {
   return n > 0 && n <= MAX_MBPS ? Math.round(n * 10) / 10 : undefined;
 }
 
+/** Parking kind, and its cost only when there is parking to pay for. Anything else becomes null ("Not sure"). */
+export function parkingFrom(v: Record<string, string | undefined>): Pick<Submission, 'parking' | 'parkingCost'> {
+  const parking = (['street', 'carpark', 'valet', 'none'] as const).find(x => x === v.parking) ?? null;
+  const parkingCost = parking && parking !== 'none' ? (['free', 'paid'] as const).find(x => x === v.parkingCost) ?? null : null;
+  return { parking, parkingCost };
+}
+
+/** The form asks fewer questions: the socket count answers "Could you plug in?" (none = no, any = yes) and the noise
+ *  level answers "Are calls okay?" (quiet or moderate = yes, loud = no), the same rule place pages use. Only given
+ *  answers are derived; otherwise an explicit power / calls answer (older forms) still counts. */
+export function derivedAmenities(v: Record<string, string | undefined>): Partial<Record<'power' | 'calls', Answer>> {
+  const out: Partial<Record<'power' | 'calls', Answer>> = {};
+  if (v.sockets === '0') out.power = 'no'; else if (/^[1-5]$/.test(v.sockets ?? '')) out.power = 'yes';
+  if (v.noise === 'quiet' || v.noise === 'moderate') out.calls = 'yes'; else if (v.noise === 'loud') out.calls = 'no';
+  return out;
+}
+
 /** Validate raw form values. Returns the fields in error, in form order. */
 export function validateSubmission(v: Record<string, string | undefined>, now = Date.now()): FieldError[] {
   const errors: FieldError[] = [];
@@ -109,14 +129,16 @@ export function buildSubmission(v: Record<string, string | undefined>, placeId: 
     category,
     neighbourhood: (v.neighbourhood ?? '').trim().slice(0, 80),
     visitedOn: v.visitedOn ?? '',
-    amenities: Object.fromEntries(amenityKeys.map(k => [k, answer(v[k])])) as Submission['amenities'],
+    amenities: { ...Object.fromEntries(amenityKeys.map(k => [k, answer(v[k])])), ...derivedAmenities(v) } as Submission['amenities'],
     wifiDownMbps: parseMbps(v.wifiSpeed) ?? null,
     wifiAccess: (['open', 'password', 'signup'] as const).find(a => a === v.wifiAccess) ?? 'unsure',
     notes: (v.notes ?? '').trim().slice(0, 600),
-    sockets: /^[1-5]$/.test(v.sockets ?? '') ? Number(v.sockets) : null,
+    sockets: /^[1-5]$/.test(v.sockets ?? '') ? Number(v.sockets) : null, // "0" (no sockets) is recorded as power: no
     noise: noiseLevels.find(n => n === v.noise) ?? null,
     entry: (['free', 'buy', 'paid'] as const).find(e => e === v.entry) ?? null,
     website: normaliseUrl(v.website) ?? '',
+    ...parkingFrom(v),
+    pets: (['inside', 'outdoor', 'no'] as const).find(x => x === v.pets) ?? null,
     hours: hoursFrom(v) ?? null,
     submittedAt: new Date(now).toISOString(),
   };

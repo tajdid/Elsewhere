@@ -63,7 +63,9 @@ test('submit a new place: validation, local save and history',async({page})=>{
  await page.getByRole('button',{name:'Submit place'}).click();
  await expect(page.getByLabel('Place name')).toBeFocused();await expect(page.getByLabel('Place name')).toHaveAttribute('aria-invalid','true');
  await page.getByLabel('Place name').fill('Window Seat Café');await page.getByLabel('Neighbourhood').fill('Al Barsha');
- await page.getByRole('group',{name:'Wi-Fi'}).getByRole('radio',{name:'Yes',exact:true}).check();
+ await page.getByRole('group',{name:'Guest Wi-Fi'}).getByRole('radio',{name:'Yes',exact:true}).check();
+ // Nothing is pre-selected: a question left alone counts as "Not sure".
+ await expect(page.getByRole('group',{name:'Laptops welcome'}).getByRole('radio',{checked:true})).toHaveCount(0);
  await page.getByRole('button',{name:'Submit place'}).click();
  await expect(page.getByRole('heading',{name:'Report saved.'})).toBeFocused();
  await expect(page.locator('#done-text')).toContainText('saved in this browser');
@@ -116,9 +118,10 @@ test('Wi-Fi speed, access and usual hours read as dated facts, never as live sta
  await expect(page.locator('.wifi-details')).toContainText('112 Mbps down · 41 Mbps up · Plenty for video calls');
  await expect(page.locator('.week [aria-current="date"]')).toHaveCount(1);await expect(page.locator('.today-line')).toHaveText('Usually 6 am – 1 am today');
  await page.goto('/submit/');await page.getByLabel('Place name').fill('Test Café');await page.getByLabel('Neighbourhood').fill('JLT');
- await page.getByLabel(/Wi-Fi download speed/).fill('fast');await page.getByRole('button',{name:/Submit place/}).click();
- await expect(page.getByLabel(/Wi-Fi download speed/)).toBeFocused();await expect(page.locator('#wifiSpeed-error')).toBeVisible();
- await page.getByLabel(/Wi-Fi download speed/).fill('42,5');await page.getByLabel('Getting on the Wi-Fi').selectOption('signup');await page.getByRole('button',{name:/Submit place/}).click();
+ await page.getByLabel(/Speed, Mbps/).fill('fast');await page.getByRole('button',{name:/Submit place/}).click();
+ await expect(page.getByLabel(/Speed, Mbps/)).toBeFocused();await expect(page.locator('#wifiSpeed-error')).toBeVisible();
+ await page.getByLabel(/Speed, Mbps/).fill('42,5');await page.getByRole('group',{name:'Getting online'}).getByRole('radio',{name:'Sign-up page'}).check();
+ await page.getByRole('button',{name:/Submit place/}).click();
  await expect(page.getByRole('heading',{name:'Report saved.'})).toBeVisible();
  const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('elsewhere:submissions:v1')!)[0]);expect(stored.wifiDownMbps).toBe(42.5);expect(stored.wifiAccess).toBe('signup');
 });
