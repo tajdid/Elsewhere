@@ -95,3 +95,10 @@ Suggested by visitors. Both are separate dated records beside the amenities, lik
 - Any known value needs a `source` and `checkedAt`. Place pages show "Not added yet" for unknown, otherwise the answer with "Reported <month year> · <source>"; pets add "Policies change, so check with staff first."
 - Visitors report both through Submit a place; reports land in the Sheet as Pending and reach the list only through the owner's import. There is no parking or pet filter yet: add one once enough places have answers.
 
+## Visitor reports added to the list (26 Nov 2026)
+Two reports from the Submit a place Sheet were reviewed by the owner and added as new places: **Café De Paris** (Business Bay; Google's listing name "Café De Paris - Best Shisha in Business Bay" was shortened, and the area taken from Google's address rather than the suggested Downtown Dubai) and **Counter Culture Café** (Dubai Marina).
+- Each answered question becomes Reported evidence with source "Visitor report" and the report's timestamp; "not sure" answers stay unknown. `visited` stays false: the report isn't an Elsewhere visit.
+- Only the Google place ID is stored (in `src/data/google-places.json`, confirmed 26 Nov 2026); Google's address and coordinates are not copied.
+- `entry` gains a third value, `buy` (expected to buy something to sit and work), alongside `free` and `paid`; search data only states free entry for `free`. Counter Culture Café's price note records the reported "unlimited tea and coffee for 30 AED".
+- Not added: Counter Culture Café's website (the Sheet shows a truncated Instagram link) and its guest Wi-Fi password (none was given).
+

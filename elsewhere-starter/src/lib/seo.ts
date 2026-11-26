@@ -220,7 +220,7 @@ export function placeGraph(p: Place, site: URL, crumbs: [string, string?][]): Js
     address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
     containedInPlace: p.neighbourhood ? areaEntity(p.neighbourhood) : dubai,
     ...(features.length ? { amenityFeature: features } : {}),
-    ...(p.entry ? { isAccessibleForFree: p.entry === 'free' } : {}),
+    ...(p.entry === 'free' || p.entry === 'paid' ? { isAccessibleForFree: p.entry === 'free' } : {}),
   };
   return { '@context': 'https://schema.org', '@graph': [
     { '@type': 'WebPage', '@id': url, url, name: placeTitle(p).replace(` | ${SITE_NAME}`, ''), description: verdict(p), inLanguage: 'en-GB', isPartOf: { '@id': siteId(site) }, about: { '@id': `${url}#place` }, breadcrumb: breadcrumbs(crumbs, site) },

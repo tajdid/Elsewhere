@@ -183,5 +183,15 @@
     "googlePlaceId": "ChIJ7b2N5TFrXz4RuUcMh42wKiw",
     "confirmedAt": "2026-11-19",
     "googleName": "Social Company"
+  },
+  "cafe-de-paris-business-bay": {
+    "googlePlaceId": "ChIJVa79xy5pXz4Rrj9ZfEWL19U",
+    "confirmedAt": "2026-11-26",
+    "googleName": "Café De Paris - Best Shisha in Business Bay"
+  },
+  "counter-culture-cafe-dubai-marina": {
+    "googlePlaceId": "ChIJWzkwrVFrXz4RkRXiQTK35-4",
+    "confirmedAt": "2026-11-26",
+    "googleName": "Counter Culture Café"
   }
 }

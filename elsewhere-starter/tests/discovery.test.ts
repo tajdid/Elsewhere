@@ -103,10 +103,16 @@ test('reports carry an optional speed and an access answer, never a password fie
  assert.equal(buildSubmission({name:'A',wifiAccess:'hack'},null,now).wifiAccess,'unsure');
 });
 
-test('parking and pets start unknown for every place and are never inferred', async () => {
+test('parking and pets are never inferred: unknown unless a dated visitor report says otherwise', async () => {
   const { places } = await import('../src/lib/places');
   const { parkingSchema, petsSchema } = await import('../src/lib/schema');
-  assert.ok(places.every(p => p.parking.value === 'unknown' && p.parking.cost === 'unknown' && p.pets.value === 'unknown'));
+  // Places imported from the Notion list have no parking or pet information.
+  for (const p of places.filter(p => p.addedAt < '2026-11-20')) assert.ok(p.parking.value === 'unknown' && p.parking.cost === 'unknown' && p.pets.value === 'unknown', p.id);
+  // Anything known came from a visitor report, with its date.
+  for (const p of places) {
+    if (p.parking.value !== 'unknown') assert.ok(p.parking.source === 'Visitor report' && p.parking.checkedAt, p.id);
+    if (p.pets.value !== 'unknown') assert.ok(p.pets.source === 'Visitor report' && p.pets.checkedAt, p.id);
+  }
   // A known value needs a source and date; a cost needs parking to pay for.
   assert.equal(petsSchema.safeParse({ value: 'inside', source: null, checkedAt: null }).success, false);
   assert.equal(parkingSchema.safeParse({ value: 'none', cost: 'paid', source: 'Visitor report', checkedAt: '2026-11-20T00:00:00Z' }).success, false);

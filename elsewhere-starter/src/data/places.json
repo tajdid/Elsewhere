@@ -641,6 +641,92 @@
     }
   },
   {
+    "id": "cafe-de-paris-business-bay",
+    "slug": "cafe-de-paris-business-bay",
+    "name": "Café De Paris",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Business Bay",
+    "summary": "",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-25T05:27:12Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-25T05:27:12Z",
+        "note": "Wi-Fi reported by a visitor."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
     "id": "canvas-by-coffee-culture",
     "slug": "canvas-by-coffee-culture",
     "name": "Canvas by Coffee + Culture",
@@ -1544,6 +1630,92 @@
       "cost": "unknown",
       "source": null,
       "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
+    "id": "counter-culture-cafe-dubai-marina",
+    "slug": "counter-culture-cafe-dubai-marina",
+    "name": "Counter Culture Café",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Dubai Marina",
+    "summary": "",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": 4,
+    "noise": "moderate",
+    "entry": "buy",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-26T12:04:14Z",
+    "modes": [],
+    "priceNote": "Buy something to sit and work. A visitor reported unlimited tea and coffee for 30 AED.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:04:14Z",
+        "note": "Wi-Fi reported by a visitor."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:04:14Z",
+        "note": "Plenty of sockets."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:04:14Z",
+        "note": "Laptops welcome."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:04:14Z",
+        "note": "Moderate noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "password",
+      "password": null,
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:04:14Z"
+    },
+    "hours": null,
+    "parking": {
+      "value": "valet",
+      "cost": "unknown",
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:04:14Z"
     },
     "pets": {
       "value": "unknown",

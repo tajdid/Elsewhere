@@ -53,7 +53,7 @@ export const placeSchema = z.object({
   neighbourhood:z.string(), summary:z.string(),
   image:z.string().nullable(), imageAlt:z.string().nullable(), imageCredit:z.string().nullable(),
   // From the owner's list: sockets on a 1–5 scale, noise level, entry, and links.
-  sockets:z.number().int().min(1).max(5).nullable(), noise:z.enum(noiseLevels).nullable(), entry:z.enum(['free','paid']).nullable(),
+  sockets:z.number().int().min(1).max(5).nullable(), noise:z.enum(noiseLevels).nullable(), entry:z.enum(['free','buy','paid']).nullable(), // buy: expected to buy something to sit and work
   mapsUrl:z.string().url().nullable(), locationNote:z.string().nullable(), menuUrl:z.string().url().nullable(),
   visited:z.boolean(), addedAt:z.string().datetime(),
   modes:z.array(z.enum(modes)), priceNote:z.string(), hoursNote:z.string(), policyNote:z.string(),
