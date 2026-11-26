@@ -23,7 +23,7 @@ Matching: OR is implicit within the search corpus for each word, AND across word
 
 ## Discover
 **Question:** Where could I work today?
-**Order:** product navigation → tagline and concrete description → search pill → featured-places carousel: five listings, each a large photograph with a floating card (name, type and area, linking to details; no evidence pills), with previous / next, dot and pause/play controls, advancing every 3 seconds → four work intents with place counts → four starter listings → "Know a good spot?" forest field: “Know a good spot?” with Submit a place and Browse places under the intro, then three darker tiles, each led by a small piece of the real interface (a place search field; Wi-Fi, sockets and noise chips; a “Yes · Reported” pill): add the place, say what you found, it starts as Reported → footer. The evidence states are explained on About.
+**Order:** product navigation → tagline and concrete description → search pill → featured-places carousel: five listings, each a large photograph with a floating card (name, type and area, linking to details; no evidence pills), with previous / next, dot and pause/play controls, advancing every 3 seconds → four work intents with place counts → four starter listings → "Know a good spot?" a slim forest band: “Know a good spot?”, one sentence and a Submit a place button (full width on phones) → footer. The evidence states are explained on About.
 Search uses native GET form to Explore so entry works even without client JavaScript. Area and mode shortcuts use real query links. Four featured cards are the first four data records, not ratings or algorithmic popularity. “Explore all” count derives from data.
 Mobile composition puts the headline, search and area chips before the hero photo. No carousel; all four intents visible in a 2×2 grid. Full listing card image is not the sole way to open details.
 
@@ -57,7 +57,7 @@ Storage failure: keep in-memory state for current page, announce failure and dis
 ## Component contracts
 | Component | Inputs | Outputs and semantics | States |
 |---|---|---|---|
-| Layout | title, description, slot | html lang, landmarks, nav, meta, footer (tagline and Submit a place, the oversized wordmark, and a base row with the browser-local saves note and Back to top), script | current route, no-JS notice |
+| Layout | title, description, slot | html lang, landmarks, nav, meta, footer (tagline and links, the oversized wordmark, and a base row with the browser-local saves note and Back to top), script | current route, no-JS notice |
 | SearchForm | query, action | labelled search input, submit GET or enhancement | empty, populated, submitted |
 | WorkModeGroup | four enum modes, selected | native fieldset/legend/radio labels | any, single selected |
 | FilterPanel | type/area/verified flags | native selects, checkboxes, reset | closed/open mobile, visible desktop |
@@ -97,7 +97,7 @@ Place pages use the site image rather than their temporary photos, which don't s
 
 ## About and footer (14 Nov 2026)
 - **`/about/`:** what Elsewhere is, with three figures counted from the data. "Who's behind it" credits Tajdid Rahman (tajdidrahman.co.uk) and gives support@elsewhere.work for enquiries, corrections and removal requests. "What things mean" covers Wi-Fi speed tiers, the sockets scale, noise, Wi-Fi access, Visited and Not added. "The labels on each place" covers the evidence pills, and "Good to know" covers the lack of photos (none are shown until real ones exist), local saves, changing hours and directions.
-- **Footer:** tagline and description, Explore / Saved / About links, Submit a place, the big wordmark, then “Made with ☕ by Tajdid Rahman” (a coffee icon, with a link opening tajdidrahman.co.uk in a new tab) and Back to top.
+- **Footer:** tagline and description, Explore / Saved / About links, the big wordmark, then “Made with ☕ by Tajdid Rahman” (a coffee icon, with a link opening tajdidrahman.co.uk in a new tab) and Back to top.
 - **Place page:** the laptop tip sits in the left column under “What we know”, as a callout reading “Laptops: …”.
 
 ## Search and answer engines (18 Nov 2026)
