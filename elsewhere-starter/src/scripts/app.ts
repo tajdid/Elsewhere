@@ -85,6 +85,9 @@ function render(updateUrl = false) {
   // The collapsed disclosure on smaller screens still says how many of its filters are on.
   const hiddenActive = [filters.category, filters.neighbourhood, filters.fast, filters.sockets, filters.calls].filter(Boolean).length;
   if (filterCount) filterCount.textContent = hiddenActive ? ` · ${hiddenActive} active` : '';
+  if (toggle) toggle.dataset.count = String(hiddenActive); // the badge on the phone's icon-only Filters button
+  const done = document.querySelector('#filters-done');
+  if (done) done.textContent = matches.length === 0 ? 'No places match' : `Show ${matches.length} ${matches.length === 1 ? 'place' : 'places'}`;
   // "Clear all" only shows when there is something to clear; if it had focus, focus moves to the search box.
   const clearAll = document.querySelector<HTMLButtonElement>('#clear-all');
   if (clearAll) {
@@ -175,12 +178,38 @@ form?.addEventListener('reset', () => { if (!restoringURL) setTimeout(() => rend
 window.addEventListener('popstate', readURL);
 document.querySelector('#empty-clear')?.addEventListener('click', () => form?.reset());
 
+// More filters. Tablets expand them in place; phones open them as a bottom sheet over the results, which closes
+// with Escape, the backdrop, the close button or "Show N places", and hands focus back to the Filters button.
 if (toggle && extra) {
   extra.dataset.enhanced = 'true';
   toggle.hidden = false;
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
+  const phone = matchMedia('(max-width: 639px)');
+  const backdrop = document.querySelector<HTMLElement>('#filters-backdrop');
+  const setOpen = (open: boolean, returnFocus = true) => {
     toggle.setAttribute('aria-expanded', String(open));
     extra.classList.toggle('is-open', open);
+    const sheet = open && phone.matches;
+    extra.toggleAttribute('data-sheet', sheet);
+    if (sheet) { extra.setAttribute('role', 'dialog'); extra.setAttribute('aria-modal', 'true'); }
+    else { extra.removeAttribute('role'); extra.removeAttribute('aria-modal'); }
+    if (backdrop) backdrop.hidden = !sheet;
+    document.documentElement.classList.toggle('sheet-open', sheet);
+    if (sheet) document.querySelector<HTMLElement>('#filters-title')?.focus();
+    else if (!open && returnFocus && phone.matches) toggle.focus();
+  };
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  document.querySelector('#filters-close')?.addEventListener('click', () => setOpen(false));
+  document.querySelector('#filters-done')?.addEventListener('click', () => setOpen(false));
+  backdrop?.addEventListener('click', () => setOpen(false));
+  extra.addEventListener('keydown', e => { if (e.key === 'Escape' && extra.hasAttribute('data-sheet')) { e.preventDefault(); setOpen(false); } });
+  // Keep Tab inside the sheet while it is open.
+  extra.addEventListener('keydown', e => {
+    if (e.key !== 'Tab' || !extra.hasAttribute('data-sheet')) return;
+    const items = [...extra.querySelectorAll<HTMLElement>('button:not([hidden]), select, input')].filter(el => el.offsetParent !== null);
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
+  // Rotating to a wider screen turns an open sheet back into the in-place panel.
+  phone.addEventListener('change', () => { if (toggle.getAttribute('aria-expanded') === 'true') setOpen(true, false); });
 }

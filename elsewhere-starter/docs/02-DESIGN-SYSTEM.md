@@ -39,7 +39,7 @@ Self-hosted `@fontsource-variable/geist`, variable weight, one family. Fallback 
 ## Layout and spacing
 4px base. Max width 1320px; desktop gutters 32px; phones 16px.
 - ≥1000px: four listing columns, 20px gaps. Discover hero is text / photo at 1 : 1.05 with a 64px gap. Detail is 2fr / 1fr: photo then evidence on the left, a sticky white "Plan a visit" panel on the right.
-- ≤999px: two listing columns; 2×2 mode tiles; Explore filter disclosure ("Filters · N active").
+- ≤999px: two listing columns; 2×2 mode tiles; Explore filter disclosure ("Filters · N active"). ≤639px: the Filters button is an icon beside search with a count badge, work modes scroll as chips, and filters open as a bottom sheet with "Show N places".
 - ≤860px: the segmented nav takes its own full-width row under the wordmark.
 - ≤767px: hero and detail stack (detail: photo → visit → evidence).
 - ≤639px: one listing column; select pills go full width; the work-mode segmented control scrolls inside itself, never the page.

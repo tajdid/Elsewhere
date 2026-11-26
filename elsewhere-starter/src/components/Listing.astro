@@ -20,7 +20,7 @@ const areas = [...new Set(places.map(p => p.neighbourhood).filter(Boolean))].sor
    <input type="search" id="q" name="q" maxlength="120" placeholder="Try JLT or café" />
    <button class="primary" type="submit">Search</button>
   </div>
-  <button type="button" id="filter-toggle" class="pill-button" aria-expanded="false" aria-controls="extra-filters" hidden><Icon name="sliders-horizontal" size={18} anim="tilt" />Filters<span id="filter-count"></span></button>
+  <button type="button" id="filter-toggle" class="pill-button" aria-expanded="false" aria-controls="extra-filters" hidden><Icon name="sliders-horizontal" size={18} anim="tilt" /><span class="filter-label">Filters</span><span id="filter-count"></span></button>
  </div>
  <fieldset class="modes">
   <legend class="sr-only">Work mode</legend>
@@ -29,14 +29,18 @@ const areas = [...new Set(places.map(p => p.neighbourhood).filter(Boolean))].sor
    {modes.map(m => <label class="seg"><input type="radio" name="mode" value={m} /><Icon name={modeIcons[m]} size={17} anim="bob" /><span>{m}</span></label>)}
   </div>
  </fieldset>
- <div id="extra-filters" class="extra-filters">
+ <!-- On phones this opens as a bottom sheet (head and foot show only there); elsewhere it expands in place. -->
+ <div id="extra-filters" class="extra-filters" aria-labelledby="filters-title">
+  <div class="sheet-head"><h2 id="filters-title" class="sheet-title" tabindex="-1">Filters</h2><button type="button" class="sheet-close" id="filters-close" aria-label="Close filters"><Icon name="x" size={20} /></button></div>
   <div class="select-pill"><label for="category">Place type</label><select name="category" id="category"><option value="">All</option>{categories.map(c => <option>{c}</option>)}</select><Icon name="caret-down" size={14} /></div>
   <div class="select-pill"><label for="neighbourhood">Neighbourhood</label><select name="neighbourhood" id="neighbourhood"><option value="">All</option>{areas.map(n => <option>{n}</option>)}</select><Icon name="caret-down" size={14} /></div>
   <label class="toggle"><input type="checkbox" name="fast" /><Icon name="lightning" weight="fill" size={17} />Fast Wi-Fi<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
   <label class="toggle"><input type="checkbox" name="sockets" /><Icon name="plug" weight="fill" size={17} />Plenty of sockets<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
   <label class="toggle"><input type="checkbox" name="calls" /><Icon name="phone-call" weight="fill" size={17} />Okay for calls<Icon name="check" weight="bold" size={14} class="toggle-check" /></label>
   <button type="reset" class="text-button" id="clear-all" hidden><Icon name="arrow-counter-clockwise" size={16} anim="spin" />Clear all</button>
+  <div class="sheet-foot"><button type="button" class="primary sheet-done" id="filters-done">Show {places.length} places</button></div>
  </div>
+ <div class="sheet-backdrop" id="filters-backdrop" hidden></div>
 </form>}
 <p class="result-count" id="result-count" aria-live="polite">{saved ? 'Loading your saved places…' : `${places.length} places`}</p>
 <div class="cards" id="results">{places.map((p, i) => <PlaceCard place={p} priority={i < 4} headingLevel={2} />)}</div>

@@ -212,15 +212,15 @@ const socketScale = [['0', 'None', 0], ['1', 'A few', 1], ['2', 'Some', 2], ['4'
 </div>
 <!-- Moved under the place name by src/scripts/place-search.ts, and shown once a place is picked. -->
 <section class="place-preview" id="place-preview" aria-labelledby="preview-title" data-state="empty" hidden>
- <div class="preview-map">
-  <p class="preview-empty"><Icon name="map-pin" weight="fill" size={22} /><span>Pick a place from the list to see it on the map.</span></p>
-  <div id="place-map" class="preview-canvas"></div>
- </div>
+ <h2 class="sr-only" id="preview-title">The place you picked</h2>
+ <div class="preview-map"><div id="place-map" class="preview-canvas"></div></div>
  <div class="preview-body">
-  <h2 class="preview-label" id="preview-title">Place preview</h2>
-  <p class="preview-name" id="preview-name" hidden></p>
-  <p class="preview-address" id="place-address-text"></p>
-  <p class="preview-foot" id="preview-foot" hidden><span>Location from Google Maps</span><button type="button" class="text-button" id="place-clear">Not this place</button></p>
+  <Icon name="map-pin" weight="fill" size={18} class="preview-pin" />
+  <div class="preview-text">
+   <p class="sr-only" id="preview-name" hidden></p>
+   <p class="preview-address" id="place-address-text"></p>
+   <p class="preview-foot" id="preview-foot" hidden><span>From Google Maps</span><button type="button" class="text-button" id="place-clear">Not this place</button></p>
+  </div>
  </div>
 </section>
 <script>import '../scripts/submit'; import '../scripts/place-search';</script>
