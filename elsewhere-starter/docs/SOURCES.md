@@ -23,6 +23,17 @@ Files were downloaded from the following Unsplash image endpoints, resized to 12
 
 Scenes 5–8 were added so that each of the eight fictional places has its own illustrative photo. They were chosen from a contact sheet because none shows an identifiable face or legible venue branding. The same provenance caveats apply: the photographer names were not confirmed, so none is invented.
 
+## Owner's photographs (added 26 Nov 2026)
+Five photographs taken by the owner, Tajdid Rahman, supplied in the project's `Photos` folder (originals 580×580). Each was trimmed by 14px on every side (removing rounded export corners), resized to 552×552 and saved as JPEG (quality 78) and WebP (quality 74) with all metadata stripped. They show days spent working around Dubai and are used editorially only (the About page photo strip under its header). They carry no on-page caption, at the owner's request. They are not presented as, or attached to, any particular listed venue. Photo 05 was left out because it shows two identifiable people; photos 01 and 03 were briefly used on the home page and removed.
+
+| Local file | Original |
+|---|---|
+| public/images/photos/working-02.(jpg, webp) | Photo 02.jpg |
+| public/images/photos/working-04.(jpg, webp) | Photo 04.jpg |
+| public/images/photos/working-06.(jpg, webp) | Photo 06.jpg |
+| public/images/photos/working-07.(jpg, webp) | Photo 07.jpg |
+| public/images/photos/working-08.(jpg, webp) | Photo 08.jpg |
+
 Icons are [Phosphor](https://phosphoricons.com) via `@phosphor-icons/core` 2.1.1 (MIT), inlined into the built HTML; keep its license with redistributed builds. Geist is installed from `@fontsource-variable/geist`; retain upstream font license and package metadata when distributing compiled assets. npm dependencies retain their respective licenses. No Mobbin, on.design or Ruma screenshots, layouts or assets are copied; the owner-supplied screenshots of those products were used as visual inspiration only.
 
 ## Design process record

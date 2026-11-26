@@ -3,6 +3,7 @@
 // the labels and numbers on the site mean. Every figure here is counted from the data, not written by hand.
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import Photo from '../components/Photo.astro';
 import StepFrame from '../components/StepFrame.astro';
 import { places } from '../lib/places';
 import { directionsIsSearch } from '../lib/discovery';
@@ -51,6 +52,11 @@ const sources = [
    <div><dt>with exact directions</dt><dd>{exact}</dd></div>
   </dl>
  </header>
+
+ <!-- The owner's own photos (provenance in docs/SOURCES.md); not tied to any listed venue. -->
+ <div class="about-gallery about-photos">
+  <Photo n="06" class="is-large" eager /><Photo n="02" eager /><Photo n="04" eager /><Photo n="08" /><Photo n="07" />
+ </div>
 
  <section class="about-wide" aria-labelledby="submitting">
   <div class="about-sec-head">

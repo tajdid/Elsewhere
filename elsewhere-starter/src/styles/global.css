@@ -321,6 +321,12 @@ main{padding-bottom:24px}
 .trust{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px 40px;margin-top:112px;padding:40px 48px;border-radius:var(--r-panel);background:var(--accent);color:var(--ground)}
 .trust h2{font-size:clamp(28px,3vw,40px);line-height:1.05;letter-spacing:-.04em}
 .trust-copy p{margin-top:8px;font-size:17px;line-height:1.5;color:#E6ECE5}
+/* About: the owner's photos, one large and four small. */
+.about-gallery{margin-top:56px}
+.about-photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.about-photos picture{display:block;border-radius:var(--r-photo);overflow:hidden;background:var(--surface)}
+.about-photos img{width:100%;height:100%;aspect-ratio:1;object-fit:cover}
+.about-photos .is-large{grid-column:span 2;grid-row:span 2}
 .trust-panel-title{font-size:15px;font-weight:550;letter-spacing:-.01em;color:#C9D4C8;margin-bottom:8px}
 .trust-legend{display:grid;font-size:15px}
 .trust-legend li{display:grid;grid-template-columns:190px 1fr;align-items:center;gap:16px;padding-block:14px;color:var(--ground)}
@@ -708,6 +714,10 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:10px}
  .card-title{font-size:20px}
  .trust{padding:28px 20px;margin-top:72px;border-radius:var(--r-photo)}
  .trust .primary{width:100%;justify-content:center}
+ .about-photos{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ /* Phones: four equal squares in a 2×2 grid. */
+ .about-photos .is-large{grid-column:auto;grid-row:auto}
+ .about-photos picture:nth-child(n+5){display:none}
  .trust-legend li{grid-template-columns:1fr;gap:6px;padding-block:12px}
  .footer{margin-top:72px}
  .footer-top{padding-block:40px 28px}

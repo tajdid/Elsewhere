@@ -96,7 +96,7 @@ Place pages use the site image rather than their temporary photos, which don't s
 
 
 ## About and footer (14 Nov 2026)
-- **`/about/`:** what Elsewhere is, with three figures counted from the data. "Who's behind it" credits Tajdid Rahman (tajdidrahman.co.uk) and gives support@elsewhere.work for enquiries, corrections and removal requests. "What things mean" covers Wi-Fi speed tiers, the sockets scale, noise, Wi-Fi access, Visited and Not added. "The labels on each place" covers the evidence pills, and "Good to know" covers the lack of photos (none are shown until real ones exist), local saves, changing hours and directions.
+- **`/about/`:** what Elsewhere is, with three figures counted from the data. Right under the header, five of the owner's photos (one large, four small; on phones the first four as a 2×2 grid; no caption, not tied to any venue). "Who's behind it" credits Tajdid Rahman (tajdidrahman.co.uk) and gives support@elsewhere.work for enquiries, corrections and removal requests. "What things mean" covers Wi-Fi speed tiers, the sockets scale, noise, Wi-Fi access, Visited and Not added. "The labels on each place" covers the evidence pills, and "Good to know" covers the lack of photos (none are shown until real ones exist), local saves, changing hours and directions.
 - **Footer:** tagline and description, Explore / Saved / About links, the big wordmark, then “Made with ☕ by Tajdid Rahman” (a coffee icon, with a link opening tajdidrahman.co.uk in a new tab) and Back to top.
 - **Place page:** the laptop tip sits in the left column under “What we know”, as a callout reading “Laptops: …”.
 

@@ -1,0 +1,18 @@
+---
+// One of the owner's own photographs of working around Dubai (public/images/photos, taken by Tajdid Rahman,
+// trimmed and re-encoded with metadata stripped). Used editorially only: never as a photo of a listed venue.
+// WebP with a JPEG fallback; every file is 552×552.
+interface Props { n: '02' | '04' | '06' | '07' | '08'; class?: string; eager?: boolean }
+const { n, class: cls, eager = false } = Astro.props;
+const photoAlt: Record<Props['n'], string> = {
+  '02': 'Lunch beside an open laptop on a shaded terrace',
+  '04': 'A takeaway coffee cup held up against a desert camp',
+  '06': 'A café with green stairs, hanging plants and a cream sofa',
+  '07': 'An espresso cup on a saucer beside an open laptop',
+  '08': 'Someone working on a laptop at a round café table',
+};
+---
+<picture class={cls}>
+ <source type="image/webp" srcset={`/images/photos/working-${n}.webp`} />
+ <img src={`/images/photos/working-${n}.jpg`} width="552" height="552" alt={photoAlt[n]} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+</picture>
