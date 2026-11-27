@@ -77,7 +77,7 @@ const wifiNote = (note: string) => speed ? `${formatMbps(speed.downMbps)} when t
     {p.hours ? <>
      <p class="today-line" data-today-hours={JSON.stringify(p.hours.week)}>Usual hours</p>
      <ul class="week">{dayKeys.map(d => <li data-day={d}><span>{dayNames[d]}</span><span>{formatRange(p.hours!.week[d])}</span></li>)}</ul>
-     <p class="visit-small">{p.hoursNote} Checked {fmt(p.hours.checkedAt)} · {p.hours.source}.</p>
+     <p class="visit-small">{p.hoursNote} Reported {fmt(p.hours.checkedAt)} · {p.hours.source}.</p>
     </> : liveHours ? <div class="google-hours" data-google-hours={p.googlePlaceId} data-endpoint={placesEndpoint}>
      <button type="button" class="text-button hours-btn" data-hours-btn><Icon name="clock" size={16} />Show hours from Google</button>
      <div data-hours-out hidden tabindex="-1"></div>

@@ -103,16 +103,20 @@ test('reports carry an optional speed and an access answer, never a password fie
  assert.equal(buildSubmission({name:'A',wifiAccess:'hack'},null,now).wifiAccess,'unsure');
 });
 
-test('parking and pets are never inferred: unknown unless a dated visitor report says otherwise', async () => {
+test('parking, pets and hours are never inferred: unknown unless a dated report says otherwise', async () => {
   const { places } = await import('../src/lib/places');
   const { parkingSchema, petsSchema } = await import('../src/lib/schema');
-  // Places imported from the Notion list have no parking or pet information.
-  for (const p of places.filter(p => p.addedAt < '2026-11-20')) assert.ok(p.parking.value === 'unknown' && p.parking.cost === 'unknown' && p.pets.value === 'unknown', p.id);
-  // Anything known came from a visitor report, with its date.
+  // Places imported from the Notion list have no parking, pet or hours information.
+  for (const p of places.filter(p => p.addedAt < '2026-11-20')) assert.ok(p.parking.value === 'unknown' && p.parking.cost === 'unknown' && p.pets.value === 'unknown' && p.hours === null, p.id);
+  // Anything known came from a visitor report or a community recommendation the owner added, with its date.
+  const reported = new Set(['Visitor report', 'Community recommendation']);
   for (const p of places) {
-    if (p.parking.value !== 'unknown') assert.ok(p.parking.source === 'Visitor report' && p.parking.checkedAt, p.id);
-    if (p.pets.value !== 'unknown') assert.ok(p.pets.source === 'Visitor report' && p.pets.checkedAt, p.id);
+    if (p.parking.value !== 'unknown') assert.ok(reported.has(p.parking.source!) && p.parking.checkedAt, p.id);
+    if (p.pets.value !== 'unknown') assert.ok(reported.has(p.pets.source!) && p.pets.checkedAt, p.id);
+    if (p.hours) assert.ok(reported.has(p.hours.source) && Date.parse(p.hours.checkedAt) <= Date.parse(p.addedAt), p.id);
   }
+  // Nothing from these reports is ever marked Verified.
+  for (const p of places.filter(p => p.addedAt >= '2026-11-20')) for (const e of Object.values(p.amenities)) assert.notEqual(e.status, 'verified', p.id);
   // A known value needs a source and date; a cost needs parking to pay for.
   assert.equal(petsSchema.safeParse({ value: 'inside', source: null, checkedAt: null }).success, false);
   assert.equal(parkingSchema.safeParse({ value: 'none', cost: 'paid', source: 'Visitor report', checkedAt: '2026-11-20T00:00:00Z' }).success, false);

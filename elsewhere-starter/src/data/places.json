@@ -265,6 +265,92 @@
     }
   },
   {
+    "id": "artisan-bakers-umm-suqeim",
+    "slug": "artisan-bakers-umm-suqeim",
+    "name": "Artisan Bakers",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Umm Suqeim",
+    "summary": "Bakery café with indoor and outdoor seating. Opening hours are reported differently (some say 24 hours), so check before you go.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "3 Umm Suqeim Street, Umm Suqeim 3",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://artisanbakers.ae/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Wi-Fi reported in a community recommendation."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
     "id": "barasti",
     "slug": "barasti",
     "name": "Barasti",
@@ -455,6 +541,125 @@
     }
   },
   {
+    "id": "bookhero-umm-suqeim",
+    "slug": "bookhero-umm-suqeim",
+    "name": "BookHero",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Umm Suqeim",
+    "summary": "Bookshop café with indoor and outdoor seating.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "Umm Suqeim Park, 4A Street",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://bookhero.ae",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "06:00",
+          "23:30"
+        ],
+        "tue": [
+          "06:00",
+          "23:30"
+        ],
+        "wed": [
+          "06:00",
+          "23:30"
+        ],
+        "thu": [
+          "06:00",
+          "23:30"
+        ],
+        "fri": [
+          "06:00",
+          "23:30"
+        ],
+        "sat": [
+          "06:00",
+          "23:30"
+        ],
+        "sun": [
+          "06:00",
+          "23:30"
+        ]
+      }
+    },
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
     "id": "breeze",
     "slug": "breeze",
     "name": "Breeze",
@@ -547,6 +752,92 @@
     }
   },
   {
+    "id": "cafe-de-paris-business-bay",
+    "slug": "cafe-de-paris-business-bay",
+    "name": "Café De Paris",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Business Bay",
+    "summary": "",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-25T05:27:12Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-25T05:27:12Z",
+        "note": "Wi-Fi reported by a visitor."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
     "id": "cafe-rider",
     "slug": "cafe-rider",
     "name": "Cafe Rider",
@@ -621,92 +912,6 @@
       "measuredAt": "2022-01-14T07:05:00Z",
       "source": "Elsewhere list"
     },
-    "wifiAccess": {
-      "value": "unknown",
-      "password": null,
-      "source": null,
-      "checkedAt": null
-    },
-    "hours": null,
-    "parking": {
-      "value": "unknown",
-      "cost": "unknown",
-      "source": null,
-      "checkedAt": null
-    },
-    "pets": {
-      "value": "unknown",
-      "source": null,
-      "checkedAt": null
-    }
-  },
-  {
-    "id": "cafe-de-paris-business-bay",
-    "slug": "cafe-de-paris-business-bay",
-    "name": "Café De Paris",
-    "isSample": false,
-    "category": "Café",
-    "tags": [
-      "Café"
-    ],
-    "neighbourhood": "Business Bay",
-    "summary": "",
-    "image": null,
-    "imageAlt": null,
-    "imageCredit": null,
-    "sockets": null,
-    "noise": null,
-    "entry": null,
-    "mapsUrl": null,
-    "locationNote": null,
-    "menuUrl": null,
-    "visited": false,
-    "addedAt": "2026-11-25T05:27:12Z",
-    "modes": [],
-    "priceNote": "Entry and prices not added yet.",
-    "hoursNote": "Hours not added yet. Check with the venue before you go.",
-    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
-    "address": null,
-    "coordinates": null,
-    "website": null,
-    "amenities": {
-      "wifi": {
-        "value": "yes",
-        "status": "reported",
-        "source": "Visitor report",
-        "checkedAt": "2026-11-25T05:27:12Z",
-        "note": "Wi-Fi reported by a visitor."
-      },
-      "power": {
-        "value": "unknown",
-        "status": "unknown",
-        "source": null,
-        "checkedAt": null,
-        "note": "Not added yet."
-      },
-      "laptops": {
-        "value": "unknown",
-        "status": "unknown",
-        "source": null,
-        "checkedAt": null,
-        "note": "Not added yet."
-      },
-      "calls": {
-        "value": "unknown",
-        "status": "unknown",
-        "source": null,
-        "checkedAt": null,
-        "note": "Not added yet."
-      },
-      "stepFree": {
-        "value": "unknown",
-        "status": "unknown",
-        "source": null,
-        "checkedAt": null,
-        "note": "Not added yet."
-      }
-    },
-    "wifiSpeed": null,
     "wifiAccess": {
       "value": "unknown",
       "password": null,
@@ -894,6 +1099,244 @@
       "checkedAt": null
     },
     "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
+    "id": "cars-cafe-motor-city",
+    "slug": "cars-cafe-motor-city",
+    "name": "Cars Café",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Motor City",
+    "summary": "Co-working and meeting facilities reported.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "Racing School 2, Dubai Autodrome",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Wi-Fi reported in a community recommendation."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Sockets reported in a community recommendation."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "08:00",
+          "20:30"
+        ],
+        "tue": [
+          "08:00",
+          "20:30"
+        ],
+        "wed": [
+          "08:00",
+          "20:30"
+        ],
+        "thu": [
+          "08:00",
+          "20:30"
+        ],
+        "fri": [
+          "08:00",
+          "20:30"
+        ],
+        "sat": [
+          "08:00",
+          "20:30"
+        ],
+        "sun": [
+          "08:00",
+          "20:30"
+        ]
+      }
+    },
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
+    "id": "cassette-al-quoz",
+    "slug": "cassette-al-quoz",
+    "name": "Cassette",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Al Quoz",
+    "summary": "Indoor and outdoor seating.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "The Courtyard, Al Quoz Industrial 1",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Another listing gives a 7 pm close. Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://cassette.ae/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Wi-Fi reported in a community recommendation."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "08:00",
+          "18:00"
+        ],
+        "tue": [
+          "08:00",
+          "18:00"
+        ],
+        "wed": [
+          "08:00",
+          "18:00"
+        ],
+        "thu": [
+          "08:00",
+          "18:00"
+        ],
+        "fri": [
+          "08:00",
+          "18:00"
+        ],
+        "sat": [
+          "08:00",
+          "18:00"
+        ],
+        "sun": [
+          "08:00",
+          "18:00"
+        ]
+      }
+    },
     "parking": {
       "value": "unknown",
       "cost": "unknown",
@@ -1724,6 +2167,125 @@
     }
   },
   {
+    "id": "culture-deli-dubai-canal",
+    "slug": "culture-deli-dubai-canal",
+    "name": "Culture Deli",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Al Wasl",
+    "summary": "Waterfront deli by Dubai Canal with indoor and outdoor seating.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "Canal Front Residences 7B, Dubai Canal",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://culturedeli.com/",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "07:00",
+          "22:00"
+        ],
+        "tue": [
+          "07:00",
+          "22:00"
+        ],
+        "wed": [
+          "07:00",
+          "22:00"
+        ],
+        "thu": [
+          "07:00",
+          "22:00"
+        ],
+        "fri": [
+          "07:00",
+          "22:00"
+        ],
+        "sat": [
+          "07:00",
+          "22:00"
+        ],
+        "sun": [
+          "07:00",
+          "22:00"
+        ]
+      }
+    },
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
     "id": "dolce-green-cafe",
     "slug": "dolce-green-cafe",
     "name": "Dolce Green Cafe",
@@ -1889,6 +2451,125 @@
       "checkedAt": null
     },
     "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
+    "id": "drvn-by-porsche-bluewaters",
+    "slug": "drvn-by-porsche-bluewaters",
+    "name": "DRVN by Porsche",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Bluewater Island",
+    "summary": "Automotive concept café with indoor and outdoor seating.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "The Wharf",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Reported to stay open until 1 am at weekends. Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://bluewatersdubai.ae/en/discover/dine/drvn-by-porsche",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "08:00",
+          "00:00"
+        ],
+        "tue": [
+          "08:00",
+          "00:00"
+        ],
+        "wed": [
+          "08:00",
+          "00:00"
+        ],
+        "thu": [
+          "08:00",
+          "00:00"
+        ],
+        "fri": [
+          "08:00",
+          "00:00"
+        ],
+        "sat": [
+          "08:00",
+          "00:00"
+        ],
+        "sun": [
+          "08:00",
+          "00:00"
+        ]
+      }
+    },
     "parking": {
       "value": "unknown",
       "cost": "unknown",
@@ -2642,6 +3323,211 @@
     }
   },
   {
+    "id": "kana-cafe-motor-city",
+    "slug": "kana-cafe-motor-city",
+    "name": "Kana Café",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Motor City",
+    "summary": "Shisha and indoor smoking reported; evening sports can make it noisy.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "First Avenue Mall",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://kana-cafe.ae/",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "09:00",
+          "02:00"
+        ],
+        "tue": [
+          "09:00",
+          "02:00"
+        ],
+        "wed": [
+          "09:00",
+          "02:00"
+        ],
+        "thu": [
+          "09:00",
+          "02:00"
+        ],
+        "fri": [
+          "09:00",
+          "03:00"
+        ],
+        "sat": [
+          "09:00",
+          "03:00"
+        ],
+        "sun": [
+          "09:00",
+          "02:00"
+        ]
+      }
+    },
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
+    "id": "kave-alserkal-avenue",
+    "slug": "kave-alserkal-avenue",
+    "name": "KAVE",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Al Quoz",
+    "summary": "Creative community café with indoor and outdoor seating.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "Warehouse 20, Alserkal Avenue",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://thestoryofthings.com",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
     "id": "la-ramona-dal-1947",
     "slug": "la-ramona-dal-1947",
     "name": "La Ramona Dal 1947",
@@ -2922,6 +3808,125 @@
       "value": "unknown",
       "source": null,
       "checkedAt": null
+    }
+  },
+  {
+    "id": "little-neighborhood-palm-jumeirah",
+    "slug": "little-neighborhood-palm-jumeirah",
+    "name": "Little Neighborhood",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Palm Jumeirah",
+    "summary": "Café with a terrace.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "Golden Mile 6, Golden Mile Galleria",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://littleneighborhooddxb.com/",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Wi-Fi reported in a community recommendation."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Sockets reported in a community recommendation."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "07:00",
+          "23:00"
+        ],
+        "tue": [
+          "07:00",
+          "23:00"
+        ],
+        "wed": [
+          "07:00",
+          "23:00"
+        ],
+        "thu": [
+          "07:00",
+          "23:00"
+        ],
+        "fri": [
+          "07:00",
+          "23:00"
+        ],
+        "sat": [
+          "07:00",
+          "23:00"
+        ],
+        "sun": [
+          "07:00",
+          "23:00"
+        ]
+      }
+    },
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "outdoor",
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z"
     }
   },
   {
@@ -3649,6 +4654,125 @@
     }
   },
   {
+    "id": "raw-coffee-company-al-quoz",
+    "slug": "raw-coffee-company-al-quoz",
+    "name": "RAW Coffee Company",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Al Quoz",
+    "summary": "Indoor and outdoor seating.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "Warehouse WH10, corner of 7A and 4A Street",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://rawcoffeecompany.com",
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Wi-Fi reported in a community recommendation."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Community recommendation",
+        "checkedAt": "2026-11-27T00:00:00Z",
+        "note": "Recommended as a place to work from."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": {
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z",
+      "week": {
+        "mon": [
+          "07:30",
+          "18:00"
+        ],
+        "tue": [
+          "07:30",
+          "18:00"
+        ],
+        "wed": [
+          "07:30",
+          "18:00"
+        ],
+        "thu": [
+          "07:30",
+          "18:00"
+        ],
+        "fri": [
+          "07:30",
+          "18:00"
+        ],
+        "sat": [
+          "07:30",
+          "18:00"
+        ],
+        "sun": [
+          "07:30",
+          "18:00"
+        ]
+      }
+    },
+    "parking": {
+      "value": "street",
+      "cost": "paid",
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z"
+    },
+    "pets": {
+      "value": "outdoor",
+      "source": "Community recommendation",
+      "checkedAt": "2026-11-27T00:00:00Z"
+    }
+  },
+  {
     "id": "roast-speciality-coffee",
     "slug": "roast-speciality-coffee",
     "name": "Roast - Speciality Coffee",
@@ -4010,6 +5134,125 @@
     }
   },
   {
+    "id": "single-fin-cafe-umm-suqeim",
+    "slug": "single-fin-cafe-umm-suqeim",
+    "name": "Single Fin Cafe",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Umm Suqeim",
+    "summary": "",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": 2,
+    "noise": "moderate",
+    "entry": "buy",
+    "mapsUrl": null,
+    "locationNote": null,
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-26T12:37:49Z",
+    "modes": [],
+    "priceNote": "Buy something to sit and work.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:37:49Z",
+        "note": "Wi-Fi reported by a visitor."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:37:49Z",
+        "note": "Some sockets."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:37:49Z",
+        "note": "Laptops welcome."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:37:49Z",
+        "note": "Moderate noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:37:49Z",
+        "note": "Step-free entry reported by a visitor."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "password",
+      "password": null,
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:37:49Z"
+    },
+    "hours": {
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:37:49Z",
+      "week": {
+        "mon": [
+          "07:00",
+          "19:00"
+        ],
+        "tue": [
+          "07:00",
+          "19:00"
+        ],
+        "wed": [
+          "07:00",
+          "19:00"
+        ],
+        "thu": [
+          "07:00",
+          "19:00"
+        ],
+        "fri": [
+          "07:00",
+          "19:00"
+        ],
+        "sat": [
+          "07:00",
+          "19:00"
+        ],
+        "sun": [
+          "07:00",
+          "19:00"
+        ]
+      }
+    },
+    "parking": {
+      "value": "street",
+      "cost": "paid",
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:37:49Z"
+    },
+    "pets": {
+      "value": "outdoor",
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:37:49Z"
+    }
+  },
+  {
     "id": "social-distrikt",
     "slug": "social-distrikt",
     "name": "Social Distrikt",
@@ -4284,6 +5527,125 @@
       "value": "unknown",
       "source": null,
       "checkedAt": null
+    }
+  },
+  {
+    "id": "splendour-fields-jlt",
+    "slug": "splendour-fields-jlt",
+    "name": "Splendour Fields",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "JLT",
+    "summary": "",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": 1,
+    "noise": "moderate",
+    "entry": "buy",
+    "mapsUrl": null,
+    "locationNote": "The Park",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-26T12:35:43Z",
+    "modes": [],
+    "priceNote": "Buy something to sit and work.",
+    "hoursNote": "Hours may differ on public holidays and in Ramadan. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": null,
+    "amenities": {
+      "wifi": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:35:43Z",
+        "note": "Wi-Fi reported by a visitor."
+      },
+      "power": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:35:43Z",
+        "note": "A few sockets."
+      },
+      "laptops": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:35:43Z",
+        "note": "Laptops welcome."
+      },
+      "calls": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:35:43Z",
+        "note": "Moderate noise: okay for calls."
+      },
+      "stepFree": {
+        "value": "yes",
+        "status": "reported",
+        "source": "Visitor report",
+        "checkedAt": "2026-11-26T12:35:43Z",
+        "note": "Step-free entry reported by a visitor."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "password",
+      "password": null,
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:35:43Z"
+    },
+    "hours": {
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:35:43Z",
+      "week": {
+        "mon": [
+          "08:00",
+          "17:00"
+        ],
+        "tue": [
+          "08:00",
+          "17:00"
+        ],
+        "wed": [
+          "08:00",
+          "17:00"
+        ],
+        "thu": [
+          "08:00",
+          "17:00"
+        ],
+        "fri": [
+          "08:00",
+          "17:00"
+        ],
+        "sat": [
+          "08:00",
+          "17:00"
+        ],
+        "sun": [
+          "08:00",
+          "17:00"
+        ]
+      }
+    },
+    "parking": {
+      "value": "street",
+      "cost": "paid",
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:35:43Z"
+    },
+    "pets": {
+      "value": "outdoor",
+      "source": "Visitor report",
+      "checkedAt": "2026-11-26T12:35:43Z"
     }
   },
   {
@@ -4773,6 +6135,92 @@
     "address": null,
     "coordinates": null,
     "website": "http://www.thesumofusdubai.com/",
+    "amenities": {
+      "wifi": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "power": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "laptops": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "calls": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      },
+      "stepFree": {
+        "value": "unknown",
+        "status": "unknown",
+        "source": null,
+        "checkedAt": null,
+        "note": "Not added yet."
+      }
+    },
+    "wifiSpeed": null,
+    "wifiAccess": {
+      "value": "unknown",
+      "password": null,
+      "source": null,
+      "checkedAt": null
+    },
+    "hours": null,
+    "parking": {
+      "value": "unknown",
+      "cost": "unknown",
+      "source": null,
+      "checkedAt": null
+    },
+    "pets": {
+      "value": "unknown",
+      "source": null,
+      "checkedAt": null
+    }
+  },
+  {
+    "id": "thirtyfour-at-clubist-dubai-marina",
+    "slug": "thirtyfour-at-clubist-dubai-marina",
+    "name": "Thirtyfour at Clubist",
+    "isSample": false,
+    "category": "Café",
+    "tags": [
+      "Café"
+    ],
+    "neighbourhood": "Dubai Marina",
+    "summary": "Café at the Clubist members' club. Whether non-members can use it, its hours and its laptop policy aren't confirmed yet.",
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null,
+    "sockets": null,
+    "noise": null,
+    "entry": null,
+    "mapsUrl": null,
+    "locationNote": "Marina Quays East Tower, Marina Promenade Level",
+    "menuUrl": null,
+    "visited": false,
+    "addedAt": "2026-11-27T00:00:00Z",
+    "modes": [],
+    "priceNote": "Entry and prices not added yet.",
+    "hoursNote": "Hours not added yet. Check with the venue before you go.",
+    "policyNote": "Check laptop use with staff on arrival; busy periods may differ.",
+    "address": null,
+    "coordinates": null,
+    "website": "https://clubist.ae/",
     "amenities": {
       "wifi": {
         "value": "unknown",

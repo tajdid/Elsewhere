@@ -102,3 +102,16 @@ Two reports from the Submit a place Sheet were reviewed by the owner and added a
 - `entry` gains a third value, `buy` (expected to buy something to sit and work), alongside `free` and `paid`; search data only states free entry for `free`. Counter Culture Café's price note records the reported "unlimited tea and coffee for 30 AED".
 - Not added: Counter Culture Café's website (the Sheet shows a truncated Instagram link) and its guest Wi-Fi password (none was given).
 
+## Submissions added to the list (27 Nov 2026)
+Thirteen more rows from the Submit a place Sheet were marked Published by the owner and added (68 places in all). None is marked visited by Elsewhere, and nothing is Verified.
+
+**Visitor reports:** **Splendour Fields** (JLT; Google's name "Splendour Fields - The Park JLT" shortened, "The Park" kept as the location note) and **Single Fin Cafe** (Umm Suqeim; "Dubai" dropped from the name, and the reported "Umm Suqeim 2" grouped as Umm Suqeim).
+- Same mapping as 26 Nov: answers become Reported evidence with source "Visitor report" and the report's timestamp; sockets 1–5 use the Notion wording; parking, pets and entry ("buy") are copied as answered.
+- These are the first places with usual weekly `hours`, taken from the report's hours, sourced and dated like the rest. The place page now says "Reported <date> · <source>" under hours instead of "Checked".
+- Google place IDs are stored in `src/data/google-places.json` (confirmed 27 Nov 2026). Google's address and coordinates are not copied. The reporter's contact email is not published.
+
+**Owner entries from a community recommendation:** BookHero, Artisan Bakers (Umm Suqeim); RAW Coffee Company, KAVE, Cassette (Al Quoz); DRVN by Porsche (Bluewater Island, the list's existing spelling, so it groups with Coffee Club); Little Neighborhood (Palm Jumeirah); Culture Deli (Al Wasl); Cars Café, Kana Café (Motor City). And one Instagram find: Thirtyfour at Clubist (Dubai Marina).
+- The owner's Sheet notes say the details came from desk research and still need checking. So every answer is Reported with source "Community recommendation" (or "Instagram"), dated 27 Nov 2026 (the day they were entered), and "not sure" stays unknown.
+- The addresses are kept as `locationNote` (shown under Area, used in the labelled Google Maps search), not as `address`: they aren't validated, so directions stay a search by name.
+- Hours are copied only where they were unambiguous. DRVN's "until 1 am at weekends" and Cassette's "another listing says 7 pm" are noted beside the hours. Hours are left out for KAVE (Monday unknown), Artisan Bakers (conflicting) and Thirtyfour at Clubist (none given).
+- Short summaries restate the Sheet notes (seating, shisha, members' club access). Not copied: phone numbers and emails (no field), the name of the person who recommended them, and parking or pet hints that appear only in the notes, not in the parking/pets answers (KAVE, DRVN, Little Neighborhood, Cars Café, Artisan Bakers, Kana Café, Cassette, Clubist).

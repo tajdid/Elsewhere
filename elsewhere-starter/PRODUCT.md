@@ -31,7 +31,7 @@ A personally curated list, kept honest. The places come from the owner's own lis
 ## Capabilities and Constraints
 
 - Stack: Astro static site, strict TypeScript, Tailwind 4, self-hosted Geist; small client-side modules; Vercel hosting with two serverless endpoints (`/api/submit` to Google Sheets, `/api/places` for Google Places search and live opening hours).
-- Data: `src/data/places.json`, 55 real venues: 53 imported from the owner's Notion list "WFH in Dubai" (entries added 2020–2023) and 2 added from visitor reports on 26 Nov 2026. Every fact is Reported, none Verified yet.
+- Data: `src/data/places.json`, 68 real venues: 53 imported from the owner's Notion list "WFH in Dubai" (entries added 2020–2023), 4 added from visitor reports (26–27 Nov 2026) and 11 the owner added from a community recommendation and Instagram (27 Nov 2026). Every fact is Reported, none Verified yet.
 - Evidence model: per amenity (Wi-Fi, power, laptops, calls, step-free) with value yes/no/unknown, state (unknown, reported, verified, conflicting; stale is derived), source and date. Verified filters need a yes, independent verification, a source and date, at most 90 days old.
 - Google data: only place IDs are stored. Opening hours and maps are fetched live and credited to Google where shown; Google's hours, addresses and coordinates are never copied into the list.
 - Directions use the owner's Google Maps link, then a Google place ID, otherwise a labelled search by name.
@@ -50,8 +50,8 @@ A personally curated list, kept honest. The places come from the owner's own lis
 
 ## Evidence on Hand
 
-- 55 venues with real but dated facts in `src/data/places.json`; 14 marked visited by Elsewhere; 39 with confirmed Google place IDs.
-- Many gaps are real and must stay visible: 29 places without a neighbourhood, 47 without a summary, several without type, speed or noise.
+- 68 venues with real but dated facts in `src/data/places.json`; 14 marked visited by Elsewhere; 41 with confirmed Google place IDs.
+- Many gaps are real and must stay visible: 29 places without a neighbourhood, 51 without a summary, several without type, speed or noise.
 - No real venue photos. The stock images in `public/images` are temporary stand-ins and are not evidence about any venue. Current direction: design without photos until licensed photos of each venue exist.
 - No testimonials, ratings, reviews, press, partner logos or usage figures exist. Do not fabricate any, and never claim live opening status, seating availability or verification without supporting data.
 
