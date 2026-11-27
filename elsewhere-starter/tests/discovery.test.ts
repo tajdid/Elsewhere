@@ -106,8 +106,9 @@ test('reports carry an optional speed and an access answer, never a password fie
 test('parking, pets and hours are never inferred: unknown unless a dated report says otherwise', async () => {
   const { places } = await import('../src/lib/places');
   const { parkingSchema, petsSchema } = await import('../src/lib/schema');
-  // Places imported from the Notion list have no parking, pet or hours information.
-  for (const p of places.filter(p => p.addedAt < '2026-11-20')) assert.ok(p.parking.value === 'unknown' && p.parking.cost === 'unknown' && p.pets.value === 'unknown' && p.hours === null, p.id);
+  // Places imported from the Notion list (hidden since 27 Nov 2026) have no parking, pet or hours information.
+  const { default: hidden } = await import('../src/data/hidden-places.json');
+  for (const p of placeSchema.array().parse(hidden)) assert.ok(p.parking.value === 'unknown' && p.parking.cost === 'unknown' && p.pets.value === 'unknown' && p.hours === null, p.id);
   // Anything known came from a visitor report or a community recommendation the owner added, with its date.
   const reported = new Set(['Visitor report', 'Community recommendation']);
   for (const p of places) {
@@ -121,4 +122,17 @@ test('parking, pets and hours are never inferred: unknown unless a dated report 
   assert.equal(petsSchema.safeParse({ value: 'inside', source: null, checkedAt: null }).success, false);
   assert.equal(parkingSchema.safeParse({ value: 'none', cost: 'paid', source: 'Visitor report', checkedAt: '2026-11-20T00:00:00Z' }).success, false);
   assert.equal(parkingSchema.safeParse({ value: 'valet', cost: 'paid', source: 'Visitor report', checkedAt: '2026-11-20T00:00:00Z' }).success, true);
+});
+
+test('hidden places stay valid for restoring, but are never listed or shipped', async () => {
+  const { places } = await import('../src/lib/places');
+  const { default: hidden } = await import('../src/data/hidden-places.json');
+  const parked = placeSchema.array().parse(hidden);
+  assert.equal(parked.length, 53);
+  const listed = new Set(places.map(p => p.id));
+  for (const p of parked) assert.ok(!listed.has(p.id) && !places.some(q => q.slug === p.slug), p.id);
+  // Only src/data/places.json is read by the site; nothing under src/ imports the hidden file.
+  const { readdirSync, readFileSync } = await import('node:fs');
+  const files = readdirSync('src', { recursive: true, encoding: 'utf8' }).filter(f => /\.(ts|astro)$/.test(f));
+  for (const f of files) assert.ok(!readFileSync(`src/${f}`, 'utf8').includes('hidden-places'), f);
 });

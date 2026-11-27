@@ -8,7 +8,9 @@ test('discover search, URL restoration, filters and reset',async({page})=>{
  await page.getByRole('button',{name:'Clear filters',exact:true}).click();await expect(page.locator('[data-place]:visible')).toHaveCount(8);
 });
 test('all work modes have usable direct routes',async({page})=>{
- for(const mode of ['Focus','Casual','Meetings','Together']){await page.goto(`/?test=${mode}`);await page.locator('.mode-grid').getByRole('link',{name:new RegExp(mode)}).click();await expect(page.getByRole('radio',{name:mode,exact:true})).toBeChecked();expect(await page.locator('[data-place]:visible').count()).toBeGreaterThan(0);}
+ for(const mode of ['Focus','Casual','Meetings','Together']){await page.goto(`/?test=${mode}`);const link=page.locator('.mode-grid').getByRole('link',{name:new RegExp(mode)});const none=/None yet/.test(await link.innerText());await link.click();await expect(page.getByRole('radio',{name:mode,exact:true})).toBeChecked();
+  // A mode with no places yet says "None yet" on Discover and lands on the empty state, never a blank list.
+  if(none)await expect(page.locator('#empty')).toBeVisible();else expect(await page.locator('[data-place]:visible').count()).toBeGreaterThan(0);}
 });
 test('save, reload, remove and focus empty action',async({page})=>{
  await page.goto('/explore/');await page.getByRole('button',{name:'Save Palm & Paper Studio',exact:true}).click();await expect(page.getByRole('button',{name:'Remove Palm & Paper Studio from saved places'})).toHaveAttribute('aria-pressed','true');

@@ -93,7 +93,7 @@ const wifiNote = (note: string) => speed ? `${formatMbps(speed.downMbps)} when t
  </aside>
  <section class="detail-body" aria-labelledby="evidence-title">
   <div class="body-head"><h2 id="evidence-title">What we know</h2></div>
-  <p class="section-intro">“Reported” means it came from our list and hasn’t been rechecked. Things change, so check with the venue.</p>
+  <p class="section-intro">“Reported” means a visitor or a recommendation told us, and it hasn’t been rechecked. Things change, so check with the venue.</p>
   {known.length > 0 && <dl class="facts">{known.map(([key, e]) => <div>
    <dt><Icon name={amenityIcons[key]} size={20} />{amenityLabels[key]}</dt>
    <dd>

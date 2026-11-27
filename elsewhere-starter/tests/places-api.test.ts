@@ -104,8 +104,8 @@ test('a confirmed Google place ID gives exact directions; the owner’s own Maps
   assert.match(directionsUrl(withId), /query_place_id=ChIJ_test/);
   assert.equal(directionsIsSearch(withId), false);
   assert.equal(directionsIsSearch({ ...p, googlePlaceId: null }), true);
-  const owner = places.find(x => x.mapsUrl)!;
-  assert.equal(directionsUrl({ ...owner, googlePlaceId: 'ChIJ_test' }), owner.mapsUrl);
+  const owner = { ...p, mapsUrl: 'https://maps.app.goo.gl/example', googlePlaceId: 'ChIJ_test' };
+  assert.equal(directionsUrl(owner), owner.mapsUrl);
 });
 
 test('hours: only for confirmed listings, Monday-first descriptions, nothing when Google has none', async () => {

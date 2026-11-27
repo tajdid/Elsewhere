@@ -11,8 +11,10 @@ import { breadcrumbs, abs } from '../lib/seo';
 import { monthYear } from '../lib/dates';
 const visited = places.filter(p => p.visited).length;
 const exact = places.filter(p => !directionsIsSearch(p)).length;
-const years = places.map(p => Number(p.addedAt.slice(0, 4)));
-const [from, to] = [Math.min(...years), Math.max(...years)];
+// Where each place came from: the source on its answers (a place's answers share one source).
+const sourceOf = (p: (typeof places)[number]) => Object.values(p.amenities).find(e => e.source)?.source ?? p.hours?.source ?? null;
+const fromVisitors = places.filter(p => sourceOf(p) === 'Visitor report').length;
+const recommended = places.length - fromVisitors;
 const site = Astro.site!;
 const jsonLd = { '@context': 'https://schema.org', '@type': 'AboutPage', '@id': abs('/about/', site), url: abs('/about/', site), name: 'About Elsewhere', inLanguage: 'en-GB',
   isPartOf: { '@id': abs('/#website', site) }, about: { '@id': abs('/#organization', site) }, breadcrumb: breadcrumbs([['Home', '/'], ['About']], site) };
@@ -22,22 +24,21 @@ const steps = [
   { icon: 'paper-plane-tilt', title: 'Send it', text: 'It’s saved for review straight away, marked Pending. You only see “Thanks, that’s in” once it’s saved. If sending fails, it stays on your device so you can try again.' },
   { icon: 'check-circle', title: 'We check it', text: 'Every report is read by hand. Places that fit are added as Reported; nothing is published automatically.' },
 ];
-// The example place in the submitting picture, and three real rows from the list for the sources card.
-const example = places.find(p => p.id === 'friends-avenue-jlt') ?? places[0];
-const listRows = ['friends-avenue-jlt', 'rove-marina', 'common-grounds-dubai-hills-mall']
-  .map(id => places.find(p => p.id === id)).filter((p): p is NonNullable<typeof p> => !!p);
+// The example place in the submitting picture, and three real recommended places for the sources card.
+const example = places.find(p => p.id === 'splendour-fields-jlt') ?? places[0];
+const listRows = places.filter(p => p.neighbourhood && sourceOf(p) !== 'Visitor report').slice(0, 3);
 const reportTrack = ['Received', 'Pending review', 'Checked by hand', 'On the site as Reported'];
 const glossary = [
   { icon: 'lightning', term: 'Wi-Fi speed', text: 'One speed test from when the place was added. 50+ Mbps handles video calls; 5+ is fine for email.' },
   { icon: 'plug', term: 'Sockets', text: 'How easy it is to plug in, from A few to Lots.' },
   { icon: 'speaker-high', term: 'Noise', text: 'Quiet or Moderate is fine for calls. Loud is best avoided.' },
   { icon: 'lock-simple', term: 'Wi-Fi access', text: 'The password if we have it, or how to get on. If it doesn’t work, ask staff.' },
-  { icon: 'check-circle', term: 'Visited', text: 'We’ve worked from there ourselves.' },
+  ...(visited ? [{ icon: 'check-circle', term: 'Visited', text: 'We’ve worked from there ourselves.' }] : []),
   { icon: 'question', term: 'Not added', text: 'We don’t know yet. If you do, tell us.' },
 ];
 const sources = [
-  { kind: 'list', label: 'Where it started', icon: 'note-pencil', title: 'A list kept since ' + from, text: `${places.length} places, each noted with its Wi-Fi speed, sockets, noise and how to get online. Every detail shows when it was added, so you know how fresh it is.` },
-  { kind: 'reports', label: 'From visitors', icon: 'clipboard-text', title: 'Your reports', text: 'What people find when they visit. Reports are checked before they change anything, and the detail then shows its new date.' },
+  { kind: 'reports', label: 'From visitors', icon: 'clipboard-text', title: 'Your reports', text: `What people find when they visit: ${fromVisitors} of the ${places.length} places so far. Reports are read before they change anything, and each detail shows when it was reported.` },
+  { kind: 'list', label: 'Recommended', icon: 'note-pencil', title: 'Places people recommend', text: `${recommended} places came from recommendations, added by hand with whatever was known. Each detail says where it came from and when, and gaps say “not added”.` },
   { kind: 'google', label: 'Getting there', icon: 'map-trifold', title: 'Directions and hours', text: `Exact directions and a small map for ${exact} places. Opening hours load when you tap “Show hours”, so they’re current.` },
 ];
 ---
@@ -48,7 +49,7 @@ const sources = [
   <p class="lead">A short list of places in Dubai where you can open a laptop and get some work done: cafés, co-working spaces, restaurants and bars. Each place shows what matters before you go: how fast the Wi-Fi is, whether you’ll find a socket, how noisy it gets and how to get online.</p>
   <dl class="about-figures">
    <div><dt>places on the list</dt><dd>{places.length}</dd></div>
-   <div><dt>worked from by Elsewhere</dt><dd>{visited}</dd></div>
+   <div><dt>from visitor reports</dt><dd>{fromVisitors}</dd></div>
    <div><dt>with exact directions</dt><dd>{exact}</dd></div>
   </dl>
  </header>
@@ -93,8 +94,8 @@ const sources = [
    {sources.map(s => <li class="source-card">
     <div class="source-media" aria-hidden="true">
      {s.kind === 'list' && <div class="mock mock--list">
-      <p class="mock-bar"><span><Icon name="note-pencil" size={14} />The list</span><span>{places.length} places</span></p>
-      <ul>{listRows.map(p => <li><strong>{p.name}</strong><span>{p.neighbourhood}</span><span>{p.wifiSpeed?.downMbps} Mbps</span><span>{monthYear(p.addedAt)}</span></li>)}</ul>
+      <p class="mock-bar"><span><Icon name="note-pencil" size={14} />Recommended</span><span>{recommended} places</span></p>
+      <ul>{listRows.map(p => <li><strong>{p.name}</strong><span>{p.neighbourhood}</span><span>{p.category ?? 'Place'}</span><span>{monthYear(p.addedAt)}</span></li>)}</ul>
      </div>}
      {s.kind === 'reports' && <div class="mock mock--track">
       <p class="mock-bar"><span>A new report</span><span>Pending</span></p>
@@ -122,7 +123,7 @@ const sources = [
   </div>
   <div class="about-panel">
    <dl class="glossary glossary--pills about-labels">
-    <div><dt><span class="pill" data-tone="caution">Yes · Reported</span></dt><dd>From our list or a visitor, not rechecked yet.</dd></div>
+    <div><dt><span class="pill" data-tone="caution">Yes · Reported</span></dt><dd>From a visitor or a recommendation, not rechecked yet.</dd></div>
     <div><dt><span class="pill" data-tone="positive">Yes · Verified</span></dt><dd>Checked in person, with a date, within the last 90 days.</dd></div>
     <div><dt><span class="pill" data-tone="caution">Yes · Needs recheck</span></dt><dd>It was verified, but more than 90 days ago.</dd></div>
     <div><dt><span class="pill" data-tone="caution">Conflicting reports</span></dt><dd>Sources disagree, so nothing is claimed until it’s checked again.</dd></div>
@@ -149,7 +150,7 @@ const sources = [
    <ul class="about-facts">
     <li><strong>No photos yet</strong>Places are described by their details, not pictures. We’d rather show nothing than a photo of somewhere else, so real photos will only be added once we have them.</li>
     <li><strong>Directions</strong>Go straight to the place for {exact} places; for the rest they search by name, so check it’s the right one.</li>
-    <li><strong>Opening hours</strong>Load when you ask, and holiday hours can differ. Check with the venue before a long day out, and ask staff about laptops at busy times.</li>
+    <li><strong>Opening hours</strong>Usual hours show where someone reported them; otherwise they load from Google when you ask. Holiday hours can differ. Check with the venue before a long day out, and ask staff about laptops at busy times.</li>
     <li><strong>Saved places stay on this device</strong>They live in your browser, don’t sync anywhere and need no account. Clearing your browser data removes them.</li>
     <li><strong>Your email is optional</strong>If you leave one with a report, it’s only used to ask about that report and is never shown on the site.</li>
     <li><strong>No cookies, accounts or ads</strong>Visits are counted anonymously, without cookies.</li>
@@ -158,7 +159,7 @@ const sources = [
  </section>
  <section class="about-close" aria-labelledby="who">
   <h2 id="who">Who’s behind it</h2>
-  <p>Elsewhere is made by <a href="https://tajdidrahman.co.uk" target="_blank" rel="noopener noreferrer">Tajdid Rahman<span class="sr-only"> (opens in a new tab)</span></a>. It started as a personal list of places to work from around Dubai, noting the Wi-Fi, the sockets and whether a call would be drowned out. This site turns that list into something anyone can browse, and anyone can add to.</p>
+  <p>Elsewhere is made by <a href="https://tajdidrahman.co.uk" target="_blank" rel="noopener noreferrer">Tajdid Rahman<span class="sr-only"> (opens in a new tab)</span></a>. It started as a personal list of places to work from around Dubai, noting the Wi-Fi, the sockets and whether a call would be drowned out. The places on the site today come from visitors’ reports and recommendations, and anyone can add one.</p>
   <p>Questions, a correction, or want your place taken off the list? Email <a href="mailto:support@elsewhere.work">support@elsewhere.work</a>.</p>
   <div class="about-close-actions">
    <a class="primary" href="/explore/">Explore {places.length} places<Icon name="arrow-right" size={16} anim="slide" /></a>
